@@ -67,20 +67,20 @@
     });
   });
 
-  function openSearch(keywords) {
-    keywords = `site:${window.location.hostname} ${decodeURIComponent(keywords)}`;
-    let href = null;
-    switch (platforms[platformIndex]) {
-      case 'BaiDu':
-        href = `https://www.baidu.com/s?wd=${keywords}`;
-        break;
-      case 'Bing':
-        href = `https://cn.bing.com/search?q=${keywords}&FORM=BESBTB&ensearch=1`;
-        break;
-      default:
-        href = `https://www.google.com/search?q=${keywords}`;
-        break;
-    }
-    window.open(href);
-  }
+  // function openSearch(keywords) {
+  //   keywords = `site:${window.location.hostname} ${decodeURIComponent(keywords)}`;
+  //   let href = null;
+  //   switch (platforms[platformIndex]) {
+  //     case 'BaiDu':
+  //       href = `https://www.baidu.com/s?wd=${keywords}`;
+  //       break;
+  //     case 'Bing':
+  //       href = `https://cn.bing.com/search?q=${keywords}&FORM=BESBTB&ensearch=1`;
+  //       break;
+  //     default:
+  //       href = `https://www.google.com/search?q=${keywords}`;
+  //       break;
+  //   }
+  //   window.open(href);
+  // }
 })();
