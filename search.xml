@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[2019-07-01-lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Text 001text 002听说可以锁上一些文章,我试试]]></content>
+      <categories>
+        <category>文章分类</category>
+      </categories>
+      <tags>
+        <tag>标签2</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[2019-07-01-start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的摘要 Text 001text 002第一次尝试搭建博客，原来当程序员也是个体力活1111111111111111111111111111111111111111 3333]]></content>
+      <categories>
+        <category>文章分类1</category>
+      </categories>
+      <tags>
+        <tag>标签1</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2Fpassages%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
