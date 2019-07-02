@@ -7,9 +7,10 @@
     // layerContent = layer.querySelector('st-default-search-input'),
     layerContent = layer.querySelector('.site-layer-content'),
     title = document.querySelector('#site-layer-title'),
-    searchDOM = document.querySelector('#site-layer-search');
+    searchDOM = document.querySelector('#site-layer-search'),
+    inputDOM = document.querySelector('.st-default-search-input');
 
-  const inputDOM = searchDOM.querySelector('.st-default-search-input'),
+  const inputDOM = searchDOM.querySelector('input'),
     iconDOM = searchDOM.querySelector('i');
 
   let platformIndex = 0,
