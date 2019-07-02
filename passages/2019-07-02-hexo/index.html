@@ -106,11 +106,9 @@
           <i class="fa fa-github-alt"></i>
         </a>
       
-
         <a href="javascript:void(0);" id="site-search">
         <i class="fa fa-search"></i>
       </a>
-
       <a href="javascript:void(0);" id="site-nav-btn">
         <i class="fa fa-ellipsis-v"></i>
       </a>
@@ -160,18 +158,11 @@
           </a>
         </li>
       
-
-
       <li class="toc-item">
           
           <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
       
         </li>
-
-
-        
-
-
     </ol>
   </div>
 </nav>
@@ -211,7 +202,7 @@
 <p>我的主题是<a href="https://github.com/dongyuanxin/theme-ad/" target="_blank" rel="noopener">AD</a>，这个主题有很多有趣的功能，但是问题也有一两个。</p>
 <h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>①控制台安装Git之后，要用Git Bash Here（远程连接）来安装Hexo。<br>②密码拦截功能，按照他中文文档的操作还是不能给文章加密。目前在他的github上面询问。<br>③注册Learn Cloud启动不了评论和访问人数，原因：域名必须填博客的域名。（平台不必实名）<br>④AD主题<a href="https://xin-tan.com/" target="_blank" rel="noopener">原版本</a>有站内搜索文章功能，现在的版本没有站内搜索功能，所以只能自己想办法加入搜索功能。</p>
 <p>解决方法：<br>1.自己写代码。<br>2.使用类似Swiftype的搜索平台，给自己网站加搜索功能。<br>我采用的是第二种，这里是<a href="https://blog.csdn.net/weixin_33866037/article/details/88131063" target="_blank" rel="noopener">教程</a>。</p>
-<p>加入搜索功能遇到的问题:<br>1.注册Swiftype需要外国的邮箱比如说谷歌邮箱。<br>2.AD主题的百度/谷歌/必应搜索功能不适合拿来做站内搜索功能。大佬教给我的解决办法就是自己创一个搜索按键，替代原本的搜索引擎功能。在搜索引擎的按键位置（header.ejs）添加以下代码。</p>
+<p>加入搜索功能遇到的问题:<br>1.注册Swiftype需要外国的邮箱比如说谷歌邮箱。<br>2.AD主题的百度/谷歌/必应搜索功能不适合拿来做站内搜索功能。大佬教给我的解决办法就是自己创一个搜索按键，替代原本的搜索引擎功能。在搜索引擎的按键位置（header.ejs）添加以下代码。（可以添加很多个）</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 搜索按钮就加上 class=<span class="string">"st-search-show-outputs"</span> --&gt;</span><br><span class="line">&lt;% <span class="keyword">if</span> (theme.swift_search.enable)&#123; %&gt;</span><br><span class="line">    &lt;a href=<span class="string">"#"</span> title=<span class="string">"搜索博客"</span> class=<span class="string">"st-search-show-outputs"</span>&gt;搜索&lt;/a&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
 
 <p>再把样式改改，然后就可以愉快地搜索了！！</p>
