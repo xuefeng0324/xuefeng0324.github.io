@@ -8,7 +8,7 @@
     layerContent = layer.querySelector('.site-layer-content'),
     title = document.querySelector('#site-layer-title'),
     searchDOM = document.querySelector('#site-layer-search'),
-    inputDOM = document.querySelector('.st-default-search-input');
+    input = document.querySelector('.st-default-search-input');
 
   const inputDOM = searchDOM.querySelector('input'),
     iconDOM = searchDOM.querySelector('i');
