@@ -4,11 +4,9 @@
     nav = document.querySelector('#site-nav'),
     navBtn = document.querySelector('#site-nav-btn'),
     layer = document.querySelector('#site-layer'),
-    // layerContent = layer.querySelector('st-default-search-input'),
     layerContent = layer.querySelector('.site-layer-content'),
     title = document.querySelector('#site-layer-title'),
-    searchDOM = document.querySelector('#site-layer-search'),
-    input = document.querySelector('.st-default-search-input');
+    searchDOM = document.querySelector('#site-layer-search');
 
   const inputDOM = searchDOM.querySelector('input'),
     iconDOM = searchDOM.querySelector('i');
