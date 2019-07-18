@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[movable-view]]></title>
     <url>%2Fpassages%2F2019-7-17-movable-view%2F</url>
-    <content type="text"><![CDATA[movable-view微信小程序文档 movable-view组件wxml文件代码12345678910111213141516171819202122232425262728&lt;movable-area style="width: 200px; height: 200px;background: red;margin: 0 auto;"&gt; &lt;movable-view style="width:20px;height:20px;background:red" x="0" y="0" direction="all" inertia="true"&gt;&lt;/movable-view&gt;&lt;/movable-area&gt;&lt;view class="section"&gt; &lt;view class="section__title"&gt;movable-view区域小于movable-area&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;"&gt; &lt;movable-view style="height: 50px; width: 50px; background: blue;" x="&#123;&#123;x&#125;&#125;" y="&#123;&#123;y&#125;&#125;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="btn-area"&gt; &lt;button size="mini" bindtap="tap"&gt;click me to move to (30px, 30px)&lt;/button&gt; &lt;/view&gt; &lt;view class="section__title"&gt;movable-view区域大于movable-area&lt;/view&gt; &lt;movable-area style="height: 100px; width: 100px; background: red;"&gt; &lt;movable-view style="height: 200px; width: 200px; background: blue;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="section__title"&gt;可放缩&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;" scale-area&gt; &lt;movable-view style="height: 50px; width: 50px; background: blue;" direction="all" bindchange="onChange" bindscale="onScale" scale scale-min="0.5" scale-max="4" scale-value="2"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt;&lt;/view&gt; js文件代码123456789101112131415161718Page(&#123; data: &#123; x: 0, y: 0 &#125;, tap: function (e) &#123; this.setData(&#123; x: 30, y: 30 &#125;); &#125;, onChange: function (e) &#123; console.log(e.detail) &#125;, onScale: function (e) &#123; console.log(e.detail) &#125;&#125;)]]></content>
+    <content type="text"><![CDATA[movable-view微信小程序文档 movable-view组件wxml文件代码123456789101112131415161718192021222324&lt;movable-area style="width: 200px; height: 200px;background: red;margin: 0 auto;"&gt; &lt;movable-view style="width:20px;height:20px;background:red" x="0" y="0" direction="all" inertia="true"&gt;&lt;/movable-view&gt;&lt;/movable-area&gt;&lt;view class="section"&gt; &lt;view class="section__title"&gt;movable-view区域小于movable-area&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;"&gt; &lt;movable-view style="height: 50px; width: 50px; background: blue;" x="&#123;&#123;x&#125;&#125;" y="&#123;&#123;y&#125;&#125;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="btn-area"&gt; &lt;button size="mini" bindtap="tap"&gt;click me to move to (30px, 30px)&lt;/button&gt; &lt;/view&gt; &lt;view class="section__title"&gt;movable-view区域大于movable-area&lt;/view&gt; &lt;movable-area style="height: 100px; width: 100px; background: red;"&gt; &lt;movable-view style="height: 200px; width: 200px; background: blue;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="section__title"&gt;可放缩&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;" scale-area&gt; &lt;movable-view style="height: 50px; width: 50px; background: blue;" direction="all" bindchange="onChange" bindscale="onScale" scale scale-min="0.5" scale-max="4" scale-value="2"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt;&lt;/view&gt; js文件代码123456789101112131415161718Page(&#123; data: &#123; x: 0, y: 0 &#125;, tap: function (e) &#123; this.setData(&#123; x: 30, y: 30 &#125;); &#125;, onChange: function (e) &#123; console.log(e.detail) &#125;, onScale: function (e) &#123; console.log(e.detail) &#125;&#125;)]]></content>
       <categories>
         <category>微信小程序</category>
       </categories>
@@ -11,7 +11,7 @@
   <entry>
     <title><![CDATA[swiper]]></title>
     <url>%2Fpassages%2F2019-07-09-swiper%2F</url>
-    <content type="text"><![CDATA[如何使用swiper组件 swiper组件wxml文件代码12345678910111213141516&lt;swiper indicator-dots="&#123;&#123;indicatorDots&#125;&#125;" autoplay="&#123;&#123;autoplay&#125;&#125;" interval="&#123;&#123;interval&#125;&#125;" duration="&#123;&#123;duration&#125;&#125;" &gt; &lt;block wx:for="&#123;&#123;imgUrls&#125;&#125;"&gt; &lt;swiper-item&gt; &lt;image src="&#123;&#123;item&#125;&#125;" class="slide-image" width="355" height="150"/&gt; &lt;/swiper-item&gt; &lt;/block&gt;&lt;/swiper&gt;&lt;button bindtap="changeIndicatorDots"&gt; indicator-dots &lt;/button&gt;&lt;button bindtap="changeAutoplay"&gt; autoplay &lt;/button&gt;&lt;slider bindchange="intervalChange" show-value min="500" max="2000"/&gt;&lt;slider bindchange="durationChange" show-value min="1000" max="10000"/&gt; js文件代码123456789101112131415161718192021222324252627282930313233Page(&#123; data: &#123; imgUrls: [ 'https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1563436160951&amp;di=31b3625f1e909285f401579f5d2d6734&amp;imgtype=0&amp;src=http%3A%2F%2Fpic22.nipic.com%2F20120624%2F8960079_094140526342_2.jpg', 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640', 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640' ], indicatorDots: false, autoplay: false, interval: 500, duration: 1000 &#125;, changeIndicatorDots: function (e) &#123; this.setData(&#123; indicatorDots: !this.data.indicatorDots &#125;) &#125;, changeAutoplay: function (e) &#123; this.setData(&#123; autoplay: !this.data.autoplay &#125;) &#125;, intervalChange: function (e) &#123; this.setData(&#123; interval: e.detail.value &#125;) &#125;, durationChange: function (e) &#123; this.setData(&#123; duration: e.detail.value &#125;) &#125;&#125;)]]></content>
+    <content type="text"><![CDATA[如何使用swiper组件 swiper组件wxml文件代码12345678910111213141516&lt;swiper indicator-dots="&#123;&#123;indicatorDots&#125;&#125;" autoplay="&#123;&#123;autoplay&#125;&#125;" interval="&#123;&#123;interval&#125;&#125;" duration="&#123;&#123;duration&#125;&#125;" &gt; &lt;block wx:for="&#123;&#123;imgUrls&#125;&#125;"&gt; &lt;swiper-item&gt; &lt;image src="&#123;&#123;item&#125;&#125;" class="slide-image" width="355" height="150"/&gt; &lt;/swiper-item&gt; &lt;/block&gt;&lt;/swiper&gt;&lt;button bindtap="changeIndicatorDots"&gt; indicator-dots &lt;/button&gt;&lt;button bindtap="changeAutoplay"&gt; autoplay &lt;/button&gt;&lt;slider bindchange="intervalChange" show-value min="500" max="2000"/&gt;&lt;slider bindchange="durationChange" show-value min="1000" max="10000"/&gt; js文件代码123456789101112131415161718192021222324252627282930313233Page(&#123; data: &#123; imgUrls: [ 'https://images.unsplash.com/photo-1551334787-21e6bd3ab135?w=640', 'https://images.unsplash.com/photo-1551214012-84f95e060dee?w=640', 'https://images.unsplash.com/photo-1551446591-142875a901a1?w=640' ], indicatorDots: false, autoplay: false, interval: 500, duration: 1000 &#125;, changeIndicatorDots: function (e) &#123; this.setData(&#123; indicatorDots: !this.data.indicatorDots &#125;) &#125;, changeAutoplay: function (e) &#123; this.setData(&#123; autoplay: !this.data.autoplay &#125;) &#125;, intervalChange: function (e) &#123; this.setData(&#123; interval: e.detail.value &#125;) &#125;, durationChange: function (e) &#123; this.setData(&#123; duration: e.detail.value &#125;) &#125;&#125;)]]></content>
       <categories>
         <category>微信小程序</category>
       </categories>
@@ -49,17 +49,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
