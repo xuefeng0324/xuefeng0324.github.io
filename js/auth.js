@@ -3,9 +3,7 @@
     const day = 60 * 60 * 24 * 1000;
     const { is_post, lock, passwords, root } = window.AD_CONFIG;
 
-    // if(is_post === false || lock === true) {
-    //   return;
-    // }
+
 
     let [password, expires] = atob(window.localStorage.getItem('auth')).split(':'),
       now = new Date().getTime();
@@ -18,7 +16,7 @@
     password = sha256(password || '');
 
     if(passwords.includes(password)) {
-      // expires = now + day * 3;
+      expires = now + day * 3;
       window.localStorage.setItem('auth', btoa(`${password}:${expires}`));
     } else {
       alert('您没有阅读权限');
