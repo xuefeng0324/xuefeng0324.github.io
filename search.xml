@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo博客的一些优化]]></title>
+    <url>%2Fpassages%2F2019-07-18-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E4%BC%98%E5%8C%96%2F</url>
+    <content type="text"><![CDATA[使用博客的时候发现了一些问题，尝试解决。 问题1-某个分类的页面显示不了状况：1.目前我的博客只有两个分类，但是有一个打开不了。2.新建新的分类没问题。3.旧分类的文章可以改成新的分类，并且可以打开。 解决办法：将旧分类的所有文章分类修改成新的分类，使用hexo clean &amp;&amp; hexo g &amp;&amp; hexo d重新配置，然后再改回来旧的分类，再配置一遍。 猜想：可能是之前配置的时候存在一些问题，只要把分类更新一遍就行。 问题2-友情链接的图片显示不了状况：可以设置图片的路径，但是将图片放进文件夹，配置之后被删除了。 解决办法：将图片放进主题的images文件夹，而不是配置之后生成的images文件夹。 问题3-搜索引擎搜索时会加上一串字符串状况：在搜索引擎搜索框输入问题时，搜索的时候会加上其他的字符串。 解决办法：找到\themes\ad\source\js\header.js这个目录下的header.js文件，将里面的keywords变量的前面的多余的字符串删去。 问题4-设置文章密码还是没有解决这个问题。]]></content>
+      <categories>
+        <category>Hexo博客</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[movable-view]]></title>
-    <url>%2Fpassages%2F2019-7-17-movable-view%2F</url>
+    <url>%2Fpassages%2F2019-07-17-movable-view%2F</url>
     <content type="text"><![CDATA[movable-view微信小程序文档 movable-view组件[可移动]的视图容器，在页面中可以拖拽滑动。movable-view必须在movable-area组件中，并且必须是直接子节点，否则不能移动。 wxml文件代码1234567891011121314151617181920212223242526&lt;movable-area style="width: 200px; height: 200px;background: red;margin: 0 auto;"&gt; //x,y为可移动容器初始值，direction设置可移动方向，inertia设置是否有惯性。 &lt;movable-view style="width:20px;height:20px;background:blue" x="0" y="0" direction="all" inertia="true"&gt;&lt;/movable-view&gt;&lt;/movable-area&gt;&lt;view class="section"&gt; &lt;view class="section__title"&gt;movable-view区域小于movable-area&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;"&gt; &lt;movable-view style="height: 50px; width: 50px; background: blue;" x="&#123;&#123;x&#125;&#125;" y="&#123;&#123;y&#125;&#125;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="btn-area"&gt; &lt;button size="mini" bindtap="tap"&gt;click me to move to (30px, 30px)&lt;/button&gt; &lt;/view&gt; &lt;view class="section__title"&gt;movable-view区域大于movable-area&lt;/view&gt; &lt;movable-area style="height: 100px; width: 100px; background: red;"&gt; &lt;movable-view style="height: 200px; width: 200px; background: blue;" direction="all"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt; &lt;view class="section__title"&gt;可放缩&lt;/view&gt; &lt;movable-area style="height: 200px; width: 200px; background: red;" scale-area&gt; //scale属性设置可缩放，scale-min和scale-max设置可缩放的范围，scale-value设置当前容器相对最小时的容器倍数。 &lt;movable-view style="height: 50px; width: 50px; background: blue;" direction="all" bindchange="onChange" bindscale="onScale" scale scale-min="0.5" scale-max="4" scale-value="2"&gt; &lt;/movable-view&gt; &lt;/movable-area&gt;&lt;/view&gt; js文件代码123456789101112131415161718Page(&#123; data: &#123; x: 0, y: 0 &#125;, tap: function (e) &#123; this.setData(&#123; x: 30, y: 30 &#125;); &#125;, onChange: function (e) &#123; console.log(e.detail) &#125;, onScale: function (e) &#123; console.log(e.detail) &#125;&#125;)]]></content>
       <categories>
         <category>微信小程序</category>

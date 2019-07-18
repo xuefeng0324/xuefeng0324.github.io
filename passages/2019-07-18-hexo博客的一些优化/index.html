@@ -6,12 +6,12 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>归档: 2019/6 | Mylog</title>
+  <title>hexo博客的一些优化 | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="Hexo博客,">
   
 
   
@@ -42,7 +42,7 @@
     welcome: {"enable":"ture","interval":30},
     start_time: "2019-07-01",
     passwords: ["688e5930df04b81003b36f489335fc01407229a646d66e94f46dd2be5b0a8664", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Peng Xuefeng",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -168,19 +168,76 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 10篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-07-18
+    </span>
+    
+      <span>
+        | <a href="/categories/Hexo博客/"><i class="fa fa-bookmark"></i>Hexo博客</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    hexo博客的一些优化
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-06-30</time>
-      <a target="_self" href="/passages/2019-06-30-hello-world/">Hello World</a>
-    </div>
+  <article class="passage-article">
+    <p>使用博客的时候发现了一些问题，尝试解决。</p>
+<h3 id="问题1-某个分类的页面显示不了"><a href="#问题1-某个分类的页面显示不了" class="headerlink" title="问题1-某个分类的页面显示不了"></a>问题1-某个分类的页面显示不了</h3><p>状况：<br>1.目前我的博客只有两个分类，但是有一个打开不了。<br>2.新建新的分类没问题。<br>3.旧分类的文章可以改成新的分类，并且可以打开。</p>
+<p>解决办法：<br>将旧分类的所有文章分类修改成新的分类，使用hexo clean &amp;&amp; hexo g &amp;&amp; hexo d重新配置，然后再改回来旧的分类，再配置一遍。</p>
+<p>猜想：<br>可能是之前配置的时候存在一些问题，只要把分类更新一遍就行。</p>
+<h3 id="问题2-友情链接的图片显示不了"><a href="#问题2-友情链接的图片显示不了" class="headerlink" title="问题2-友情链接的图片显示不了"></a>问题2-友情链接的图片显示不了</h3><p>状况：<br>可以设置图片的路径，但是将图片放进文件夹，配置之后被删除了。</p>
+<p>解决办法：<br>将图片放进主题的images文件夹，而不是配置之后生成的images文件夹。</p>
+<h3 id="问题3-搜索引擎搜索时会加上一串字符串"><a href="#问题3-搜索引擎搜索时会加上一串字符串" class="headerlink" title="问题3-搜索引擎搜索时会加上一串字符串"></a>问题3-搜索引擎搜索时会加上一串字符串</h3><p>状况：<br>在搜索引擎搜索框输入问题时，搜索的时候会加上其他的字符串。</p>
+<p>解决办法：<br>找到\themes\ad\source\js\header.js这个目录下的header.js文件，将里面的keywords变量的前面的多余的字符串删去。</p>
+<h3 id="问题4-设置文章密码"><a href="#问题4-设置文章密码" class="headerlink" title="问题4-设置文章密码"></a>问题4-设置文章密码</h3><p>还是没有解决这个问题。</p>
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题1-某个分类的页面显示不了"><span class="toc-text">问题1-某个分类的页面显示不了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题2-友情链接的图片显示不了"><span class="toc-text">问题2-友情链接的图片显示不了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题3-搜索引擎搜索时会加上一串字符串"><span class="toc-text">问题3-搜索引擎搜索时会加上一串字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题4-设置文章密码"><span class="toc-text">问题4-设置文章密码</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2019-07-18-hexo博客的一些优化/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
   
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -311,16 +368,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2019-07-17-movable-view/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     

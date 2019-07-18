@@ -3,7 +3,7 @@
     const day = 60 * 60 * 24 * 1000;
     const { is_post, lock, passwords, root } = window.AD_CONFIG;
 
-    if(is_post === false || lock === false) {
+    if(is_post === true || lock === false) {
       return;
     }
 
