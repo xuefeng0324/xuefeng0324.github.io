@@ -13,8 +13,8 @@
 
   let platformIndex = 0,
     platforms = [
-      'BaiDu',
       'Google',
+      'BaiDu',
       'Bing'
     ];
 
@@ -68,7 +68,7 @@
   });
 
   function openSearch(keywords) {
-    keywords = `site:${window.location.hostname} ${decodeURIComponent(keywords)}`;
+    keywords = `${decodeURIComponent(keywords)}`;
     let href = null;
     switch (platforms[platformIndex]) {
       case 'BaiDu':
