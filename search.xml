@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[icon]]></title>
     <url>%2Fpassages%2F2019-08-05-icon%2F</url>
-    <content type="text"><![CDATA[cover-view微信小程序文档 cover-view组件覆盖在原生组件之上的文本视图。可覆盖的原生组件包括map、video、canvas、camera、live-player、live-pusher。只支持嵌套 cover-view、cover-image，可在 cover-view 中使用 button。组件属性的长度单位默认为px，2.4.0起支持传入单位(rpx/px)。 意思其实就是可以在视频、地图等上面添加一些按钮、图片或者文字等。 cover-image组件覆盖在原生组件之上的图片视图。可覆盖的原生组件同cover-view，支持嵌套在cover-view里。 意思就是最好放在cover-view的组件里面。 wxml文件代码1234567891011121314151617&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconSize&#125;&#125;"&gt; &lt;icon type="success" size="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconType&#125;&#125;"&gt; &lt;icon type="&#123;&#123;item&#125;&#125;" size="40"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconColor&#125;&#125;"&gt; &lt;icon type="success" size="40" color="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt; js文件代码1234567891011Page(&#123; data: &#123; iconSize: [20, 30, 40, 50, 60, 70], iconColor: [ 'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple' ], iconType: [ 'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear' ] &#125;&#125;)]]></content>
+    <content type="text"><![CDATA[icon微信小程序文档 icon组件图标。组件属性的长度单位默认为px，2.4.0起支持传入单位(rpx/px)。 有提示、警告、多选、单选等图标。 wxml文件代码1234567891011121314151617&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconSize&#125;&#125;"&gt; &lt;icon type="success" size="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconType&#125;&#125;"&gt; &lt;icon type="&#123;&#123;item&#125;&#125;" size="40"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconColor&#125;&#125;"&gt; &lt;icon type="success" size="40" color="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt; js文件代码1234567891011Page(&#123; data: &#123; iconSize: [20, 30, 40, 50, 60, 70], iconColor: [ 'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple' ], iconType: [ 'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear' ] &#125;&#125;)]]></content>
       <categories>
         <category>微信小程序</category>
       </categories>
@@ -88,17 +88,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
