@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[icon]]></title>
     <url>%2Fpassages%2F2019-08-05-icon%2F</url>
-    <content type="text"><![CDATA[cover-view微信小程序文档 cover-view组件覆盖在原生组件之上的文本视图。可覆盖的原生组件包括map、video、canvas、camera、live-player、live-pusher。只支持嵌套 cover-view、cover-image，可在 cover-view 中使用 button。组件属性的长度单位默认为px，2.4.0起支持传入单位(rpx/px)。 意思其实就是可以在视频、地图等上面添加一些按钮、图片或者文字等。 cover-image组件覆盖在原生组件之上的图片视图。可覆盖的原生组件同cover-view，支持嵌套在cover-view里。 意思就是最好放在cover-view的组件里面。 wxml文件代码123456789101112&lt;video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&amp;bizid=1023&amp;hy=SH&amp;fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" controls="&#123;&#123;false&#125;&#125;" event-model="bubble"&gt;//controls是否显示默认播放控件（播放/暂停按钮、播放进度、时间） &lt;cover-view class="controls"&gt; &lt;cover-view class="play" bindtap="play"&gt; &lt;cover-image class="img" src="/path/to/icon_play" /&gt; &lt;/cover-view&gt; &lt;cover-view class="pause" bindtap="pause"&gt; &lt;cover-image class="img" src="/path/to/icon_pause" /&gt; &lt;/cover-view&gt; &lt;cover-view class="time"&gt;00:00&lt;/cover-view&gt; &lt;/cover-view&gt;&lt;/video&gt; js文件代码123456789101112Page(&#123; onReady() &#123; this.videoCtx = wx.createVideoContext('myVideo') //获取id为myVideo的上下文，方便下面的操作。 &#125;, play() &#123; this.videoCtx.play() &#125;, pause() &#123; this.videoCtx.pause() &#125;&#125;) wxss文件代码12345678910111213141516171819202122.controls &#123; position: relative; top: 50%; height: 50px; margin-top: -25px; display: flex;&#125;.play,.pause,.time &#123; flex: 1; height: 100%;&#125;.time &#123; text-align: center; background-color: rgba(0, 0, 0, .5); color: white; line-height: 50px;&#125;.img &#123; width: 40px; height: 40px; margin: 5px auto;&#125;]]></content>
+    <content type="text"><![CDATA[cover-view微信小程序文档 cover-view组件覆盖在原生组件之上的文本视图。可覆盖的原生组件包括map、video、canvas、camera、live-player、live-pusher。只支持嵌套 cover-view、cover-image，可在 cover-view 中使用 button。组件属性的长度单位默认为px，2.4.0起支持传入单位(rpx/px)。 意思其实就是可以在视频、地图等上面添加一些按钮、图片或者文字等。 cover-image组件覆盖在原生组件之上的图片视图。可覆盖的原生组件同cover-view，支持嵌套在cover-view里。 意思就是最好放在cover-view的组件里面。 wxml文件代码1234567891011121314151617&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconSize&#125;&#125;"&gt; &lt;icon type="success" size="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconType&#125;&#125;"&gt; &lt;icon type="&#123;&#123;item&#125;&#125;" size="40"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconColor&#125;&#125;"&gt; &lt;icon type="success" size="40" color="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt; js文件代码1234567891011Page(&#123; data: &#123; iconSize: [20, 30, 40, 50, 60, 70], iconColor: [ 'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple' ], iconType: [ 'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear' ] &#125;&#125;)]]></content>
       <categories>
         <category>微信小程序</category>
       </categories>
@@ -88,17 +88,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
