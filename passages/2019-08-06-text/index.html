@@ -6,12 +6,12 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>归档: 2019/7 | Mylog</title>
+  <title>2019-08-06-text | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="微信小程序,微信小程序组件之基础组件,">
   
 
   
@@ -42,7 +42,7 @@
     welcome: {"enable":"ture","interval":30},
     start_time: "2019-07-01",
     passwords: ["69697435b46943ac5523c81b84dbbe9e2a191b395e1b558752ae5cfc6dac30d8", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Peng Xuefeng",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -168,67 +168,79 @@
 </nav>
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 13篇</h2>
+      
+  <div class="passage">
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-08-06
+    </span>
+    
+      <span>
+        | <a href="/categories/微信小程序/"><i class="fa fa-bookmark"></i>微信小程序</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    2019-08-06-text
+  </h1>
   
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-07-18</time>
-      <a target="_self" href="/passages/2019-07-18-hexo博客的一些优化/">hexo博客的一些优化</a>
-    </div>
+  <article class="passage-article">
+    <p>text<a href="https://developers.weixin.qq.com/miniprogram/dev/component/text.html" target="_blank" rel="noopener">微信小程序文档</a></p>
+<h2 id="text组件"><a href="#text组件" class="headerlink" title="text组件"></a>text组件</h2><p>可以在组件里面添加文本，特点是可以给文本添加属性，比如说可选。</p>
+<h3 id="wxml文件代码"><a href="#wxml文件代码" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"btn-area"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"body-view"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">text</span> <span class="attr">selectable</span> = <span class="string">"true"</span>&gt;</span>&#123;&#123;text&#125;&#125;<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"add"</span>&gt;</span>add line<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"remove"</span>&gt;</span>remove line<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="js文件代码"><a href="#js文件代码" class="headerlink" title="js文件代码"></a>js文件代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> initData = <span class="string">'this is first line\nthis is second line'</span></span><br><span class="line"><span class="keyword">var</span> extraLine = [];</span><br><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    text: initData</span><br><span class="line">  &#125;,</span><br><span class="line">  add: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    extraLine.push(<span class="string">'other line'</span>)</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      text: initData + <span class="string">'\n'</span> + extraLine.join(<span class="string">'\n'</span>)</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  remove: <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (extraLine.length &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      extraLine.pop()</span><br><span class="line">      <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">        text: initData + <span class="string">'\n'</span> + extraLine.join(<span class="string">'\n'</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#text组件"><span class="toc-text">text组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wxml文件代码"><span class="toc-text">wxml文件代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js文件代码"><span class="toc-text">js文件代码</span></a></li></ol></li></ol>
+  </div>
+</aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-07-17</time>
-      <a target="_self" href="/passages/2019-07-17-movable-view/">movable-view</a>
-    </div>
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2019-08-06-text/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
   
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-swiper/">swiper（轮播图）</a>
-    </div>
   
+    <div class="passage-tags">
+     
+      <a href="/tags/微信小程序组件之基础组件/"><i class="fa fa-tags"></i>微信小程序组件之基础组件</a>
     
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-wx-key/">wx:key</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-wx-for/">wx:for</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-06</time>
-      <a target="_self" href="/passages/2019-07-06-scroll-view/">scroll-view（滚动框）</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-02</time>
-      <a target="_self" href="/passages/2019-07-02-hexo/">搭建Hexo</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-01</time>
-      <a target="_self" href="/passages/2019-07-01-start/">start</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-01</time>
-      <a target="_self" href="/passages/2019-07-01-lock/">lock</a>
     </div>
   
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -359,16 +371,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2019-08-05-icon/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     

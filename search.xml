@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[2019-08-06-text]]></title>
+    <url>%2Fpassages%2F2019-08-06-text%2F</url>
+    <content type="text"><![CDATA[text微信小程序文档 text组件可以在组件里面添加文本，特点是可以给文本添加属性，比如说可选。 wxml文件代码1234567&lt;view class="btn-area"&gt; &lt;view class="body-view"&gt; &lt;text selectable = "true"&gt;&#123;&#123;text&#125;&#125;&lt;/text&gt; &lt;button bindtap="add"&gt;add line&lt;/button&gt; &lt;button bindtap="remove"&gt;remove line&lt;/button&gt; &lt;/view&gt;&lt;/view&gt; js文件代码123456789101112131415161718192021var initData = 'this is first line\nthis is second line'var extraLine = [];Page(&#123; data: &#123; text: initData &#125;, add: function (e) &#123; extraLine.push('other line') this.setData(&#123; text: initData + '\n' + extraLine.join('\n') &#125;) &#125;, remove: function (e) &#123; if (extraLine.length &gt; 0) &#123; extraLine.pop() this.setData(&#123; text: initData + '\n' + extraLine.join('\n') &#125;) &#125; &#125;&#125;)]]></content>
+      <categories>
+        <category>微信小程序</category>
+      </categories>
+      <tags>
+        <tag>微信小程序组件之基础组件</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[icon]]></title>
     <url>%2Fpassages%2F2019-08-05-icon%2F</url>
     <content type="text"><![CDATA[icon微信小程序文档 icon组件图标。组件属性的长度单位默认为px，2.4.0起支持传入单位(rpx/px)。 有提示、警告、多选、单选等图标。 wxml文件代码1234567891011121314151617&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconSize&#125;&#125;"&gt; &lt;icon type="success" size="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconType&#125;&#125;"&gt; &lt;icon type="&#123;&#123;item&#125;&#125;" size="40"/&gt; &lt;/block&gt;&lt;/view&gt;&lt;view class="group"&gt; &lt;block wx:for="&#123;&#123;iconColor&#125;&#125;"&gt; &lt;icon type="success" size="40" color="&#123;&#123;item&#125;&#125;"/&gt; &lt;/block&gt;&lt;/view&gt; js文件代码1234567891011Page(&#123; data: &#123; iconSize: [20, 30, 40, 50, 60, 70], iconColor: [ 'red', 'orange', 'yellow', 'green', 'rgb(0,255,255)', 'blue', 'purple' ], iconType: [ 'success', 'success_no_circle', 'info', 'warn', 'waiting', 'cancel', 'download', 'search', 'clear' ] &#125;&#125;)]]></content>
@@ -88,17 +99,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
