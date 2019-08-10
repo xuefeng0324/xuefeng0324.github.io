@@ -17,7 +17,7 @@
       return; 
     }
 
-    password = prompt('输入暗号：博客作者的名称小写全拼 (例如: 李三 => lisan)');
+    password = prompt('输入暗号：博客作者的名称首字母小写 (例如: 李三 => ls)');
     password = sha256(password || '');
 
     if(passwords.includes(password)) {
