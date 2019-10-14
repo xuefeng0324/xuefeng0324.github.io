@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[hexo博客的一些变动]]></title>
+    <url>%2Fpassages%2F2019-10-14-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8A%A8%2F</url>
+    <content type="text"><![CDATA[问题：博客文章搜索功能用不了去添加搜索功能的官网找到了原因：试用期过期。只能另外找插件，不过目前暂时没空，只能以后解决。]]></content>
+      <categories>
+        <category>Hexo博客</category>
+      </categories>
+  </entry>
+  <entry>
     <title><![CDATA[表单组件02]]></title>
     <url>%2Fpassages%2F2019-08-31-%E8%A1%A8%E5%8D%95%E7%BB%84%E4%BB%B602%2F</url>
     <content type="text"><![CDATA[input、 因为表单组件目前为止是15个，只选取最重要最常用的记录。 input组件（表单）input微信小程序文档 wxml文件代码1234567891011121314151617181920212223242526272829303132333435&lt;!--input.wxml--&gt;&lt;view class="section"&gt; &lt;input placeholder="这是一个可以自动聚焦的input" auto-focus/&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input placeholder="这个只有在按钮点击的时候才聚焦" focus="&#123;&#123;focus&#125;&#125;" /&gt; &lt;view class="btn-area"&gt; &lt;button bindtap="bindButtonTap"&gt;使得输入框获取焦点&lt;/button&gt; &lt;/view&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input maxlength="10" placeholder="最大输入长度10" /&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;view class="section__title"&gt;你输入的是：&#123;&#123;inputValue&#125;&#125;&lt;/view&gt; &lt;input bindinput="bindKeyInput" placeholder="输入同步到view中"/&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input bindinput="bindReplaceInput" placeholder="连续的两个1会变成2" /&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input password type="number" /&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input password type="text" /&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input type="digit" placeholder="带小数点的数字键盘"/&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input type="idcard" placeholder="身份证输入键盘" /&gt;&lt;/view&gt;&lt;view class="section"&gt; &lt;input placeholder-style="color:red" placeholder="占位符字体是红色的" /&gt;&lt;/view&gt; js文件代码123456789101112131415161718192021222324252627282930313233343536//input.jsPage(&#123; data: &#123; focus: false, inputValue: '' &#125;, bindButtonTap: function() &#123; this.setData(&#123; focus: true &#125;) &#125;, bindKeyInput: function(e) &#123; this.setData(&#123; inputValue: e.detail.value &#125;) &#125;, bindReplaceInput: function(e) &#123; var value = e.detail.value var pos = e.detail.cursor if(pos != -1)&#123; //光标在中间 var left = e.detail.value.slice(0,pos) //计算光标的位置 pos = left.replace(/11/g,'2').length &#125; //直接返回对象，可以对输入进行过滤处理，同时可以控制光标的位置 return &#123; value: value.replace(/11/g,'2'), cursor: pos &#125; //或者直接返回字符串,光标在最后边 //return value.replace(/11/g,'2'), &#125;&#125;) 组件（表单）微信小程序文档 wxml文件代码12 js文件代码12]]></content>
