@@ -9,7 +9,7 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[java客户端如何连接服务器]]></title>
+    <title><![CDATA[JAVA客户端如何连接服务器]]></title>
     <url>%2Fpassages%2F2019-10-16-%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%A6%82%E4%BD%95%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8%2F</url>
     <content type="text"><![CDATA[了解基本概念方可知晓如何操作。 SocketSocket（套接字），是一个包含IP地址和端口号的网络单元。使用套接字就会在网络中使用tcp协议，实现精确的数据传输。 Socket构造方法在java.net.Socket里有构造方法： 12//host可以是IP地址也可以是服务器名，port即是端口号。创建socket对象就会请求服务器，并经过三次握手进行连接,服务器如果没有启动即会抛出连接异常ConnectException。Socket（String host，int port） Socket成员方法123456//由该方法获取套接字的网络字节输出流的OutputStream对象，然后用该对象的write（byte[] b）方法给服务器发送数据。字符串.getBites()可以将字符串转化为字节数组。OutputStream getOutputStream()//由该方法获取套接字的网络字节输入流的InputStream对象，然后用该对象的read方法读取服务器回写的数据InputStream getInputStream()//释放资源（Socket）Socket.close（） ServerSocketServerSocket（服务器套接字） ServerSocket构造方法在java.net.ServerSocket里有构造方法： 12//port即是端口号ServerSocket（int port） ServerSocket成员方法123456789//用accept方法来监听，获取客户端套接字的对象（返回Socket）Socket.accept()//由该方法获取套接字的网络字节输入流的InputStream对象，然后用该对象的read方法读取客户端发送的数据InputStream getInputStream()//由该方法获取套接字的网络字节输出流的OutputStream对象，然后用该对象的write（byte[] b）方法给客户端回写数据。字符串.getBites()可以将字符串转化为字节数组。OutputStream getOutputStream()//释放资源（Socket、SocketSocket）Socket.close（）SocketSocket.close（）]]></content>
       <categories>
