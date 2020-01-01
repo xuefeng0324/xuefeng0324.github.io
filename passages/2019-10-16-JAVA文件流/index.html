@@ -10,6 +10,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+
+
+
+
   
     <meta name="keywords" content="Java,">
   
@@ -32,6 +36,11 @@
   
 
   
+
+
+
+
+
 
   <script>
   // theme-ad's config script
@@ -68,6 +77,8 @@
 <link rel="stylesheet" href="/styles/components/highlight/highlight.css">
 
   
+
+
 </head>
   <body>
     <header class="site-header">
@@ -166,10 +177,19 @@
     </ol>
   </div>
 </nav>
+
+
 <div id="site-process"></div>
     <main>
       
   <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
   <div class="passage-meta">
     <span>
       <i class="fa fa-calendar"></i>2019-10-16
@@ -191,6 +211,15 @@
   
   <article class="passage-article">
     <p>在计算机系统中，文件是非常重要的存储方式。Java的标准库java.io提供了File对象来操作文件和目录。要构造一个File对象，需要传入文件路径。</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#file">File</a></li>
+<li><a href="#inputstream">InputStream</a></li>
+<li><a href="#outputstream">OutputStream</a></li>
+</ul>
+<!-- tocstop -->
+
 <h3 id="File"><a href="#File" class="headerlink" title="File"></a>File</h3><p>构造File对象时，既可以传入绝对路径，也可以传入相对路径。绝对路径是以根目录开头的完整路径，例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">File f = <span class="keyword">new</span> File(<span class="string">"C:\\Windows\\notepad.exe"</span>);</span><br></pre></td></tr></table></figure>
 

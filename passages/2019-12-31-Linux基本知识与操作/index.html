@@ -10,6 +10,10 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+
+
+
+
   
     <meta name="keywords" content="嵌入式软件开发,">
   
@@ -32,6 +36,11 @@
   
 
   
+
+
+
+
+
 
   <script>
   // theme-ad's config script
@@ -68,6 +77,8 @@
 <link rel="stylesheet" href="/styles/components/highlight/highlight.css">
 
   
+
+
 </head>
   <body>
     <header class="site-header">
@@ -166,10 +177,19 @@
     </ol>
   </div>
 </nav>
+
+
 <div id="site-process"></div>
     <main>
       
   <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
   <div class="passage-meta">
     <span>
       <i class="fa fa-calendar"></i>2019-12-31
@@ -191,86 +211,165 @@
   
   <article class="passage-article">
     <p>学习嵌入式的核心之————Linux操作系统</p>
-<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><p><label style="color:red">1.隐藏文件</label></p>
-<blockquote>
-<p>Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。</p>
-</blockquote>
-<p><label style="color:red">2.相对路径与绝对路径</label></p>
-<blockquote>
-<p>绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
-</blockquote>
-<p><label style="color:red">3.Linux内核和发行版</label></p>
-<blockquote>
-<p>单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
-</blockquote>
-<p><label style="color:red">4.GUI和命令行</label></p>
-<blockquote>
-<p>人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
-</blockquote>
-<p><label style="color:red">5.常用命令</label><br>ls（list,列表）</p>
-<blockquote>
-<p>ls -a<br>ls -l</p>
-</blockquote>
-<p>cd（change directory，改变目录）</p>
-<blockquote>
-<p>cd ..<br>cd ../../</p>
-</blockquote>
-<p>pwd（print work directory，打印工作目录）</p>
-<blockquote>
-<p>pwd</p>
-</blockquote>
-<p>mkdir（make directory，创建文件夹）</p>
-<blockquote>
-<p>mkdir 文件夹名<br>mkdir -p 文件夹名/文件夹名</p>
-</blockquote>
-<p>mv（move，移动）</p>
-<blockquote>
-<p>mv 源文件全路径（pathname） 目的文件全路径（pathname）<br>mv 源文件名（name） 目的文件名（name）</p>
-</blockquote>
-<p>touch（触摸/创建）</p>
-<blockquote>
-<p>touch pathname</p>
-</blockquote>
-<p>cp（cope，复制）</p>
-<blockquote>
-<p>cp pathname<br>cp -r pathname<br>cp -f</p>
-</blockquote>
-<p>rm（    remove，去除）</p>
-<blockquote>
-<p>rm pathname<br>rm -r pathname</p>
-</blockquote>
-<p>cat（catch，抓住/显示）</p>
-<blockquote>
-<p>cat</p>
-</blockquote>
-<p>rmdir（remove directory，去除空文件夹）</p>
-<blockquote>
-<p>rmdir path</p>
-</blockquote>
-<p>ln（link，连接）</p>
-<blockquote>
-<p>ln -s 源文件名 符号连接文件名<br>ln 源文件名 连接文件名</p>
-</blockquote>
-<p>man（manual，手册）</p>
-<blockquote>
-<p><label style="color:red">man</label> <label style="color:green">1/2/3</label> <label style="color:blue">Linux命令/Linux api/c库函数</label></p>
-</blockquote>
-<p><label style="color:red">6.文件类型标记方法</label><br>ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限<br>-rw-r- -r- -<br>drwxr-xr-x</p>
-<blockquote>
-<p>文件类型<br>普通文件：-<br>文件夹：d<br>符号连接文件：l<br>socket文件：s<br>pipe管道文件：p</p>
-</blockquote>
-<p><label style="color:red">1.隐藏文件</label></p>
-<blockquote>
-</blockquote>
-<p><label style="color:red">1.隐藏文件</label></p>
-<blockquote>
-</blockquote>
-<p><label style="color:red">1.隐藏文件</label></p>
-<blockquote>
-</blockquote>
-<p><label style="color:red">1.隐藏文件</label></p>
-<blockquote>
-</blockquote>
+<!-- toc -->
+
+<ul>
+<li><a href="#基本知识">基本知识</a><ul>
+<li><a href="#隐藏文件">隐藏文件</a></li>
+<li><a href="#相对路径与绝对路径">相对路径与绝对路径</a></li>
+<li><a href="#linux内核和发行版">linux内核和发行版</a></li>
+<li><a href="#gui和命令行">gui和命令行</a></li>
+<li><a href="#常用linux命令">常用linux命令</a></li>
+<li><a href="#文件类型标记方法">文件类型标记方法</a></li>
+<li><a href="#vim基础使用">vim基础使用</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h1 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h1><h3 id="隐藏文件"><a href="#隐藏文件" class="headerlink" title="隐藏文件"></a>隐藏文件</h3><p>]Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。</p>
+<h3 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h3><p>]绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
+<h3 id="linux内核和发行版"><a href="#linux内核和发行版" class="headerlink" title="linux内核和发行版"></a>linux内核和发行版</h3><p>]单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
+<h3 id="gui和命令行"><a href="#gui和命令行" class="headerlink" title="gui和命令行"></a>gui和命令行</h3><p>]人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
+<h3 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h3><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">全称，功能</th>
+<th align="center">常用命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls</td>
+<td align="center">list,列表</td>
+<td align="center">[ls -a] [ls -l]</td>
+</tr>
+<tr>
+<td align="center">cd</td>
+<td align="center">change directory，改变目录</td>
+<td align="center">[cd ..] [cd ../../]</td>
+</tr>
+<tr>
+<td align="center">pwd</td>
+<td align="center">print work directory，打印工作目录</td>
+<td align="center">[pwd]</td>
+</tr>
+<tr>
+<td align="center">mkdir</td>
+<td align="center">make directory，创建文件夹</td>
+<td align="center">[mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名]</td>
+</tr>
+<tr>
+<td align="center">mv</td>
+<td align="center">move，移动</td>
+<td align="center">[mv pathname pathname] [mv name name]</td>
+</tr>
+<tr>
+<td align="center">touch</td>
+<td align="center">触摸/创建</td>
+<td align="center">[touch pathname]</td>
+</tr>
+<tr>
+<td align="center">cp</td>
+<td align="center">cope，复制</td>
+<td align="center">[cp pathname pathname] [cp -r ] [cp -f]</td>
+</tr>
+<tr>
+<td align="center">rm</td>
+<td align="center">remove，去除</td>
+<td align="center">[rm pathname] [rm -r pathname]</td>
+</tr>
+<tr>
+<td align="center">cat</td>
+<td align="center">catch，抓住/显示</td>
+<td align="center">[cat]</td>
+</tr>
+<tr>
+<td align="center">rmdir</td>
+<td align="center">remove directory，去除空文件夹</td>
+<td align="center">[rmdir path]</td>
+</tr>
+<tr>
+<td align="center">ln</td>
+<td align="center">link，连接</td>
+<td align="center">[ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名]</td>
+</tr>
+<tr>
+<td align="center">apt-get</td>
+<td align="center">Ubuntu里面在线安装、卸载软件的程序</td>
+<td align="center">[sudo apt-get install 软件名] [sudo apt-get remove 软件名]</td>
+</tr>
+<tr>
+<td align="center">man</td>
+<td align="center">manual，手册</td>
+<td align="center"><label style="color:red">[man <label style="color:orange">1/2/3 <label style="color:blue">Linux命令/Linux api/c库函数]</label></label></label></td>
+</tr>
+</tbody></table>
+<h3 id="文件类型标记方法"><a href="#文件类型标记方法" class="headerlink" title="文件类型标记方法"></a>文件类型标记方法</h3><p>ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限<br>-rw-r- -r- -<br>drwxr-xr-x</p>
+<table>
+<thead>
+<tr>
+<th align="center">第1个字符</th>
+<th align="center">文件类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-</td>
+<td align="center">普通文件</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">文件夹</td>
+</tr>
+<tr>
+<td align="center">l</td>
+<td align="center">符号连接文件</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">socket文件</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">pipe管道文件</td>
+</tr>
+</tbody></table>
+<h3 id="vim基础使用"><a href="#vim基础使用" class="headerlink" title="vim基础使用"></a>vim基础使用</h3><p>创建/打开文件命令：vi pathname<br>命令模式：默认命令模式，按a/i进入输入模式。<br>输入模式：按a/i进入，按esc进入命令模式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令模式下的命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:q</td>
+<td align="center">关闭文件</td>
+</tr>
+<tr>
+<td align="center">:w</td>
+<td align="center">保存文件</td>
+</tr>
+<tr>
+<td align="center">:wq!</td>
+<td align="center">强制保存并关闭文件</td>
+</tr>
+<tr>
+<td align="center">/abc</td>
+<td align="center">abc：要查找的内容</td>
+</tr>
+<tr>
+<td align="center">:num</td>
+<td align="center">num：跳转的行数</td>
+</tr>
+<tr>
+<td align="center">:set nu/:set nonu</td>
+<td align="center">显示行数/隐藏行数</td>
+</tr>
+</tbody></table>
+<p>1.隐藏文件</p>
+<p>1.隐藏文件</p>
+<p>1.隐藏文件</p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -279,7 +378,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
