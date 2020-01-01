@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[2019-12-31-Linux基本知识与操作]]></title>
     <url>%2Fpassages%2F2019-12-31-Linux%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识1.隐藏文件Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 2.相对路径与绝对路径绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 3.Linux内核和发行版]]></content>
+    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识1.隐藏文件 Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 2.相对路径与绝对路径 绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 3.Linux内核和发行版 单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。 4.GUI和命令行 人机交互的两种方式（图形用户界面GUI、命令行command line） 1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件]]></content>
       <categories>
         <category>嵌入式软件开发</category>
       </categories>
@@ -175,17 +175,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
