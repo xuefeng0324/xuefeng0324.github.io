@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[2019-12-31-Linux基本知识与操作]]></title>
     <url>%2Fpassages%2F2019-12-31-Linux%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识1.隐藏文件 Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 2.相对路径与绝对路径 绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 3.Linux内核和发行版 单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。 4.GUI和命令行 人机交互的两种方式（图形用户界面GUI、命令行command line） 1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件1.隐藏文件]]></content>
+    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识1.隐藏文件 Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 2.相对路径与绝对路径 绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 3.Linux内核和发行版 单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。 4.GUI和命令行 人机交互的两种方式（图形用户界面GUI、命令行command line） 5.常用命令ls（list,列表） ls -als -l cd（change directory，改变目录） cd ..cd ../../ pwd（print work directory，打印工作目录） pwd mkdir（make directory，创建文件夹） mkdir 文件夹名mkdir -p 文件夹名/文件夹名 mv（move，移动） mv 源文件全路径（pathname） 目的文件全路径（pathname）mv 源文件名（name） 目的文件名（name） touch（触摸/创建） touch pathname cp（cope，复制） cp pathnamecp -r pathnamecp -f rm（ remove，去除） rm pathnamerm -r pathname cat（catch，抓住/显示） cat rmdir（remove directory，去除空文件夹） rmdir path ln（link，连接） ln -s 源文件名 符号连接文件名ln 源文件名 连接文件名 man（manual，手册） man 1/2/3 Linux命令/Linux api/c库函数 6.文件类型标记方法ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限-rw-r- -r- -drwxr-xr-x 文件类型普通文件：-文件夹：d符号连接文件：lsocket文件：spipe管道文件：p 1.隐藏文件 1.隐藏文件 1.隐藏文件 1.隐藏文件]]></content>
       <categories>
         <category>嵌入式软件开发</category>
       </categories>
