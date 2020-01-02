@@ -6,7 +6,7 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>2019-12-31-Linux基本知识与操作 | Mylog</title>
+  <title>Linux基本知识与操作 | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -206,7 +206,7 @@
     
   </div>
   <h1 class="passage-title">
-    2019-12-31-Linux基本知识与操作
+    Linux基本知识与操作
   </h1>
   
   <article class="passage-article">
@@ -222,15 +222,16 @@
 <li><a href="#常用linux命令">常用linux命令</a></li>
 <li><a href="#文件类型标记方法">文件类型标记方法</a></li>
 <li><a href="#vim基础使用">vim基础使用</a></li>
+<li><a href="#符号含义">符号含义</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 
-<h1 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h1><h3 id="隐藏文件"><a href="#隐藏文件" class="headerlink" title="隐藏文件"></a>隐藏文件</h3><p>]Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。</p>
-<h3 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h3><p>]绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
-<h3 id="linux内核和发行版"><a href="#linux内核和发行版" class="headerlink" title="linux内核和发行版"></a>linux内核和发行版</h3><p>]单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
-<h3 id="gui和命令行"><a href="#gui和命令行" class="headerlink" title="gui和命令行"></a>gui和命令行</h3><p>]人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
+<h1 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h1><h3 id="隐藏文件"><a href="#隐藏文件" class="headerlink" title="隐藏文件"></a>隐藏文件</h3><p>Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。</p>
+<h3 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h3><p>绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
+<h3 id="linux内核和发行版"><a href="#linux内核和发行版" class="headerlink" title="linux内核和发行版"></a>linux内核和发行版</h3><p>单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
+<h3 id="gui和命令行"><a href="#gui和命令行" class="headerlink" title="gui和命令行"></a>gui和命令行</h3><p>人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
 <h3 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h3><table>
 <thead>
 <tr>
@@ -295,6 +296,11 @@
 <td align="center">[ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名]</td>
 </tr>
 <tr>
+<td align="center">su</td>
+<td align="center">superuser，超级用户</td>
+<td align="center">[su root/空] [su 用户名]</td>
+</tr>
+<tr>
 <td align="center">apt-get</td>
 <td align="center">Ubuntu里面在线安装、卸载软件的程序</td>
 <td align="center">[sudo apt-get install 软件名] [sudo apt-get remove 软件名]</td>
@@ -334,6 +340,7 @@
 <td align="center">pipe管道文件</td>
 </tr>
 </tbody></table>
+<p>后面9个字符分三组（rwx-read-write-execute）<br>前三个表示此文件的属主对文件的权限<br>中间三个表示此文件属主所在的组对文件的权限<br>后面三个表示其他用户对文件的权限</p>
 <h3 id="vim基础使用"><a href="#vim基础使用" class="headerlink" title="vim基础使用"></a>vim基础使用</h3><p>创建/打开文件命令：vi pathname<br>命令模式：默认命令模式，按a/i进入输入模式。<br>输入模式：按a/i进入，按esc进入命令模式。</p>
 <table>
 <thead>
@@ -366,10 +373,63 @@
 <td align="center">:set nu/:set nonu</td>
 <td align="center">显示行数/隐藏行数</td>
 </tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">整行删除</td>
+</tr>
+<tr>
+<td align="center">numdd</td>
+<td align="center">num:要连续删除的行数</td>
+</tr>
+<tr>
+<td align="center">nyy</td>
+<td align="center">n:复制的行数</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">粘贴</td>
+</tr>
 </tbody></table>
-<p>1.隐藏文件</p>
-<p>1.隐藏文件</p>
-<p>1.隐藏文件</p>
+<h3 id="符号含义"><a href="#符号含义" class="headerlink" title="符号含义"></a>符号含义</h3><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">代表当前目录</td>
+</tr>
+<tr>
+<td align="center">..</td>
+<td align="center">代表上一层目录</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">代表前一个目录</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">代表当前用户的宿主目录</td>
+</tr>
+<tr>
+<td align="center">/</td>
+<td align="center">代表根目录</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">普通用户的命令行提示符</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">root用户的命令行提示符</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">万能匹配符</td>
+</tr>
+</tbody></table>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -378,7 +438,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#符号含义"><span class="toc-text">符号含义</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -536,7 +596,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2020-01-02-Linux高阶命令/" data-enable="true">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/passages/2019-10-16-JAVA文件流/" data-enable="true">
