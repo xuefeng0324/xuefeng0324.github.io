@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[Linux高阶命令]]></title>
     <url>%2Fpassages%2F2020-01-02-Linux%E9%AB%98%E9%98%B6%E5%91%BD%E4%BB%A4%2F</url>
-    <content type="text"><![CDATA[Linux系统的高阶命令，有的不是很常用 高阶命令 高阶命令 命令 全称，功能 常用命令 find 查找 [find path -name”name”] grep Global Regular Expression Print，全局正则表达式版本 [cd ..] [cd ../../] pwd print work directory，打印工作目录 [pwd] mkdir make directory，创建文件夹 [mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名] mv move，移动 [mv pathname pathname] [mv name name] touch 触摸/创建 [touch pathname] cp cope，复制 [cp pathname pathname] [cp -r ] [cp -f] rm remove，去除 [rm pathname] [rm -r pathname] cat catch，抓住/显示 [cat] rmdir remove directory，去除空文件夹 [rmdir path] ln link，连接 [ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名] su superuser，超级用户 [su root/空] [su 用户名] apt-get Ubuntu里面在线安装、卸载软件的程序 [sudo apt-get install 软件名] [sudo apt-get remove 软件名] man manual，手册 [man 1/2/3 Linux命令/Linux api/c库函数]]]></content>
+    <content type="text"><![CDATA[Linux系统的高阶命令，有的不是很常用 高阶命令 虚拟机上网 vmware中虚拟机网络的三种设置 虚拟机上网方式1 虚拟机上网方式2 总结 高阶命令 命令 全称，功能 常用命令 find 查找 [find path -name”name”] grep Global Regular Expression Print，全局正则表达式版本 [grep -nr “要查找的符号” 目录/文件集合/*] [cd ../../] which 查找二进制文件路径 [which 指令] whereis 显示二进制文件的路径，源码，man手册位置 [mkdir 文件夹名] [whereis 指令] uname 系统信息 [uname -r] [uname -a] shutdown 关机 [shutdown -h now] [shutdown -r now] init 关机/重启 [init 0] [init 2] reboot 重启 [reboot] tree 显示文件和目录的树形结构 [tree] mount/umount 挂载/卸载磁盘到文件系统中 [mount -t nfs -o nolock 192.168.1.141:/root/rootfs /mnt] [umount /mnt] df 显示已挂载的分区列表 [df -h] du 列出文件或文件夹的大小 [du -h 文件夹/文件名/*] useradd 添加用户 [uesradd 用户名] userdel 删除用户 [userdel 用户名] passwd 设置用户密码 [passwd 用户名] chmod 修改文件权限 [chmod 编码 文件名] [chmod u/g/o+/-r/w/x] chown change owner,修改属主 [chown 用户名 文件名] chgrp change group,修改文件的组 [chgrp 组名 文件名] tar 解压/压缩 [tar -czvf xxx.gz/.bz2 path] [tar -zxvf xxx.gz] [tar -jxvf xxx.bz2] ifconfig 网络配置 [ifconfig eth0 ip地址] [ifconfig eth0 up/down] [ifup/ifdown eth0 ] [ifconfig eth0 ip地址 netmask 子网掩码] mkfs 格式化文件系统 [mkfs /dev/hdl] [mkfs -t vfat 32 -F /dev/hdl] sed/awk 匹配/替换 [] 虚拟机上网vmware中虚拟机网络的三种设置第一种：桥接（bridged）第二种：NAT第三种：Host only，该模式下仅主机可以上网，虚拟机不能上网。 虚拟机上网方式1NAT方式设置步骤：第一步：在菜单栏虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择NAT模式第一步：vi /etc/network/interfaces,打开该文件，将内容编辑成为：auto loiface lo inet loopback auto eth0iface etho inet dhcgaddress 192.168.1.141netmask 255.255.255.0gateway 192.168.1.1 虚拟机上网方式2桥接方式设置步骤：第一步：桥接，在菜单栏 虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择桥接模式。第二步：桥接到可以上网的网卡，在菜单栏 编辑-&gt;虚拟网络编辑器，选择桥接到自己Windows中可以上网的网卡上（一般就是Wifi网络或者有线网络）第三步：设置dhcp并重启网卡。vi /etc/network/interfaces,打开该文件，将内容编辑成为：auto loiface lo inet loopback auto eth0iface eth0 inet dhcpaddress 192.168.1.141netmask 255.255.255.0gateway 192.168.1.1保存退出，然后命令行执行/etc/init.d/networking restart重启网卡 总结第一，NAT方式设置上网比较简单，但是不能用在嵌入式开发中。第二，桥接方式设置上网较繁琐，但是在嵌入式开发中比较有用。]]></content>
       <categories>
         <category>嵌入式软件开发</category>
       </categories>
@@ -11,7 +11,7 @@
   <entry>
     <title><![CDATA[Linux基本知识与操作]]></title>
     <url>%2Fpassages%2F2019-12-31-Linux%E5%9F%BA%E6%9C%AC%E7%9F%A5%E8%AF%86%E4%B8%8E%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识 隐藏文件 相对路径与绝对路径 linux内核和发行版 gui和命令行 常用linux命令 文件类型标记方法 vim基础使用 符号含义 基本知识隐藏文件Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 相对路径与绝对路径绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 linux内核和发行版单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。 gui和命令行人机交互的两种方式（图形用户界面GUI、命令行command line） 常用linux命令 命令 全称，功能 常用命令 ls list,列表 [ls -a] [ls -l] cd change directory，改变目录 [cd ..] [cd ../../] pwd print work directory，打印工作目录 [pwd] mkdir make directory，创建文件夹 [mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名] mv move，移动 [mv pathname pathname] [mv name name] touch 触摸/创建 [touch pathname] cp cope，复制 [cp pathname pathname] [cp -r ] [cp -f] rm remove，去除 [rm pathname] [rm -r pathname] cat catch，抓住/显示 [cat] rmdir remove directory，去除空文件夹 [rmdir path] ln link，连接 [ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名] su superuser，超级用户 [su root/空] [su 用户名] apt-get Ubuntu里面在线安装、卸载软件的程序 [sudo apt-get install 软件名] [sudo apt-get remove 软件名] man manual，手册 [man 1/2/3 Linux命令/Linux api/c库函数] 文件类型标记方法ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限-rw-r- -r- -drwxr-xr-x 第1个字符 文件类型 - 普通文件 d 文件夹 l 符号连接文件 s socket文件 p pipe管道文件 后面9个字符分三组（rwx-read-write-execute）前三个表示此文件的属主对文件的权限中间三个表示此文件属主所在的组对文件的权限后面三个表示其他用户对文件的权限 vim基础使用创建/打开文件命令：vi pathname命令模式：默认命令模式，按a/i进入输入模式。输入模式：按a/i进入，按esc进入命令模式。 命令模式下的命令 作用 :q 关闭文件 :w 保存文件 :wq! 强制保存并关闭文件 /abc abc：要查找的内容 :num num：跳转的行数 :set nu/:set nonu 显示行数/隐藏行数 dd 整行删除 numdd num:要连续删除的行数 nyy n:复制的行数 p 粘贴 符号含义 符号 含义 . 代表当前目录 .. 代表上一层目录 - 代表前一个目录 ~ 代表当前用户的宿主目录 / 代表根目录 $ 普通用户的命令行提示符 # root用户的命令行提示符 * 万能匹配符]]></content>
+    <content type="text"><![CDATA[学习嵌入式的核心之————Linux操作系统 基本知识 隐藏文件 相对路径与绝对路径 linux内核和发行版 gui和命令行 常用linux命令 文件类型标记方法 vim基础使用 符号含义 基本知识隐藏文件Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。 相对路径与绝对路径绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。 linux内核和发行版单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。 gui和命令行人机交互的两种方式（图形用户界面GUI、命令行command line） 常用linux命令 命令 全称，功能 常用命令 ls list,列表 [ls -a] [ls -l] cd change directory，改变目录 [cd ..] [cd ../../] pwd print work directory，打印工作目录 [pwd] mkdir make directory，创建文件夹 [mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名] mv move，移动 [mv pathname pathname] [mv name name] touch 触摸/创建 [touch pathname] cp cope，复制 [cp pathname pathname] [cp -r ] [cp -f] rm remove，去除 [rm pathname] [rm -r pathname] cat catch，抓住/显示 [cat] rmdir remove directory，去除空文件夹 [rmdir path] ln link，连接 [ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名] su superuser，超级用户 [su root/空] [su 用户名] apt-get Ubuntu里面在线安装、卸载软件的程序 [sudo apt-get install 软件名] [sudo apt-get remove 软件名] man manual，手册 [man 1/2/3 Linux命令/Linux api/c库函数] 文件类型标记方法ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限-rw-r- -r- -drwxr-xr-x 第1个字符 文件类型 - 普通文件 d 文件夹 l 符号连接文件 s socket文件 p pipe管道文件 后面9个字符分三组（rwx-read-write-execute）前三个表示此文件的属主对文件的权限中间三个表示此文件属主所在的组对文件的权限后面三个表示其他用户对文件的权限 权限的另一种表示方法：r: 4w: 2x: 1-rw-r- -r- -(644) vim基础使用创建/打开文件命令：vi pathname命令模式：默认命令模式，按a/i进入输入模式。输入模式：按a/i进入，按esc进入命令模式。 命令模式下的命令 作用 :q 关闭文件 :w 保存文件 :wq! 强制保存并关闭文件 /abc abc：要查找的内容 :num num：跳转的行数 :set nu/:set nonu 显示行数/隐藏行数 dd 整行删除 numdd num:要连续删除的行数 nyy n:复制的行数 p 粘贴 符号含义 符号 含义 . 代表当前目录 .. 代表上一层目录 - 代表前一个目录 ~ 代表当前用户的宿主目录 / 代表根目录 $ 普通用户的命令行提示符 # root用户的命令行提示符 * 万能匹配符]]></content>
       <categories>
         <category>嵌入式软件开发</category>
       </categories>
@@ -35,7 +35,7 @@
   <entry>
     <title><![CDATA[hexo博客的一些变动]]></title>
     <url>%2Fpassages%2F2019-10-14-hexo%E5%8D%9A%E5%AE%A2%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8F%98%E5%8A%A8%2F</url>
-    <content type="text"><![CDATA[问题：博客文章搜索功能用不了去添加搜索功能的官网找到了原因：试用期过期。只能另外找插件，不过目前暂时没空，只能以后解决。 问题：当文章太长，阅读起来非常难想了很多办法，比如把代码折叠、把文章折叠、制作文章目录，最终都制作失败，后来发现hexo有文章目录的功能，然后下载了toc插件，然后改了一下主题的_config.yml配置文件，以后在写文章的时候加上 就行了。但是发现一个问题，标题有大写英文字母的时候点击文章目录没有反应。然后就是返回上一页的话会先返回原本的页面，因为点击文章目录相当于进了另一个页面。]]></content>
+    <content type="text"><![CDATA[问题：博客文章搜索功能用不了去添加搜索功能的官网找到了原因：试用期过期。只能另外找插件，不过目前暂时没空，只能以后解决。 问题：当文章太长，阅读起来非常难想了很多办法，比如把代码折叠、把文章折叠、制作文章目录，最终都制作失败，后来发现hexo有文章目录的功能，然后下载了toc插件，然后改了一下主题的_config.yml配置文件，以后在写文章的时候加上 就行了。但是发现一个问题，标题有大写英文字母或者标点符号的时候点击文章目录没有反应。然后就是返回上一页的话会先返回原本的页面，因为点击文章目录相当于进了另一个页面。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
@@ -183,17 +183,17 @@
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[lock]]></title>
-    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
-    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
+    <title><![CDATA[start]]></title>
+    <url>%2Fpassages%2F2019-07-01-start%2F</url>
+    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始 感想 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>
   </entry>
   <entry>
-    <title><![CDATA[start]]></title>
-    <url>%2Fpassages%2F2019-07-01-start%2F</url>
-    <content type="text"><![CDATA[这是一个没有营养的前言 尝试开始 感想 尝试开始感想第一次尝试搭建博客，原来当程序员也是个体力活。 2333]]></content>
+    <title><![CDATA[lock]]></title>
+    <url>%2Fpassages%2F2019-07-01-lock%2F</url>
+    <content type="text"><![CDATA[听说可以锁上一些文章,我试试 Test好吧，不行。]]></content>
       <categories>
         <category>Hexo博客</category>
       </categories>

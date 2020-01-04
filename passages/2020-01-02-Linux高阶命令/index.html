@@ -215,6 +215,13 @@
 
 <ul>
 <li><a href="#高阶命令">高阶命令</a></li>
+<li><a href="#虚拟机上网">虚拟机上网</a><ul>
+<li><a href="#vmware中虚拟机网络的三种设置">vmware中虚拟机网络的三种设置</a></li>
+<li><a href="#虚拟机上网方式1">虚拟机上网方式1</a></li>
+<li><a href="#虚拟机上网方式2">虚拟机上网方式2</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
@@ -234,69 +241,125 @@
 <tr>
 <td align="center">grep</td>
 <td align="center">Global Regular Expression Print，全局正则表达式版本</td>
-<td align="center">[cd ..] [cd ../../]</td>
+<td align="center">[grep -nr “要查找的符号” 目录/文件集合/*] [cd ../../]</td>
 </tr>
 <tr>
-<td align="center">pwd</td>
-<td align="center">print work directory，打印工作目录</td>
-<td align="center">[pwd]</td>
+<td align="center">which</td>
+<td align="center">查找二进制文件路径</td>
+<td align="center">[which 指令]</td>
 </tr>
 <tr>
-<td align="center">mkdir</td>
-<td align="center">make directory，创建文件夹</td>
-<td align="center">[mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名]</td>
+<td align="center">whereis</td>
+<td align="center">显示二进制文件的路径，源码，man手册位置</td>
+<td align="center">[mkdir 文件夹名] [whereis 指令]</td>
 </tr>
 <tr>
-<td align="center">mv</td>
-<td align="center">move，移动</td>
-<td align="center">[mv pathname pathname] [mv name name]</td>
+<td align="center">uname</td>
+<td align="center">系统信息</td>
+<td align="center">[uname -r] [uname -a]</td>
 </tr>
 <tr>
-<td align="center">touch</td>
-<td align="center">触摸/创建</td>
-<td align="center">[touch pathname]</td>
+<td align="center">shutdown</td>
+<td align="center">关机</td>
+<td align="center">[shutdown -h now] [shutdown -r now]</td>
 </tr>
 <tr>
-<td align="center">cp</td>
-<td align="center">cope，复制</td>
-<td align="center">[cp pathname pathname] [cp -r ] [cp -f]</td>
+<td align="center">init</td>
+<td align="center">关机/重启</td>
+<td align="center">[init 0] [init 2]</td>
 </tr>
 <tr>
-<td align="center">rm</td>
-<td align="center">remove，去除</td>
-<td align="center">[rm pathname] [rm -r pathname]</td>
+<td align="center">reboot</td>
+<td align="center">重启</td>
+<td align="center">[reboot]</td>
 </tr>
 <tr>
-<td align="center">cat</td>
-<td align="center">catch，抓住/显示</td>
-<td align="center">[cat]</td>
+<td align="center">tree</td>
+<td align="center">显示文件和目录的树形结构</td>
+<td align="center">[tree]</td>
 </tr>
 <tr>
-<td align="center">rmdir</td>
-<td align="center">remove directory，去除空文件夹</td>
-<td align="center">[rmdir path]</td>
+<td align="center">mount/umount</td>
+<td align="center">挂载/卸载磁盘到文件系统中</td>
+<td align="center">[mount -t nfs -o nolock 192.168.1.141:/root/rootfs /mnt] [umount /mnt]</td>
 </tr>
 <tr>
-<td align="center">ln</td>
-<td align="center">link，连接</td>
-<td align="center">[ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名]</td>
+<td align="center">df</td>
+<td align="center">显示已挂载的分区列表</td>
+<td align="center">[df -h]</td>
 </tr>
 <tr>
-<td align="center">su</td>
-<td align="center">superuser，超级用户</td>
-<td align="center">[su root/空] [su 用户名]</td>
+<td align="center">du</td>
+<td align="center">列出文件或文件夹的大小</td>
+<td align="center">[du -h 文件夹/文件名/*]</td>
 </tr>
 <tr>
-<td align="center">apt-get</td>
-<td align="center">Ubuntu里面在线安装、卸载软件的程序</td>
-<td align="center">[sudo apt-get install 软件名] [sudo apt-get remove 软件名]</td>
+<td align="center">useradd</td>
+<td align="center">添加用户</td>
+<td align="center">[uesradd 用户名]</td>
 </tr>
 <tr>
-<td align="center">man</td>
-<td align="center">manual，手册</td>
-<td align="center"><label style="color:red">[man <label style="color:orange">1/2/3 <label style="color:blue">Linux命令/Linux api/c库函数]</label></label></label></td>
+<td align="center">userdel</td>
+<td align="center">删除用户</td>
+<td align="center">[userdel 用户名]</td>
+</tr>
+<tr>
+<td align="center">passwd</td>
+<td align="center">设置用户密码</td>
+<td align="center">[passwd 用户名]</td>
+</tr>
+<tr>
+<td align="center">chmod</td>
+<td align="center">修改文件权限</td>
+<td align="center">[chmod 编码 文件名] [chmod <label style="color:red">u/g/o<label style="color:blue">+/-<label style="color:orange">r/w/x]</label></label></label></td>
+</tr>
+<tr>
+<td align="center">chown</td>
+<td align="center">change owner,修改属主</td>
+<td align="center">[chown 用户名 文件名]</td>
+</tr>
+<tr>
+<td align="center">chgrp</td>
+<td align="center">change group,修改文件的组</td>
+<td align="center">[chgrp 组名 文件名]</td>
+</tr>
+<tr>
+<td align="center">tar</td>
+<td align="center">解压/压缩</td>
+<td align="center">[tar -czvf xxx.gz/.bz2 path] [tar -zxvf xxx.gz] [tar -jxvf xxx.bz2]</td>
+</tr>
+<tr>
+<td align="center">ifconfig</td>
+<td align="center">网络配置</td>
+<td align="center">[ifconfig eth0 ip地址] [ifconfig eth0 up/down] [ifup/ifdown eth0 ] [ifconfig eth0 ip地址 netmask 子网掩码]</td>
+</tr>
+<tr>
+<td align="center">mkfs</td>
+<td align="center">格式化文件系统</td>
+<td align="center">[mkfs /dev/hdl] [mkfs -t vfat 32 -F /dev/hdl]</td>
+</tr>
+<tr>
+<td align="center">sed/awk</td>
+<td align="center">匹配/替换</td>
+<td align="center">[]</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center"></td>
+<td align="center"></td>
 </tr>
 </tbody></table>
+<h1 id="虚拟机上网"><a href="#虚拟机上网" class="headerlink" title="虚拟机上网"></a>虚拟机上网</h1><h2 id="vmware中虚拟机网络的三种设置"><a href="#vmware中虚拟机网络的三种设置" class="headerlink" title="vmware中虚拟机网络的三种设置"></a>vmware中虚拟机网络的三种设置</h2><p>第一种：桥接（bridged）<br>第二种：NAT<br>第三种：Host only，该模式下仅主机可以上网，虚拟机不能上网。</p>
+<h2 id="虚拟机上网方式1"><a href="#虚拟机上网方式1" class="headerlink" title="虚拟机上网方式1"></a>虚拟机上网方式1</h2><p>NAT方式<br>设置步骤：<br>第一步：在菜单栏虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择NAT模式<br>第一步：vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface etho inet dhcg<br>address 192.168.1.141<br>netmask 255.255.255.0<br>gateway 192.168.1.1</p>
+<h2 id="虚拟机上网方式2"><a href="#虚拟机上网方式2" class="headerlink" title="虚拟机上网方式2"></a>虚拟机上网方式2</h2><p>桥接方式<br>设置步骤：<br>第一步：桥接，在菜单栏 虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择桥接模式。<br>第二步：桥接到可以上网的网卡，在菜单栏 编辑-&gt;<br>虚拟网络编辑器，选择桥接到自己Windows中可以上网的网卡上（一般就是Wifi网络或者有线网络）<br>第三步：设置dhcp并重启网卡。<br>vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface eth0 inet dhcp<br>address 192.168.1.141<br>netmask 255.255.255.0<br>gateway 192.168.1.1<br>保存退出，然后命令行执行/etc/init.d/networking restart重启网卡</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第一，NAT方式设置上网比较简单，但是不能用在嵌入式开发中。<br>第二，桥接方式设置上网较繁琐，但是在嵌入式开发中比较有用。</p>
 
   </article>
   <aside class="table-content" id="site-toc">
@@ -305,7 +368,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶命令"><span class="toc-text">高阶命令</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#高阶命令"><span class="toc-text">高阶命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#虚拟机上网"><span class="toc-text">虚拟机上网</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vmware中虚拟机网络的三种设置"><span class="toc-text">vmware中虚拟机网络的三种设置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机上网方式1"><span class="toc-text">虚拟机上网方式1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机上网方式2"><span class="toc-text">虚拟机上网方式2</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol>
   </div>
 </aside>
   
