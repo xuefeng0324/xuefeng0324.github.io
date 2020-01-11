@@ -343,16 +343,6 @@
 <td align="center">匹配/替换</td>
 <td align="center">[]</td>
 </tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
-<tr>
-<td align="center"></td>
-<td align="center"></td>
-<td align="center"></td>
-</tr>
 </tbody></table>
 <h1 id="虚拟机上网"><a href="#虚拟机上网" class="headerlink" title="虚拟机上网"></a>虚拟机上网</h1><h2 id="vmware中虚拟机网络的三种设置"><a href="#vmware中虚拟机网络的三种设置" class="headerlink" title="vmware中虚拟机网络的三种设置"></a>vmware中虚拟机网络的三种设置</h2><p>第一种：桥接（bridged）<br>第二种：NAT<br>第三种：Host only，该模式下仅主机可以上网，虚拟机不能上网。</p>
 <h2 id="虚拟机上网方式1"><a href="#虚拟机上网方式1" class="headerlink" title="虚拟机上网方式1"></a>虚拟机上网方式1</h2><p>NAT方式<br>设置步骤：<br>第一步：在菜单栏虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择NAT模式<br>第一步：vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
