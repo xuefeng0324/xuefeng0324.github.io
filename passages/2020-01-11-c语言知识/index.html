@@ -6,7 +6,7 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>归档: 2019 | Mylog</title>
+  <title>c语言知识 | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
 
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="C语言,">
   
 
   
@@ -51,7 +51,7 @@
     welcome: {"enable":"ture","interval":30},
     start_time: "2019-07-01",
     passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Peng Xuefeng",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -181,74 +181,94 @@
 
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 23篇</h2>
-  
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-12-31</time>
-      <a target="_self" href="/passages/2019-12-31-Linux基本知识与操作/">Linux基本知识与操作</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-16</time>
-      <a target="_self" href="/passages/2019-10-16-JAVA文件流/">JAVA文件流</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-16</time>
-      <a target="_self" href="/passages/2019-10-16-客户端如何连接服务器/">JAVA客户端如何连接服务器</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-10-14</time>
-      <a target="_self" href="/passages/2019-10-14-hexo博客的一些变动/">hexo博客的一些变动</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-31</time>
-      <a target="_self" href="/passages/2019-08-31-表单组件02/">表单组件02</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-09</time>
-      <a target="_self" href="/passages/2019-08-08-表单组件01/">表单组件01</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-06</time>
-      <a target="_self" href="/passages/2019-08-06-rich-text/">rich-text</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-06</time>
-      <a target="_self" href="/passages/2019-08-06-progress/">progress</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-06</time>
-      <a target="_self" href="/passages/2019-08-06-text/">text</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-08-05</time>
-      <a target="_self" href="/passages/2019-08-05-icon/">icon</a>
-    </div>
-  
+      
+  <div class="passage">
 
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-11
+    </span>
+    
+      <span>
+        | <a href="/categories/C语言/"><i class="fa fa-bookmark"></i>C语言</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    c语言知识
+  </h1>
+  
+  <article class="passage-article">
+    <p>C语言基础知识</p>
+<!-- toc -->
+
+<ul>
+<li><a href="#main">main()</a></li>
+<li><a href="#数据类型">数据类型</a></li>
+<li><a href="#接续符">接续符</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="main"><a href="#main" class="headerlink" title="main()"></a>main()</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//main()括号内的固定写法</span></span><br><span class="line"><span class="comment">//argc为参数个数，argument count，是整数</span></span><br><span class="line"><span class="comment">//argv为参数指针，argument vector，argv为指针的指针（可理解为：char **argv or: char *argv[] or: char argv[][] </span></span><br><span class="line"><span class="comment">//argv是一个指针数组他的元素个数是argc，存放的是指向每一个参数的指针）</span></span><br><span class="line">main(<span class="keyword">int</span> argc,<span class="keyword">char</span> *argv[ ])</span><br></pre></td></tr></table></figure>
+
+<p>下面给出一个例子来理解这两个参数的用法：</p>
+<p>①假设程序的名称为prog，当只输入prog，则由操作系统传来的参数为：<br>argc=1,表示只有一程序名称。<br>argc只有一个元素，argv[0]指向输入的程序路径及名称：./prog<br>当输入prog para_1，有一个参数，则由操作系统传来的参数为：<br>rgc=2，表示除了程序名外还有一个参数。<br>argv[0]指向输入的程序路径及名称。<br>argv[1]指向参数para_1字符串。<br>②当输入prog para_1 para_2 有2个参数，则由操作系统传来的参数为：<br>argc=3，表示除了程序名外还有2个参数。<br>argv[0]指向输入的程序路径及名称。<br>argv[1]指向参数para_1字符串。<br>argv[2]指向参数para_2字符串。</p>
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>整型<br>C语言中的整型对应数学中的整数，整型变量是用来描述一个整数值的，整形变量经过计算后也只能是整数（整型），不可能出现小数（浮点型），打印变量用%d。<br>c语言中整型有三种：<br>|关键字|名称|在流行32位编译器的大小(KB)|<br>|:—:|:—:|:—:|<br>|int|整型|4|<br>|short int（short）|短整型|2|<br>|long int（long）|长整型|4/8|<br>C语言并没有硬性规定整型的大小，不同位数的和不同C语言编译器可能不同，但是要遵守以下规则：<br>short&lt;=int&lt;=long<br>short 至少占用2个字节，int 建议为一个机器字长。(32位环境下机器字长为4字节，64位环境下机器字长为8字节。)<br>在Windows下长整型和整型没有区别，都是4字节，在其他平台，如Linux或Mac下才是8字节。</p>
+<p>浮点型<br>C语言中浮点型对应数学中的小数。浮点型有float和double两种。使用方式相同，不同在于表示范围和精度。<br>float表示的范围小，精度低（小数点后6位）；而double表示范围大，精度高。（小数点后16位）<br>范围是说表示的数有多大，精度是指这个数的分辨率有多细。<br>打印变量用%a.bf<br>不带小数：%3.0f表明待打印的浮点数（floatNum）至少占3个字符宽，且不带小数点和小数部分，整数部分至少占3个位宽。<br>带小数：%6.2f表明待打印的数至少占6个字符宽度（包括两位小数和一个小数点），且小数点后面有2位小数，小数点占一位，所以整数部分至少占3位。</p>
+<p>float</p>
+<p>double</p>
+<p>char</p>
+<h2 id="接续符"><a href="#接续符" class="headerlink" title="接续符"></a>接续符</h2><p>出C 语言中的反斜杠()同时具有接续符与转义符的作用，但是当接续符或转义符是有限定条件的<br>(1)作为接续符使用时可直接出现在程序中<br>(2)作为转义符使用时需出现在单引号或双引号之间</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"    *   \</span></span><br><span class="line"><span class="string">              \n   ***  \</span></span><br><span class="line"><span class="string">              \n  ***** \</span></span><br><span class="line"><span class="string">              \n   ***  \</span></span><br><span class="line"><span class="string">              \n    *   \</span></span><br><span class="line"><span class="string">              \n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接续符"><span class="toc-text">接续符</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-01-11-c语言知识/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -379,16 +399,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="/archives/2019/page/2/" data-enable="true">
+    <a href="/passages/2020-01-02-Linux高阶命令/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
