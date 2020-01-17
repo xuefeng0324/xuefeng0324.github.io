@@ -19,7 +19,7 @@
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="Linux系统的高阶命令，有的不是很常用">
 
   
 
@@ -210,8 +210,7 @@
   </h1>
   
   <article class="passage-article">
-    <p>Linux系统的高阶命令，有的不是很常用</p>
-<!-- toc -->
+    <!-- toc -->
 
 <ul>
 <li><a href="#高阶命令">高阶命令</a></li>
@@ -350,7 +349,6 @@
 <h2 id="虚拟机上网方式2"><a href="#虚拟机上网方式2" class="headerlink" title="虚拟机上网方式2"></a>虚拟机上网方式2</h2><p>桥接方式<br>设置步骤：<br>第一步：桥接，在菜单栏 虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择桥接模式。<br>第二步：桥接到可以上网的网卡，在菜单栏 编辑-&gt;<br>虚拟网络编辑器，选择桥接到自己Windows中可以上网的网卡上（一般就是Wifi网络或者有线网络）<br>第三步：设置dhcp并重启网卡。<br>vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
 <p>auto eth0<br>iface eth0 inet dhcp<br>address 192.168.1.141<br>netmask 255.255.255.0<br>gateway 192.168.1.1<br>保存退出，然后命令行执行/etc/init.d/networking restart重启网卡</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>第一，NAT方式设置上网比较简单，但是不能用在嵌入式开发中。<br>第二，桥接方式设置上网较繁琐，但是在嵌入式开发中比较有用。</p>
-
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

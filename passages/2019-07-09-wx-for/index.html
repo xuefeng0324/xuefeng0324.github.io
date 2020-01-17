@@ -19,7 +19,7 @@
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="如何使用wx:for循环">
 
   
 
@@ -210,7 +210,19 @@
   </h1>
   
   <article class="passage-article">
-    <p>如何使用wx:for循环</p>
+    <!-- toc -->
+
+<ul>
+<li><a href="#wxfor属性">wx:for属性</a><ul>
+<li><a href="#wxml文件代码">wxml文件代码</a></li>
+<li><a href="#js文件代码">js文件代码</a></li>
+<li><a href="#实例-九九乘法表">实例-九九乘法表</a></li>
+<li><a href="#注意事项">注意事项</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
 <h2 id="wx-for属性"><a href="#wx-for属性" class="headerlink" title="wx:for属性"></a>wx:for属性</h2><p>在组件上使用 wx:for 控制属性绑定一个数组（数据绑定），即可使用数组中各项的数据重复渲染该组件（重复使用标签）。<br>默认数组的当前项的下标变量名默认为index，数组当前项的变量名默认为item。（item[index]）<br>使用数组的数据绑定（比如languages），不能直接使用该变量调用数据，要使用item。<br>index里面存放的是数字，不能改变，只能改变变量名，根据渲染次数递增，从0开始。<br><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/view/wxml/data.html" target="_blank" rel="noopener">了解数据绑定</a></p>
 <h3 id="wxml文件代码"><a href="#wxml文件代码" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//数据绑定</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;languages&#125;&#125;"</span>&gt;</span></span><br><span class="line">	//默认下标变量名index，默认目标变量名item。</span><br><span class="line">	下标:&#123;&#123;index&#125;&#125;,ID:&#123;&#123;item.id&#125;&#125;,name:&#123;&#123;item.name&#125;&#125;.</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
@@ -223,8 +235,6 @@
 
 <h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>当 wx:for的值为字符串时，会将字符串解析成字符串数组。</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"array"</span>&gt;</span></span><br><span class="line"> &#123;&#123;item&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">//等同于</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;['a','r','r','a','y']&#125;&#125;"</span>&gt;</span></span><br><span class="line"> &#123;&#123;item&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">注意： 花括号和引号之间如果有空格，将最终被解析成为字符串。</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;[1,2,3]&#125;&#125; "</span>&gt;</span></span><br><span class="line"> &#123;&#123;item&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">//等同于</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;[1,2,3] + ' '&#125;&#125;"</span> &gt;</span></span><br><span class="line"> &#123;&#123;item&#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br></pre></td></tr></table></figure>
-
-
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

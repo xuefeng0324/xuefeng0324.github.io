@@ -210,7 +210,29 @@
   </h1>
   
   <article class="passage-article">
-    <p>因为表单组件目前为止是15个，只选取最重要最常用的记录。</p>
+    <!-- toc -->
+
+<ul>
+<li><a href="#button组件按钮">button组件（按钮）</a><ul>
+<li><a href="#wxml文件代码">wxml文件代码</a></li>
+<li><a href="#js文件代码">js文件代码</a></li>
+<li><a href="#wxss文件代码">wxss文件代码</a></li>
+</ul>
+</li>
+<li><a href="#checkbox组件多选">checkbox组件（多选）</a><ul>
+<li><a href="#wxml文件代码-1">wxml文件代码</a></li>
+<li><a href="#js文件代码-1">js文件代码</a></li>
+</ul>
+</li>
+<li><a href="#form组件">form组件</a><ul>
+<li><a href="#wxml文件代码-2">wxml文件代码</a></li>
+<li><a href="#js文件代码-2">js文件代码</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<p>因为表单组件目前为止是15个，只选取最重要最常用的记录。</p>
 <h2 id="button组件（按钮）"><a href="#button组件（按钮）" class="headerlink" title="button组件（按钮）"></a>button组件（按钮）</h2><p>button<a href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html" target="_blank" rel="noopener">微信小程序文档</a></p>
 <h3 id="wxml文件代码"><a href="#wxml文件代码" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//通过函数和数据绑定来改变属性值</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"default"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;defaultSize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"default"</span> <span class="attr">hover-class</span>=<span class="string">"other-button-hover"</span>&gt;</span> default <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;primarySize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"primary"</span>&gt;</span> primary <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"warn"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;warnSize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"warn"</span>&gt;</span> warn <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setDisabled"</span>&gt;</span>点击设置以上按钮disabled属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setPlain"</span>&gt;</span>点击设置以上按钮plain属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setLoading"</span>&gt;</span>点击设置以上按钮loading属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"contact"</span>&gt;</span>进入客服会话<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"getUserInfo"</span> <span class="attr">lang</span>=<span class="string">"zh_CN"</span> <span class="attr">bindgetuserinfo</span>=<span class="string">"onGotUserInfo"</span>&gt;</span>获取用户信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"openSetting"</span>&gt;</span>打开授权设置页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
 

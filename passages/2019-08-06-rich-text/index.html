@@ -19,7 +19,7 @@
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="text微信小程序文档">
 
   
 
@@ -210,13 +210,21 @@
   </h1>
   
   <article class="passage-article">
-    <p>text<a href="https://developers.weixin.qq.com/miniprogram/dev/component/rich-text.html" target="_blank" rel="noopener">微信小程序文档</a></p>
+    <!-- toc -->
+
+<ul>
+<li><a href="#rich-text组件">rich-text组件</a><ul>
+<li><a href="#wxml文件代码">wxml文件代码</a></li>
+<li><a href="#js文件代码">js文件代码</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
 <h2 id="rich-text组件"><a href="#rich-text组件" class="headerlink" title="rich-text组件"></a>rich-text组件</h2><p>使用该组件可设置html的样式。</p>
 <h3 id="wxml文件代码"><a href="#wxml文件代码" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">rich-text</span> <span class="attr">nodes</span>=<span class="string">"&#123;&#123;nodes&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"tap"</span>&gt;</span><span class="tag">&lt;/<span class="name">rich-text</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="js文件代码"><a href="#js文件代码" class="headerlink" title="js文件代码"></a>js文件代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    nodes: [&#123;</span><br><span class="line">      name: <span class="string">'div'</span>,</span><br><span class="line">      attrs: &#123;</span><br><span class="line">        class: 'div_class',</span><br><span class="line">        style: <span class="string">'line-height: 60px; color: red;'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      children: [&#123;</span><br><span class="line">        type: <span class="string">'text'</span>,</span><br><span class="line">        text: <span class="string">'Hello&amp;nbsp;World!'</span></span><br><span class="line">      &#125;]</span><br><span class="line">    &#125;]</span><br><span class="line">  &#125;,</span><br><span class="line">  tap() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'tap'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-
-
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">

@@ -19,7 +19,7 @@
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="在计算机系统中，文件是非常重要的存储方式。Java的标准库java.io提供了File对象来操作文件和目录。要构造一个File对象，需要传入文件路径。">
 
   
 
@@ -210,8 +210,7 @@
   </h1>
   
   <article class="passage-article">
-    <p>在计算机系统中，文件是非常重要的存储方式。Java的标准库java.io提供了File对象来操作文件和目录。要构造一个File对象，需要传入文件路径。</p>
-<!-- toc -->
+    <!-- toc -->
 
 <ul>
 <li><a href="#file">File</a></li>
@@ -250,8 +249,6 @@
 
 <p>和InputStream一样，上述代码没有考虑到在发生异常的情况下如何正确地关闭资源。写入过程也会经常发生IO错误，例如，磁盘已满，无权限写入等等。我们需要用try(resource)来保证OutputStream在无论是否发生IO错误的时候都能够正确地关闭：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">writeFile</span><span class="params">()</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (OutputStream output = <span class="keyword">new</span> FileOutputStream(<span class="string">"out/readme.txt"</span>)) &#123;</span><br><span class="line">        output.write(<span class="string">"Hello"</span>.getBytes(<span class="string">"UTF-8"</span>)); <span class="comment">// Hello</span></span><br><span class="line">    &#125; <span class="comment">// 编译器在此自动为我们写入finally并调用close()</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
