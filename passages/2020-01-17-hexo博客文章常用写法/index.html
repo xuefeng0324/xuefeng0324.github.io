@@ -209,6 +209,10 @@
     hexo博客文章常用写法
   </h1>
   
+    <div class="passage-cover">
+      <figure style="background-image:url(/images/0.jpg);"></figure>
+    </div>
+  
   <article class="passage-article">
     <!-- toc -->
 
@@ -233,18 +237,34 @@
 </ul>
 </li>
 <li><a href="#3超链接">3超链接</a></li>
-<li><a href="#4列表">4列表</a></li>
-<li><a href="#5插入图片">5插入图片</a></li>
+<li><a href="#4列表">4列表</a><ul>
+<li><a href="#无序列表">无序列表：</a></li>
+<li><a href="#有序列表">有序列表：</a></li>
+</ul>
+</li>
+<li><a href="#5插入图片">5插入图片</a><ul>
+<li><a href="#绝对路径本地引用">绝对路径本地引用</a></li>
+<li><a href="#相对路径本地引用">相对路径本地引用</a></li>
+<li><a href="#文章封面图片">文章封面图片</a></li>
+<li><a href="#html语法引用">HTML语法引用</a></li>
+</ul>
+</li>
 <li><a href="#6表格">6表格</a></li>
+<li><a href="#7引用块">7引用块</a></li>
+<li><a href="#8代码">8代码</a></li>
+<li><a href="#9本文章的代码">9本文章的代码</a></li>
 </ul>
 </li>
 </ul>
 <!-- tocstop -->
 
-<h1 id="写作介绍"><a href="#写作介绍" class="headerlink" title="写作介绍"></a>写作介绍</h1><h2 id="1字体介绍"><a href="#1字体介绍" class="headerlink" title="1字体介绍"></a>1字体介绍</h2><p><em>这是斜体</em> 或 <em>这也是斜体</em><br><strong>这是粗体</strong><br><strong><em>这是加粗斜体</em></strong><br><del>这是删除线</del></p>
+<h1 id="写作介绍"><a href="#写作介绍" class="headerlink" title="写作介绍"></a>写作介绍</h1><h2 id="1字体介绍"><a href="#1字体介绍" class="headerlink" title="1字体介绍"></a>1字体介绍</h2><p><em>这是斜体</em> 或 <em>这也是斜体</em><br><strong>这是粗体</strong><br><strong><em>这是加粗斜体</em></strong><br><del>这是删除线</del><br>水平分割线1</p>
+<hr>
+<p>水平分割线2</p>
+<hr>
 <h2 id="2分级标题"><a href="#2分级标题" class="headerlink" title="2分级标题"></a>2分级标题</h2><h1 id="一级标题"><a href="#一级标题" class="headerlink" title="一级标题"></a>一级标题</h1><h2 id="二级标题"><a href="#二级标题" class="headerlink" title="二级标题"></a>二级标题</h2><h3 id="三级标题"><a href="#三级标题" class="headerlink" title="三级标题"></a>三级标题</h3><h4 id="四级标题"><a href="#四级标题" class="headerlink" title="四级标题"></a>四级标题</h4><h5 id="五级标题"><a href="#五级标题" class="headerlink" title="五级标题"></a>五级标题</h5><h6 id="六级标题"><a href="#六级标题" class="headerlink" title="六级标题"></a>六级标题</h6><h2 id="3超链接"><a href="#3超链接" class="headerlink" title="3超链接"></a>3超链接</h2><p>写法：</p>
 <p>行内形式：<a href="https://xuefeng0324.github.io/">我的博客</a><br>参考形式：[我的博客]<a href="https://xuefeng0324.github.io/">https://xuefeng0324.github.io/</a><br>自动链接：我的博客地址<a href="https://xuefeng0324.github.io/">https://xuefeng0324.github.io/</a></p>
-<h2 id="4列表"><a href="#4列表" class="headerlink" title="4列表"></a>4列表</h2><p>无序列表：<br>写法：</p>
+<h2 id="4列表"><a href="#4列表" class="headerlink" title="4列表"></a>4列表</h2><h4 id="无序列表："><a href="#无序列表：" class="headerlink" title="无序列表："></a>无序列表：</h4><p>写法：</p>
 <ul>
 <li>无序列表项1</li>
 </ul>
@@ -254,9 +274,17 @@
 <ul>
 <li>无序列表项3</li>
 </ul>
-<p>有序列表：<br>写法：<br>1.有序列表项1<br>2.有序列表项2<br>3.有序列表项3</p>
-<h2 id="5插入图片"><a href="#5插入图片" class="headerlink" title="5插入图片"></a>5插入图片</h2><p>在 Hexo 中插入图片，首先需要将图片放在 source/img/ 文件夹下，然后如下方式进行插入：</p>
+<h4 id="有序列表："><a href="#有序列表：" class="headerlink" title="有序列表："></a>有序列表：</h4><p>写法：<br>1.有序列表项1<br>2.有序列表项2<br>3.有序列表项3</p>
+<h2 id="5插入图片"><a href="#5插入图片" class="headerlink" title="5插入图片"></a>5插入图片</h2><h4 id="绝对路径本地引用"><a href="#绝对路径本地引用" class="headerlink" title="绝对路径本地引用"></a>绝对路径本地引用</h4><p>当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</p>
 <p><img src="/images/0.jpg" alt></p>
+<h4 id="相对路径本地引用"><a href="#相对路径本地引用" class="headerlink" title="相对路径本地引用"></a>相对路径本地引用</h4><p>图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。<br><code>post_asset_folder: true</code></p>
+<p>将_config.yml文件中的配置项post_asset_folder设为true后，执行命令<br><code>$ hexo new post_name</code></p>
+<p>在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</p>
+<h4 id="文章封面图片"><a href="#文章封面图片" class="headerlink" title="文章封面图片"></a>文章封面图片</h4><p>在文章最开始加入(此为本主题的功能，其他主题不一定有)：<br><code>cover: &quot;/images/0.jpg&quot; # 文章封面图片URL</code></p>
+<h4 id="HTML语法引用"><a href="#HTML语法引用" class="headerlink" title="HTML语法引用"></a>HTML语法引用</h4><img src="http://www.viemu.com/vi-vim-cheat-sheet.gif" width="200" height="200" title="点击查看大图:vi/vim-cheat-sheet">
+
+<img src="/images/0.jpg" width="50%" height="50%" title="封面图片" alt="封面图片">
+
 <h2 id="6表格"><a href="#6表格" class="headerlink" title="6表格"></a>6表格</h2><table>
 <thead>
 <tr>
@@ -285,6 +313,13 @@
 <td align="right">右对齐</td>
 </tr>
 </tbody></table>
+<h2 id="7引用块"><a href="#7引用块" class="headerlink" title="7引用块"></a>7引用块</h2><blockquote>
+<p>你写的内容都在里面。</p>
+</blockquote>
+<h2 id="8代码"><a href="#8代码" class="headerlink" title="8代码"></a>8代码</h2><p><code>普通代码</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">代码块</span><br></pre></td></tr></table></figure>
+
+<h2 id="9本文章的代码"><a href="#9本文章的代码" class="headerlink" title="9本文章的代码"></a>9本文章的代码</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: hexo博客文章常用写法</span><br><span class="line">date: 2020-01-17 14:55:51</span><br><span class="line">categories: Hexo博客</span><br><span class="line">cover: "/images/0.jpg" # 文章封面图片URL</span><br><span class="line">---</span><br><span class="line"><span class="comment">&lt;!-- more --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- toc --&gt;</span></span><br><span class="line"># 写作介绍</span><br><span class="line"></span><br><span class="line">## 1字体介绍</span><br><span class="line">*这是斜体* 或 _这也是斜体_ </span><br><span class="line">**这是粗体**</span><br><span class="line">***这是加粗斜体***</span><br><span class="line">~~这是删除线~~</span><br><span class="line"></span><br><span class="line">## 2分级标题</span><br><span class="line"># 一级标题</span><br><span class="line">## 二级标题</span><br><span class="line">### 三级标题</span><br><span class="line">#### 四级标题</span><br><span class="line">##### 五级标题</span><br><span class="line">###### 六级标题</span><br><span class="line"></span><br><span class="line">## 3超链接</span><br><span class="line">写法：</span><br><span class="line"></span><br><span class="line">行内形式：[我的博客](https://xuefeng0324.github.io/)</span><br><span class="line">参考形式：[我的博客]https://xuefeng0324.github.io/</span><br><span class="line">自动链接：我的博客地址<span class="tag">&lt;<span class="name">https:</span>//<span class="attr">xuefeng0324.github.io</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">## 4列表</span><br><span class="line">### 无序列表：</span><br><span class="line">写法：</span><br><span class="line"></span><br><span class="line">* 无序列表项1</span><br><span class="line">+ 无序列表项2</span><br><span class="line">- 无序列表项3</span><br><span class="line"></span><br><span class="line">### 有序列表：</span><br><span class="line">写法：</span><br><span class="line">1.有序列表项1</span><br><span class="line">2.有序列表项2</span><br><span class="line">3.有序列表项3</span><br><span class="line"></span><br><span class="line">## 5插入图片</span><br><span class="line">### 绝对路径本地引用</span><br><span class="line">当Hexo项目中只用到少量图片时，可以将图片统一放在source/images文件夹中，通过markdown语法访问它们。</span><br><span class="line"></span><br><span class="line">![](/images/0.jpg)</span><br><span class="line"></span><br><span class="line">### 相对路径本地引用</span><br><span class="line">图片除了可以放在统一的images文件夹中，还可以放在文章自己的目录中。文章的目录可以通过站点配置文件_config.yml来生成。post_asset_folder: true</span><br><span class="line"></span><br><span class="line">将_config.yml文件中的配置项post_asset_folder设为true后，执行命令:$ hexo new post_name,在source/_posts中会生成文章post_name.md和同名文件夹post_name。将图片资源放在post_name中，文章就可以使用相对路径引用图片资源了。</span><br><span class="line"></span><br><span class="line">### 文章封面图片</span><br><span class="line">在文章最开始加入：cover: "/images/0.jpg" # 文章封面图片URL</span><br><span class="line"></span><br><span class="line">### HTML语法引用</span><br><span class="line">&#123;% img http://www.viemu.com/vi-vim-cheat-sheet.gif 200 200 "点击查看大图:vi/vim-cheat-sheet" %&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/images/0.jpg"</span> <span class="attr">width</span>=<span class="string">"50%"</span> <span class="attr">height</span>=<span class="string">"50%"</span> <span class="attr">title</span>=<span class="string">"封面图片"</span> <span class="attr">alt</span>=<span class="string">"封面图片"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 6表格</span><br><span class="line">| 表头1|表头2|表头3|表头4</span><br><span class="line">|-| :- | :-: | -: |</span><br><span class="line">|默认左对齐|左对齐|居中对其|右对齐|</span><br><span class="line">|默认左对齐|左对齐|居中对其|右对齐|</span><br><span class="line">|默认左对齐|左对齐|居中对其|右对齐|</span><br></pre></td></tr></table></figure>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -292,7 +327,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写作介绍"><span class="toc-text">写作介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1字体介绍"><span class="toc-text">1字体介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2分级标题"><span class="toc-text">2分级标题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一级标题"><span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二级标题"><span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#四级标题"><span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#五级标题"><span class="toc-text">五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#六级标题"><span class="toc-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3超链接"><span class="toc-text">3超链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4列表"><span class="toc-text">4列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5插入图片"><span class="toc-text">5插入图片</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6表格"><span class="toc-text">6表格</span></a></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#写作介绍"><span class="toc-text">写作介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1字体介绍"><span class="toc-text">1字体介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2分级标题"><span class="toc-text">2分级标题</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一级标题"><span class="toc-text">一级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#二级标题"><span class="toc-text">二级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#三级标题"><span class="toc-text">三级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#四级标题"><span class="toc-text">四级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#五级标题"><span class="toc-text">五级标题</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#六级标题"><span class="toc-text">六级标题</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3超链接"><span class="toc-text">3超链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4列表"><span class="toc-text">4列表</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#无序列表："><span class="toc-text">无序列表：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#有序列表："><span class="toc-text">有序列表：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5插入图片"><span class="toc-text">5插入图片</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#绝对路径本地引用"><span class="toc-text">绝对路径本地引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对路径本地引用"><span class="toc-text">相对路径本地引用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文章封面图片"><span class="toc-text">文章封面图片</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTML语法引用"><span class="toc-text">HTML语法引用</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6表格"><span class="toc-text">6表格</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7引用块"><span class="toc-text">7引用块</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8代码"><span class="toc-text">8代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9本文章的代码"><span class="toc-text">9本文章的代码</span></a></li></ol></li></ol>
   </div>
 </aside>
   
