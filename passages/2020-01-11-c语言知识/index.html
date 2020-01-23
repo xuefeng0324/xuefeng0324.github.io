@@ -214,13 +214,19 @@
 
 <ul>
 <li><a href="#main">main()</a></li>
-<li><a href="#数据类型">数据类型</a><ul>
+<li><a href="#命名原则">命名原则</a></li>
+<li><a href="#基本数据类型">基本数据类型</a><ul>
 <li><a href="#整型">整型</a></li>
 <li><a href="#浮点型">浮点型</a></li>
 <li><a href="#字符型">字符型</a></li>
 </ul>
 </li>
 <li><a href="#有符号数和无符号数">有符号数和无符号数</a></li>
+<li><a href="#复合数据类型">复合数据类型</a><ul>
+<li><a href="#数组">数组</a></li>
+</ul>
+</li>
+<li><a href="#函数">函数</a></li>
 <li><a href="#接续符">接续符</a></li>
 </ul>
 <!-- tocstop -->
@@ -232,7 +238,15 @@
 <p>①假设程序的名称为prog，当只输入prog，则由操作系统传来的参数为(传给main函数)：argc=1,表示只有一程序名称。argc只有一个元素，即argv[0]指向输入的程序路径及名称：./prog。</p>
 <p>②当输入prog para_1，有一个参数，则由操作系统传来的参数为：argc=2，表示除了程序名外还有一个参数。 即argv[0]指向输入的程序路径及名称，argv[1]指向参数para_1字符串。</p>
 <p>③当输入prog para_1 para_2 有2个参数，则由操作系统传来的参数为：argc=3，表示除了程序名外还有2个参数。即argv[0]指向输入的程序路径及名称，argv[1]指向参数para_1字符串，argv[2]指向参数para_2字符串。</p>
-<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><blockquote>
+<h2 id="命名原则"><a href="#命名原则" class="headerlink" title="命名原则"></a>命名原则</h2><blockquote>
+<p>C语言常用命名法：驼峰命名法<br>linux常用命名法：单词之间加_</p>
+</blockquote>
+<ul>
+<li>C语言语法与Linux命令都是区分大小写的，不过Linux虚拟机的共享文件夹中，Linux命令对于文件名不区分，例如<code>rm DOC</code>与<code>rm doc</code>的效果是一样的。POSIX 兼容文件系统是区分大小写的。也就是说Linux 是区分大小写的。而且也就是说其实NTFS也是区分大小写的。 不过Windows系统不兼容POSIX，所以Windows不区分大小写。结果就是Windows去读写NTFS分区大小写问题Windows会转换。</li>
+<li>POSIX表示可移植操作系统接口（Portable Operating System Interface of UNIX，缩写为 POSIX ），POSIX标准定义了操作系统应该为应用程序提供的接口标准。<br>POSIX标准意在期望获得源代码级别的软件可移植性。换句话说，为一个POSIX兼容的操作系统编写的程序，应该可以在任何其它的POSIX操作系统（即使是来自另一个厂商）上编译执行。</li>
+</ul>
+<h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p><img src="/images/type.jpg" alt></p>
+<h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><blockquote>
 <p>C语言中的整型对应数学中的整数，整型变量是用来描述一个整数值的，整形变量经过计算后也只能是整数（整型），不可能出现小数（浮点型），打印变量用%d。</p>
 </blockquote>
 <p>c语言中整型有三种：</p>
@@ -262,11 +276,11 @@
 </tbody></table>
 <p>C语言并没有硬性规定整型的大小，不同位数的和不同C语言编译器可能不同，但是要遵守以下规则：short&lt;=int&lt;=long。<br>short 至少占用2个字节，int 建议为一个机器字长。(32位环境下机器字长为4字节，64位环境下机器字长为8字节。)在Windows下长整型和整型没有区别，都是4字节，在其他平台，如Linux或Mac下才是8字节。</p>
 <h4 id="浮点型"><a href="#浮点型" class="headerlink" title="浮点型"></a>浮点型</h4><blockquote>
-<p>C语言中浮点型对应数学中的小数。浮点型有float和double两种。使用方式相同，不同在于表示范围和精度。float表示的范围小，精度低（小数点后6位）；而double表示范围大，精度高（小数点后16位）。范围是说表示的数有多大，精度是指这个数的分辨率有多细。打印变量用%x.xf。</p>
+<p>C语言中浮点型对应数学中的小数。浮点型有float和double两种(32位C语言编译器中这两个变量大小一般分别为4字节和8字节)。使用方式相同，不同在于表示范围和精度。float表示的范围小，精度低（小数点后6位）；而double表示范围大，精度高（小数点后16位）。范围是说表示的数有多大，精度是指这个数的分辨率有多细。打印变量用%x.xf。</p>
 </blockquote>
 <p>不带小数：%3.0f表明待打印的浮点数至少占3个字符宽，且不带小数点和小数部分，整数部分至少占3个位宽。<br>带小数：%6.2f表明待打印的数至少占6个字符宽度（包括两位小数和一个小数点），且小数点后面有2位小数，小数点占一位，所以整数部分至少占3位。</p>
 <h4 id="字符型"><a href="#字符型" class="headerlink" title="字符型"></a>字符型</h4><blockquote>
-<p>字符型对应ASCII字符。ASCII字符是一种编码，就是用数字编码来表示一个符号的一种方法本质上说，字符型其实也是整形，只是这些整形数被用来表示一些字符的ASCII编码值，所以叫做字符型。字符型一般用8位二进制(也就是一个字节)表示，无符号字符型范围是0～255.字符型其实是一种比short还短的整形，所以它可以和int相运算。</p>
+<p>字符型对应ASCII字符。ASCII字符是一种编码，就是用数字编码来表示一个符号的一种方法本质上说，字符型其实也是整形，只是这些整形数被用来表示一些字符的ASCII编码值，所以叫做字符型，打印变量用%c(我尝试过定义整型变量，然后里面存放97，使用%c将其打印，结果是a，两者本质区别只是大小而已)。字符型一般用8位二进制(也就是一个字节)表示，无符号字符型范围是0～255.字符型其实是一种比short还短的整形，并且可以和int相运算(32位C语言编译器字符变量大小一般为1字节)。</p>
 </blockquote>
 <p><img src="/images//ASCII01.png" alt><br><img src="/images//ASCII02.png" alt></p>
 <h2 id="有符号数和无符号数"><a href="#有符号数和无符号数" class="headerlink" title="有符号数和无符号数"></a>有符号数和无符号数</h2><blockquote>
@@ -276,10 +290,62 @@
 <li>有符号数：<br>整型：<br>signed int（简写为int）<br>signed long，也写作signed long int，（简写为1ong）<br>signed short,也写作signed short int（简写为short)<br>signed（表示signed int）<br>浮点型：<br>signed float(简写为float）<br>signed double(简写为double)<br>字符型：<br>signed char（简写为char)</li>
 <li>无符号数：<br>整型：整形有无符号数，用来表示一些编码编号之类的东西。譬如身份证号，房间号<br>unsigned int(没有简写）I<br>unsigned long int(简写unsigned 1ong)<br>unsigned short int(简写为unsigned short）<br>浮点数：没有无符号浮点数。也就是说，小数一般只用在数学概念中，都是有符号的。<br>字符型：字符型有无符号数<br>unsigned char（没有简写）<br>注意：对于整型和字符型来说，有符号数和无符号数表示的范围是不同的。<br>譬如字符型，有符号数范围是-128~127，无符号数的范围是0～255</li>
 </ul>
-<h2 id="接续符"><a href="#接续符" class="headerlink" title="接续符"></a>接续符</h2><blockquote>
-<p>c语言中的反斜杠()同时具有接续符与转义符的作用，但是当接续符或转义符是有限定条件的</p>
+<h2 id="复合数据类型"><a href="#复合数据类型" class="headerlink" title="复合数据类型"></a>复合数据类型</h2><h4 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h4><blockquote>
+<p>数组就是同一种类型的变量放进了一个组里面。数组定义的时候作为整体定义，使用时拆开为各个元素。</p>
 </blockquote>
-<p>(1)作为接续符使用时可直接出现在程序中<br>(2)作为转义符使用时需出现在单引号或双引号之间</p>
+<ul>
+<li>定义：数组中元素类型数组名[数组元素个数]；</li>
+<li>初始化：基本数据类型关键字 数组中元素类型数组名[数组元素个数]=｛,,,…｝;无初始化的数组里面的元素是随机数，不完全初始化的数组中未初始化的元素编译器自动赋值为0。定义数组同时初始化，则可以省略数组定义时[]中的长度。C语言编译器会自动推论其长度，推论依据是初始化式中初始化元素的个数。由此可知，省略[]中数组元素个数只有一种情况，那就是后面的初始化式必须为完全初始化。</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>初始化</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>无初始化</td>
+<td>int a[3];</td>
+</tr>
+<tr>
+<td>完全初始化</td>
+<td>int a[3]={1,2,3};int a[]={1,2,3};</td>
+</tr>
+<tr>
+<td>不完全初始化</td>
+<td>int a[3]={};int a[3] = {1};gcc支持int a[10]={1, 2, 3, [5] = 6, [9] = 10};</td>
+</tr>
+</tbody></table>
+<ul>
+<li>字符数组及它的两种初始化<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//字符0的十进制数为48，字符A的十进制数为65，字符a的十进制数为97。</span></span><br><span class="line"><span class="keyword">char</span> a[<span class="number">5</span>]=&#123;<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>,<span class="string">'d'</span>,<span class="string">'e'</span>&#125;;<span class="comment">//定义并初始化一个字数组</span></span><br><span class="line"><span class="keyword">char</span> a[<span class="number">5</span>]=&#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">101</span>&#125;;<span class="comment">//与上面效果一样</span></span><br><span class="line"><span class="keyword">char</span> a[]=&#123;<span class="number">97</span>,<span class="number">98</span>,<span class="number">99</span>,<span class="number">100</span>,<span class="number">101</span>&#125;;<span class="comment">//与上面效果一样</span></span><br><span class="line"><span class="keyword">char</span> a[]=<span class="string">"abcde"</span>;<span class="comment">//字符串方式来初始化字数</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>基础知识：<br>1、在C语言中引用一个单个字符时，应该用单引号括起来。<br>2、在c语言中引用一个字符串时，应该用””括起来，譬如”abcde”，”abcde”实际上有6个字符，分别是’a’’b’’c’’d’’e’’\0’,\0是ASCII码表中的第一个字符，它的编码值是0，对应的字符是空字符（不可见<br>字符，在屏幕上看不见，没法显示，一般要用转义字符方式来显示。譬如’\n’表示回车符，’\t’表示Tab，’\0’代表空字符）</p>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><blockquote>
+<p>函数有助于让人看懂代码，理清逻辑。</p>
+</blockquote>
+<ul>
+<li><p>函数类型：主函数（main）、库函数、自定义函数<br>C语言中所谓的主函数就是一种特别的函数。一个c语言程序只能有且必须有一个main函数。c语言规定，一个c语言程序从主函数开始执行，到主函数执行完结束。库函数，例如：printf函数的作用是用来在标准输出中打印信息。这个函数是c语言标准库提供的一个库函数。在c语言中写代码时可以引用库函数，但是必须使用#include引用这个库函数所在的头文件。自己写的函数需要有三要素：定义、声明、调用。</p>
+</li>
+<li><p>函数三要素<br>函数定义：函数定义中包含了函数体，函数体中的代码段，决定了这个函数的功能。<br>函数声明：函数声明实际上是叫函数原型声明。函数的原型包含三部分：函数名，返回值类型，函数参数列表。<br>函数调用：函数调用就是使用函数名来调用函数完成功能。调用时必须参照原型给函数传参，然后从函数得到适当的返回值作为结果。|</p>
+</li>
+<li><p>函数的参数<br>形参：形式参数的简称。在函数定义和函数声明中的参数列表中的参数，都是形参。<br>实参：实际参数的简称。函数调用中，实际传递的参数才是实参。<br>函数调用的过程，其实就是实参传递给形参的一个过程。这个传递实际是一次拷贝。实际参数的时候，实参（本质是一个变量）本身并没有进入到函数内，而是把自己的值复制了一份传给了函数中的形参，在函数中参与运算。这种传参方法，就叫做传值调用，当参数是指针的时候是传址调用。</p>
+</li>
+<li><p>返回值：（关键字return)<br>当函数执行完之后，会给调用该函数的地方返回一个值。这个值的类型就是函数声明中返回值类型，这个值就是函数体中最后一句return xxx；返回的那个值。</p>
+</li>
+</ul>
+<p>## </p>
+<blockquote>
+</blockquote>
+<h2 id="接续符"><a href="#接续符" class="headerlink" title="接续符"></a>接续符</h2><blockquote>
+<p>c语言中的反斜杠()同时具有接续符与转义符的作用，但是当接续符或转义符是有限定条件的。</p>
+</blockquote>
+<ul>
+<li>作为接续符使用时可直接出现在程序中</li>
+<li>作为转义符使用时需出现在单引号或双引号之间</li>
+</ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc,<span class="keyword">char</span> **argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"    *   \</span></span><br><span class="line"><span class="string">              \n   ***  \</span></span><br><span class="line"><span class="string">              \n  ***** \</span></span><br><span class="line"><span class="string">              \n   ***  \</span></span><br><span class="line"><span class="string">              \n    *   \</span></span><br><span class="line"><span class="string">              \n"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   </article>
   <aside class="table-content" id="site-toc">
@@ -288,7 +354,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据类型"><span class="toc-text">数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整型"><span class="toc-text">整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮点型"><span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符型"><span class="toc-text">字符型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有符号数和无符号数"><span class="toc-text">有符号数和无符号数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接续符"><span class="toc-text">接续符</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名原则"><span class="toc-text">命名原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型"><span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整型"><span class="toc-text">整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮点型"><span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符型"><span class="toc-text">字符型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有符号数和无符号数"><span class="toc-text">有符号数和无符号数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复合数据类型"><span class="toc-text">复合数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接续符"><span class="toc-text">接续符</span></a></li></ol>
   </div>
 </aside>
   
