@@ -215,6 +215,7 @@
 <ul>
 <li><a href="#main">main()</a></li>
 <li><a href="#命名原则">命名原则</a></li>
+<li><a href="#寻址">寻址</a></li>
 <li><a href="#基本数据类型">基本数据类型</a><ul>
 <li><a href="#整型">整型</a></li>
 <li><a href="#浮点型">浮点型</a></li>
@@ -251,6 +252,23 @@
 <li>C语言语法与Linux命令都是区分大小写的，不过Linux虚拟机的共享文件夹中，Linux命令对于文件名不区分，例如<code>rm DOC</code>与<code>rm doc</code>的效果是一样的。POSIX 兼容文件系统是区分大小写的。也就是说Linux 是区分大小写的。而且也就是说其实NTFS也是区分大小写的。 不过Windows系统不兼容POSIX，所以Windows不区分大小写。结果就是Windows去读写NTFS分区大小写问题Windows会转换。</li>
 <li>POSIX表示可移植操作系统接口（Portable Operating System Interface of UNIX，缩写为 POSIX ），POSIX标准定义了操作系统应该为应用程序提供的接口标准。<br>POSIX标准意在期望获得源代码级别的软件可移植性。换句话说，为一个POSIX兼容的操作系统编写的程序，应该可以在任何其它的POSIX操作系统（即使是来自另一个厂商）上编译执行。</li>
 </ul>
+<h2 id="寻址"><a href="#寻址" class="headerlink" title="寻址"></a>寻址</h2><blockquote>
+<p>CPU最大能查找多大范围的地址叫做寻址能力，CPU的寻址能力以字节为单位,一般32位操作系统就分配4个字节来记录一个地址（32根地址总线），4x8也就是32位。32位寻址的CPU可以寻址2的32次方大小的地址也就是4G（00000000-FFFFFFFF）。事实上CPU寻址能力因每种CPU设计不同而不同，可以用间接寻址获得无限的内存访问（不考虑速度），硬件和操作系统也支持一种36位地址扩展的方法，也叫pae，可以实现最大64GB的内存支持。地址总线的位数决定CPU寻址范围，数据总线的位数决定CPU单次通信能交换的信息数量，32位的CPU和32位的操作系统都是指数据总线为32位。</p>
+</blockquote>
+<p>2^3bit = 1Bype<br>2^10Bype = 1KB<br>2^10KB = 1MB<br>2^10MB = 1GB<br>例：32根地址总线——2^(30+2)——可以寻址4GB内存</p>
+<p>总线可以按照CPU内外来分类：</p>
+<ul>
+<li>内部总线：在CPU内部，寄存器之间和算术逻辑部件ALU与控制部件之间传输数据所用的总线称为片内部总线。</li>
+<li>外部总线：通常所说的总线指片外部总线，是CPU与内存RAM、ROM和输入/输出设备接口之间进行通讯的通路,也称系统总线。</li>
+</ul>
+<p>按照计算机所传输的信息种类，计算机的总线可以划分为</p>
+<ul>
+<li>数据总线： 数据总线DB是双向三态形式的总线，即它既可以把CPU的数据传送到存储器或输入输出接口等其它部件，也可以将其它部件的数据传送到CPU。数据总线的位数是微型计算机的一个重要指标，通常与cpu微处理的字长（命令）相一致。我们说的32位，64位计算机指的就是数据总线。</li>
+<li>地址总线： 地址总线AB是专门用来传送地址的，由于地址只能从CPU传向外部存储器或I/O端口，所以地址总线总是单向三态的，这与数据总线不同。地址总线的位数决定了CPU可直接寻址的内存空间大小。一根地址总线可以控制一个晶体管是否通电，相当于控制一位二进制数，32根就可以控制32个晶体管的通电情况来代表32位二进制数的范围（00000000-FFFFFFFF）</li>
+<li>控制总线：控制总线主要用来传送控制信号和时序信号。控制总线的传送方向由具体控制信号而定，一般是双向的，控制总线的位数要根据系统的实际控制需要而定。其实数据总线和控制总线可以共用。</li>
+</ul>
+<p>从上述可知，外部总线包括数据总线、地址总线、控制总线。内部总线：在CPU内部，寄存器之间和算术逻辑部件ALU与控制部件之间传输数据所用的总线（的位宽），即本文里说的 min{ALU位宽、通用寄存器位宽｝。而CPU的位宽一般是以 min{ALU位宽、通用寄存器位宽、数据总线位宽}决定的！也就是说CPU由ALU、通用寄存器、数据总线三者之中最少的位宽决定！内部总线和数据总线在一条线上，和地址总线不在一条线上。</p>
+<p><a href="https://www.bilibili.com/video/av21376839?p=17" target="_blank" rel="noopener">参考视频1</a><br><a href="https://b23.tv/av9735297" target="_blank" rel="noopener">参考视频2</a></p>
 <h2 id="基本数据类型"><a href="#基本数据类型" class="headerlink" title="基本数据类型"></a>基本数据类型</h2><p><img src="/images/type.jpg" alt></p>
 <h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><blockquote>
 <p>C语言中的整型对应数学中的整数，整型变量是用来描述一个整数值的，整形变量经过计算后也只能是整数（整型），不可能出现小数（浮点型），打印变量用%d。</p>
@@ -484,7 +502,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名原则"><span class="toc-text">命名原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型"><span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整型"><span class="toc-text">整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮点型"><span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符型"><span class="toc-text">字符型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有符号数和无符号数"><span class="toc-text">有符号数和无符号数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造数据类型"><span class="toc-text">构造数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#枚举类型"><span class="toc-text">枚举类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空类型（关键字void"><span class="toc-text">空类型（关键字void)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针类型"><span class="toc-text">指针类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏定义"><span class="toc-text">宏定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接续符"><span class="toc-text">接续符</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#main"><span class="toc-text">main()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命名原则"><span class="toc-text">命名原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#寻址"><span class="toc-text">寻址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本数据类型"><span class="toc-text">基本数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#整型"><span class="toc-text">整型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#浮点型"><span class="toc-text">浮点型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#字符型"><span class="toc-text">字符型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有符号数和无符号数"><span class="toc-text">有符号数和无符号数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造数据类型"><span class="toc-text">构造数据类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#结构体"><span class="toc-text">结构体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#共用体"><span class="toc-text">共用体</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#枚举类型"><span class="toc-text">枚举类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空类型（关键字void"><span class="toc-text">空类型（关键字void)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#指针类型"><span class="toc-text">指针类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数"><span class="toc-text">函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宏定义"><span class="toc-text">宏定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#接续符"><span class="toc-text">接续符</span></a></li></ol>
   </div>
 </aside>
   

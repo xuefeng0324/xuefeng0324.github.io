@@ -6,7 +6,7 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>归档: 2019/12 | Mylog</title>
+  <title>嵌入式知识 | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,11 +15,11 @@
 
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="嵌入式,">
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="嵌入式基础知识">
 
   
 
@@ -51,7 +51,7 @@
     welcome: {"enable":"ture","interval":30},
     start_time: "2019-07-01",
     passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Peng Xuefeng",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -181,20 +181,111 @@
 
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 27篇</h2>
-  
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-12-31</time>
-      <a target="_self" href="/passages/2019-12-31-Linux基本知识与操作/">Linux基本知识与操作</a>
-    </div>
-  
+      
+  <div class="passage">
 
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-31
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    嵌入式知识
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#嵌入式系统">嵌入式系统</a><ul>
+<li><a href="#特点">特点</a></li>
+<li><a href="#组成">组成</a></li>
+</ul>
+</li>
+<li><a href="#交叉编译">交叉编译</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h2><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>专用、软硬件可裁剪可配置</li>
+<li>低功耗、高可靠性、高稳定性</li>
+<li>软件代码短小精悍</li>
+<li>代码可固化</li>
+<li>实时性</li>
+<li>弱交互性</li>
+<li>专用开发工具及开发环境</li>
+<li>专业开发人员</li>
+</ul>
+<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
+<li>硬件：<br>微处理器<br>存储器<br>I/O接口、输入输出设备等等</li>
+<li>软件：<br>嵌入式操作系统<br>BSP——board support package板级支持包<br>应用软件</li>
+</ul>
+<h2 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h2><blockquote>
+<p>A(类)机编写（源代码）、编译得到可执行程序，发布给B(类)机运行。</p>
+</blockquote>
+<ul>
+<li><p>嵌入式开发的CPU比较简单，本身无法搭建开发环境，有些甚至操作系统都没有。交叉编译可以用高性能机器为低性能机器开发软件（包括裸机软件、系统级和应用级软件）</p>
+</li>
+<li><p>必须使用专用的交叉编译工具链。</p>
+</li>
+<li><p>由于可执行程序不能本地运行调试，因此必须配合一定手段（专用调试器、JTAG调试器、USB下载、串口下载、SD启动、网络共享等）将可执行程序加载到目标嵌入式设备上运行及调试。</p>
+</li>
+</ul>
+<p>##</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-01-31-嵌入式知识/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -325,16 +416,16 @@
     <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2020-01-29-arm/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
