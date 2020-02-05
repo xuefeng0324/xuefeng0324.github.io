@@ -215,10 +215,23 @@
 <ul>
 <li><a href="#嵌入式系统">嵌入式系统</a><ul>
 <li><a href="#特点">特点</a></li>
-<li><a href="#组成">组成</a></li>
+<li><a href="#组成">组成</a><ul>
+<li><a href="#内存的访问方式">内存的访问方式</a></li>
+<li><a href="#io的访问方式">IO的访问方式</a></li>
+<li><a href="#冯诺依曼结构与哈佛结构">冯诺依曼结构与哈佛结构</a></li>
+<li><a href="#寄存器">寄存器</a></li>
 </ul>
 </li>
+<li><a href="#电子器件的发展方向">电子器件的发展方向</a></li>
+<li><a href="#可编程器件的特点">可编程器件的特点</a></li>
+</ul>
+</li>
+<li><a href="#编程语言">编程语言</a><ul>
+<li><a href="#编程及运行过程">编程及运行过程</a></li>
 <li><a href="#交叉编译">交叉编译</a></li>
+<li><a href="#指令集">指令集</a></li>
+</ul>
+</li>
 </ul>
 <!-- tocstop -->
 
@@ -233,21 +246,69 @@
 <li>专业开发人员</li>
 </ul>
 <h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
-<li>硬件：<br>微处理器<br>存储器<br>I/O接口、输入输出设备等等</li>
+<li>硬件：<br>微处理器<br>存储器（寄存器、内存、外存）<br>I/O接口、输入输出设备等等</li>
 <li>软件：<br>嵌入式操作系统<br>BSP——board support package板级支持包<br>应用软件</li>
 </ul>
-<h2 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h2><blockquote>
+<h6 id="内存的访问方式"><a href="#内存的访问方式" class="headerlink" title="内存的访问方式"></a>内存的访问方式</h6><ul>
+<li>内存通过CPU的地址总线来寻址定位，然后通过CPU数据总线来读写。</li>
+<li>CPU的地址总线的位数是CPU设计时确定的，因此一款CPU所能寻址的范围是一定的，而内存是需要占用CPU的寻址空间的。</li>
+<li>内存与CPU的这种总线式连接方式是一种直接连接，优点是效率高访问快，缺点是资源有限，扩展性差。</li>
+</ul>
+<h6 id="IO的访问方式"><a href="#IO的访问方式" class="headerlink" title="IO的访问方式"></a>IO的访问方式</h6><ul>
+<li>IO指的是与CPU连接的各种外设。</li>
+<li>CPU访问各种外设有2种方式：一种是类似于访问内存的方式，即把外设的寄存器当作一个内存地址来读写，从而以访问内存相同的方式来操作外设，叫IO与内存统一编址方式；另一种是使用专用的CPU指令来访问某种特定外设，叫IO与内存独立编址。</li>
+</ul>
+<h6 id="冯诺依曼结构与哈佛结构"><a href="#冯诺依曼结构与哈佛结构" class="headerlink" title="冯诺依曼结构与哈佛结构"></a>冯诺依曼结构与哈佛结构</h6><ul>
+<li>程序和数据都放在内存中，且不彼此分离的结构称为冯诺依曼结构。譬如Intel的CPU均采用冯诺依曼结构。冯诺依曼结构中程序和数据不区分的放在一起，因此安全和稳定性是个问题，好处是处理起来简单。</li>
+<li>程序和数据分开独立放在不同的内存块中，彼此完全分离的结构称为哈佛结构。譬如大部分的单片机（MCS51、ARM9等）均采用哈佛结构。哈佛结构中程序（一般放在ROM、flash中）和数据（一般放在RAM中）独立分开存放，因此好处是安全和稳定性高，缺点是软件处理复杂一些（需要统一规划链接地址等）  </li>
+</ul>
+<h6 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h6><blockquote>
+<p>SoC中有2类寄存器：通用寄存器和SFR</p>
+</blockquote>
+<p>1.通用寄存器（ARM中有37个）是CPU的组成部分，CPU的很多活动都需要通用寄存器的支持和参与。<br>2.SFR（special function register，特殊功能寄存器）不在CPU中，而存在于CPU的外设中，我们通过访问外设的SFR来编程操控这个外设，这就是硬件编程控制的方法。</p>
+<ul>
+<li>CPU可以像访问内存一样访问寄存器</li>
+<li>寄存器是CPU的硬件设计者制定的，目的是留作外设被编程控制的“活动开关”</li>
+<li>正如汇编指令集是CPU的编程接口API一样，寄存器是外设硬件的软件编程接口API。使用软件编程控制某一硬件，其实就是编程读写该硬件的寄存器。</li>
+<li>寄存器中每个bit位都有特定含义，因此编程操作时需要位操作。</li>
+<li>单个寄存器的位宽一般和CPU的位宽一样，以实现最佳访问效率</li>
+</ul>
+<p>3.编程访问寄存器的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//汇编</span></span><br><span class="line">ldr r1, =<span class="number">0xE0200280</span></span><br><span class="line">str r0, [r1]</span><br><span class="line">mov r0, #<span class="number">0</span></span><br><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x30008000</span>;</span><br><span class="line">*p = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="电子器件的发展方向"><a href="#电子器件的发展方向" class="headerlink" title="电子器件的发展方向"></a>电子器件的发展方向</h4><ul>
+<li>模拟器件 -&gt; 数字器件</li>
+<li>ASIC（专用集成电路） -&gt; 可编程器件</li>
+</ul>
+<h4 id="可编程器件的特点"><a href="#可编程器件的特点" class="headerlink" title="可编程器件的特点"></a>可编程器件的特点</h4><ul>
+<li>CPU在固定频率的时钟控制下节奏运行。</li>
+<li>CPU可以通过总线读取外部存储设备中的二进制指令集，然后解码执行。</li>
+<li>这些可以被CPU解码执行的二进制指令集是CPU设计的时候确定的，是CPU的设计者定义的，本质上是一串由1和0组成的数字。这就是CPU的汇编指令集。</li>
+</ul>
+<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><ul>
+<li>编程语言发展过程：<br>纯机器码编程<br>汇编语言编程<br>C语言编程<br>C++语言编程<br>Java C#等语言编程<br>脚本语言编程</li>
+<li>汇编语言就是CPU的机器指令集的助记符，是一款CPU的本质特征。</li>
+<li>不同CPU的机器指令集设计不同，因此汇编程序不能在不同CPU间互相移植。（C语言可移植性高，但是不同cpu需要不同的编译器编译）</li>
+<li>使用汇编编程可以充分发挥CPU的设计特点，所以汇编编程效率最高，因此在操作系统内核中效率极其重要处都需要用汇编处理。</li>
+</ul>
+<h4 id="编程及运行过程"><a href="#编程及运行过程" class="headerlink" title="编程及运行过程"></a>编程及运行过程</h4><ul>
+<li>程序员用汇编指令编程 –&gt;经汇编器汇编成二进制可执行程序文件–&gt;二进制文件被CPU读取进去–&gt;CPU内部电路对二进制文件解码–&gt;解码通过则CPU执行指令、完成指令动作。</li>
+<li>如果程序员用C语言等高级语言编程，则编译器先将C语言程序编译为汇编程序，再进行上面的后续部分。</li>
+</ul>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><blockquote>
 <p>A(类)机编写（源代码）、编译得到可执行程序，发布给B(类)机运行。</p>
 </blockquote>
 <ul>
-<li><p>嵌入式开发的CPU比较简单，本身无法搭建开发环境，有些甚至操作系统都没有。交叉编译可以用高性能机器为低性能机器开发软件（包括裸机软件、系统级和应用级软件）</p>
+<li>嵌入式开发的CPU比较简单，本身无法搭建开发环境，有些甚至操作系统都没有。交叉编译可以用高性能机器为低性能机器开发软件（包括裸机软件、系统级和应用级软件）</li>
+<li>必须使用专用的交叉编译工具链。</li>
+<li>由于可执行程序不能本地运行调试，因此必须配合一定手段（专用调试器、JTAG调试器、USB下载、串口下载、SD启动、网络共享等）将可执行程序加载到目标嵌入式设备上运行及调试。</li>
+</ul>
+<h4 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h4><ul>
+<li><p>CISC:complex instruction set computer——复杂指令集CPU<br>CISC体系的设计理念是用最少的指令来完成任务（譬如计算乘法只需要一条MUL指令即可，但是越复杂的算法使用的指令就越多，算法越多指令也越多），因此CISC的CPU本身设计复杂、工艺复杂，但好处是编译器好设计。CISC出现较早，至今Intel还一直采用CISC设计。</p>
 </li>
-<li><p>必须使用专用的交叉编译工具链。</p>
-</li>
-<li><p>由于可执行程序不能本地运行调试，因此必须配合一定手段（专用调试器、JTAG调试器、USB下载、串口下载、SD启动、网络共享等）将可执行程序加载到目标嵌入式设备上运行及调试。</p>
+<li><p>Reduced Instruction-Set Computer——精简指令集CPU<br>RISC的设计理念是让软件来完成具体的任务，CPU本身仅提供基本功能指令集。因此RISC的CPU的指令集中只有很少的指令，这种设计相对于CISC，CPU的设计和工艺简单了，但是编译器的设计变难了</p>
 </li>
 </ul>
-<p>##</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -255,7 +316,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#IO的访问方式"><span class="toc-text">IO的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子器件的发展方向"><span class="toc-text">电子器件的发展方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可编程器件的特点"><span class="toc-text">可编程器件的特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编程及运行过程"><span class="toc-text">编程及运行过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令集"><span class="toc-text">指令集</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
