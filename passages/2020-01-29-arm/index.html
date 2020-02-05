@@ -265,13 +265,13 @@
 <td align="center">DRAM</td>
 <td align="center">dynamic ram</td>
 <td align="center">动态RAM</td>
-<td align="center">DRAM分为很多种，常见的主要有FPRAM/FastPage、EDORAM、SDRAM、DDR RAM、RDRAM、SGRAM以及WRAM等</td>
+<td align="center">DRAM分为很多种，常见的主要有FPRAM/FastPage、EDORAM、SDRAM、DDR RAM、RDRAM、SGRAM以及WRAM等，适合手机电脑</td>
 </tr>
 <tr>
 <td align="center">SRAM</td>
 <td align="center">static ram</td>
 <td align="center">静态RAM</td>
-<td align="center">速度最快，最昂贵</td>
+<td align="center">速度最快，最昂贵，所以适合单片机</td>
 </tr>
 <tr>
 <td align="center">IRAM</td>
@@ -356,7 +356,7 @@
 </tr>
 </tbody></table>
 <ul>
-<li><font size="2" color="green"><strong>补充：<br>  0、手机软件一般放在EEPROM中；我们打电话，有些最后拨打的号码，暂时是存在SRAM中的，不是马上写入通过记录（通话记录保存在EEPROM中），因为当时有很重要工作（通话）要做，如果写入，漫长的等待是让用户忍无可忍的。<br>  l、NOR的读速度比NAND稍快一些。<br>  2、 NAND的写入速度比NOR快很多。<br>  3、NAND的4ms擦除速度远比NOR的5s快。<br>  4、大多数写入操作需要先进行擦除操作。<br>  5、NAND的擦除单元更小，相应的擦除电路更少。<br>  6、一般小容量的用NOR Flash，因为其读取速度快，多用来存储操作系统等重要信息，而大容量的用NAND FLASH，最常见的NAND FLASH应用是嵌入式系统采用的DOC（Disk On Chip）。此外，NAND的实际应用方式要比NOR复杂的多。NOR可以直接使用，并可在上面直接运行代码；而NAND需要I/O接口，因此使用时需要驱动程序（或者用一小块NOR Flash来启动）。不过当今流行的操作系统对NAND结构的Flash都有支持。此外，Linux内核也提供了对NAND结构的Flash的支持。<br>  7、OneNAND器件有两种类型：muxed和demuxed。对于muxed型，地址引脚和数据引脚结合在一起，而demuxed型芯片这两个引脚是分开的。当关注的是减少引脚数时，选择muxed OneNAND可能好一些。<br>  8、eMMC简化手机存储器的设计，更新速度快，加速产品研发速度。iNand和moviNand遵循eMMC标准。<br>  9、NAND Flash的类型有SLC(Single-Level Cell，单层单元，在每个单元中存储一个Bit，这种设计提高了耐久性、准确性和性能，它的价格最高)、MLC(Multi-Level Cell，多层单元，架构可以为每个单元存储2个Bit。尽管在存储单元中存储多个Bit似乎能够很好地利用空间，在相同空间内获得更大容量，但它的代价是使用寿命降低，可靠性降低，MLC SSD使得在PC和笔记本电脑上增加闪存成为可能)、eMLC(Enterprise Multi-Level Cell，企业多级单元，是MLC NAND 闪存的一个“增强型”的版本，它在一定程度上弥补了SLC和MLC之间的性能和耐久差距)和TLC(Triple-Level Cell，三层单元，最便宜，每个单元存储3比特，通常用于性能和耐久性要求相对较低的消费级电子产品)<br>  10、SD和microSD(TF)卡区别:SD卡 比TF卡的尺寸要大;SD卡一般都用在大一些的电子设备,如电脑，相机，AV等器材，而TF一般用在手机上。TF卡插入适配器（adapter）可以转换成SD卡，但SD卡一般无法转换成TF卡。SD卡上有一个（lock）开关，即写保护开关，TF卡没有。    11、硬盘按照访问方式分机械硬盘(HDD:Hard Disk Drive)、固态硬盘(SSD:Solid State Drive，Nand-MLC)、混合硬盘(HH:Dhybrid hard drive);按接口可分为IDE、SATA、PATA、SCSI</strong></font></li>
+<li><font size="2" color="green"><strong>补充：<br>  0、手机软件一般放在EEPROM中；我们打电话，有些最后拨打的号码，暂时是存在SRAM中的，不是马上写入通过记录（通话记录保存在EEPROM中），因为当时有很重要工作（通话）要做，如果写入，漫长的等待是让用户忍无可忍的。<br>  l、NOR的读速度比NAND稍快一些。<br>  2、 NAND的写入速度比NOR快很多。<br>  3、NAND的4ms擦除速度远比NOR的5s快。<br>  4、大多数写入操作需要先进行擦除操作。<br>  5、NAND的擦除单元更小，相应的擦除电路更少。<br>  6、一般小容量的用NOR Flash，因为其读取速度快、价格高，可以与CPU进行总线式相连，多用来存储操作系统等重要信息，而大容量的用NAND FLASH（也因为容量大，进行总线式相连浪费寻址空间），最常见的NAND FLASH应用是嵌入式系统采用的DOC（Disk On Chip）。此外，NAND的实际应用方式要比NOR复杂的多。NOR可以直接使用，并可在上面直接运行代码；而NAND需要I/O接口，因此使用时需要驱动程序（或者用一小块NOR Flash来启动）。不过当今流行的操作系统对NAND结构的Flash都有支持。此外，Linux内核也提供了对NAND结构的Flash的支持。<br>  7、OneNAND器件有两种类型：muxed和demuxed。对于muxed型，地址引脚和数据引脚结合在一起，而demuxed型芯片这两个引脚是分开的。当关注的是减少引脚数时，选择muxed OneNAND可能好一些。<br>  8、eMMC简化手机存储器的设计，更新速度快，加速产品研发速度。iNand和moviNand遵循eMMC标准。<br>  9、NAND Flash的类型有SLC(Single-Level Cell，单层单元，在每个单元中存储一个Bit，这种设计提高了耐久性、准确性和性能，它的价格最高)、MLC(Multi-Level Cell，多层单元，架构可以为每个单元存储2个Bit。尽管在存储单元中存储多个Bit似乎能够很好地利用空间，在相同空间内获得更大容量，但它的代价是使用寿命降低，可靠性降低，MLC SSD使得在PC和笔记本电脑上增加闪存成为可能)、eMLC(Enterprise Multi-Level Cell，企业多级单元，是MLC NAND 闪存的一个“增强型”的版本，它在一定程度上弥补了SLC和MLC之间的性能和耐久差距)和TLC(Triple-Level Cell，三层单元，最便宜，每个单元存储3比特，通常用于性能和耐久性要求相对较低的消费级电子产品)<br>  10、一般PC机都是：很小容量的BIOS（NorFlash）+ 大容量的硬盘（类似于NandFlash）+ 大容量的DRAM<br>  一般的单片机：很小容量的NorFlash + 很小容量的SRAM<br>  嵌入式系统：因为NorFlash很贵，随意现在很多嵌入式系统倾向于不用NorFlash，<br>  直接用：外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM<br>  11、SD和microSD(TF)卡区别:SD卡 比TF卡的尺寸要大;SD卡一般都用在大一些的电子设备,如电脑，相机，AV等器材，而TF一般用在手机上。TF卡插入适配器（adapter）可以转换成SD卡，但SD卡一般无法转换成TF卡。SD卡上有一个（lock）开关，即写保护开关，TF卡没有。<br>  12、硬盘按照访问方式分机械硬盘(HDD:Hard Disk Drive)、固态硬盘(SSD:Solid State Drive，Nand-MLC)、混合硬盘(HH:Dhybrid hard drive);按接口可分为IDE、SATA、PATA、SCSI</strong></font></li>
 </ul>
   </article>
   <aside class="table-content" id="site-toc">

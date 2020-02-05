@@ -6,7 +6,7 @@
   <meta name="author" content="Peng Xuefeng">
   
   
-  <title>归档 | 第3页 | Mylog</title>
+  <title>x210开发板 | Mylog</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,11 +15,11 @@
 
 
   
-    <meta name="keywords" content="Hexo, Theme-AD">
+    <meta name="keywords" content="嵌入式,">
   
 
   
-  <meta name="description" content="彭雪峰的小站">
+  <meta name="description" content="x210开发板">
 
   
 
@@ -51,7 +51,7 @@
     welcome: {"enable":"ture","interval":30},
     start_time: "2019-07-01",
     passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
-    is_post: false,
+    is_post: true,
     lock: false,
     author: "Peng Xuefeng",
     share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
@@ -181,62 +181,89 @@
 
 <div id="site-process"></div>
     <main>
-      <div class="timeline">
-  <h2 class="timeline-title">归档: 28篇</h2>
-  
-    
-      <h3 class="timeline-subtitle">2019</h3>
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-swiper/">swiper（轮播图）</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-wx-key/">wx:key</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-09</time>
-      <a target="_self" href="/passages/2019-07-09-wx-for/">wx:for</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-06</time>
-      <a target="_self" href="/passages/2019-07-06-scroll-view/">scroll-view（滚动框）</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-02</time>
-      <a target="_self" href="/passages/2019-07-02-hexo/">搭建Hexo</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-01</time>
-      <a target="_self" href="/passages/2019-07-01-lock/">lock</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-07-01</time>
-      <a target="_self" href="/passages/2019-07-01-start/">start</a>
-    </div>
-  
-    
-    <div class="timeline-item">
-      <time>2019-06-30</time>
-      <a target="_self" href="/passages/2019-06-30-hello-world/">Hello World</a>
-    </div>
-  
+      
+  <div class="passage">
 
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-02-05
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    x210开发板
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#支持的外部存储器">支持的外部存储器</a></li>
+<li><a href="#s5pv210使用的启动方式">S5PV210使用的启动方式</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="支持的外部存储器"><a href="#支持的外部存储器" class="headerlink" title="支持的外部存储器"></a>支持的外部存储器</h2><blockquote>
+<p>X210有2个版本，Nand版和iNand版，分别使用Nand     Flash和iNand为外部存储器。S5PV210共支持4个SD/MMC通道，其中通道0和2用作启动。X210开发板中SD/MMC0通道用于连接板载MMC，因此外部启动时只能使用SD/MMC2通道（注意通道3不能启动，通道0、1被隐藏）。见《S5PV210_iROM_ApplicationNote_Preliminary_20091126.pdf》中P6</p>
+</blockquote>
+<h2 id="S5PV210使用的启动方式"><a href="#S5PV210使用的启动方式" class="headerlink" title="S5PV210使用的启动方式"></a>S5PV210使用的启动方式</h2><blockquote>
+<p>外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM。</p>
+</blockquote>
+<p>210内置了一块96KB大小的SRAM（叫iRAM），同时还有一块内置的64KB大小的NorFlash（叫iROM）。210的启动过程大致是：<br>第一步：CPU上电后先从内部IROM中读取预先设置的代码（BL0），执行。这一段IROM代码首先做了一些基本的初始化（CPU时钟、关看门狗···）（这一段IROM代码是三星出厂前设置的，三星也不知道我们板子上将来接的是什么样的DRAM，因此这一段IROM是不能负责初始化外接的DRAM的，因此这一段代码只能初始化SoC内部的东西）；然后这一段代码会判断我们选择的启动模式（我们通过硬件跳线可以更改板子的启动模式），然后从相应的外部存储器去读取第一部分启动代码（BL1，大小为16KB）到内部SRAM。<br>第二步：从IRAM去运行刚上一步读取来的BL1（16KB），然后执行。BL1负责初始化NandFlash，然后将BL2读取到IRAM（剩余的80KB）然后运行<br>第三步：从IRAM运行BL2，BL2初始化DRAM，然后将OS读取到DRAM中，然后启动OS，启动过程结束。</p>
+<p>思路：因为启动代码的大小是不定的，有些公司可能96kb就够了，有些公司可能1MB都不够。所以刚才说的2步的启动方式不合适。三星的解决方案是：把启动代码分为2半（BL1和BL2），这两部分协同工作来完成启动。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#S5PV210使用的启动方式"><span class="toc-text">S5PV210使用的启动方式</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-02-05-x210开发板/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
 </div>
+
     </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
     
     <div class="site-footer-wrapper">
   <footer class="site-footer">
@@ -364,19 +391,19 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/archives/page/2/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
-    <a href="javascript:void(0);" data-enable="false">
+    <a href="/passages/2020-01-31-嵌入式知识/" data-enable="true">
       <i class="fa fa-arrow-right"></i>
     </a>
   </div>
   <div class="bottom-bar-right">
-    <a href="javascript:void(0);" data-enable="false" id="site-toc-show-btn">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
       <i class="fa fa-bars"></i>
     </a>
     
-      <a href="javascript:void(0);" data-enable="false">
+      <a href="#site-comment" data-enable="true">
         <i class="fa fa-commenting"></i>
       </a>
     
