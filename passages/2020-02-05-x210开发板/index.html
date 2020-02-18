@@ -217,8 +217,11 @@
 <li><a href="#s5pv210使用的启动方式">s5pv210使用的启动方式</a></li>
 <li><a href="#s5pv210开发板开发实验">s5pv210开发板开发实验</a><ul>
 <li><a href="#刷机">刷机</a><ul>
-<li><a href="#sd卡刷机">sd卡刷机</a></li>
-<li><a href="#usb刷机">usb刷机</a></li>
+<li><a href="#sd卡刷机">sd卡刷机</a><ul>
+<li><a href="#sd卡刷机-1">sd卡刷机</a></li>
+</ul>
+</li>
+<li><a href="#usb刷机u盘">usb刷机（u盘）</a></li>
 </ul>
 </li>
 </ul>
@@ -230,12 +233,12 @@
 <p>X210有2个版本，Nand版和iNand版，分别使用Nand     Flash和iNand为外部存储器。S5PV210共支持4个SD/MMC通道，其中通道0和2用作启动。X210开发板中SD/MMC0通道用于连接板载MMC，因此外部启动时只能使用SD/MMC2通道（注意通道3不能启动，通道0、1被隐藏）。见《S5PV210_iROM_ApplicationNote_Preliminary_20091126.pdf》中P6</p>
 </blockquote>
 <h2 id="s5pv210使用的启动方式"><a href="#s5pv210使用的启动方式" class="headerlink" title="s5pv210使用的启动方式"></a>s5pv210使用的启动方式</h2><blockquote>
-<p>外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM。</p>
+<p>外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM。210内部有iROM和iRAM，因此启动时分两个阶段：内部启动阶段和外部启动阶段。对于内部启动阶段各种S5PV210的开发板都是相同的，对于外部启动阶段，不同开发板会有不同。以下是内部启动（iRom）带动外部启动（Nand、DRAM）。</p>
 </blockquote>
 <ul>
 <li><p>210内置了一块96KB大小的SRAM（叫iRAM），同时还有一块内置的64KB大小的NorFlash（叫iROM）。210的启动过程大致是：<br>第一步：CPU上电后先从内部IROM中读取预先设置的代码（BL0），执行。这一段IROM代码首先做了一些基本的初始化（CPU时钟、关看门狗···）（这一段IROM代码是三星出厂前设置的，三星也不知道我们板子上将来接的是什么样的DRAM，因此这一段IROM是不能负责初始化外接的DRAM的，因此这一段代码只能初始化SoC内部的东西）；然后这一段代码会判断我们选择的启动模式（我们通过硬件跳线可以更改板子的启动模式），然后从相应的外部存储器去读取第一部分启动代码（BL1，大小为16KB）到内部SRAM。<br>第二步：从IRAM去运行刚上一步读取来的BL1（16KB），然后执行。BL1负责初始化NandFlash，然后将BL2读取到IRAM（剩余的80KB）然后运行<br>第三步：从IRAM运行BL2，BL2初始化DRAM，然后将OS读取到DRAM中，然后启动OS，启动过程结束。</p>
 </li>
-<li><p>思路：因为启动代码的大小是不定的，有些公司可能96kb就够了，有些公司可能1MB都不够。所以刚才说的2步的启动方式不合适。三星的解决方案是：把启动代码分为2半（BL1和BL2），这两部分协同工作来完成启动。</p>
+<li><p>思路：因为启动代码的大小是不定的，有些公司可能96kb就够了，有些公司可能1MB都不够。三星的解决方案是：把启动代码分为2半（BL1和BL2），这两部分协同工作来完成启动。</p>
 </li>
 <li><p>BL0代码含义<br>关看门狗<br>初始化指令cache<br>初始化栈<br>初始化堆<br>初始化块设备复制函数device copy function<br>设置SoC时钟系统<br>复制BL1到内部IRAM（16KB）<br>检查BL1的校验和<br>跳转到BL1去执行</p>
 </li>
@@ -244,7 +247,44 @@
 <li><p>BL2代码含义</p>
 </li>
 </ul>
-<h2 id="s5pv210开发板开发实验"><a href="#s5pv210开发板开发实验" class="headerlink" title="s5pv210开发板开发实验"></a>s5pv210开发板开发实验</h2><h4 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h4><h6 id="sd卡刷机"><a href="#sd卡刷机" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h6><h6 id="usb刷机"><a href="#usb刷机" class="headerlink" title="usb刷机"></a>usb刷机</h6>
+<h2 id="s5pv210开发板开发实验"><a href="#s5pv210开发板开发实验" class="headerlink" title="s5pv210开发板开发实验"></a>s5pv210开发板开发实验</h2><p><img src="/images/s5pv210.png" alt></p>
+<p>一些名词：</p>
+<blockquote>
+<p><font size="2">镜像（Mirroring）<br>一种文件存储形式，是冗余的一种类型，一个磁盘上的数据在另一个磁盘上存在一个完全相同的副本即为镜像。可以把许多文件做成一个镜像文件，与GHOST等程序放在一个盘里用GHOST等软件打开后，又恢复成许多文件，</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">固件（firmware）<br>所谓固件，就是文件，固化在存储介质上的文件，而文件，其实就是数据。嵌入式开发中，尤其是Linux开发，常见的方式是，从开发板上启动，会允许Uboot，然后Uboot去加载kernel内核，常用的kernel是uImage，然后Linux运行后，去加载根文件系统rootfs，常用的yaffs2文件系统。<br>前后系统运行所需要的文件，总的来说，就是这三个：<br>Uboot，比如u-boot.bin<br>Kernel，比如uImage<br>Rootfs，比如yaffs2.rootfs.arm<br>而大家一直说的固件，在系统是Linux系统的情况下，常常就是指的是这些文件。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">烧写<br>所谓烧写，就是写数据，把文件（固件/数据）写到存储介质（Nand Flash, Nor Flash等）上。而对于烧写这个词，说法很多，常见的有：烧写=烧录=flash=编程=program=programming<br>更新固件，其实也指的是将新的固件烧写进去，即所谓更新固件，更新系统。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">USB device:从硬件角度看就是一个带有usb client控制器的设备；从软件角度看，就是一个挂在usb总线上的一个普通意义上的设备，只不过它们的驱动是基于host驱动之上的。<br>USB host:USB主设备，可以从另外一个USB device中取得数据，包括USB host控制器3.0USB host协议。与USB device或USB slave相对应。<br>USB client:从硬件角度看就是指USB client 控制器，从软件角度看，就是指USB client协议，与USB host协议相对应。<br>USB OTG:On The Go，正在进行中的意思，也就是可以直接传输，就是可以从一个机器直接传到另一个机器中。<br>USB HUB：USB扩展/集线器，一种可以将一个USB接口扩展为多个（通常为4个），并可以使这些接口同时使用的装置。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">NIC，Network Interface Card，网络接口卡，即网卡。</font></p>
+</blockquote>
+<h4 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h4><p>嵌入式开发，很多用的是Linux系统，也有用WinCE和其他系统,Linux系统中，多数为bootloader+ kernel + rootfs的模式。其中，所用的bootloader，多为uboot。负责初始化硬件和设置好软件环境，然后加载kernel，运行kernel，kernel运行后，再去加载rootfs，之后就是你所看到的运行的Linux了。<br>在开发过程中，上述对应的文件每个系统都有差异，比如U-boot.bin，uImage，rootfs等，需要从PC上下载到Uboot的SDRAM，即内存中，然后再用对应命令或工具，将数据写入到某存储介质中。有时候也需要在发布产品之后，在系统运行的情况下，动态升级整个系统的固件的。</p>
+<blockquote>
+<p>刷机需要将对应的文件，烧写到存储介质上，此时，有两种方法：<br>一种是一步到位的方式，即直接通过某工具将文件写入到存储介质上。<br>另外一种是两步到位的方式，先通过某种方式把文件下载到Uboot中，再通过Uboot中的命令，去把数据写入到存储介质上。<br>x210开发板启动有SD/MMC卡启动和USB启动和Uart启动（异步串行接口），通过OM pin选择启动介质，当OM pin（0-5）为101100时为SD/MMC卡启动<br>当OM pin（0-5）为101101为USB启动。</p>
+</blockquote>
+<h5 id="sd卡刷机"><a href="#sd卡刷机" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h5><blockquote>
+<p>在Uboot中，把下载到内存中的固件，写入到存储介质（iNand）上</p>
+</blockquote>
+<h6 id="sd卡刷机-1"><a href="#sd卡刷机-1" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h6><ul>
+<li><p>破坏iNand的uboot<br>将iNand卡的uboot分区清除（填写0）：<br>①用usb转串口线连接电脑usb和开发板串口（默认Uart2,在两个接口之中远离核心板的为Uart2，另一个为Uart0），安装usb转串口驱动将usb模拟为串口（并且usb转串口线里面有芯片将usb协议转换成串口协议）。或者将串口线连接电脑串口和开发板串口，这样不需要驱动。<br>②安装secureCRT（监视软件，按照说明破解），连接开发板串口的作用是将电脑作为控制台，为此需要软件。设置secureCRT，协议：Serial，接口与，波特率：115200，数据流控制：全不选。回车进入控制台。<br>③在开发板的安卓环境下破坏iNand的uboot，在secureCRT输入下面linux的dd命令，重启后显示错误即破坏成功。dd 是 Linux/UNIX 下的一个非常有用的命令，作用是用指定大小的块拷贝一个文件，并在拷贝的同时进行指定的转换。<br>//将大小为512字节（bs=512）的0（if=/dev/zero）写到iNand（of=/dev/block/mmcblk0）里面的1个扇区（count=1），该扇区为第1个扇区（seek=1），因为启动时IROM还是会先从iNand中读取前16KB，然后计算校验和。这时候因为有1个扇区被擦掉了，所以校验和不通过，所以启动失败（会从SD2去执行2nd启动）。注意：破坏板载iNand的bootloader后，不插外部SD卡，启动时串口得到：SD checksum Error</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">busybox dd if=/dev/zero of=/dev/block/mmcblk0 bs=512 seek=1 count=1 conv=sync</span><br><span class="line"></span><br><span class="line">sync</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在windows下给sd卡写uboot<br>①格式化sd卡<br>②使用x210_Fusing_Tool.exe烧写安卓/linux的uboot.bin</p>
+</li>
+<li><p>在linux下给sd卡写uboot（虚拟机）<br>①格式化sd卡，用读卡器插入电脑，在虚拟机-可连接设备选择连接u盘设备，在命令行中输入：<code>ls /dev/sd*</code>查看，和之前对比，得知SD卡在linux中的设备编号，一般是/dev/sdb。<br>②制作SD启动卡，在linux终端输入<code>cd /mnt/hgfs/share/uboot_sd_fusing</code>和<code>./nand_fusing.sh /dev/sdb</code>将uboot刷进sd卡里。</p>
+</li>
+<li><p>利用uboot写固件到inand<br>①插sd卡到开发板的SD2卡槽（靠近核心板的为SD2，远离的为SD3卡槽），启动开发板在自动启动前（3秒内）按回车停止自动启动安卓。<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。<br>③在secureCRT输入fastboot命令进入fastboot，如果分区数不为7，输入<code>fdisk -c 0</code>来分区。<br>④在设备管理器更新驱动程序来安装驱动x210_android_driver（安装后显示为安卓设备：Android Bootloader Interface）<br>⑤windows下fastboot软件使用：windows控制台输入<code>e:</code>和<code>cd E:\临时\3-嵌入式\课件and代码\课件\1.ARM裸机全集\1.3.ARM裸机第三部分-开发板、原理图和数据手册\实验步骤\4.fastboot\4.fastboot</code>进入fastboot文件夹执行fastboot命令来烧录系统到iNand。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">常用路径</span><br><span class="line">fastboot devices	命令用来查看当前连接的设备。（我们开发板看到的是：SMDKC110-01）</span><br><span class="line">fastboot flash x xx	命令用来烧录(flash)的，x为分区，xx为相对路径</span><br><span class="line">fastboot reboot		命令用来重启系统</span><br><span class="line"></span><br><span class="line">分别在windows命令行执行以下命令烧录安卓</span><br><span class="line">fastboot flash bootloader android4.0/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android4.0/zImage-android	烧linux kernel</span><br><span class="line">fastboot flash system android4.0/x210.img		烧android rom</span><br><span class="line">uboot的参数设置：set bootcmd &apos;movi read kernel 30008000; bootm 30008000&apos;（默认就是这个，不用设置也行）</span><br><span class="line"></span><br><span class="line">烧录linux+QT</span><br><span class="line">fastboot flash bootloader linuxQT/uboot_inand.bin	烧uboot</span><br><span class="line">fastboot flash kernel linuxQT/zImage-qt		烧linux kernel</span><br><span class="line">fastboot flash system linuxQT/rootfs_qt4.ext3		烧rootfs</span><br><span class="line">uboot的参数不用特意设置（因为我们刷了专为linux+QT定制的uboot，这个uboot中估计已经预制好了所有的启动参数）</span><br><span class="line"></span><br><span class="line">烧录android2.3</span><br><span class="line">fastboot flash bootloader android2.3/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android2.3/zImage		烧linux kernel</span><br><span class="line">fastboot flash system android2.3/x210.img		烧android rom</span><br><span class="line">注意：android2.3中使用了串口0（Urat0，靠近核心板），所以启动后要把串口插到串口0中，不然串口没有任何启动信息出来。android2.3中屏幕上的logo是在左上角（刷机成功的标志）</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h5 id="usb刷机（u盘）"><a href="#usb刷机（u盘）" class="headerlink" title="usb刷机（u盘）"></a>usb刷机（u盘）</h5>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -252,7 +292,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板开发实验"><span class="toc-text">s5pv210开发板开发实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb刷机"><span class="toc-text">usb刷机</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板开发实验"><span class="toc-text">s5pv210开发板开发实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机-1"><span class="toc-text">sd卡刷机</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#usb刷机（u盘）"><span class="toc-text">usb刷机（u盘）</span></a></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
