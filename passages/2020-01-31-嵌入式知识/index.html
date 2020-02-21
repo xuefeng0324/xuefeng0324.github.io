@@ -228,7 +228,10 @@
 </li>
 <li><a href="#编程语言">编程语言</a><ul>
 <li><a href="#编程及运行过程">编程及运行过程</a></li>
-<li><a href="#交叉编译">交叉编译</a></li>
+<li><a href="#交叉编译">交叉编译</a><ul>
+<li><a href="#安装交叉编译工具链">安装交叉编译工具链</a></li>
+</ul>
+</li>
 <li><a href="#指令集">指令集</a></li>
 </ul>
 </li>
@@ -321,9 +324,27 @@
 </blockquote>
 <ul>
 <li>嵌入式开发的CPU比较简单，本身无法搭建开发环境，有些甚至操作系统都没有。交叉编译可以用高性能机器为低性能机器开发软件（包括裸机软件、系统级和应用级软件）</li>
-<li>必须使用专用的交叉编译工具链。</li>
+<li>必须使用专用的交叉编译工具链（tool chain）。</li>
 <li>由于可执行程序不能本地运行调试，因此必须配合一定手段（专用调试器、JTAG调试器、USB下载、串口下载、SD启动、网络共享等）将可执行程序加载到目标嵌入式设备上运行及调试。</li>
 </ul>
+<h5 id="安装交叉编译工具链"><a href="#安装交叉编译工具链" class="headerlink" title="安装交叉编译工具链"></a>安装交叉编译工具链</h5><ul>
+<li><p>Windows中装软件的特点<br>Windows中装软件使用安装包，安装包解压后有2种情况：一种是一个安装文件（.exe .msi），双击进行安装，下一步直到安装完毕。安装完毕后会在桌面上生成快捷方式，我们平时使用快捷方式来启动这些程序；另一种是所谓的绿色软件、免安装软件。这种不用安装，直接解压开里面就有exe可以直接双击执行。</p>
+</li>
+<li><p>linux中装软件的特点<br>第一种：在线安装。譬如ubuntu中使用apt-get install vim来安装vim软件。<br>第二种：自己下载安装包来安装。这种方式的缺陷就是不知道下载的安装包和你的系统是否匹配。<br>第三种：源代码安装，使用编译器直接编译运行程序。<br>安装交叉编译工具链（arm-linux-gcc）实际多采用第二种安装方式。</p>
+</li>
+<li><p>交叉编译工具链的安装<br>步骤1：打开虚拟机，在/usr/local/下创建/usr/local/arm文件夹<br>步骤2：先将安装包从Windows中放进linux中去。可以用共享文件夹、Samba、cuteftp。<br>步骤3：解压tar -jxvf arm-2009q3.tar.bz2到此相当于程序已经安装完毕，真正的应用程序安装在/usr/local/arm/arm-2009q3/bin目录下</p>
+</li>
+</ul>
+<ul>
+<li><p>安装后的测试<br>到真正的应用程序的安装目录下（也就是/usr/local/arm/arm-2009q3/bin），去执行arm-linux-gcc -v<br>执行方法是：./arm-none-linux-gnueabi-gcc -v<br>执行后可以得到一长串输出，其中有“gcc version 4.4.1 ”字样，即表示安装成功。</p>
+</li>
+<li><p>将工具链导出到环境变量</p>
+<blockquote>
+<p>环境变量就是操作系统的全局变量。每一个环境变量对操作系统来说都是唯一的，名字和所代表的意义都是唯一的。linux系统可以有很多个环境变量。其中有一部分是linux系统自带的，还有一些是用户扩充的。我们这里涉及到的一个环境变量是PATH。PATH这个环境变量是系统自带的，它的含义就是系统在查找可执行程序时会搜索的路径范围。每次打开linux终端，系统都会自动运行<code>~/.bashrc</code>这个文件，里面存放环境变量PATH</p>
+</blockquote>
+</li>
+</ul>
+<p>①执行<code>export PATH=/usr/local/arm/arm-2009q3/bin:$PATH</code>命令，意义是将PATH变量前加上<code>/usr/local/arm/arm-2009q3/bin:</code>之后的变量保存到PATH（也可以直接在.bashrc文件最后加上export PATH=/usr/local/arm/arm-2009q3/bin:）。<br>②运行改变之后的.bashrc文件，<code>source .bashrc</code>（或者直接关掉终端重新打开，因为系统会自动运行）<br>注意：我们导出这个环境变量是在当前用户，如果你登录时在其他用户下是没用的。<br>③想要在boot用户和普通用户下都可以直接运行gcc，可以参考<a href="https://blog.csdn.net/qq_38499625/article/details/83045236" target="_blank" rel="noopener">这篇文章</a><br>④为工具链创建arm-linux-xxx符号链接（可以理解为快捷方式）<br>ln arm-none-linux-gnueabi-addr2line -s arm-linux-addr2line</p>
 <h4 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h4><ul>
 <li><p>CISC:complex instruction set computer——复杂指令集CPU<br>CISC体系的设计理念是用最少的指令来完成任务（譬如计算乘法只需要一条MUL指令即可，但是越复杂的算法使用的指令就越多，算法越多指令也越多），因此CISC的CPU本身设计复杂、工艺复杂，但好处是编译器好设计。CISC出现较早，至今Intel还一直采用CISC设计。</p>
 </li>
@@ -623,7 +644,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#io的访问方式"><span class="toc-text">io的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子器件的发展方向"><span class="toc-text">电子器件的发展方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可编程器件的特点"><span class="toc-text">可编程器件的特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编程及运行过程"><span class="toc-text">编程及运行过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令集"><span class="toc-text">指令集</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arm"><span class="toc-text">arm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的内核版本号-soc版本号-芯片型号"><span class="toc-text">arm的内核版本号-soc版本号-芯片型号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#寄存器-1"><span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#特殊功能寄存器"><span class="toc-text">特殊功能寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#通用寄存器"><span class="toc-text">通用寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储器"><span class="toc-text">存储器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的基本设定"><span class="toc-text">arm的基本设定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm处理器工作模式"><span class="toc-text">arm处理器工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm异常"><span class="toc-text">arm异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令-伪指令"><span class="toc-text">指令-伪指令</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#指令"><span class="toc-text">指令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#伪指令"><span class="toc-text">伪指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立即数"><span class="toc-text">立即数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协处理器"><span class="toc-text">协处理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm汇编特点"><span class="toc-text">arm汇编特点</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#io的访问方式"><span class="toc-text">io的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子器件的发展方向"><span class="toc-text">电子器件的发展方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可编程器件的特点"><span class="toc-text">可编程器件的特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编程及运行过程"><span class="toc-text">编程及运行过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#安装交叉编译工具链"><span class="toc-text">安装交叉编译工具链</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令集"><span class="toc-text">指令集</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arm"><span class="toc-text">arm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的内核版本号-soc版本号-芯片型号"><span class="toc-text">arm的内核版本号-soc版本号-芯片型号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#寄存器-1"><span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#特殊功能寄存器"><span class="toc-text">特殊功能寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#通用寄存器"><span class="toc-text">通用寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储器"><span class="toc-text">存储器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的基本设定"><span class="toc-text">arm的基本设定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm处理器工作模式"><span class="toc-text">arm处理器工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm异常"><span class="toc-text">arm异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令-伪指令"><span class="toc-text">指令-伪指令</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#指令"><span class="toc-text">指令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#伪指令"><span class="toc-text">伪指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立即数"><span class="toc-text">立即数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协处理器"><span class="toc-text">协处理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm汇编特点"><span class="toc-text">arm汇编特点</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
