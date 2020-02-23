@@ -289,11 +289,17 @@
 <h5 id="usb刷机（u盘）"><a href="#usb刷机（u盘）" class="headerlink" title="usb刷机（u盘）"></a>usb刷机（u盘）</h5><ul>
 <li>dnw工具下载<br>①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（最好将驱动放在英文目录下，成功即显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。<br><a href="https://jingyan.baidu.com/article/ca00d56c5a8f86e99eebcf04.html" target="_blank" rel="noopener">win10禁用驱动签名方法</a>因为驱动不包含驱动数字签名，windows会禁止安装。<br>③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。<br>④下载代码，点击dnw软件的菜单usb port-transmit-transmit，下载x210_usb.bin到0xd0020010（地址为SRAM，作用是初始化DRAM），然后下载uboot.bin到0x23e00000（地址为DRAM），以上过程和sd刷卡不同，不是下载uboot到sd卡，而是直接下载到DRAM执行，重启之后DRAM的数据会被清除，uboot.bin大小为384kb,SRAM只有96kb，而下载到iNand需要使用fastboot下载。<br>⑤下载uboot.bin之前打开secureCRT，下载uboot.bin之后马上按回车进入开发板的fastboot。<br>⑥在secureCRT输入<code>fdisk -c 0</code>来给iNand分区，不然等会fastboot选择分区的时候识别不了。输入fastboot查看分区，7个分区即成功分区。<br>⑦在windows命令行使用fastboot命令刷机，具体参考sd卡刷机。</li>
 </ul>
-<h4 id="实验1-led"><a href="#实验1-led" class="headerlink" title="实验1:led"></a>实验1:led</h4><h5 id="sd卡下载"><a href="#sd卡下载" class="headerlink" title="sd卡下载"></a>sd卡下载</h5><ul>
+<h4 id="实验1-led"><a href="#实验1-led" class="headerlink" title="实验1:led"></a>实验1:led</h4><blockquote>
+<p>分析启动过程可知；210启动后先执行内部iROM中的BL0，BL0执行完后会根据OMpin的配置选择一个外部设备来启动（有很多，我们实际使用的有2个：usb启动和SD卡启动）。在usb启动时内部BL0读取到BL1后不做校验，直接从BL1的实质内部0xd0020010开始执行，因此usb启动的景象led.bin不需要头信息，因此我们从usb启动时直接将镜像下载到0xd0020010去执行即可；从SD启动时，BL0会首先读取sd卡得到完整的镜像（完整指的是led.bin和16字节的头），然后BL0会自己根据你的实际镜像（指led.bin）来计算一个校验和checksum，然后和你完整镜像的头部中的checksum来比对。如果对应则执行BL1，如果不对应则启动失败（会转入执行2st启动，即SD2启动。如果这里已经是2st启动了则启动失败）。</p>
+</blockquote>
+<h5 id="sd卡下载"><a href="#sd卡下载" class="headerlink" title="sd卡下载"></a>sd卡下载</h5><ul>
 <li>破坏iNand的uboot</li>
 <li>在windows下给sd卡写uboot</li>
 <li>在linux下给sd卡写uboot（虚拟机）</li>
-<li>利用uboot写程序的镜像210.bin到iNand</li>
+<li>利用uboot写程序的镜像210.bin到iNand<blockquote>
+<p>mkv210_image.c的作用：为BL1添加校验头。我们编译链接时只得到了led.bin，这个210.bin的得到和交叉编译工具链是完全无关的。由led.bin得到210.bin的过程是三星的S5PV210所特有的，因此需要我们自己去完成，为此我们写了mkv210_image.c来完成。<br>整个程序工作流分析：<br>整个程序中首先申请一个16KB大小的buffer，然后把所有内容按照各自的位置填充进去，最终把填充好的buffer写入到一个文件（名叫210.bin）就形成了我们想要的镜像；检验用户传参是不是3个；分配16K Bbuffer并且填充为0.</p>
+</blockquote>
+</li>
 </ul>
 <h5 id="usb下载"><a href="#usb下载" class="headerlink" title="usb下载"></a>usb下载</h5><ul>
 <li>dnw工具下载<br>①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（成功显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。<br>③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。<br>④下载代码，在dnw软件的菜单usb port-transmit-transmit,选择led.bin。开发板led灯闪烁即完成实验。</li>

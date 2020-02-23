@@ -279,7 +279,7 @@
 <tr>
 <th align="center">关键字</th>
 <th align="center">名称</th>
-<th align="center">在流行32位编译器的大小(KB)</th>
+<th align="center">在流行32位编译器的大小(B)</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -419,7 +419,7 @@
 <ul>
 <li><p>基础知识<br>&amp;:取地址符，将它加在某个变量前面，则组合后的符号代表这个变量的地址值。</p>
 </li>
-<li><p>：指针符号。指针符号在指针定义和指针操作的时候，解析方法是不同的。int <em>p；定义指针变量p，这里的</em>加含义不是代表指针变量p所指向的那个变量，在定义时这里的*含义是告诉编译器p是一个指针。</p>
+<li><p>：指针符号。指针符号在指针定义和指针操作的时候，解析方法是不同的。int <em>p；定义指针变量p，这里的`</em>`含义不是代表指针变量p所指向的那个变量，在定义时这里的*含义是告诉编译器p是一个指针。</p>
 </li>
 <li><p>指针的定义和初始化</p>
 </li>
@@ -431,7 +431,7 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *p=&amp;a;<span class="comment">//效果等同于上面的两句</span></span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>不同类型的指针<br>指针变量本质上是一个变量，指针变量的类型属于指针类型。int *p；定义了一个指针类型的变量p，这个p所指向的那个变量是int型。各种指针类型和它们所指向的变量类型必须匹配，否则结果不可预知。</li>
+<li>不同类型的指针<br>指针变量本质上是一个变量，指针变量的类型属于指针类型。<code>int *p</code>；定义了一个指针类型的变量p，这个p所指向的那个变量是int型。各种指针类型和它们所指向的变量类型必须匹配，否则结果不可预知。</li>
 </ul>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>	*pInt;<span class="comment">//pInt是指针变量，指向的变量是int类型</span></span><br><span class="line"><span class="keyword">char</span>	*pchar;<span class="comment">//pchar是指针类型，指向的变量是char类型</span></span><br><span class="line"><span class="keyword">float</span>	*pFloat;</span><br><span class="line"><span class="keyword">double</span>	*pDouble;</span><br></pre></td></tr></table></figure>
 
