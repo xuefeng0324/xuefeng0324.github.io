@@ -221,9 +221,21 @@
 <li><a href="#usb刷机u盘">usb刷机（u盘）</a></li>
 </ul>
 </li>
-<li><a href="#实验1led">实验1:led</a><ul>
+<li><a href="#实验准备">实验准备</a><ul>
 <li><a href="#sd卡下载">sd卡下载</a></li>
 <li><a href="#usb下载">usb下载</a></li>
+</ul>
+</li>
+<li><a href="#实验01-led灯">实验01-led灯</a><ul>
+<li><a href="#gpio概念">GPIO概念</a></li>
+<li><a href="#gpio相关的寄存器">GPIO相关的寄存器</a></li>
+<li><a href="#过程">过程</a></li>
+<li><a href="#反汇编工具objdump">反汇编工具objdump</a></li>
+<li><a href="#led灯-01全亮">led灯-01（全亮）</a></li>
+<li><a href="#led灯-02优化代码">led灯-02（优化代码）</a></li>
+<li><a href="#led灯-03部分点亮">led灯-03（部分点亮）</a></li>
+<li><a href="#led灯-04闪烁">led灯-04（闪烁）</a></li>
+<li><a href="#led灯-05跑马灯">led灯-05（跑马灯）</a></li>
 </ul>
 </li>
 </ul>
@@ -270,7 +282,7 @@
 <blockquote>
 <p>刷机需要将对应的文件，烧写到存储介质上，此时，有两种方法：<br>一种是一步到位的方式，即直接通过某工具将文件写入到存储介质上。<br>另外一种是两步到位的方式，先通过某种方式把文件下载到Uboot中，再通过Uboot中的命令，去把数据写入到存储介质上。<br>x210开发板启动有SD/MMC卡启动和USB启动和Uart启动（异步串行接口），通过OM pin选择启动介质，当OM pin（0-5）为101100时为SD/MMC卡启动<br>当OM pin（0-5）为101101为USB启动。</p>
 </blockquote>
-<h5 id="sd卡刷机"><a href="#sd卡刷机" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h5><blockquote>
+<h6 id="sd卡刷机"><a href="#sd卡刷机" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h6><blockquote>
 <p>在Uboot中，把下载到内存中的固件，写入到存储介质（iNand）上</p>
 </blockquote>
 <ul>
@@ -286,24 +298,122 @@
 
 </li>
 </ul>
-<h5 id="usb刷机（u盘）"><a href="#usb刷机（u盘）" class="headerlink" title="usb刷机（u盘）"></a>usb刷机（u盘）</h5><ul>
+<h6 id="usb刷机（u盘）"><a href="#usb刷机（u盘）" class="headerlink" title="usb刷机（u盘）"></a>usb刷机（u盘）</h6><ul>
 <li>dnw工具下载<br>①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（最好将驱动放在英文目录下，成功即显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。<br><a href="https://jingyan.baidu.com/article/ca00d56c5a8f86e99eebcf04.html" target="_blank" rel="noopener">win10禁用驱动签名方法</a>因为驱动不包含驱动数字签名，windows会禁止安装。<br>③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。<br>④下载代码，点击dnw软件的菜单usb port-transmit-transmit，下载x210_usb.bin到0xd0020010（地址为SRAM，作用是初始化DRAM），然后下载uboot.bin到0x23e00000（地址为DRAM），以上过程和sd刷卡不同，不是下载uboot到sd卡，而是直接下载到DRAM执行，重启之后DRAM的数据会被清除，uboot.bin大小为384kb,SRAM只有96kb，而下载到iNand需要使用fastboot下载。<br>⑤下载uboot.bin之前打开secureCRT，下载uboot.bin之后马上按回车进入开发板的fastboot。<br>⑥在secureCRT输入<code>fdisk -c 0</code>来给iNand分区，不然等会fastboot选择分区的时候识别不了。输入fastboot查看分区，7个分区即成功分区。<br>⑦在windows命令行使用fastboot命令刷机，具体参考sd卡刷机。</li>
 </ul>
-<h4 id="实验1-led"><a href="#实验1-led" class="headerlink" title="实验1:led"></a>实验1:led</h4><blockquote>
-<p>分析启动过程可知；210启动后先执行内部iROM中的BL0，BL0执行完后会根据OMpin的配置选择一个外部设备来启动（有很多，我们实际使用的有2个：usb启动和SD卡启动）。在usb启动时内部BL0读取到BL1后不做校验，直接从BL1的实质内部0xd0020010开始执行，因此usb启动的景象led.bin不需要头信息，因此我们从usb启动时直接将镜像下载到0xd0020010去执行即可；从SD启动时，BL0会首先读取sd卡得到完整的镜像（完整指的是led.bin和16字节的头），然后BL0会自己根据你的实际镜像（指led.bin）来计算一个校验和checksum，然后和你完整镜像的头部中的checksum来比对。如果对应则执行BL1，如果不对应则启动失败（会转入执行2st启动，即SD2启动。如果这里已经是2st启动了则启动失败）。</p>
+<h4 id="实验准备"><a href="#实验准备" class="headerlink" title="实验准备"></a>实验准备</h4><blockquote>
+<p>分析启动过程可知；210启动后先执行内部iROM中的BL0，BL0执行完后会根据OMpin的配置选择一个外部设备来启动（有很多，我们实际使用的有2个：usb启动和SD卡启动）。在usb启动时内部BL0读取到BL1后不做校验，直接从BL1的实质内部0xd0020010开始执行，因此usb启动的景象led.bin不需要头信息，因此我们从usb启动时直接将镜像下载到0xd0020010去执行即可；从SD启动时，BL0会首先读取sd卡得到完整的镜像（例如led.bin加上16字节的校验头），然后BL0会自己根据你的实际镜像（例如led.bin）来计算一个校验和(checksum)，然后和你完整镜像的头部中的checksum来比对。如果对应则执行BL1，如果不对应则启动失败（会转入执行2st启动，即SD2启动。如果这里已经是2st启动了则启动失败）。</p>
 </blockquote>
-<h5 id="sd卡下载"><a href="#sd卡下载" class="headerlink" title="sd卡下载"></a>sd卡下载</h5><ul>
+<h6 id="sd卡下载"><a href="#sd卡下载" class="headerlink" title="sd卡下载"></a>sd卡下载</h6><ul>
 <li>破坏iNand的uboot</li>
 <li>在windows下给sd卡写uboot</li>
 <li>在linux下给sd卡写uboot（虚拟机）</li>
-<li>利用uboot写程序的镜像210.bin到iNand<blockquote>
-<p>mkv210_image.c的作用：为BL1添加校验头。我们编译链接时只得到了led.bin，这个210.bin的得到和交叉编译工具链是完全无关的。由led.bin得到210.bin的过程是三星的S5PV210所特有的，因此需要我们自己去完成，为此我们写了mkv210_image.c来完成。<br>整个程序工作流分析：<br>整个程序中首先申请一个16KB大小的buffer，然后把所有内容按照各自的位置填充进去，最终把填充好的buffer写入到一个文件（名叫210.bin）就形成了我们想要的镜像；检验用户传参是不是3个；分配16K Bbuffer并且填充为0.</p>
+<li>利用uboot写程序的镜像(例如210.bin)到iNand<blockquote>
+<p>mkv210_image.c的作用：为BL1添加校验头。我们编译链接时只得到了led.bin，这个210.bin的得到和交叉编译工具链是完全无关的。由led.bin得到210.bin的过程是三星的S5PV210所特有的，因此需要我们自己去完成，为此我们写了mkv210_image.c来完成。<br>整个程序工作流分析：<br>整个程序中首先申请一个16KB大小的buffer并且填充为0，要检验用户传参，在需要校验的内存区域中，所有内存中的内容按照字节为单位来进行相加，形成校验和，然后把所有内容按照各自的位置填充进去，最终把填充好的buffer写入到一个文件（名叫210.bin）就形成了我们想要的镜像。</p>
+</blockquote>
+</li>
+<li>使用<code>make led.bin</code>指令添加校验头,使用<code>make clean</code>清理文件。</li>
+</ul>
+<h6 id="usb下载"><a href="#usb下载" class="headerlink" title="usb下载"></a>usb下载</h6><ul>
+<li>dnw工具下载<br>①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（成功显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。<br>③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。<br>④下载代码，在dnw软件的菜单usb port-transmit-transmit,选择镜像文件（例如led.bin）。开发板即运行程序。</li>
+</ul>
+<h4 id="实验01-led灯"><a href="#实验01-led灯" class="headerlink" title="实验01-led灯"></a>实验01-led灯</h4><blockquote>
+<p>物理特性：LED有2个接线点，一个是LED的正极，一个是LED的负极。LED这个硬件的功能就是点亮或者不亮，物理上想要点亮一颗LED只需要给他的正负极上加正电压（形成正向电压差）即可，要熄灭一颗LED只需要去掉电压即可。<br>开发板上一共有5颗LED。D26的接法是：正极接5V，负极接地，只要上电就会常亮，这颗LED是电源指示灯。剩下4颗LED的接法是：正极接3.3V，负极接了SoC上的一个引脚（GPIO），具体详细接法是：<br>D22：GPJ0_3<br>D23：GPJ0_4<br>D24：GPJ0_5<br>D25：PWMTOUT1(GPD0_1)<br>因为正极已经定了（3.3V），而负极接在了SoC的引脚上，可以通过SoC中编程来控制负极的电压值，即通过程序控制负极输出低电平（0V），这样在正负极上就有了压差，LED即可点亮。</p>
+</blockquote>
+<h6 id="GPIO概念"><a href="#GPIO概念" class="headerlink" title="GPIO概念"></a>GPIO概念</h6><blockquote>
+<p>general purpose input output 通用输入输出<br>GPIO就是芯片的引脚（芯片上的引脚有些不是GPIO，只有一部分是），作为GPIO的这类引脚，他的功能和特点是可以被编程控制它的工作模式，也可以编程控制他的电压高低等。如果设计电路时把LED接在非GPIO上就不可能点亮。</p>
+</blockquote>
+<h6 id="GPIO相关的寄存器"><a href="#GPIO相关的寄存器" class="headerlink" title="GPIO相关的寄存器"></a>GPIO相关的寄存器</h6><p>LED通过GPIO来间接控制，要操作这些GPIO，必须通过设置他们的寄存器，来驱动LED点亮，①GPJ0CON寄存器中GPIO配置为output模式，②GPJ0DAT寄存器应的位设置为0。<br>GPJ0相关的寄存器有以下：</p>
+<table>
+<thead>
+<tr>
+<th align="center">GPJ0相关的寄存器</th>
+<th align="center">全称</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GPJ0CON</td>
+<td align="center">GPJ0 control</td>
+<td align="center">GPJ0控制寄存器，用来配置各引脚的工作模式</td>
+</tr>
+<tr>
+<td align="center">GPJ0DAT</td>
+<td align="center">GPJ0 data</td>
+<td align="center">当引脚配置为input/output模式时，寄存器的相应位和引脚的电平高低相对应</td>
+</tr>
+<tr>
+<td align="center">GPJ0PUD</td>
+<td align="center">GPJ0 pull up down</td>
+<td align="center">控制引脚内部弱上拉、下拉</td>
+</tr>
+<tr>
+<td align="center">GPJ0DRV</td>
+<td align="center">GPJ0 driver</td>
+<td align="center">配置GPIO引脚的驱动能力</td>
+</tr>
+<tr>
+<td align="center">GPJ0CONPDN</td>
+<td align="center">GPJ0 control power down</td>
+<td align="center">低功耗模式下的控制寄存器</td>
+</tr>
+<tr>
+<td align="center">GPJ0PUDPDN</td>
+<td align="center">GPJ0 pull up down power down</td>
+<td align="center">低功耗模式下的上下拉寄存器</td>
+</tr>
+</tbody></table>
+<ul>
+<li>GPxCON、GPxDAT寄存器分析<br>GPJ0端口一共有8个引脚：GPJ0_0 ～ GPJ0_7，<br>GPJ0CON寄存器中设置8个引脚的工作模式（32/8=4，每个引脚可以分到4位，譬如GPJ0_0对应的bit位为bit0 ~ bit3，GPJ0_3对应的位为bit12 ~ bit15。工作方法是：给相应的寄存器位写入相应的值，该引脚硬件就会按照相应的模式去工作。譬如给bit12～bit15写入0b0001，GPJ0_3引脚就成为输出模式了）</li>
+</ul>
+<h6 id="过程"><a href="#过程" class="headerlink" title="过程"></a>过程</h6><p>①编写汇编代码来设置各寄存器，文件后缀为S（assembly汇编）。<br>②使用交叉编译工具链将汇编代码文件变为中间代码文件，文件后缀为o（object目标）；使用交叉编译工具链将中间代码文件变为可执行文件，文件后缀.elf（Executable Linkable Format）；使用交叉编译工具链将可执行文件变为镜像文件（二进制文件），文件后缀为bin（binary二进制）；使用交叉编译工具链将可执行文件变为反汇编代码文件，文件后缀为dis（disassembly反汇编）。<br>③编写C语言代码来复制镜像文件并在文件开头加上校验头，文件后缀为c。<br>④使用linux的gcc命令来编译+运行C语言代码文件，得到可执行文件+bin文件。<br>⑤使用Makefile文件可将②、④步骤一起执行，无文件后缀，使用时只需<code>make</code>+指令即可，文件内容如下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">led.bin: led.o</span></span><br><span class="line">	arm-linux-ld -Ttext 0x0 -o led.elf <span class="variable">$^</span> 		<span class="comment">#arm-linux-ld是一个链接程序工具，其作用主要是将汇编过的多个二进制文件进行链接，成为一个可执行的二进制文件（elf格式）;-Ttext 0x0 作用是设置初始地址。</span></span><br><span class="line">	arm-linux-objcopy -O binary led.elf led.bin 	<span class="comment">#arm-linux-objcopy被用来复制一个目标文件的内容到另一个文件中.此选项可以进行格式的转换.在实际编程的,用的最多的就是将ELF格式的可执行文件转换为二进制文件。</span></span><br><span class="line">	arm-linux-objdump -D led.elf &gt; led_elf.dis 	<span class="comment">#arm-linux-objdump常用来显示二进制文件信息,常用来查看反汇编代码，-D 作用是反汇编所有段。</span></span><br><span class="line">	gcc mkv210_image.c -o mkx210 			<span class="comment">#用C语言编写程序，gcc 作用是编译.c 文件，-o 作用是更改默认编译过的文件名。该.c 文件作用是根据源bin 文件创建带有校验头的bin 文件。</span></span><br><span class="line">	./mkx210 led.bin 210.bin 			<span class="comment">#./ 作用是运行本目录下的程序，led.bin 和210.bin 为参数，为c 文件操作两个文件的文件名。</span></span><br><span class="line">	</span><br><span class="line">%.o : %.S</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c</span><br><span class="line"></span><br><span class="line">%.o : %.c</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c </span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm *.o *.elf *.bin *.dis mkx210 -f</span><br></pre></td></tr></table></figure>
+
+<h6 id="反汇编工具objdump"><a href="#反汇编工具objdump" class="headerlink" title="反汇编工具objdump"></a>反汇编工具objdump</h6><blockquote>
+<p>objdump是gcc工具链中的反汇编工具，作用是由编译链接好的elf格式的可执行程序反过来得到汇编源代码，指令示例：<code>arm-linux-objdump -D led.elf &gt; led_elf.dis</code>     <code>-D</code>表示反汇编;<code>&gt;</code>左边的是elf的可执行程序;<code>&gt;</code>右边的是反汇编生成的反汇编程序。</p>
+</blockquote>
+<ul>
+<li>反汇编的用途：</li>
+</ul>
+<ol>
+<li>逆向破解。</li>
+<li>调试程序时，反汇编代码可以帮助我们理解程序，尤其是在理解链接脚本、链接地址等概念时。</li>
+<li>把C语言源代码编译链接生成的可执行程序反汇编后得到对应的汇编代码，可以帮助我们理解C语言和汇编语言之间的对应关系。</li>
+</ol>
+<ul>
+<li><p>反汇编文件的格式<br>（汇编 assembly   反汇编 disassembly）<br>标号地址、标号名字、指令地址、指令机器码、指令机器码反汇编到的指令<br>扩展：ARM汇编中用地址池方式来实现非法立即数</p>
+</li>
+<li><p>指令地址<br>下载烧录执行的bin文件，内部其实是一条一条的指令机器码。这些指令每一条都有一个指令地址，这个地址是连接的时候ld给指定的（ld根据我们写的链接脚本来指定）</p>
+</li>
+<li><p>分析链接脚本(linker script)</p>
+<blockquote>
+<p>每一个链接过程都由链接脚本（一般以lds作为文件的后缀名）控制，链接脚本主要用于规定如何把输入文件内的section放入输出文件内, 并控制输出文件内各部分在程序地址空间内的布局。</p>
 </blockquote>
 </li>
 </ul>
-<h5 id="usb下载"><a href="#usb下载" class="headerlink" title="usb下载"></a>usb下载</h5><ul>
-<li>dnw工具下载<br>①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）<br>②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（成功显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。<br>③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。<br>④下载代码，在dnw软件的菜单usb port-transmit-transmit,选择led.bin。开发板led灯闪烁即完成实验。</li>
-</ul>
+<p>反汇编的时候得到的指令地址是链接器考虑了链接脚本之后得到的地址，而我们写代码时通过指定连接脚本来让链接器给我们链接合适的地址。<br>但是有时候我们写的链接脚本有误（或者我们不知道这个链接脚本会怎么样），这时候可以通过看反汇编文件来分析这个链接脚本的效果，看是不是我们想要的，如果不是可以改了再看。</p>
+<h6 id="led灯-01（全亮）"><a href="#led灯-01（全亮）" class="headerlink" title="led灯-01（全亮）"></a>led灯-01（全亮）</h6><blockquote>
+<p>硬件接法和引脚：GPJ0_3 GPJ0_4 GPJ0_5    低电平亮/高电平灭。GPJ0CON（0xE0200240）寄存器和GPJ0DAT（0xE0200244）寄存器</p>
+</blockquote>
+<p>①使用工程管理，make编译得到led.bin和210.bin<br>②用usb启动dnw下载led.bin或用sd卡烧录下载210.bin。<br>实验现象：开发板上按下电源键之后4颗LED默认都是半亮的，当我们下载程序后其中3颗变的很亮，这说明我们的程序已经运行了。</p>
+<h6 id="led灯-02（优化代码）"><a href="#led灯-02（优化代码）" class="headerlink" title="led灯-02（优化代码）"></a>led灯-02（优化代码）</h6><ol>
+<li>使用寄存器名字的宏定义来定义寄存器地址。</li>
+<li>用<code>b .</code>来实现死循环</li>
+<li>用.global把_start链接属性改为外部，消除链接时的警告</li>
+<li>使用位运算实现复杂点亮要求</li>
+</ol>
+<h6 id="led灯-03（部分点亮）"><a href="#led灯-03（部分点亮）" class="headerlink" title="led灯-03（部分点亮）"></a>led灯-03（部分点亮）</h6><blockquote>
+<p>只点亮1颗LED,在GPJ0CON寄存器不需要修改，GPJ0DAT中设置相应的输出值即可。<br>常用位运算：<br>位与(<code>&amp;</code>)<br>位或(<code>|</code>)<br>位非（取反 <code>~</code>）<br>移位（左移<code>&lt;&lt;</code> 右移<code>&gt;&gt;</code>）</p>
+</blockquote>
+<p>①GPJ0DAT = 0x28<br>②使用位运算实现功能</p>
+<blockquote>
+<p>1&lt;&lt;3  等于 0b1000<br>1&lt;&lt;5  等于 0b100000<br>(1&lt;&lt;3) | (1&lt;&lt;5)  等于 0b101000<br>((0&lt;&lt;3) | (1&lt;&lt;4) | (0&lt;&lt;5)) 等于 0b010000</p>
+</blockquote>
+<h6 id="led灯-04（闪烁）"><a href="#led灯-04（闪烁）" class="headerlink" title="led灯-04（闪烁）"></a>led灯-04（闪烁）</h6><p>①编写循环函数，用一个寄存器存放一个数字，然后在循环中每个循环里给数字减1，然后再判断这个数字的值是否为0.如果为0则停止循环，如果不为0则继续循环。<br>②调用函数，汇编中主程序是一个死循环，这个死循环是我们汇编程序的主体，类似于C中的main函数。其他函数必须写在这个主死循环程序的后面（死循环外）。汇编中调用函数用bl指令，子函数中最后用mov pc, lr来返回。</p>
+<h6 id="led灯-05（跑马灯）"><a href="#led灯-05（跑马灯）" class="headerlink" title="led灯-05（跑马灯）"></a>led灯-05（跑马灯）</h6><blockquote>
+<p>位取反操作符实现单颗LED点亮,用移位流水效果。</p>
+</blockquote>
+<p>用4颗LED实现流水灯。</p>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -311,7 +421,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板开发实验"><span class="toc-text">s5pv210开发板开发实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#usb刷机（u盘）"><span class="toc-text">usb刷机（u盘）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验1-led"><span class="toc-text">实验1:led</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#sd卡下载"><span class="toc-text">sd卡下载</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#usb下载"><span class="toc-text">usb下载</span></a></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板开发实验"><span class="toc-text">s5pv210开发板开发实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb刷机（u盘）"><span class="toc-text">usb刷机（u盘）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验准备"><span class="toc-text">实验准备</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡下载"><span class="toc-text">sd卡下载</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb下载"><span class="toc-text">usb下载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验01-led灯"><span class="toc-text">实验01-led灯</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO概念"><span class="toc-text">GPIO概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO相关的寄存器"><span class="toc-text">GPIO相关的寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#反汇编工具objdump"><span class="toc-text">反汇编工具objdump</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-01（全亮）"><span class="toc-text">led灯-01（全亮）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-02（优化代码）"><span class="toc-text">led灯-02（优化代码）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-03（部分点亮）"><span class="toc-text">led灯-03（部分点亮）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-04（闪烁）"><span class="toc-text">led灯-04（闪烁）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-05（跑马灯）"><span class="toc-text">led灯-05（跑马灯）</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
