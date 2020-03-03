@@ -332,7 +332,7 @@
 </ul>
 <h2 id="arm"><a href="#arm" class="headerlink" title="arm"></a>arm</h2><h4 id="arm的内核版本号-soc版本号-芯片型号"><a href="#arm的内核版本号-soc版本号-芯片型号" class="headerlink" title="arm的内核版本号-soc版本号-芯片型号"></a>arm的内核版本号-soc版本号-芯片型号</h4><p><img src="/images/arm_version.png" alt></p>
 <ul>
-<li><p>概念：<br>SoC = System on Chip（在芯片上做系统）<br>v     version<br>m     microcontroller微控制器就是单片机STM32<br>a     application应用级处理器就是手机、平板、电脑的CPU<br>r     realtime 实时处理器响应速度快，主要用在工业、航天等领域<br>外设：Peripheral<br>实时操作系统：RTOS<br>非实时操作系统：linux windows android<br>ARM内核版本号和SoC版本号是由ARM确定的，而SoC型号是由半导体公司确定的。Cortex系列后ARM产品线分割成3个系列，这个是市场细分的需要和选择。</p>
+<li><p>概念：<br>SoC = System on Chip（在芯片上做系统）<br>v     version<br>m     microcontroller微控制器就是单片机STM32<br>a     application应用级处理器就是手机、平板、电脑的CPU<br>r     realtime 实时处理器响应速度快，主要用在工业、航天等领域<br>外设：Peripheral<br>实时操作系统：RTOS<br>非实时操作系统：linux windows android<br>ARM内核是一种CPU的内核设计方案（一种方案一种指令集）,以这个设计为核心、在CPU的周围添加其他外围模块,比如串口、IIC、LCD控制器等模块,就成为一个以该ARM内核为核心、加上自己的外围设备组成的一块芯片。<br>ARM内核版本号和SoC版本号是由ARM确定的，而SoC型号是由半导体公司确定的。Cortex系列后ARM产品线分割成3个系列，这个是市场细分的需要和选择。</p>
 </li>
 <li><p>ARM是RISC架构<br>常用ARM汇编指令只有二三十条<br>ARM是低功耗CPU<br>ARM的架构非常适合单片机、嵌入式，尤其是物联网领域；而服务器等高性能领域目前主导还是Intel</p>
 </li>
