@@ -218,6 +218,7 @@
 <li><a href="#相对路径与绝对路径">相对路径与绝对路径</a></li>
 <li><a href="#linux内核和发行版">linux内核和发行版</a></li>
 <li><a href="#gui和命令行">gui和命令行</a></li>
+<li><a href="#虚拟机的安装-linux">虚拟机的安装-linux</a></li>
 <li><a href="#常用linux命令">常用linux命令</a></li>
 <li><a href="#安装交叉编译工具链">安装交叉编译工具链</a></li>
 <li><a href="#文件类型标记方法">文件类型标记方法</a></li>
@@ -234,6 +235,24 @@
 <h4 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h4><p>绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
 <h4 id="linux内核和发行版"><a href="#linux内核和发行版" class="headerlink" title="linux内核和发行版"></a>linux内核和发行版</h4><p>单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
 <h4 id="gui和命令行"><a href="#gui和命令行" class="headerlink" title="gui和命令行"></a>gui和命令行</h4><p>人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
+<h4 id="虚拟机的安装-linux"><a href="#虚拟机的安装-linux" class="headerlink" title="虚拟机的安装-linux"></a>虚拟机的安装-linux</h4><ol>
+<li>安装VMware</li>
+<li>下载linux镜像文件（ubuntu-16.04.6-desktop-amd64.iso）</li>
+<li>加载镜像：打开VMvare，创建新虚拟机-稍后安装操作系统-选择操作系统和版本-设置安装位置-设置磁盘大小和是否拆分文件-完成，在VMware的虚拟机设置-硬件-CD/DVD-使用ISO映像文件-选择下载的iso文件地址。</li>
+<li>关于设置密码，记得打开键盘再输入。</li>
+<li>安装VMware Tools（以至于可以使用windows和虚拟机之间的交互，比如两个系统之间复制粘贴）：Player-管理-安装VMware Tools-在打开的光驱里面复制vmware-tools-distrib到某个目录并解压，使用终端执行里面的vmware-install.pl来安装。</li>
+<li>安装搜狗输入法：官网下载sogoupinyin_2.3.1.0112_amd64.deb-Ubuntu apt更换国内源-终端进入下载的文件夹安装搜狗输入法：<code>sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb</code>-搜索并补全依赖关系：<code>sudo apt-get install -f</code>-重启</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu apt默认的下载源是cn.archive.ubuntu.com/ubuntu/，这是一个国外的网站，下载速度比较慢，我们将下载源更换为国内镜像站，提高下载速度和连接的稳定性。apt下载源的配置文件是/etc/apt/sources.list,使用命令 cat /etc/apt/sources.list 可以看到其中的内容。欲更换下载源，替换该文件中的默认源为国内源即可，这里采用的是清华tuna源。为保险起见，修改文件前，先备份一下文件</span><br><span class="line">cp /etc/apt/sources.list /etc/apt/sources_bak.list</span><br><span class="line">然后</span><br><span class="line">sudo gedit /etc/apt/sources.list 或者 sudo vim /etc/apt/sources.list</span><br><span class="line">将文件内容替换为（以清华源ipv6镜像站为例，其他国内镜像站类似）</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span></span><br><span class="line">最后更新源</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>安装arm-linux-gcc：下载并解压arm-linux-gcc-5.4.0.tar.gz到/home/bin/arm-修改配置文件<code>gedit /home/pxf/.bashrc</code>文件末尾加上<code>export PATH=$PATH:/home/pxf/bin/arm/5.4.0/bin</code>并保存-使配置文件生效<code>source /home/pxf/.bashrc</code>-测试是否生效<code>arm-linux-gcc -v</code>-安装32位支持库<code>apt-get install ia32-libs</code>-安装替代软件包<code>apt-get install lib32ncurses5 lib32z1</code>-安装软件包<code>apt-get install lib32stdc++6
+apt-get install lib32z1</code>和<code>apt-get install lib32stdc++6
+apt-get install lib32z1</code></p>
+</li>
+<li><p>将安装操作系统的文件夹复制到U盘保存</p>
+</li>
+</ol>
 <h4 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h4><table>
 <thead>
 <tr>
@@ -491,7 +510,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装交叉编译工具链"><span class="toc-text">安装交叉编译工具链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#符号含义"><span class="toc-text">符号含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#makefile"><span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell"><span class="toc-text">shell</span></a></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机的安装-linux"><span class="toc-text">虚拟机的安装-linux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装交叉编译工具链"><span class="toc-text">安装交叉编译工具链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#符号含义"><span class="toc-text">符号含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#makefile"><span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell"><span class="toc-text">shell</span></a></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
