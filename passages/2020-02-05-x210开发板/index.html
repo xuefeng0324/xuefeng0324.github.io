@@ -267,11 +267,11 @@
 <li><a href="#按键">按键</a></li>
 <li><a href="#轮询方式处理按键">轮询方式处理按键</a></li>
 <li><a href="#s5pv210的中断体系介绍">S5PV210的中断体系介绍</a></li>
-<li><a href="#中断-01-轮询">中断-01-轮询</a></li>
-<li><a href="#中断-01-">中断-01-</a></li>
-<li><a href="#中断-01--1">中断-01-</a></li>
-<li><a href="#中断-01--2">中断-01-</a></li>
-<li><a href="#中断-01--3">中断-01-</a></li>
+<li><a href="#中断-01-按键轮询">中断-01-按键轮询</a></li>
+<li><a href="#中断-02-轮询加打印">中断-02-轮询加打印</a></li>
+<li><a href="#中断-03-按键中断">中断-03-按键中断</a></li>
+<li><a href="#中断-04-">中断-04-</a></li>
+<li><a href="#中断-05-">中断-05-</a></li>
 </ul>
 </li>
 </ul>
@@ -286,15 +286,15 @@
 <p>外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM。210内部有iROM和iRAM，因此启动时分两个阶段：内部启动阶段和外部启动阶段。对于内部启动阶段各种S5PV210的开发板都是相同的，对于外部启动阶段，不同开发板会有不同。以下是内部启动（iRom）带动外部启动（Nand、DRAM）。</p>
 </blockquote>
 <ul>
-<li><p>s5pv210启动<br>  210内置了一块96KB大小的SRAM（叫iRAM），同时还有一块内置的64KB大小的NorFlash（叫iROM）。210的启动过程大致是：<br>  第一步：CPU上电后先从内部IROM中读取预先设置的代码（BL0），执行。这一段IROM代码首先做了一些基本的初始化（CPU时钟、关看门狗···）（这一段IROM代码是三星出厂前设置的，三星也不知道我们板子上将来接的是什么样的DRAM，因此这一段IROM是不能负责初始化外接的DRAM的，因此这一段代码只能初始化SoC内部的东西）；然后这一段代码会判断我们选择的启动模式（我们通过硬件跳线可以更改板子的启动模式），然后从相应的外部存储器去读取第一部分启动代码（BL1，大小为16KB）到内部SRAM。<br>  第二步：从IRAM去运行刚上一步读取来的BL1（16KB），然后执行。BL1负责初始化NandFlash，然后将BL2读取到IRAM（剩余的80KB）然后运行<br>  第三步：从IRAM运行BL2，BL2初始化DRAM，然后将OS读取到DRAM中，然后启动OS，启动过程结束。</p>
+<li><p>s5pv210启动<br>  210内置了一块96KB大小的SRAM（叫iRAM），同时还有一块内置的64KB大小的NorFlash（叫iROM）。210的启动过程大致是：<br>  第一步：CPU上电后先从内部IROM中读取预先设置的代码（BL0），执行。这一段IROM代码首先做了一些基本的初始化（CPU时钟、关看门狗···）（这一段IROM代码是三星出厂前设置的，三星也不知道我们板子上将来接的是什么样的DRAM，因此这一段IROM是不能负责初始化外接的DRAM的，因此这一段代码只能初始化SoC内部的东西）；然后这一段代码会判断我们选择的启动模式（我们通过硬件跳线可以更改板子的启动模式），然后从相应的外部存储器去读取第一部分启动代码（BL1，大小为16KB）到内部SRAM。<br>  第二步：从IRAM去运行刚上一步读取来的BL1（16KB），然后执行。BL1负责初始化NandFlash，然后将BL2读取到IRAM（剩余的80KB）然后运行<br>  第三步：从IRAM运行BL2，BL2初始化DRAM，然后将OS读取到DRAM中，然后启动OS，启动过程结束。<br>  当我们自己写代码运行时，一般用usb下载到IRAM，这个时候IRAM有多大，我们就能运行多大的代码（96KB）；第二个方法是下载到sd卡，由NorFlash把里面的代码放到IRAM里面，但是NorFlash只选择前16KB的代码放进IRAM，因此需要注意代码文件的大小。 </p>
 </li>
 <li><p>思路<br>  因为启动代码的大小是不定的，有些公司可能96kb就够了，有些公司可能1MB都不够。三星的解决方案是：把启动代码分为2半（BL1和BL2），这两部分协同工作来完成启动。</p>
 </li>
 <li><p>BL0代码含义<br>  关看门狗<br>  初始化指令cache<br>  初始化栈<br>  初始化堆<br>  初始化块设备复制函数device copy function<br>  设置SoC时钟系统<br>  复制BL1到内部IRAM（16KB）<br>  检查BL1的校验和<br>  跳转到BL1去执行</p>
 </li>
-<li><p>BL1代码含义</p>
+<li><p>BL1代码含义<br>  初始化NandFlash<br>  将BL2读取到IRAM</p>
 </li>
-<li><p>BL2代码含义</p>
+<li><p>BL2代码含义<br>  初始化DRAM<br>  将OS读取到DRAM中</p>
 </li>
 </ul>
 <h2 id="s5pv210开发板arm裸机实验"><a href="#s5pv210开发板arm裸机实验" class="headerlink" title="s5pv210开发板arm裸机实验"></a>s5pv210开发板arm裸机实验</h2><p><img src="/images/s5pv210.png" alt></p>
@@ -864,7 +864,7 @@
 <li><p>按键的2种响应方法<br>(1)SoC处理按键有2种思路：轮询方式和中断方式。<br>(2)轮询方式，就是SoC主动的每隔一段时间去读取（按键所对应的）GPIO的电平高低，以此获得按键信息；缺点在于CPU要一直注意按键事件，会影响CPU做其他事情。<br>(3)中断方式，就是SoC事先设定好GPIO触发的中断所对应的中断处理程序ISR，当外部按键按下或弹开时会自动触发GPIO对应的外部中断，导致ISR执行，从而自动处理按键信息。</p>
 </li>
 </ul>
-<h6 id="轮询方式处理按键"><a href="#轮询方式处理按键" class="headerlink" title="轮询方式处理按键"></a>轮询方式处理按键</h6><p>按键对应的GPIO模式设置<br>(1)按键接到GPIO上，按键按下还是弹起，决定外部电路的接通与否，从而决定这个GPIO引脚的电压是高还是低；这个电压可以作为这个GPIO引脚的输入信号，此时GPIO配置为输入模式，即可从SoC内部读取该引脚的电平为1还是0（1对应高电平，0对应低电平）。<br>(2)GPH0CON(0xE0200C00) GPH2DAT(0xE0200C04) GPH2CON(0xE0200C40) GPH2DAT(0xE0200C44)<br>(3)应该在CON寄存器中将GPIO设置为input模式，然后去读取DAT寄存器（读取到的相应位的值为1表示外部是高电平（对应按键弹起），读取到的位的值为0表明外部是低电平（按键按下））</p>
+<h6 id="轮询方式处理按键"><a href="#轮询方式处理按键" class="headerlink" title="轮询方式处理按键"></a>轮询方式处理按键</h6><p>按键对应的GPIO模式设置<br>(1)按键接到GPIO上，按键按下还是弹起，决定外部电路的接通与否，从而决定这个GPIO引脚的电压是高还是低；这个电压可以作为这个GPIO引脚的输入信号，此时GPIO配置为输入模式，即可从SoC内部读取该引脚的电平为1还是0（1对应高电平，0对应低电平）。<br>(2)GPH0CON(0xE0200C00) GPH0DAT(0xE0200C04) GPH2CON(0xE0200C40) GPH2DAT(0xE0200C44)<br>(3)应该在CON寄存器中将GPIO设置为input模式，然后去读取DAT寄存器（读取到的相应位的值为1表示外部是高电平（对应按键弹起），读取到的位的值为0表明外部是低电平（按键按下））</p>
 <ul>
 <li><p>轮询方式处理按键的程序流程<br>(1)第一步，先初始化GPIO模式为input；<br>(2)第二步，循环读取GPIO的电平值，然后判断有无按键按下</p>
 </li>
@@ -955,7 +955,45 @@
 </ul>
 </li>
 </ul>
-<h6 id="中断-01-轮询"><a href="#中断-01-轮询" class="headerlink" title="中断-01-轮询"></a>中断-01-轮询</h6><h6 id="中断-01"><a href="#中断-01" class="headerlink" title="中断-01-"></a>中断-01-</h6><h6 id="中断-01-1"><a href="#中断-01-1" class="headerlink" title="中断-01-"></a>中断-01-</h6><h6 id="中断-01-2"><a href="#中断-01-2" class="headerlink" title="中断-01-"></a>中断-01-</h6><h6 id="中断-01-3"><a href="#中断-01-3" class="headerlink" title="中断-01-"></a>中断-01-</h6>
+<h6 id="中断-01-按键轮询"><a href="#中断-01-按键轮询" class="headerlink" title="中断-01-按键轮询"></a>中断-01-按键轮询</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>新建key.c文件，设置相关的寄存器（GPH0CON、GPH0DAT、 GPH2CON、GPH2DAT）</li>
+<li>修改Makefile文件，生成key.o文件</li>
+<li>修改led.c，修改led灯闪烁的函数。</li>
+</ol>
+<h6 id="中断-02-轮询加打印"><a href="#中断-02-轮询加打印" class="headerlink" title="中断-02-轮询加打印"></a>中断-02-轮询加打印</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>在前面串口实验基础上，新建key.c文件，设置相关的寄存器（GPH0CON、GPH0DAT、 GPH2CON、GPH2DAT），调用打印函数。（调用其他文件的函数时在前面加上<code>extern 函数类型 函数名(函数参数类型)</code>）</li>
+<li>新增main.c文件，调用其他c文件的函数。</li>
+<li>增加led.c，修改led灯闪烁的函数。</li>
+<li>修改Makefile文件，生成key.o文件，led.o文件，main.o文件。</li>
+</ol>
+<h6 id="中断-03-按键中断"><a href="#中断-03-按键中断" class="headerlink" title="中断-03-按键中断"></a>中断-03-按键中断</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>在前面串口实验基础上，新建key.c文件，设置相关的寄存器：<br>GPH0CON、GPH2CON                    （外部中断的GPIO模式设置）<br>EXT_INT_0_CON、EXT_INT_2_CON        （中断触发模式设置）<br>EXT_INT_0_MASK、EXT_INT_2_MASK    （中断允许）<br>EXT_INT_0_PEND、EXT_INT_2_PEND    （中断挂起与清除中断挂起）<br>//挂起的时候系统不能响应其他中断（寄存器标志位）<br>//使能中断是能够被系统响应</li>
+<li>创建按键中断后，对应的isr函数（key.c）：<br>要执行的代码、清除中断挂起（EXT_INT_n_PEND）、清除读取isr函数的寄存器（VICnADDR）</li>
+<li>新建int.c文件，绑定异常向量表：<br>①给不同的中断写不同的函数（比如irq中断，分两部分，一部分写在start.S里面，先设置irq模式的栈，然后保存lr和r0-r12到栈里面（cpsr寄存器自动放进spsr寄存器），再调用int.c里面的中断函数，最后返回时把寄存器恢复；第二部分先判断isr函数在哪个VICnADDR寄存器里面，然后用函数指针来调用该函数；判断方法为读取VICnIRQSTATUS寄存器，第n个寄存器为1，代表第n个VICnADDR寄存器里面已经存放了isr函数；其他中断的功能暂时设置为打印一段话）<br>②将irs的函数名绑定（放到）到异常向量表不同中断对应的地址里面，当发送中断的时候VICnADDR寄存器自动将地址里面的函数地址放进VICnADDR寄存器里面。</li>
+<li>初始化中断控制器的基本寄存器（与第三步可以对调）<br>禁止所有中断，防止中断产生，系统无法找到对应中断（VICnINTENCLEAR = 0xffffffff;）<br>设置中断类型为IRQ（VICnINTSELEC = 0x0;）<br>清除VICnADDR寄存器，防止里面原本就有isr函数（VICnADDR = 0;）</li>
+<li>绑定isr函数到中断控制器硬件<br>每个中断有对应编号，将对应的函数名（函数地址）放进对应的VICnVECTADDRn寄存器去，当系统检测到中断时，会将VICnVECTADDRn寄存器里面的函数地址推到相应的VICnADDR寄存器里面去。</li>
+<li>使能中断（启用中断）<br>根据中断编号，往VICnINTENABLE寄存器里面对应位写1，即使系统能够识别并处理该中断。</li>
+<li>创建main.c文件调用以上函数</li>
+</ol>
+<ul>
+<li>过程梳理</li>
+</ul>
+<ol>
+<li><p>main函数调用uart_init()初始化函数，调用key_init_interrupt()初始化函数，system_init_exception()初始化函数，绑定isr函数到对应中断编号的寄存器里面，开启对应编号中断。</p>
+</li>
+<li><p>当中断发生时，VICnIRQSTATUS寄存器对应位自动置1（中断编号对应的位），VIC0VECTADDR寄存器对应位的函数自动推到相应的VICnADDR寄存器（中断编号对应的位），然后中断给CPU发送中断请求，系统判断是什么中断，然后根据异常向量表进入对应的中断模式，并进行中断处理，IRQ_handle保护现场、IRQ_handler利用VICnIRQSTATUS寄存器判断接下来要执行的代码在哪个VICnADDR寄存器里，然后运行该寄存器里面的代码。</p>
+</li>
+</ol>
+<h6 id="中断-04"><a href="#中断-04" class="headerlink" title="中断-04-"></a>中断-04-</h6><h6 id="中断-05"><a href="#中断-05" class="headerlink" title="中断-05-"></a>中断-05-</h6>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -963,7 +1001,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板arm裸机实验"><span class="toc-text">s5pv210开发板arm裸机实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb刷机"><span class="toc-text">usb刷机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开发板实验准备"><span class="toc-text">开发板实验准备</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡下载"><span class="toc-text">sd卡下载</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb下载"><span class="toc-text">usb下载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验01-led灯"><span class="toc-text">实验01-led灯</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO概念"><span class="toc-text">GPIO概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO相关的寄存器"><span class="toc-text">GPIO相关的寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#反汇编工具objdump"><span class="toc-text">反汇编工具objdump</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-01-全亮"><span class="toc-text">led灯-01-全亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-02-优化代码"><span class="toc-text">led灯-02-优化代码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-03-部分点亮"><span class="toc-text">led灯-03-部分点亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-04-闪烁"><span class="toc-text">led灯-04-闪烁</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-05-跑马灯"><span class="toc-text">led灯-05-跑马灯</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验02-启动代码"><span class="toc-text">实验02-启动代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#看门狗"><span class="toc-text">看门狗</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#c语言运行时"><span class="toc-text">c语言运行时</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在汇编启动代码中设置栈"><span class="toc-text">在汇编启动代码中设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#iCache"><span class="toc-text">iCache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#重定位引入-链接脚本-概念"><span class="toc-text">重定位引入-链接脚本-概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sdram"><span class="toc-text">sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#时钟系统"><span class="toc-text">时钟系统</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-01-watch-dog-timer"><span class="toc-text">启动代码-01-watch dog timer</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-02-设置栈"><span class="toc-text">启动代码-02-设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-03-icache"><span class="toc-text">启动代码-03-icache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-04-重定位"><span class="toc-text">启动代码-04-重定位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-05-初始化sdram"><span class="toc-text">启动代码-05-初始化sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-06-设置时钟"><span class="toc-text">启动代码-06-设置时钟</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验03-串口通信"><span class="toc-text">实验03-串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#通信"><span class="toc-text">通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信"><span class="toc-text">串口通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信编程"><span class="toc-text">串口通信编程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-01-设置串口"><span class="toc-text">串口通信-01-设置串口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-02-修改比特率"><span class="toc-text">串口通信-02-修改比特率</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-03-移植printf"><span class="toc-text">串口通信-03-移植printf</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验04-中断"><span class="toc-text">实验04-中断</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#按键"><span class="toc-text">按键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#轮询方式处理按键"><span class="toc-text">轮询方式处理按键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#S5PV210的中断体系介绍"><span class="toc-text">S5PV210的中断体系介绍</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-轮询"><span class="toc-text">中断-01-轮询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01"><span class="toc-text">中断-01-</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-1"><span class="toc-text">中断-01-</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-2"><span class="toc-text">中断-01-</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-3"><span class="toc-text">中断-01-</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210使用的启动方式"><span class="toc-text">s5pv210使用的启动方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#s5pv210开发板arm裸机实验"><span class="toc-text">s5pv210开发板arm裸机实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb刷机"><span class="toc-text">usb刷机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开发板实验准备"><span class="toc-text">开发板实验准备</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡下载"><span class="toc-text">sd卡下载</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb下载"><span class="toc-text">usb下载</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验01-led灯"><span class="toc-text">实验01-led灯</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO概念"><span class="toc-text">GPIO概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#GPIO相关的寄存器"><span class="toc-text">GPIO相关的寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#过程"><span class="toc-text">过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#反汇编工具objdump"><span class="toc-text">反汇编工具objdump</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-01-全亮"><span class="toc-text">led灯-01-全亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-02-优化代码"><span class="toc-text">led灯-02-优化代码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-03-部分点亮"><span class="toc-text">led灯-03-部分点亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-04-闪烁"><span class="toc-text">led灯-04-闪烁</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-05-跑马灯"><span class="toc-text">led灯-05-跑马灯</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验02-启动代码"><span class="toc-text">实验02-启动代码</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#看门狗"><span class="toc-text">看门狗</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#c语言运行时"><span class="toc-text">c语言运行时</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#在汇编启动代码中设置栈"><span class="toc-text">在汇编启动代码中设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#iCache"><span class="toc-text">iCache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#重定位引入-链接脚本-概念"><span class="toc-text">重定位引入-链接脚本-概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sdram"><span class="toc-text">sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#时钟系统"><span class="toc-text">时钟系统</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-01-watch-dog-timer"><span class="toc-text">启动代码-01-watch dog timer</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-02-设置栈"><span class="toc-text">启动代码-02-设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-03-icache"><span class="toc-text">启动代码-03-icache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-04-重定位"><span class="toc-text">启动代码-04-重定位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-05-初始化sdram"><span class="toc-text">启动代码-05-初始化sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-06-设置时钟"><span class="toc-text">启动代码-06-设置时钟</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验03-串口通信"><span class="toc-text">实验03-串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#通信"><span class="toc-text">通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信"><span class="toc-text">串口通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信编程"><span class="toc-text">串口通信编程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-01-设置串口"><span class="toc-text">串口通信-01-设置串口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-02-修改比特率"><span class="toc-text">串口通信-02-修改比特率</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-03-移植printf"><span class="toc-text">串口通信-03-移植printf</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验04-中断"><span class="toc-text">实验04-中断</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#按键"><span class="toc-text">按键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#轮询方式处理按键"><span class="toc-text">轮询方式处理按键</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#S5PV210的中断体系介绍"><span class="toc-text">S5PV210的中断体系介绍</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-按键轮询"><span class="toc-text">中断-01-按键轮询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-02-轮询加打印"><span class="toc-text">中断-02-轮询加打印</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-03-按键中断"><span class="toc-text">中断-03-按键中断</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-04"><span class="toc-text">中断-04-</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-05"><span class="toc-text">中断-05-</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
