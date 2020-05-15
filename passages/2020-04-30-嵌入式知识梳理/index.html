@@ -353,15 +353,19 @@
 <h5 id="Flash-Memory（快闪存储器）"><a href="#Flash-Memory（快闪存储器）" class="headerlink" title="Flash Memory（快闪存储器）"></a>Flash Memory（快闪存储器）</h5><p>这是一种可以直接在主机板上修改内容而不需要将IC（芯片）拔下的内存，当电源关掉后储存在里面的资料并不会流失掉，在写入资料时必须先将原本的资料清除掉，然后才能再写入新的资料（Flash擦除只能从1翻转到0，无法从0翻转到1。擦除过程就是将flash中的某一个扇区全写0xFFFFFFF，再写入数据。），缺点为写入资料的速度太慢。它结合了ROM和RAM的长处，不仅具备电子可擦出可编程（EEPROM）的性能，还不会断电丢失数据。在过去的20年里，嵌入式系统一直使用ROM（EPROM）作为它们的存储设备，然而近年来Flash全面代替了ROM（EPROM）在嵌入式系统中的地位。</p>
 <p>大家发现没，虽然后来新的存储器都分别属于RAM和ROM这两种存储器，但是很明显有很多特性和最初的RAM、ROM已经不同了，好像违反了“设定”，我觉得这个其实有点像版本更新，有的地方继承了之前的属性，有的地方则进行了改良。所以我们看到书上的ROM是只读的，而我们的硬盘是ROM，那我们的硬盘怎么写进数据。看到上面的介绍，你的疑惑可能就得到了解决。然后，下面就是Flash的套娃了，同样，它也有很多种，这里只讲常见的或者与嵌入式相关的。</p>
 <h6 id="NOR-Flash（Not-OR-Flash）"><a href="#NOR-Flash（Not-OR-Flash）" class="headerlink" title="NOR Flash（Not OR Flash）"></a>NOR Flash（Not OR Flash）</h6><p>NOR Flash是一种非易失闪存技术，是Intel在1988年创建，里面的单元是按照所谓或非的方式连起来的。NOR Flash 的特点是芯片内执行（XIP ，eXecute In Place），这样应用程序可以直接在Flash闪存内运行，不必再把代码读到系统RAM中，也可以替代SRAM。NOR 的传输效率很高，在1 ~ 4MB的小容量时具有很高的成本效益，但是很低的写入和擦除速度大大影响到它的性能。</p>
-<h6 id="NAND-Flash（Not-AND-Flash）"><a href="#NAND-Flash（Not-AND-Flash）" class="headerlink" title="NAND Flash（Not AND Flash）"></a>NAND Flash（Not AND Flash）</h6><p>NAND Flash是也一种非易失闪存技术，1989年，东芝公司发表了NAND flash结构，强调降低每比特的成本（便宜），更高的性能，并且像磁盘一样可以通过接口轻松升级，里面的单元是按照所谓与非的方式连起来的，所用的线比NOR Flash少，但是性能不如NOR Flash。NAND Flash没有采取内存的随机读取技术，它的读取是以一次读取一块的形式来进行的，通常是一次读取512个字节，采用这种技术的Flash比较廉价。用户不能直接运行NAND Flash上的代码。NAND Flash是一种存储芯片，要使用它需要特殊的系统接口。下面是NAND Flash的套娃。</p>
+<h6 id="NAND-Flash（Not-AND-Flash）"><a href="#NAND-Flash（Not-AND-Flash）" class="headerlink" title="NAND Flash（Not AND Flash）"></a>NAND Flash（Not AND Flash）</h6><p>NAND Flash是也一种非易失闪存技术，1989年，东芝公司发表了NAND flash结构，强调降低每比特的成本（便宜），更高的性能，并且像磁盘一样可以通过接口轻松升级，里面的单元是按照所谓与非的方式连起来的，所用的线比NOR Flash少，但是性能不如NOR Flash。NAND Flash没有采取内存的随机读取技术，它的读取是以一次读取一块的形式来进行的，通常是一次读取512个字节，采用这种技术的Flash比较廉价。用户不能直接运行NAND Flash上的代码。NAND Flash是一种存储芯片，要使用它需要特殊的系统接口。</p>
+<p>这些最早出现的、最原始的Flash颗粒组成芯片（NandFlash、NorFlash），芯片中只是对存储单元做了最基本的读写接口，要求开发板的SoC来提供Flash读写的控制器以和Flash进行读写时序。</p>
+<p>缺陷：1、读写接口时序比较复杂。2、内部无坏块处理机制，需要SoC自己来管理Flash的坏块；3、各家厂家的Flash接口不一致，甚至同一个厂家的不同型号、系列的Flash接口都不一致，这就造成产品升级时很麻烦。</p>
+<p>NandFlash分MLC（Multi Level Cell，多层单元）和SLC（Single Level Cell，单层单元）两种。SLC技术比较早，可靠性高，缺点是容量不大（贵，一般SLC Nand都是512MB以下）；MLC技术比较新，不成熟，可靠性差，优点是容量可以做很大很便宜，现在基本都在发展MLC技术。下面是NAND Flash的套娃。</p>
 <ul>
-<li>iNAND &amp; OneNAND<br>基于NAND，SanDisk公司研发了iNAND存储芯片，可以简单的看成SD卡或MMC卡芯片化。优点：提高性能减少SOC的工作量，节约SOC资源；读写速度快；产品更可靠稳定iNAND内置掉电保护；降低系统成本等。三星公司研发了OneNAND存储芯片，既实现NOR Flash的高速读取速度，又保留了Nand Flash的大容量数据存储的优点。现在嵌入式系统也有采用这两种芯片来做外存，有些时候用新技术反而会更省钱，因为老技术都是固定生产方式了，生产难度可能比新技术要难，成本也更高，所以新技术才能淘汰老技术。不过现在还是习惯把iNAND和OneNAND都说成NAND Flash。</li>
+<li>iNAND &amp; OneNAND<br>基于NAND（iNAND可以将内置的MLC FLASH模拟成为为SLC），SanDisk公司研发了iNAND存储芯片，可以简单的看成SD卡或MMC卡芯片化。优点：提高性能减少SOC的工作量，节约SOC资源；读写速度快；产品更可靠稳定iNAND内置掉电保护；降低系统成本等。</li>
 </ul>
+<p>三星公司研发了OneNAND存储芯片，既实现NOR Flash的高速读取速度，又保留了Nand Flash的大容量数据存储的优点。OneNAND和Flex-OneNAND是融合存储器，将NAND内核，SRAM，纠错引擎和逻辑电路集成在具有NOR接口的单个​​芯片中。</p>
 <p>下面为使用NAND Flash芯片的一些产品，外加了控制芯片、接口等，严格来说其实并不能归为NAND Flash。</p>
 <ul>
-<li>SD卡（Secure Digital Memory Card）<br>SD存储卡是一种基于半导体快闪记忆器的新一代记忆设备，由于它体积小、数据传输速度快、可热插拔等优良的特性，被广泛地于便携式装置上使用，例如数码相机、平板电脑和多媒体播放器等。SD卡是由松下电器、东芝和SanDisk联合推出。SD卡是将NAND Flash芯片叠加到一起，扩大容量，同时添加管理系统芯片。Nand Flash是不可以直接使用的,需要驱动程序，SD则自带驱动程序。通常数码相机用的那种大卡就是SD卡。</li>
+<li>SD卡（Secure Digital Memory Card）<br>SD存储卡是一种基于半导体快闪记忆器的新一代记忆设备，由于它体积小、数据传输速度快、可热插拔等优良的特性，被广泛地于便携式装置上使用，例如数码相机、平板电脑和多媒体播放器等。SD卡是由松下电器、东芝和SanDisk联合推出。SD卡是将NAND Flash芯片叠加到一起，扩大容量，同时添加管理系统芯片。Nand Flash是不可以直接使用的,需要驱动程序，SD则自带驱动程序。通常数码相机用的那种大卡就是SD卡。SD卡是遵照SD规范来发布的。这些规范规定了SD卡的读写速度、读写接口时序、读写命令集、卡大小尺寸、引脚个数及定义。这样做的好处就是不同厂家的SD卡可以通用。</li>
 </ul>
-<p>SD卡是基于MMC卡（Multi-Media Card，多媒体卡）发展的，MMC卡是基于SM卡（Smart Media，智能媒体卡）发展的，有兴趣可以去百度。</p>
+<p>SD卡是基于MMC卡（Multi-Media Card，多媒体卡）发展的（MMC卡可以被SD读卡器读写，而SD卡不可以被MMC读卡器读写。），MMC卡是基于SM卡（Smart Media，智能媒体卡）发展的，有兴趣可以去百度。</p>
 <ul>
 <li><p>Micro SD卡（Micro SD Card）<br>Micro SD Card，原名Trans-flash Card（TF卡），2004年正式更名为Micro SD Card，由SanDisk（闪迪）公司发明，主要用于移动电话。是采用SanDisk（闪迪）的NAND MLC技术以及控制器技术。通常手机用的那种小卡就是Micro SD卡。</p>
 </li>
@@ -372,6 +376,7 @@
 </ul>
 <p>基于闪存类：基于闪存的固态硬盘（IDEFLASH DISK、Serial ATA Flash Disk）：采用Flash芯片作为存储介质，这也是通常所说的SSD。它的外观可以被制作成多种模样，例如：笔记本硬盘、微硬盘、存储卡、U盘等样式。这种SSD固态硬盘最大的优点就是可以移动，而且数据保护不受电源控制，能适应于各种环境，适合于个人用户使用。</p>
 <p>SSD除了使用Flash存储介质之外，还有主控芯片，内部包含存储算法、数据传输算法等等，也有不同的接口。由于固态硬盘技术与传统硬盘技术不同，所以产生了不少新兴的存储器厂商。厂商只需购买NAND存储器，再配合适当的控制芯片，就可以制造固态硬盘了。新一代的固态硬盘普遍采用SATA-2接口、SATA-3接口、SAS接口、MSATA接口、PCI-E接口、NGFF接口、CFast接口、SFF-8639接口和M.2 NVME/SATA协议。</p>
+<p>内部由Nand的存储颗粒构成（iNand、MoviNand、SSD），再集成了块设备管理单元，综合了SD卡为代表的各种卡的优势和原始的NandFlash芯片的优势：有统一的接口标准（包括引脚定义、物理封装、接口时序）；与原始的Nand一样，以芯片的方式来发布而不是以卡的方式；内部内置了Flash管理模块，提供了诸如坏块管理等功能，让Nand的管理容易了起来。</p>
 <p>基于DRAM类：采用DRAM作为存储介质，应用范围较窄。它仿效传统硬盘的设计，可被绝大部分操作系统的文件系统工具进行卷设置和管理，并提供工业标准的PCI和FC接口用于连接主机或者服务器。应用方式可分为SSD硬盘和SSD硬盘阵列两种。它是一种高性能的存储器，而且使用寿命很长，美中不足的是需要独立电源来保护数据安全。DRAM固态硬盘属于比较非主流的设备。 </p>
 <p>至于HHD（机械硬盘）和SSD（固态硬盘）走的路线不一样，感兴趣的可以看这个链接的视频：</p>
 <p><a href="https://www.sohu.com/a/212319162_239778" target="_blank" rel="noopener">硬盘的发展史，你都了解吗？</a></p>
@@ -386,7 +391,7 @@
 <p><img src="/images/20200430_8.png" alt></p>
 <p>注意：为什么要放来放去，一个是代码只能在NOR Flash、IRAM、DRAM里面运行，NOR Flash太慢了，DRAM第二阶段初始前不能使用。另一个是代码只能放在NOR Flash（启动代码1）和NAND Flash（启动代码2、操作系统）里面，等到要用的时候就从这两个拿出来给SRAM和DRAM运行。</p>
 <p>NAND Flash不能运行代码，IRAM是断电丢失数据，所以只能从NAND Flash搬代码到IRAM去运行，然后初始化DRAM，这个时候DRAM就能运行代码，于是IRAM又将NAND的操作系统搬过去，然后DRAM运行代码，就能启动操作系统。</p>
-<p>至于为什么第一副图IRAM没有去NAND Flash取代码，是因为嵌入式开发板有好几种启动模式，当你拨动一个开关的时候，如果是usb模式，IRAM就不会去NAND Flash找代码；如果是SD卡/emmc模式，IRAM就会去找SD卡或者NAND。</p>
+<p>至于为什么第一副图IRAM没有去NAND Flash取代码，是因为嵌入式开发板有好几种启动模式，当你拨动一个开关的时候，如果是usb模式（代码1负责识别），IRAM就不会去NAND Flash找代码；如果是SD卡/emmc模式，IRAM就会去找SD卡或者NAND。</p>
 <h4 id="不同系统的存储器配置"><a href="#不同系统的存储器配置" class="headerlink" title="不同系统的存储器配置"></a>不同系统的存储器配置</h4><p>现在的电脑：很小容量的BIOS（NOR Flash）+ 很大容量的硬盘（SSD或者HDD）+ 大容量的DRAM（DDR3或者DDR4）。</p>
 <p>一般的单片机：很小容量的NOR Flash + 很小容量的SRAM。</p>
 <p>嵌入式系统：SoC内置IRAM（SRAM） + SoC内置IROM（NOR Flash）+外接的大容量Nand Flash + 外接大容量DRAM（DDR2） 。</p>
