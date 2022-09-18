@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>Linux基本知识与操作 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式软件开发,">
+  
+
+  
+  <meta name="description" content="学习嵌入式的核心之————Linux操作系统（操作&amp;amp;基本概念）">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-12-31
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式软件开发/"><i class="fa fa-bookmark"></i>嵌入式软件开发</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Linux基本知识与操作
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#基本知识">基本知识</a><ul>
+<li><a href="#隐藏文件">隐藏文件</a></li>
+<li><a href="#相对路径与绝对路径">相对路径与绝对路径</a></li>
+<li><a href="#linux内核和发行版">linux内核和发行版</a></li>
+<li><a href="#gui和命令行">gui和命令行</a></li>
+<li><a href="#虚拟机的安装-linux">虚拟机的安装-linux</a></li>
+<li><a href="#常用linux命令">常用linux命令</a></li>
+<li><a href="#安装交叉编译工具链">安装交叉编译工具链</a></li>
+<li><a href="#文件类型标记方法">文件类型标记方法</a></li>
+<li><a href="#vim基础使用">vim基础使用</a></li>
+<li><a href="#符号含义">符号含义</a></li>
+<li><a href="#makefile">makefile</a></li>
+<li><a href="#shell">shell</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="基本知识"><a href="#基本知识" class="headerlink" title="基本知识"></a>基本知识</h2><h4 id="隐藏文件"><a href="#隐藏文件" class="headerlink" title="隐藏文件"></a>隐藏文件</h4><p>Linux隐藏文件是在文件名开头加上一个“.”，在终端使用ls命令就无法看到隐藏文件，要用ls -a命令才能看见，并且图形界面的文件管理里面可以直接看到文件，没有隐藏效果。</p>
+<h4 id="相对路径与绝对路径"><a href="#相对路径与绝对路径" class="headerlink" title="相对路径与绝对路径"></a>相对路径与绝对路径</h4><p>绝对路径由/开始，/就是根目录。相对路径可以用../xxx来代表所处目录上一个文件夹的xxx文件夹里面的东西。</p>
+<h4 id="linux内核和发行版"><a href="#linux内核和发行版" class="headerlink" title="linux内核和发行版"></a>linux内核和发行版</h4><p>单独的Linux就是一个内核，包含内核和一些应用程序的版本就是发行版，不同版本包含的应用程序可能不一样。常见的有Ubuntu、Redhat。</p>
+<h4 id="gui和命令行"><a href="#gui和命令行" class="headerlink" title="gui和命令行"></a>gui和命令行</h4><p>人机交互的两种方式（图形用户界面GUI、命令行command line）</p>
+<h4 id="虚拟机的安装-linux"><a href="#虚拟机的安装-linux" class="headerlink" title="虚拟机的安装-linux"></a>虚拟机的安装-linux</h4><ol>
+<li>安装VMware</li>
+<li>下载linux镜像文件（ubuntu-16.04.6-desktop-amd64.iso）</li>
+<li>加载镜像：打开VMvare，创建新虚拟机-稍后安装操作系统-选择操作系统和版本-设置安装位置-设置磁盘大小和是否拆分文件-完成，在VMware的虚拟机设置-硬件-CD/DVD-使用ISO映像文件-选择下载的iso文件地址。</li>
+<li>关于设置密码，记得打开键盘再输入。</li>
+<li>安装VMware Tools（以至于可以使用windows和虚拟机之间的交互，比如两个系统之间复制粘贴）：Player-管理-安装VMware Tools-在打开的光驱里面复制vmware-tools-distrib到某个目录并解压，使用终端执行里面的vmware-install.pl来安装。</li>
+<li>安装搜狗输入法：官网下载sogoupinyin_2.3.1.0112_amd64.deb-Ubuntu apt更换国内源-终端进入下载的文件夹安装搜狗输入法：<code>sudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb</code>-搜索并补全依赖关系：<code>sudo apt-get install -f</code>-重启</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Ubuntu apt默认的下载源是cn.archive.ubuntu.com/ubuntu/，这是一个国外的网站，下载速度比较慢，我们将下载源更换为国内镜像站，提高下载速度和连接的稳定性。apt下载源的配置文件是/etc/apt/sources.list,使用命令 cat /etc/apt/sources.list 可以看到其中的内容。欲更换下载源，替换该文件中的默认源为国内源即可，这里采用的是清华tuna源。为保险起见，修改文件前，先备份一下文件</span><br><span class="line">cp /etc/apt/sources.list /etc/apt/sources_bak.list</span><br><span class="line">然后</span><br><span class="line">sudo gedit /etc/apt/sources.list 或者 sudo vim /etc/apt/sources.list</span><br><span class="line">将文件内容替换为（以清华源ipv6镜像站为例，其他国内镜像站类似）</span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse </span><br><span class="line"><span class="comment"># deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ xenial-security main restricted universe multiverse</span></span><br><span class="line">最后更新源</span><br><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><p>安装arm-linux-gcc：下载并解压arm-linux-gcc-5.4.0.tar.gz到/home/bin/arm-修改配置文件<code>gedit /home/pxf/.bashrc</code>文件末尾加上<code>export PATH=$PATH:/home/pxf/bin/arm/5.4.0/bin</code>并保存-使配置文件生效<code>source /home/pxf/.bashrc</code>-测试是否生效<code>arm-linux-gcc -v</code>-安装32位支持库<code>apt-get install ia32-libs</code>-安装替代软件包<code>apt-get install lib32ncurses5 lib32z1</code>-安装软件包<code>apt-get install lib32stdc++6
+apt-get install lib32z1</code>和<code>apt-get install lib32stdc++6
+apt-get install lib32z1</code></p>
+</li>
+<li><p>将安装操作系统的文件夹复制到U盘保存</p>
+</li>
+</ol>
+<h4 id="常用linux命令"><a href="#常用linux命令" class="headerlink" title="常用linux命令"></a>常用linux命令</h4><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">全称，功能</th>
+<th align="center">常用命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ls</td>
+<td align="center">list,列表</td>
+<td align="center">[ls -a] [ls -l]</td>
+</tr>
+<tr>
+<td align="center">cd</td>
+<td align="center">change directory，改变目录</td>
+<td align="center">[cd ..] [cd ../../]</td>
+</tr>
+<tr>
+<td align="center">pwd</td>
+<td align="center">print work directory，打印工作目录</td>
+<td align="center">[pwd]</td>
+</tr>
+<tr>
+<td align="center">mkdir</td>
+<td align="center">make directory，创建文件夹</td>
+<td align="center">[mkdir 文件夹名] [mkdir -p 文件夹名/文件夹名]</td>
+</tr>
+<tr>
+<td align="center">mv</td>
+<td align="center">move，移动</td>
+<td align="center">[mv pathname pathname] [mv name name]</td>
+</tr>
+<tr>
+<td align="center">touch</td>
+<td align="center">触摸/创建</td>
+<td align="center">[touch pathname]</td>
+</tr>
+<tr>
+<td align="center">cp</td>
+<td align="center">cope，复制</td>
+<td align="center">[cp pathname pathname] [cp -r ] [cp -f]</td>
+</tr>
+<tr>
+<td align="center">rm</td>
+<td align="center">remove，去除</td>
+<td align="center">[rm pathname] [rm -r pathname]</td>
+</tr>
+<tr>
+<td align="center">cat</td>
+<td align="center">catch，抓住/显示</td>
+<td align="center">[cat]</td>
+</tr>
+<tr>
+<td align="center">rmdir</td>
+<td align="center">remove directory，去除空文件夹</td>
+<td align="center">[rmdir path]</td>
+</tr>
+<tr>
+<td align="center">ln</td>
+<td align="center">link，连接</td>
+<td align="center">[ln -s 源文件名 符号连接文件名] [ln 源文件名 连接文件名]</td>
+</tr>
+<tr>
+<td align="center">su</td>
+<td align="center">superuser，超级用户</td>
+<td align="center">[su root/空] [su 用户名]</td>
+</tr>
+<tr>
+<td align="center">apt-get</td>
+<td align="center">Ubuntu里面在线安装、卸载软件的程序</td>
+<td align="center">[sudo apt-get install 软件名] [sudo apt-get remove 软件名]</td>
+</tr>
+<tr>
+<td align="center">uname</td>
+<td align="center">打印操作系统信息</td>
+<td align="center">[uname -a]</td>
+</tr>
+<tr>
+<td align="center">man</td>
+<td align="center">manual，手册</td>
+<td align="center"><label style="color:red">[man <label style="color:orange">1/2/3 <label style="color:blue">Linux命令/Linux api/c库函数]</label></label></label></td>
+</tr>
+</tbody></table>
+<h4 id="安装交叉编译工具链"><a href="#安装交叉编译工具链" class="headerlink" title="安装交叉编译工具链"></a>安装交叉编译工具链</h4><ul>
+<li><p>Windows中装软件的特点<br>Windows中装软件使用安装包，安装包解压后有2种情况：一种是一个安装文件（.exe .msi），双击进行安装，下一步直到安装完毕。安装完毕后会在桌面上生成快捷方式，我们平时使用快捷方式来启动这些程序；另一种是所谓的绿色软件、免安装软件。这种不用安装，直接解压开里面就有exe可以直接双击执行。</p>
+</li>
+<li><p>linux中装软件的特点<br>第一种：在线安装。譬如ubuntu中使用apt-get install vim来安装vim软件。<br>第二种：自己下载安装包来安装。这种方式的缺陷就是不知道下载的安装包和你的系统是否匹配。<br>第三种：源代码安装，使用编译器直接编译运行程序。<br>安装交叉编译工具链（arm-linux-gcc）实际多采用第二种安装方式。</p>
+</li>
+<li><p>交叉编译工具链的安装<br>步骤1：打开虚拟机，在/usr/local/下创建/usr/local/arm文件夹<br>步骤2：先将安装包从Windows中放进linux中去。可以用共享文件夹、Samba、cuteftp。<br>步骤3：解压tar -jxvf arm-2009q3.tar.bz2到此相当于程序已经安装完毕，真正的应用程序安装在/usr/local/arm/arm-2009q3/bin目录下</p>
+</li>
+<li><p>安装后的测试<br>到真正的应用程序的安装目录下（也就是/usr/local/arm/arm-2009q3/bin），去执行arm-linux-gcc -v<br>执行方法是：./arm-none-linux-gnueabi-gcc -v<br>执行后可以得到一长串输出，其中有“gcc version 4.4.1 ”字样，即表示安装成功。</p>
+</li>
+<li><p>将工具链导出到环境变量</p>
+<blockquote>
+<p>环境变量就是操作系统的全局变量。每一个环境变量对操作系统来说都是唯一的，名字和所代表的意义都是唯一的。linux系统可以有很多个环境变量。其中有一部分是linux系统自带的，还有一些是用户扩充的。我们这里涉及到的一个环境变量是PATH。PATH这个环境变量是系统自带的，它的含义就是系统在查找可执行程序时会搜索的路径范围。每次打开linux终端，系统都会自动运行<code>~/.bashrc</code>这个文件，里面存放环境变量PATH</p>
+</blockquote>
+</li>
+</ul>
+<p>①执行<code>export PATH=/usr/local/arm/arm-2009q3/bin:$PATH</code>命令，意义是将PATH变量前加上<code>/usr/local/arm/arm-2009q3/bin:</code>之后的变量保存到PATH（也可以直接在.bashrc文件最后加上export PATH=/usr/local/arm/arm-2009q3/bin:）。<br>②运行改变之后的.bashrc文件，<code>source .bashrc</code>（或者直接关掉终端重新打开，因为系统会自动运行）<br>注意：我们导出这个环境变量是在当前用户，如果你登录时在其他用户下是没用的。<br>③具体操作可以参考<a href="https://blog.csdn.net/qq_38499625/article/details/83045236" target="_blank" rel="noopener">这篇文章</a><br>④为工具链创建arm-linux-xxx符号链接（可以理解为快捷方式）<br>ln arm-none-linux-gnueabi-addr2line -s arm-linux-addr2line</p>
+<h4 id="文件类型标记方法"><a href="#文件类型标记方法" class="headerlink" title="文件类型标记方法"></a>文件类型标记方法</h4><p>ls -l 显示详细信息中，第1个字符表示文件类型，后面9个字符表示文件权限<br>-rw-r- -r- -<br>drwxr-xr-x</p>
+<table>
+<thead>
+<tr>
+<th align="center">第1个字符</th>
+<th align="center">文件类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">-</td>
+<td align="center">普通文件</td>
+</tr>
+<tr>
+<td align="center">d</td>
+<td align="center">文件夹</td>
+</tr>
+<tr>
+<td align="center">l</td>
+<td align="center">符号连接文件</td>
+</tr>
+<tr>
+<td align="center">s</td>
+<td align="center">socket文件</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">pipe管道文件</td>
+</tr>
+</tbody></table>
+<p>后面9个字符分三组（rwx-read-write-execute）<br>前三个表示此文件的属主对文件的权限<br>中间三个表示此文件属主所在的组对文件的权限<br>后面三个表示其他用户对文件的权限</p>
+<p>权限的另一种表示方法：<br>r: 4<br>w: 2<br>x: 1<br>-rw-r- -r- -(644)</p>
+<h4 id="vim基础使用"><a href="#vim基础使用" class="headerlink" title="vim基础使用"></a>vim基础使用</h4><p>创建/打开文件命令：vi pathname<br>命令模式：默认命令模式，按a/i进入输入模式。<br>输入模式：按a/i进入，按esc进入命令模式。</p>
+<table>
+<thead>
+<tr>
+<th align="center">命令模式下的命令</th>
+<th align="center">作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">:q</td>
+<td align="center">关闭文件</td>
+</tr>
+<tr>
+<td align="center">:w</td>
+<td align="center">保存文件</td>
+</tr>
+<tr>
+<td align="center">:wq!</td>
+<td align="center">强制保存并关闭文件</td>
+</tr>
+<tr>
+<td align="center">/abc</td>
+<td align="center">abc：要查找的内容</td>
+</tr>
+<tr>
+<td align="center">:num</td>
+<td align="center">num：跳转的行数</td>
+</tr>
+<tr>
+<td align="center">:set nu/:set nonu</td>
+<td align="center">显示行数/隐藏行数</td>
+</tr>
+<tr>
+<td align="center">dd</td>
+<td align="center">整行删除</td>
+</tr>
+<tr>
+<td align="center">numdd</td>
+<td align="center">num:要连续删除的行数</td>
+</tr>
+<tr>
+<td align="center">nyy</td>
+<td align="center">n:复制的行数</td>
+</tr>
+<tr>
+<td align="center">p</td>
+<td align="center">粘贴</td>
+</tr>
+</tbody></table>
+<h4 id="符号含义"><a href="#符号含义" class="headerlink" title="符号含义"></a>符号含义</h4><table>
+<thead>
+<tr>
+<th align="center">符号</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="center">代表当前目录</td>
+</tr>
+<tr>
+<td align="center">..</td>
+<td align="center">代表上一层目录</td>
+</tr>
+<tr>
+<td align="center">-</td>
+<td align="center">代表前一个目录</td>
+</tr>
+<tr>
+<td align="center">~</td>
+<td align="center">代表当前用户的宿主目录</td>
+</tr>
+<tr>
+<td align="center">/</td>
+<td align="center">代表根目录</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">普通用户的命令行提示符</td>
+</tr>
+<tr>
+<td align="center">#</td>
+<td align="center">root用户的命令行提示符</td>
+</tr>
+<tr>
+<td align="center">*</td>
+<td align="center">万能匹配符</td>
+</tr>
+</tbody></table>
+<h4 id="makefile"><a href="#makefile" class="headerlink" title="makefile"></a>makefile</h4><ul>
+<li><p>为什么需要Makefile<br>Makefile是用来管理工程的。在一个正式的软件项目中，由很多个.c和.h文件构成，此时如果直接在命令行编译，就会像这样：gcc a.c b.c c.c d.c e.c f.c g.c -o exe每次编译都要输入。</p>
+</li>
+<li><p>Makefile中的一些基本概念<br>目标：目标(target)顶格写，后面是冒号（冒号后面是依赖）<br>依赖：依赖(prerequisites)是用来产生目标的源文件。<br>命令：命令(command)前面是Tab，不能是定格，也不能说多个空格。命令就是要生成那个目标需要做的命令，可以是多个。<br>Makefile 里主要包含了五个东西：显式规则、隐晦规则、变量定义、文件指示和注释。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#target 	也就是一个目标文件，可以是 Object File，也可以是执行文件，还可以是一个标签（Label）。</span></span><br><span class="line"><span class="comment">#prerequisites 	就是要生成那个 target 所需要的文件或是目标。</span></span><br><span class="line"><span class="comment">#command 	也就是 make 需要执行的命令。（任意的 Shell 命令）</span></span><br><span class="line"></span><br><span class="line">target:prerequisites</span><br><span class="line">	<span class="built_in">command</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#这是一个文件的依赖关系，也就是说，target 这一个或多个的目标文件依赖于 prerequisites 中的文件，其生成规则定义在 command 中。说白一点就是说，prerequisites 中如果有一个以上的文件比 target 文件要新的话，command 所定义的命令就会被执行,make 会比较 targets 文件和 prerequisites 文件的修改日期。</span></span><br><span class="line"></span><br><span class="line">objects = main.o kbd.o command.o display.o \</span><br><span class="line">insert.o search.o files.o utils.o</span><br><span class="line"></span><br><span class="line">edit : $(objects)</span><br><span class="line">	cc -o edit $(objects) </span><br><span class="line"></span><br><span class="line">main.o : defs.h  kbd.o : defs.h command.h</span><br><span class="line">command.o : defs.h command.h</span><br><span class="line">display.o : defs.h buffer.h</span><br><span class="line">insert.o : defs.h buffer.h</span><br><span class="line">search.o : defs.h buffer.h</span><br><span class="line">files.o : defs.h buffer.h command.h</span><br><span class="line">utils.o : defs.h</span><br><span class="line"></span><br><span class="line">.PHONY : clean</span><br><span class="line">clean :</span><br><span class="line">	-rm edit $(objects) </span><br><span class="line"><span class="comment"># “.PHONY”来显 示地指明一个目标是“伪目标”，向 make 说明，不管是否有这个文件，这个目标就是“伪目标”。只要有这个声明，不管是否有“clean”文件，要运行“clean”这个目标，只有“make clean”命令。</span></span><br><span class="line"><span class="comment"># rm 命令前面加了一个小 减号的意思就是，也许某些文件出现问题，但不要管，继续做后面的命令。“%”的意思是匹配零或若干字符，例如，“%.h”表示所有以“.h”结尾的文件。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Makefile的基本工作原理<br>其一，当我们执行 make xx(target) 的时候，Makefile会自动执行xx这个目标下面的命令语句。<br>其二，当我们make xx的时候，是否执行命令是取决于依赖的。依赖如果成立就会执行命令，否则不执行。<br>其三，我们直接执行make和make第一个目标  效果是一样的。（第一个目标其实就是默认目标）</p>
+</li>
+</ul>
+<h4 id="shell"><a href="#shell" class="headerlink" title="shell"></a>shell</h4><blockquote>
+<p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell既是一种命令语言，又是一种程序设计语言。Shell 是指一种应用程序，这个应用程序提供了一个界面，用户通过这个界面访问操作系统内核的服务。Ken Thompson 的 sh 是第一种 Unix Shell，Windows Explorer 是一个典型的图形界面 Shell。<br><a href="https://www.runoob.com/linux/linux-shell.html" target="_blank" rel="noopener">shell教程</a></p>
+</blockquote>
+<ul>
+<li><p>shell 脚本概念<br>Shell脚本（shell script），是一种为 shell 编写的脚本程序。业界所说的 shell 通常都是指 shell 脚本，但shell 和 shell script 是两个不同的概念。由于习惯的原因，简洁起见，本文出现的 “shell编程” 都是指 shell 脚本编程，不是指开发 shell 自身。</p>
+</li>
+<li><p>Shell 环境<br>Shell 编程跟 JavaScript、php 编程一样，只要有一个能编写代码的文本编辑器和一个能解释执行的脚本解释器就可以了。Linux 的 Shell 种类众多，常见的有：<br>Bourne Shell（/usr/bin/sh或/bin/sh）<br>Bourne Again Shell（/bin/bash）<br>C Shell（/usr/bin/csh）<br>K Shell（/usr/bin/ksh）<br>Shell for Root（/sbin/sh）<br>……<br>本文关注的是 Bash，也就是 Bourne Again Shell，由于易用和免费，Bash 在日常工作中被广泛使用。同时，Bash 也是大多数Linux 系统默认的 Shell。在一般情况下，人们并不区分 Bourne Shell 和 Bourne Again Shell，所以，像 #!/bin/sh，它同样也可以改为 #!/bin/bash。<br>#! 告诉系统其后路径所指定的程序即是解释此脚本文件的 Shell 程序。</p>
+</li>
+<li><p>shell 脚本编写<br>打开文本编辑器(可以使用 vi/vim 命令来创建文件)，新建一个文件 test.sh，扩展名为 sh（sh代表shell），扩展名并不影响脚本执行，见名知意就好，如果你用 php 写 shell 脚本，扩展名就用 php 好了。<br>输入一些代码，第一行一般是这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">"Hello World!"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#! 是一个约定的标记，它告诉系统这个脚本需要什么解释器来执行，即使用哪一种 Shell。</span></span><br><span class="line"><span class="comment">#  echo 命令用于向窗口输出文本。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>运行 Shell 脚本的方法：<br>1、作为可执行程序<br>将上面的代码保存为 test.sh，并 cd 到相应目录：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod +x ./test.sh 	<span class="comment">#使脚本具有执行权限</span></span><br><span class="line">./test.sh 		<span class="comment">#执行脚本</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>注意，一定要写成 ./test.sh，而不是 test.sh，运行其它二进制的程序也一样，直接写 test.sh，linux 系统会去 PATH 里寻找有没有叫 test.sh 的，而只有 /bin, /sbin, /usr/bin，/usr/sbin 等在 PATH 里，你的当前目录通常不在 PATH 里，所以写成 test.sh 是会找不到命令的，要用 ./test.sh 告诉系统就在当前目录找。</p>
+<p>2、作为解释器参数<br>这种运行方式是，直接运行解释器，其参数就是 shell 脚本的文件名，如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/bin/sh test.sh</span><br><span class="line">/bin/php test.php</span><br></pre></td></tr></table></figure>
+
+<p>这种方式运行的脚本，不需要在脚本文件第一行指定解释器信息，写了也没用。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基本知识"><span class="toc-text">基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#隐藏文件"><span class="toc-text">隐藏文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#相对路径与绝对路径"><span class="toc-text">相对路径与绝对路径</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#linux内核和发行版"><span class="toc-text">linux内核和发行版</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gui和命令行"><span class="toc-text">gui和命令行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机的安装-linux"><span class="toc-text">虚拟机的安装-linux</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#常用linux命令"><span class="toc-text">常用linux命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#安装交叉编译工具链"><span class="toc-text">安装交叉编译工具链</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#文件类型标记方法"><span class="toc-text">文件类型标记方法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#vim基础使用"><span class="toc-text">vim基础使用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#符号含义"><span class="toc-text">符号含义</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#makefile"><span class="toc-text">makefile</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#shell"><span class="toc-text">shell</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2019-12-31-Linux基本知识与操作/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2020-01-02-Linux高阶命令/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-10-16-JAVA文件流/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

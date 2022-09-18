@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>低功耗蓝牙 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式,">
+  
+
+  
+  <meta name="description" content="低功耗蓝牙知识梳理">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2022-09-18
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    低功耗蓝牙
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#低功耗蓝牙">低功耗蓝牙</a><ul>
+<li><a href="#视频教程">视频教程</a></li>
+<li><a href="#基础概念">基础概念</a><ul>
+<li><a href="#经典蓝牙模块bt">经典蓝牙模块(BT)</a></li>
+<li><a href="#低功耗蓝牙模块ble">低功耗蓝牙模块(BLE)</a></li>
+<li><a href="#低功耗蓝牙模块的优势">低功耗蓝牙模块的优势</a></li>
+</ul>
+</li>
+<li><a href="#gap">gap</a><ul>
+<li><a href="#主机和从机">主机和从机</a></li>
+<li><a href="#蓝牙广">蓝牙广</a></li>
+</ul>
+</li>
+<li><a href="#gatt">gatt</a><ul>
+<li><a href="#profile">profile</a></li>
+<li><a href="#service">service</a></li>
+<li><a href="#characteristic">characteristic</a></li>
+<li><a href="#uuid">uuid</a></li>
+</ul>
+</li>
+<li><a href="#组成">组成</a><ul>
+<li><a href="#内存的访问方式">内存的访问方式</a></li>
+<li><a href="#io的访问方式">io的访问方式</a></li>
+<li><a href="#冯诺依曼结构与哈佛结构">冯诺依曼结构与哈佛结构</a></li>
+<li><a href="#寄存器">寄存器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="低功耗蓝牙"><a href="#低功耗蓝牙" class="headerlink" title="低功耗蓝牙"></a>低功耗蓝牙</h2><h4 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h4><p><a href="https://b23.tv/TNEvVdM" target="_blank" rel="noopener">低功耗蓝牙BLE相关概念及用法-哔哩哔哩</a></p>
+<h4 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h4><h6 id="经典蓝牙模块-BT"><a href="#经典蓝牙模块-BT" class="headerlink" title="经典蓝牙模块(BT)"></a>经典蓝牙模块(BT)</h6><ul>
+<li>泛指支持蓝牙协议在4.0以下的模块，一般用于数据量比较大的传输，如：语音、音乐等较高数据量传输。经典蓝牙模块可再细分为：传统蓝牙模块和高速蓝牙模块。传统蓝牙模块在2004年推出，主要代表是支持蓝牙2.1协议的模块，在智能手机爆发的时期得到广泛支持。高速蓝牙模块在2009年推出，速率提高到约24Mbps，是传统蓝牙模块的八倍，可以轻松用于录像机至高清电视、PC至PMP、UMPC至打印机之间的资料传输。</li>
+</ul>
+<h6 id="低功耗蓝牙模块-BLE"><a href="#低功耗蓝牙模块-BLE" class="headerlink" title="低功耗蓝牙模块(BLE)"></a>低功耗蓝牙模块(BLE)</h6><ul>
+<li>指支持蓝牙协议4.0或更高的模块，也称为BLE模块，最大的特点是成本和功耗的降低，应用于实时性要求比较高的产品中，比如：智能家居类(蓝牙锁、蓝牙灯)、传感设备的数据发送(血压计、温度传感器)、消费类电子(电子烟、遥控玩具)等。低功耗蓝牙（BLE）连接都是建立在 GATT (Generic Attribute Profile) 协议之上。GATT 是一个在蓝牙连接之上的发送和接收很短的数据段的通用规范，这些很短的数据段被称为属性（Attribute）。</li>
+</ul>
+<h6 id="低功耗蓝牙模块的优势"><a href="#低功耗蓝牙模块的优势" class="headerlink" title="低功耗蓝牙模块的优势"></a>低功耗蓝牙模块的优势</h6><ul>
+<li><p>BLE蓝牙模块功耗更低、供电时间长:因为低功耗蓝牙技术已经发展到日常平均功耗可以做到10mA以下了，如此低功耗蓝牙应用在智能产品中，用体积很小的电池供电就能坚持工作一两年甚至更久，相对其它无线技术和经典蓝牙的功耗，这正是智能产品愿意且中意的通信技术。</p>
+</li>
+<li><p>低功耗蓝牙模块连接速度快:低功耗蓝牙技术采用非常快速的连接方式，连接时间间隔可变，这个间隔根据具体应用可以设置为几毫秒到几秒不等，几乎瞬间就能与智能手机相连，极大缩短等待的时间。</p>
+</li>
+<li><p>低功耗蓝牙模块使用免执照频段:因为低功耗蓝牙技术是一种免费的电磁频段，低功耗蓝牙运行的2.4GHz的频段，正是完全免费的一个电磁频段，其它例如WiFi、电磁炉等都是使用的2.4GHz的频段，就是因为这个频段不用向无线电管理部门交专门的授权费用。</p>
+</li>
+<li><p>低功耗蓝牙模块操作简单，更适合智能产品:一款内嵌低功耗蓝牙模块的智能产品能直接连到手机上，相对于市面上其它通讯手段，例如433MHz、ZigBee来说，虽然这些通讯技术也很成熟、传输距离也不错，但是它们并没有在智能手机上有所体现，而蓝牙功能基本是智能手机的标配之一了，匹配操作起来根本无需其它终端设备，由此来说智能产品选择蓝牙技术的原因就是终端市场的认可。</p>
+</li>
+</ul>
+<h4 id="gap"><a href="#gap" class="headerlink" title="gap"></a>gap</h4><blockquote>
+<p>GAP是Generic Access Profile的缩写，中文译为通用访问配置文件，主机和从机就是它定义的。GAP不仅定义了蓝牙通信的角色，还控制着它们的<font color="red">广播和连接</font>方式。GAP使你的设备被其他设备可见，并决定了你的设备是否可以或者怎样与设备进行交互。某些设备可以配置成只发送广播而不支持连接，比如一些Beacon设备。</p>
+</blockquote>
+<h6 id="主机和从机"><a href="#主机和从机" class="headerlink" title="主机和从机"></a>主机和从机</h6><ul>
+<li>主机和从机是相对的概念，又可以称为主设备/中心/中心设备（Central）和从设备/外设/外围设备（Peripheral）等等。举个简单的例子，我们在使用手机搜索、连接和控制家里的BLE设备的时候，我们的手机就是主机，设备就是从机。一个主机可以同时连接多个从机，一个从机同一时间只能被一个主机连接。</li>
+</ul>
+<h6 id="蓝牙广"><a href="#蓝牙广" class="headerlink" title="蓝牙广"></a>蓝牙广</h6><ul>
+<li><p>信道，指通信的通道，是信号传输的媒介，信道按照传输媒介可以分为有线信道与无线信道两类：有线信道-明线、电缆、光纤等；无线信道-利用电磁波在自由空间传播来传输信号，如短波电离层反射信道、微波中继信道、卫星信道等。对于无线电波而言，它从发送端到接收端，其间并没有一个有形的连接，但是我们为了形象地描述发送端与接收端之间的工作，想象两者之间有一个看不见的道路衔接，即信道。</p>
+</li>
+<li><p>低功耗蓝牙工作在2.4GHz频段，频率范围为 2402MHz–2480MHz，每2MHz一个信道，共40个信道，其中为3个广播信道，剩余的37为个数据信道。为了防止互相干扰，37、38、39这3个广播信道的频率隔的比较远。<br><img src="/images/%E8%93%9D%E7%89%99%E4%BF%A1%E9%81%93.jpg" alt></p>
+</li>
+</ul>
+<h4 id="gatt"><a href="#gatt" class="headerlink" title="gatt"></a>gatt</h4><blockquote>
+<p>GATT是Generic Attribute Profile的缩写，中文译为通用属性配置。我们使用BLE的时候，主机和从机建立的连接通常称为GATT连接。GATT也给BLE设备定义了角色，GATT Server和GATT Client。通常情况下，主机就是Client，从机就是Server。这是一个C/S架构，主机向从机请求服务。GATT中还有两个尤其重要的概念，Service和Characteristic，一个Service包含多个Characteristic。BLE主从设备之间通信多数情况下就是对特定Service里的特定的Characteristic进行读写操作。每个Service和Characteristic都有一个唯一的UUID与之对应。在开发BLE应用和智能硬件时，两端的开发者需要协商好对应的UUID。</p>
+</blockquote>
+<h6 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h6><ul>
+<li>profile可以理解为一种规范，一个标准的通信协议，它存在于<font color="red">从机</font>中。蓝牙组织规定了一些标准的profile，例如HID OVER GATT ，防丢器 ，心率计等。每个profile中会包含多个service，每个service代表从机的一种能力(功能)。</li>
+</ul>
+<h6 id="service"><a href="#service" class="headerlink" title="service"></a>service</h6><ul>
+<li>service可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的characteristic特征值存在从机的profile里，这样主机就可以通过这个characteristic来读取80%这个数据</li>
+</ul>
+<h6 id="characteristic"><a href="#characteristic" class="headerlink" title="characteristic"></a>characteristic</h6><ul>
+<li>characteristic特征值，ble主从机的通信均是通过characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。</li>
+</ul>
+<h6 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h6><ul>
+<li>UUID，统一识别码，我们刚才提到的service和characteristic，都需要一个唯一的uuid来标识</li>
+</ul>
+<blockquote>
+<p>总结一下，每个从机都会有一个叫做profile的东西存在，他们都是由一些service组成，然后每个service又包含了多个characteristic，主机和从机之间的通信，均是通过characteristic来实现。</p>
+</blockquote>
+<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
+<li>硬件：<br>微处理器<br>存储器（寄存器、内存、外存）<br>I/O接口、输入输出设备等等</li>
+<li>软件：<br>嵌入式操作系统<br>BSP——board support package板级支持包<br>应用软件</li>
+</ul>
+<h6 id="内存的访问方式"><a href="#内存的访问方式" class="headerlink" title="内存的访问方式"></a>内存的访问方式</h6><ul>
+<li>内存通过CPU的地址总线来寻址定位，然后通过CPU数据总线来读写。</li>
+<li>CPU的地址总线的位数是CPU设计时确定的，因此一款CPU所能寻址的范围是一定的，而内存是需要占用CPU的寻址空间的。</li>
+<li>内存与CPU的这种总线式连接方式是一种直接连接，优点是效率高访问快，缺点是资源有限，扩展性差。</li>
+</ul>
+<h6 id="io的访问方式"><a href="#io的访问方式" class="headerlink" title="io的访问方式"></a>io的访问方式</h6><ul>
+<li>IO指的是与CPU连接的各种外设。</li>
+<li>CPU访问各种外设有2种方式：一种是类似于访问内存的方式，即把外设的寄存器当作一个内存地址来读写，从而以访问内存相同的方式来操作外设，叫IO与内存统一编址方式；另一种是使用专用的CPU指令来访问某种特定外设，叫IO与内存独立编址。</li>
+</ul>
+<h6 id="冯诺依曼结构与哈佛结构"><a href="#冯诺依曼结构与哈佛结构" class="headerlink" title="冯诺依曼结构与哈佛结构"></a>冯诺依曼结构与哈佛结构</h6><ul>
+<li>程序和数据都放在内存中，且不彼此分离的结构称为冯诺依曼结构。譬如Intel的CPU均采用冯诺依曼结构。冯诺依曼结构中程序和数据不区分的放在一起，因此安全和稳定性是个问题，好处是处理起来简单。</li>
+<li>程序和数据分开独立放在不同的内存块中，彼此完全分离的结构称为哈佛结构。譬如大部分的单片机（MCS51、ARM9等）均采用哈佛结构。哈佛结构中程序（一般放在ROM、flash中）和数据（一般放在RAM中）独立分开存放，因此好处是安全和稳定性高，缺点是软件处理复杂一些（需要统一规划链接地址等）  </li>
+</ul>
+<h6 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h6><blockquote>
+<p>SoC中有2类寄存器：通用寄存器和SFR</p>
+</blockquote>
+<p>1.通用寄存器（ARM中有37个）是CPU的组成部分，CPU的很多活动都需要通用寄存器的支持和参与。<br>2.SFR（special function register，特殊功能寄存器）不在CPU中，而存在于CPU的外设中，我们通过访问外设的SFR来编程操控这个外设，这就是硬件编程控制的方法。</p>
+<ul>
+<li>CPU可以像访问内存一样访问寄存器</li>
+<li>寄存器是CPU的硬件设计者制定的，目的是留作外设被编程控制的“活动开关”</li>
+<li>正如汇编指令集是CPU的编程接口API一样，寄存器是外设硬件的软件编程接口API。使用软件编程控制某一硬件，其实就是编程读写该硬件的寄存器。</li>
+<li>寄存器中每个bit位都有特定含义，因此编程操作时需要位操作。</li>
+<li>单个寄存器的位宽一般和CPU的位宽一样，以实现最佳访问效率</li>
+</ul>
+<p>3.编程访问寄存器的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//汇编</span></span><br><span class="line">ldr r1, =<span class="number">0xE0200280</span></span><br><span class="line">str r0, [r1]</span><br><span class="line">mov r0, #<span class="number">0</span></span><br><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x30008000</span>;</span><br><span class="line">*p = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#低功耗蓝牙"><span class="toc-text">低功耗蓝牙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视频教程"><span class="toc-text">视频教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#经典蓝牙模块-BT"><span class="toc-text">经典蓝牙模块(BT)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块-BLE"><span class="toc-text">低功耗蓝牙模块(BLE)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块的优势"><span class="toc-text">低功耗蓝牙模块的优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gap"><span class="toc-text">gap</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主机和从机"><span class="toc-text">主机和从机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙广"><span class="toc-text">蓝牙广</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gatt"><span class="toc-text">gatt</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#service"><span class="toc-text">service</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#characteristic"><span class="toc-text">characteristic</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#uuid"><span class="toc-text">uuid</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#io的访问方式"><span class="toc-text">io的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2022-09-18-低功耗蓝牙/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="javascript:void(0);" data-enable="false">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2020-04-30-嵌入式知识梳理/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

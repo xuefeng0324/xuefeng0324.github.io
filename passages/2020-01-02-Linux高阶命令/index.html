@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>Linux高阶命令 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式软件开发,">
+  
+
+  
+  <meta name="description" content="Linux系统的高阶命令，有的不是很常用">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-02
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式软件开发/"><i class="fa fa-bookmark"></i>嵌入式软件开发</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    Linux高阶命令
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#高阶命令">高阶命令</a></li>
+<li><a href="#虚拟机上网">虚拟机上网</a><ul>
+<li><a href="#vmware中虚拟机网络的三种设置">vmware中虚拟机网络的三种设置</a></li>
+<li><a href="#虚拟机上网方式1">虚拟机上网方式1</a></li>
+<li><a href="#虚拟机上网方式2">虚拟机上网方式2</a></li>
+<li><a href="#总结">总结</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="高阶命令"><a href="#高阶命令" class="headerlink" title="高阶命令"></a>高阶命令</h2><table>
+<thead>
+<tr>
+<th align="center">命令</th>
+<th align="center">全称，功能</th>
+<th align="center">常用命令</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">find</td>
+<td align="center">查找</td>
+<td align="center">[find path -name”name”]</td>
+</tr>
+<tr>
+<td align="center">grep</td>
+<td align="center">Global Regular Expression Print，全局正则表达式版本</td>
+<td align="center">[grep -nr “要查找的符号” 目录/文件集合/*] [cd ../../]</td>
+</tr>
+<tr>
+<td align="center">which</td>
+<td align="center">查找二进制文件路径</td>
+<td align="center">[which 指令]</td>
+</tr>
+<tr>
+<td align="center">whereis</td>
+<td align="center">显示二进制文件的路径，源码，man手册位置</td>
+<td align="center">[mkdir 文件夹名] [whereis 指令]</td>
+</tr>
+<tr>
+<td align="center">uname</td>
+<td align="center">系统信息</td>
+<td align="center">[uname -r] [uname -a]</td>
+</tr>
+<tr>
+<td align="center">shutdown</td>
+<td align="center">关机</td>
+<td align="center">[shutdown -h now] [shutdown -r now]</td>
+</tr>
+<tr>
+<td align="center">init</td>
+<td align="center">关机/重启</td>
+<td align="center">[init 0] [init 2]</td>
+</tr>
+<tr>
+<td align="center">reboot</td>
+<td align="center">重启</td>
+<td align="center">[reboot]</td>
+</tr>
+<tr>
+<td align="center">tree</td>
+<td align="center">显示文件和目录的树形结构</td>
+<td align="center">[tree]</td>
+</tr>
+<tr>
+<td align="center">mount/umount</td>
+<td align="center">挂载/卸载磁盘到文件系统中</td>
+<td align="center">[mount -t nfs -o nolock 192.168.1.141:/root/rootfs /mnt] [umount /mnt]</td>
+</tr>
+<tr>
+<td align="center">df</td>
+<td align="center">显示已挂载的分区列表</td>
+<td align="center">[df -h]</td>
+</tr>
+<tr>
+<td align="center">du</td>
+<td align="center">列出文件或文件夹的大小</td>
+<td align="center">[du -h 文件夹/文件名/*]</td>
+</tr>
+<tr>
+<td align="center">useradd</td>
+<td align="center">添加用户</td>
+<td align="center">[uesradd 用户名]</td>
+</tr>
+<tr>
+<td align="center">userdel</td>
+<td align="center">删除用户</td>
+<td align="center">[userdel 用户名]</td>
+</tr>
+<tr>
+<td align="center">passwd</td>
+<td align="center">设置用户密码</td>
+<td align="center">[passwd 用户名]</td>
+</tr>
+<tr>
+<td align="center">chmod</td>
+<td align="center">修改文件权限</td>
+<td align="center">[chmod 编码 文件名] [chmod <label style="color:red">u/g/o<label style="color:blue">+/-<label style="color:orange">r/w/x]</label></label></label></td>
+</tr>
+<tr>
+<td align="center">chown</td>
+<td align="center">change owner,修改属主</td>
+<td align="center">[chown 用户名 文件名]</td>
+</tr>
+<tr>
+<td align="center">chgrp</td>
+<td align="center">change group,修改文件的组</td>
+<td align="center">[chgrp 组名 文件名]</td>
+</tr>
+<tr>
+<td align="center">tar</td>
+<td align="center">解压/压缩</td>
+<td align="center">[tar -czvf xxx.gz/.bz2 path] [tar -zxvf xxx.gz] [tar -jxvf xxx.bz2]</td>
+</tr>
+<tr>
+<td align="center">ifconfig</td>
+<td align="center">网络配置</td>
+<td align="center">[ifconfig eth0 ip地址] [ifconfig eth0 up/down] [ifup/ifdown eth0 ] [ifconfig eth0 ip地址 netmask 子网掩码]</td>
+</tr>
+<tr>
+<td align="center">mkfs</td>
+<td align="center">格式化文件系统</td>
+<td align="center">[mkfs /dev/hdl] [mkfs -t vfat 32 -F /dev/hdl]</td>
+</tr>
+<tr>
+<td align="center">sed/awk</td>
+<td align="center">匹配/替换</td>
+<td align="center">[]</td>
+</tr>
+</tbody></table>
+<h2 id="虚拟机上网"><a href="#虚拟机上网" class="headerlink" title="虚拟机上网"></a>虚拟机上网</h2><h4 id="vmware中虚拟机网络的三种设置"><a href="#vmware中虚拟机网络的三种设置" class="headerlink" title="vmware中虚拟机网络的三种设置"></a>vmware中虚拟机网络的三种设置</h4><p>第一种：桥接（bridged）<br>第二种：NAT<br>第三种：Host only，该模式下仅主机可以上网，虚拟机不能上网。</p>
+<h4 id="虚拟机上网方式1"><a href="#虚拟机上网方式1" class="headerlink" title="虚拟机上网方式1"></a>虚拟机上网方式1</h4><p>NAT方式<br>设置步骤：<br>第一步：在菜单栏虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择NAT模式<br>第一步：vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface etho inet dhcg<br>address 192.168.1.141<br>netmask 255.255.255.0<br>gateway 192.168.1.1</p>
+<h4 id="虚拟机上网方式2"><a href="#虚拟机上网方式2" class="headerlink" title="虚拟机上网方式2"></a>虚拟机上网方式2</h4><p>桥接方式<br>设置步骤：<br>第一步：桥接，在菜单栏 虚拟机-&gt;设置-&gt;硬件-&gt;网络适配器，右侧选择桥接模式。<br>第二步：桥接到可以上网的网卡，在菜单栏 编辑-&gt;<br>虚拟网络编辑器，选择桥接到自己Windows中可以上网的网卡上（一般就是Wifi网络或者有线网络）<br>第三步：设置dhcp并重启网卡。<br>vi /etc/network/interfaces,打开该文件，将内容编辑成为：<br>auto lo<br>iface lo inet loopback</p>
+<p>auto eth0<br>iface eth0 inet dhcp<br>address 192.168.1.141<br>netmask 255.255.255.0<br>gateway 192.168.1.1<br>保存退出，然后命令行执行/etc/init.d/networking restart重启网卡</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>第一，NAT方式设置上网比较简单，但是不能用在嵌入式开发中。<br>第二，桥接方式设置上网较繁琐，但是在嵌入式开发中比较有用。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶命令"><span class="toc-text">高阶命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟机上网"><span class="toc-text">虚拟机上网</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#vmware中虚拟机网络的三种设置"><span class="toc-text">vmware中虚拟机网络的三种设置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机上网方式1"><span class="toc-text">虚拟机上网方式1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#虚拟机上网方式2"><span class="toc-text">虚拟机上网方式2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-01-02-Linux高阶命令/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2020-01-11-c语言知识/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-12-31-Linux基本知识与操作/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

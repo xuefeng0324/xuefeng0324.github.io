@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>c语言知识2 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="C语言,">
+  
+
+  
+  <meta name="description" content="C语言基础知识2">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-26
+    </span>
+    
+      <span>
+        | <a href="/categories/C语言/"><i class="fa fa-bookmark"></i>C语言</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    c语言知识2
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#常量">常量</a><ul>
+<li><a href="#define定义的常量">#define定义的常量</a></li>
+<li><a href="#const关键字">const关键字</a></li>
+</ul>
+</li>
+<li><a href="#变量">变量</a><ul>
+<li><a href="#局部变量">局部变量</a><ul>
+<li><a href="#普通局部变量auto">普通局部变量(auto)</a></li>
+<li><a href="#静态局部变量static">静态局部变量(static)</a></li>
+<li><a href="#reqister变量">reqister变量</a></li>
+</ul>
+</li>
+<li><a href="#全局变量">全局变量</a><ul>
+<li><a href="#普通全局变量">普通全局变量</a></li>
+<li><a href="#静态全局变量">静态全局变量</a></li>
+</ul>
+</li>
+<li><a href="#局部变量和全局变量的对比">局部变量和全局变量的对比：</a></li>
+</ul>
+</li>
+<li><a href="#基本概念">基本概念：</a></li>
+<li><a href="#多文件c语言项目">多文件C语言项目</a></li>
+<li><a href="#头文件的引入">头文件的引入</a></li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="常量"><a href="#常量" class="headerlink" title="常量"></a>常量</h2><p>常量，程序运行过程中不会改变的量。常量的值在程序运行之前初始化的时候给定义一次，以后不会变。</p>
+<h4 id="define定义的常量"><a href="#define定义的常量" class="headerlink" title="#define定义的常量"></a>#define定义的常量</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N20<span class="comment">//符号常量</span></span></span><br><span class="line"><span class="keyword">int</span> a[N]；</span><br></pre></td></tr></table></figure>
+
+<h4 id="const关键字"><a href="#const关键字" class="headerlink" title="const关键字"></a>const关键字</h4><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> inti=<span class="number">14</span>;</span><br><span class="line"><span class="comment">//const和指针结合，共有4种形式</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *p;	<span class="comment">//p是一个指钍，指钍指向一个int型数据。p所指向的是个常量。</span></span><br><span class="line"><span class="keyword">int</span> sonat*p;	<span class="comment">//p是一个指钍，指钍指向一个int型数据。p所指向的是个常量。</span></span><br><span class="line"><span class="keyword">int</span> *<span class="keyword">const</span> p;	<span class="comment">//p是一个指钍，指钍指向一个int型数据。p本身是常量，p所指向的是个变量</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> *<span class="keyword">const</span> p;	<span class="comment">//p是一个指钍，指钍指向一个int型数据。p本身是常量，指向的也是常量</span></span><br></pre></td></tr></table></figure>
+
+<p>结论和记忆方法：</p>
+<ul>
+<li>const在*前面，就表示const作用于p所指向的量。所以这时候p所指向的是个常量。</li>
+<li>const在*后面，表示p本身是常量，但是p指向的不一定是常量。I<br><code>char *strspy(char *dst,const char *src);</code></li>
+</ul>
+<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p>变量，指的是在程序运行过程中，可以通过代码使它的值改变。</p>
+<h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><blockquote>
+<p>定义在函数中的变量，就叫局部变量。</p>
+</blockquote>
+<h6 id="普通局部变量-auto"><a href="#普通局部变量-auto" class="headerlink" title="普通局部变量(auto)"></a>普通局部变量(auto)</h6><blockquote>
+<p>普通的局部变量定义时直接定义，或者在定义前加auto关键字，auto关键字可省略。</p>
+</blockquote>
+<h6 id="静态局部变量-static"><a href="#静态局部变量-static" class="headerlink" title="静态局部变量(static)"></a>静态局部变量(static)</h6><blockquote>
+<p>静态局部变量定义时前面加static关键字.</p>
+</blockquote>
+<ul>
+<li>静态局部变量和普通局部变量不同。静态局部变量也是定义在函数内部的，静态局部变量定义时前面要加static关键字来标识，静态局部变量所在的函数在多调用多次时，只有第一次才经历变量定义和初始化，以后多次在调用时不再定义和初始化，而是维持之前上一次调用时执行后的变量的值。本次接着来使用。</li>
+<li>静态局部变量在第一次函数被调用时创造并初始化，但在函数退出时它不死亡，而是保持其值等待函数下一次被调用。下次调用时不再重新创造和初始化该变量，而是直接用上一次留下的值为基础来进行操作。</li>
+<li>静态局部变量的这种特性，和全局变量非常类似。它们的相同点是都创造和初始化一次，以后调用时值保持上次的不变。</li>
+</ul>
+<h6 id="reqister变量"><a href="#reqister变量" class="headerlink" title="reqister变量"></a>reqister变量</h6><blockquote>
+<p>register(寄存器），C语言的一个关键字:register inti=3;</p>
+</blockquote>
+<p>register类型的局部变量表现上和auto是一样的，基本没用。c语言的运行时环境承诺，会尽量将register类型的变量放到寄存器中去运行（普通的变量是在内存中），所以register类型的变量访问速度会快很多。但是有限制的：首先寄存器数目是有限的，所以register类型的变量不能太多；其次register类型变量在数据类型上有限制，譬如你就不能定义double类型的register变量。一般只在内核或者启动代码中，需要反复使用同一个变量这种情况下才会使用register类型变量。</p>
+<h4 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h4><p>定义在函数处面的变量，就叫全局变量。</p>
+<h6 id="普通全局变量"><a href="#普通全局变量" class="headerlink" title="普通全局变量"></a>普通全局变量</h6><blockquote>
+<p>普通全局变量定义前不加任何修饰词。普通全局变量可以在各个文件中使用，可以在项且内别的.c文件中被看到，所以要确保不能重名。</p>
+</blockquote>
+<h6 id="静态全局变量"><a href="#静态全局变量" class="headerlink" title="静态全局变量"></a>静态全局变量</h6><blockquote>
+<p>静态全局变量就是用来解决重名问题的。静态全局变量定义时在定义前加static关键字，告诉编译器这个变量只在当前本文件内使用，在别的文件中绝对不会使用。这样就不用担心重名问题。</p>
+</blockquote>
+<h4 id="局部变量和全局变量的对比："><a href="#局部变量和全局变量的对比：" class="headerlink" title="局部变量和全局变量的对比："></a>局部变量和全局变量的对比：</h4><ul>
+<li>定义同时没有初始化，则局部变量的值是随机的，而全局变量的值是默认为0。</li>
+<li>使用范围上：全局变量具有文件作用域，而局部变量只有代码块作用域。</li>
+<li>生命周期上：全局变量是在程序开始运行之前的初始化阶段就诞生，到整个程序结束退出的。<br>时候才死亡；而局部变量在进入局部变量所在的代码块时诞生，在该代码块退出的时候死亡（{}内，比如while(1){int a = 1;}a在外面是随机值）。</li>
+<li>变量分配位置：全局变量分配在数据段上，而局部变量分配在栈上。从局部变量声明的时候，它就在堆栈空间了，而不是调用函数的时候，才让它入栈的。调用函数的时候是参数进栈。</li>
+</ul>
+<h2 id="基本概念："><a href="#基本概念：" class="headerlink" title="基本概念："></a>基本概念：</h2><p><img src="/images/local_variable.png" alt>  </p>
+<p>作用域：起作用的区域，也就是可以工作的范围。</p>
+<p>代码块：所谓代码块，就是用{}括起来的一段代码。</p>
+<p>数据段：数据段存的是数，像全局变量就是存在数据段的</p>
+<p>代码段（代码区）：存放函数体的二进制代码，一般是只读的。</p>
+<p>全局区（静态区）（static）全局变量和静态变量的存储是放在一块的，初始化的全局变量和静态变量在一块区域，未初始化的全局变量和未初始化的静态变量在相邻的另一块区域。程序结束后由系统释放。 </p>
+<p>栈（stack）：先进后出。c语言中局部变量就分配在栈中，在函数中一个局部变量，就会由系统自动分配在栈中。在函数调用时，第一个进栈的是主函数中后的下一条指令（函数调用语句的下一条可执行语句）的地址，然后是函数的各个参数，在大多数的C编译器中，参数是由右往左入栈的，然后是函数中的局部变量。注意静态变量是不入栈的。当本次函数调用结束后，局部变量先出栈，然后是参数，最后栈顶指针指向最开始存的地址，也就是主函数中的下一条指令，程序由该点继续运行。</p>
+<p>堆：是一种结构，从全局区分配一段区间，然后由一种内存分配算法进行管理。<br>文字常量：常量字符串就是放在这里的。程序结束后由系统释放。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;   <span class="comment">//定义变量的时候必须是在&#123;开始的位置 ---------栈区变量</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span>  a;</span><br><span class="line">    <span class="keyword">int</span>  b;  <span class="comment">//a ,b都是局部变量 在栈区</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//看到不是变量的时候开始分配空间  </span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;a);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;b);</span><br><span class="line"></span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;<span class="comment">//结果分析：先定义的先入栈（在栈内不分配空间），因此a在栈底 b在栈顶。出栈的时候地址先分配给b,后分配给a，因而a的地址比b的大</span></span><br><span class="line">------------------------------------------------------------------</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span>  a;</span><br><span class="line">    <span class="keyword">int</span>  b;  <span class="comment">//a ,b都是局部变量 在栈区</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;a);</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;b);</span><br><span class="line">   &#123;</span><br><span class="line">       <span class="keyword">int</span> c;<span class="comment">//变量定义的时候必须在大括号 &#123;开始的位置</span></span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,&amp;c);</span><br><span class="line">   &#125;</span><br><span class="line">  </span><br><span class="line">    system(<span class="string">"pause"</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">------------------------------------------------------------------</span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span>  </span></span><br><span class="line"><span class="function"> </span>&#123;  </span><br><span class="line">      <span class="keyword">int</span>  a=<span class="number">20</span>;  </span><br><span class="line">      <span class="keyword">int</span> *p=&amp;a; </span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,a);	<span class="comment">//20的十进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%o\n"</span>,a);	<span class="comment">//20的八进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%x\n"</span>,a);	<span class="comment">//20的十六进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,a);	<span class="comment">//20的十六进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,p);	<span class="comment">//变量p里面存放a的地址，输出结果是十进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,&amp;a);	<span class="comment">//&amp;a里面存放a的地址，输出结果是十进制</span></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"%p\n"</span>,p);	<span class="comment">//变量p里面存放a的地址，输出结果是十六进制</span></span><br><span class="line"></span><br><span class="line">      system(<span class="string">"pause"</span>);</span><br><span class="line">      <span class="keyword">return</span> <span class="number">0</span>;  </span><br><span class="line"> &#125;<span class="comment">//在%后面加#会提示进制，如果是八进制，在输出结果前面加0，如果是十进制，不加任何字符，如果是十六进制，会加上0x</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="多文件C语言项目"><a href="#多文件C语言项目" class="headerlink" title="多文件C语言项目"></a>多文件C语言项目</h2><ul>
+<li>简单的c语言程序（项目）只有一个c文件（a.c），编译的时候gcc a.c -o a,执行./a</li>
+<li>复杂的c语言程序（项目）是由多个c文件构成的。譬如一个项目中包含2个c文件（a.c,b.c），编译的时候gsc a.c b.c-o ab，执行的时候./ab。跨文件调用函数，在调用函数前，要先声明该被调用函数的原型。</li>
+<li>实验：在a.c和2.c中分别定义main函数，各自单独编译时没问题：但是两个文件作为一个项目来编译gsc a.c b.c-o ab的时候，就会报错。multiple definition of main’.因为a.s和b.c这时候组成了一个程序，而一个程序必须有且只能有一个main函数。</li>
+<li>跨文件的变量引用<br>全局变量间接使用方式：在a.c中写一个函数，然后函数fa();中使用a.c中定义的全局变量ga，然后在b.c中先声明函数fa();，再使用函数fa();,即可在b.c中使用ga。<br>全局变量直接使用方法：想在b.c中直接引用a.c中定义的全局变量ga，则必须在b.c中引用前先声明ga：extern int g_a；<br>局部变量（不管是普通还是静态局部变量）不能跨文件使用，因为局部变量属于代码块作用域。</li>
+</ul>
+<h2 id="头文件的引入"><a href="#头文件的引入" class="headerlink" title="头文件的引入"></a>头文件的引入</h2><ul>
+<li><p>#include包含头文件时，用&lt;&gt;和””的区别<br>&lt;&gt;用来包含系统自带的头文件，系统自带，是编译器或者库函数或者操作系统提供的头文件。<br>“”用来包含项目目录中的头文件，程序员写的。（.h文件）</p>
+</li>
+<li><p>防止重复包含头文件</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> AH</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> A H</span></span><br><span class="line"><span class="comment">//c语言头文件中的声明</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>写程序时，最好不要在头文件中定义和初始化变量。因为这时该头文件被多个源文件包含时，就会出现重复定义问题。全局变量的定义就应该放在某个源文件（.c文件）中，然后在别的源文件中使用前extern声明。</p>
+</li>
+</ul>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#常量"><span class="toc-text">常量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#define定义的常量"><span class="toc-text">#define定义的常量</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#const关键字"><span class="toc-text">const关键字</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变量"><span class="toc-text">变量</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#局部变量"><span class="toc-text">局部变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#普通局部变量-auto"><span class="toc-text">普通局部变量(auto)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#静态局部变量-static"><span class="toc-text">静态局部变量(static)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#reqister变量"><span class="toc-text">reqister变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#全局变量"><span class="toc-text">全局变量</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#普通全局变量"><span class="toc-text">普通全局变量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#静态全局变量"><span class="toc-text">静态全局变量</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#局部变量和全局变量的对比："><span class="toc-text">局部变量和全局变量的对比：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本概念："><span class="toc-text">基本概念：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多文件C语言项目"><span class="toc-text">多文件C语言项目</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#头文件的引入"><span class="toc-text">头文件的引入</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-01-26-c语言知识2/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2020-01-31-嵌入式知识/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2020-01-17-hexo博客文章常用写法/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

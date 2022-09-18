@@ -1,0 +1,2752 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>x210开发板 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式,">
+  
+
+  
+  <meta name="description" content="x210开发板">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-02-05
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    x210开发板
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#x210开发板arm裸机实验">x210开发板arm裸机实验</a><ul>
+<li><a href="#基本概念">基本概念</a><ul>
+<li><a href="#支持的外部存储器">支持的外部存储器</a></li>
+<li><a href="#x210使用的启动方式">x210使用的启动方式</a></li>
+</ul>
+</li>
+<li><a href="#刷机">刷机</a><ul>
+<li><a href="#sd卡刷机">sd卡刷机</a></li>
+<li><a href="#usb刷机">usb刷机</a></li>
+</ul>
+</li>
+<li><a href="#开发板实验准备">开发板实验准备</a><ul>
+<li><a href="#sd卡下载">sd卡下载</a></li>
+<li><a href="#usb下载">usb下载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验01-led灯">实验01-led灯</a><ul>
+<li><a href="#基本概念-1">基本概念</a><ul>
+<li><a href="#gpio">gpio</a></li>
+<li><a href="#反汇编工具objdump">反汇编工具objdump</a></li>
+</ul>
+</li>
+<li><a href="#编程过程">编程过程</a></li>
+<li><a href="#实验项目">实验项目</a><ul>
+<li><a href="#led灯-01-全亮">led灯-01-全亮</a></li>
+<li><a href="#led灯-02-优化代码">led灯-02-优化代码</a></li>
+<li><a href="#led灯-03-部分点亮">led灯-03-部分点亮</a></li>
+<li><a href="#led灯-04-闪烁">led灯-04-闪烁</a></li>
+<li><a href="#led灯-05-跑马灯">led灯-05-跑马灯</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验02-启动代码">实验02-启动代码</a><ul>
+<li><a href="#基本概念-2">基本概念</a><ul>
+<li><a href="#看门狗">看门狗</a></li>
+<li><a href="#c语言">c语言</a></li>
+<li><a href="#设置栈">设置栈</a></li>
+<li><a href="#icache">icache</a></li>
+<li><a href="#重定位">重定位</a></li>
+<li><a href="#sdram">sdram</a></li>
+<li><a href="#时钟系统">时钟系统</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-1">实验项目</a><ul>
+<li><a href="#启动代码-01-watch-dog-timer">启动代码-01-watch dog timer</a></li>
+<li><a href="#启动代码-02-设置栈">启动代码-02-设置栈</a></li>
+<li><a href="#启动代码-03-icache">启动代码-03-icache</a></li>
+<li><a href="#启动代码-04-重定位">启动代码-04-重定位</a></li>
+<li><a href="#启动代码-05-初始化sdram">启动代码-05-初始化sdram</a></li>
+<li><a href="#启动代码-06-设置时钟">启动代码-06-设置时钟</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验03-串口通信">实验03-串口通信</a><ul>
+<li><a href="#基本概念-3">基本概念</a><ul>
+<li><a href="#通信发展史">通信发展史</a></li>
+<li><a href="#串口通信">串口通信</a></li>
+</ul>
+</li>
+<li><a href="#编程过程-1">编程过程</a></li>
+<li><a href="#实验项目-2">实验项目</a><ul>
+<li><a href="#串口通信-01-设置串口">串口通信-01-设置串口</a></li>
+<li><a href="#串口通信-02-修改比特率">串口通信-02-修改比特率</a></li>
+<li><a href="#串口通信-03-移植printf">串口通信-03-移植printf</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验04-中断">实验04-中断</a><ul>
+<li><a href="#基本概念-4">基本概念</a><ul>
+<li><a href="#按键中断">按键中断</a></li>
+<li><a href="#轮询方式">轮询方式</a></li>
+<li><a href="#中断体系">中断体系</a></li>
+<li><a href="#中断寄存器">中断寄存器</a></li>
+<li><a href="#编程过程-2">编程过程</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-3">实验项目</a><ul>
+<li><a href="#中断-01-按键轮询">中断-01-按键轮询</a></li>
+<li><a href="#中断-02-移植printf">中断-02-移植printf</a></li>
+<li><a href="#中断-03-按键中断">中断-03-按键中断</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验05-定时器">实验05-定时器</a><ul>
+<li><a href="#基本概念-5">基本概念</a><ul>
+<li><a href="#定时器">定时器</a></li>
+<li><a href="#pwm定时器">pwm定时器</a></li>
+<li><a href="#看门狗定时器">看门狗定时器</a></li>
+<li><a href="#实时时钟rtc">实时时钟rtc</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-4">实验项目</a><ul>
+<li><a href="#定时器-01-蜂鸣器">定时器-01-蜂鸣器</a></li>
+<li><a href="#定时器-02-看门狗中断">定时器-02-看门狗中断</a></li>
+<li><a href="#定时器-03-看门狗复位">定时器-03-看门狗复位</a></li>
+<li><a href="#定时器-04-rtc定时器">定时器-04-rtc定时器</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验06-sd卡启动">实验06-sd卡启动</a><ul>
+<li><a href="#基本概念-6">基本概念</a><ul>
+<li><a href="#sd卡的编程接口">sd卡的编程接口</a></li>
+<li><a href="#s5pv210的sd卡启动详解">s5pv210的sd卡启动详解</a></li>
+<li><a href="#x210开发板的软开关按键问题">x210开发板的软开关按键问题</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-5">实验项目</a><ul>
+<li><a href="#sd卡启动-01-分散加载">sd卡启动-01-分散加载</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验07-nand">实验07-nand</a><ul>
+<li><a href="#nand基本概念">nand基本概念</a><ul>
+<li><a href="#nandflash接口">nandflash接口</a></li>
+<li><a href="#nandflash控制器">nandflash控制器</a></li>
+</ul>
+</li>
+<li><a href="#inand基本概念">inand基本概念</a><ul>
+<li><a href="#sd卡-inand操作">sd卡-inand操作</a></li>
+<li><a href="#sd-inand代码分析">sd-inand代码分析</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验08-i2c">实验08-i2c</a><ul>
+<li><a href="#基本概念-7">基本概念</a><ul>
+<li><a href="#i2c通信-芯片间通信">i2c通信-芯片间通信</a></li>
+<li><a href="#i2c通信时序">i2c通信时序</a></li>
+<li><a href="#s5pv210的i2c控制器">s5pv210的i2c控制器</a></li>
+<li><a href="#x210板载gsensor介绍">x210板载gsensor介绍</a></li>
+<li><a href="#i2c总线的通信流程">I2C总线的通信流程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验09-adc">实验09-adc</a><ul>
+<li><a href="#基本概念-8">基本概念</a><ul>
+<li><a href="#模拟量和数字量">模拟量和数字量</a></li>
+<li><a href="#adc主要相关概念">adc主要相关概念</a></li>
+<li><a href="#s5pv210的adc控制器">s5pv210的adc控制器</a></li>
+<li><a href="#ad转换的编程">ad转换的编程</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验10-lcd显示器">实验10-lcd显示器</a><ul>
+<li><a href="#基本概念-9">基本概念</a><ul>
+<li><a href="#lcd的接口技术">lcd的接口技术</a></li>
+<li><a href="#lcd显示图像">lcd显示图像</a></li>
+<li><a href="#lcd的六个主要时序参数">lcd的六个主要时序参数</a></li>
+<li><a href="#lcd显示的主要相关概念">lcd显示的主要相关概念</a></li>
+<li><a href="#s5pv210的lcd控制器">s5pv210的lcd控制器</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-6">实验项目</a><ul>
+<li><a href="#lcd显示器-01-控制器初始化">lcd显示器-01-控制器初始化</a></li>
+<li><a href="#lcd显示器-02-显示像素">lcd显示器-02-显示像素</a></li>
+<li><a href="#lcd显示器-03-画线">lcd显示器-03-画线</a></li>
+<li><a href="#lcd显示器-04-显示字符">lcd显示器-04-显示字符</a></li>
+<li><a href="#lcd显示器-05-画图">lcd显示器-05-画图</a></li>
+<li><a href="#lcd显示器-06-未完成事项">lcd显示器-06-未完成事项</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验11-触摸屏">实验11-触摸屏</a><ul>
+<li><a href="#基本概念-10">基本概念</a><ul>
+<li><a href="#输入类设备简介">输入类设备简介</a></li>
+<li><a href="#电阻式触摸屏的原理">电阻式触摸屏的原理</a></li>
+<li><a href="#s5pv210的电阻触摸屏控制器">s5pv210的电阻触摸屏控制器</a></li>
+<li><a href="#电容触摸屏的原理">电容触摸屏的原理</a></li>
+<li><a href="#ft5x06电容触摸ic简介">ft5x06电容触摸IC简介</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#实验12-shell">实验12-shell</a><ul>
+<li><a href="#基本概念-11">基本概念</a><ul>
+<li><a href="#程序或操作系统的用户接口">程序或操作系统的用户接口</a></li>
+</ul>
+</li>
+<li><a href="#实验项目-7">实验项目</a><ul>
+<li><a href="#shell-01-输入回显">shell-01-输入回显</a></li>
+<li><a href="#shell-02-移植">shell-02-移植</a></li>
+<li><a href="#shell-03-标准命令集">shell-03-标准命令集</a></li>
+<li><a href="#shell-04-添加命令">shell-04-添加命令</a></li>
+<li><a href="#shell-05-其他命令">shell-05-其他命令</a></li>
+<li><a href="#shell-06-开机倒计时">shell-06-开机倒计时</a></li>
+<li><a href="#shell-07-环境变量">shell-07-环境变量</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="x210开发板arm裸机实验"><a href="#x210开发板arm裸机实验" class="headerlink" title="x210开发板arm裸机实验"></a>x210开发板arm裸机实验</h2><p><img src="/images/s5pv210.png" alt></p>
+<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><blockquote>
+<p><font size="2">镜像（Mirroring）<br>一种文件存储形式，是冗余的一种类型，一个磁盘上的数据在另一个磁盘上存在一个完全相同的副本即为镜像。可以把许多文件做成一个镜像文件，与GHOST等程序放在一个盘里用GHOST等软件打开后，又恢复成许多文件，</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">固件（firmware）<br>所谓固件，就是文件，固化在存储介质上的文件，而文件，其实就是数据。嵌入式开发中，尤其是Linux开发，常见的方式是，从开发板上启动，会允许Uboot，然后Uboot去加载kernel内核，常用的kernel是uImage，然后Linux运行后，去加载根文件系统rootfs，常用的yaffs2文件系统。<br>…………………………………………..<br>前后系统运行所需要的文件，总的来说，就是这三个：<br>Uboot，比如u-boot.bin<br>Kernel，比如uImage<br>Rootfs，比如yaffs2.rootfs.arm<br>而大家一直说的固件，在系统是Linux系统的情况下，常常就是指的是这些文件。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">烧写<br>所谓烧写，就是写数据，把文件（固件/数据）写到存储介质（Nand Flash, Nor Flash等）上。而对于烧写这个词，说法很多，常见的有：烧写=烧录=flash=编程=program=programming<br>…………………………………………..<br>更新固件，其实也指的是将新的固件烧写进去，即所谓更新固件，更新系统。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">USB device:从硬件角度看就是一个带有usb client控制器的设备；从软件角度看，就是一个挂在usb总线上的一个普通意义上的设备，只不过它们的驱动是基于host驱动之上的。<br>…………………………………………..<br>USB host:USB主设备，可以从另外一个USB device中取得数据，包括USB host控制器3.0USB host协议。与USB device或USB slave相对应。<br>…………………………………………..<br>USB client:从硬件角度看就是指USB client 控制器，从软件角度看，就是指USB client协议，与USB host协议相对应。<br>…………………………………………..<br>USB OTG:On The Go，正在进行中的意思，也就是可以直接传输，就是可以从一个机器直接传到另一个机器中。<br>…………………………………………..<br>USB HUB：USB扩展/集线器，一种可以将一个USB接口扩展为多个（通常为4个），并可以使这些接口同时使用的装置。</font></p>
+</blockquote>
+<blockquote>
+<p><font size="2">NIC，Network Interface Card，网络接口卡，即网卡。</font></p>
+</blockquote>
+<h6 id="支持的外部存储器"><a href="#支持的外部存储器" class="headerlink" title="支持的外部存储器"></a>支持的外部存储器</h6><blockquote>
+<p>X210有2个版本，Nand版和iNand版，分别使用Nand     Flash和iNand为外部存储器。S5PV210共支持4个SD/MMC通道，其中通道0和2用作启动。X210开发板中SD/MMC0通道用于连接板载MMC，因此外部启动时只能使用SD/MMC2通道（注意通道3不能启动，通道0、1被隐藏）。见《S5PV210_iROM_ApplicationNote_Preliminary_20091126.pdf》中P6</p>
+</blockquote>
+<h6 id="x210使用的启动方式"><a href="#x210使用的启动方式" class="headerlink" title="x210使用的启动方式"></a>x210使用的启动方式</h6><blockquote>
+<p>外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM。210内部有iROM和iRAM，因此启动时分两个阶段：内部启动阶段和外部启动阶段。对于内部启动阶段各种S5PV210的开发板都是相同的，对于外部启动阶段，不同开发板会有不同。以下是内部启动（iRom）带动外部启动（Nand、DRAM）。</p>
+</blockquote>
+<ul>
+<li><p>s5pv210启动<br>  210内置了一块96KB大小的SRAM（叫iRAM），同时还有一块内置的64KB大小的NorFlash（叫iROM）。210的启动过程大致是：<br>  第一步：CPU上电后先从内部IROM中读取预先设置的代码（BL0），执行。这一段IROM代码首先做了一些基本的初始化（CPU时钟、关看门狗···）（这一段IROM代码是三星出厂前设置的，三星也不知道我们板子上将来接的是什么样的DRAM，因此这一段IROM是不能负责初始化外接的DRAM的，因此这一段代码只能初始化SoC内部的东西）；然后这一段代码会判断我们选择的启动模式（我们通过硬件跳线可以更改板子的启动模式），然后从相应的外部存储器去读取第一部分启动代码（BL1，大小为16KB）到内部SRAM。</p>
+<p>  第二步：从IRAM去运行刚上一步读取来的BL1（16KB），然后执行。BL1负责初始化NandFlash，然后将BL2读取到IRAM（剩余的80KB）然后运行</p>
+<p>  第三步：从IRAM运行BL2，BL2初始化DRAM，然后将OS读取到DRAM中，然后启动OS，启动过程结束。<br>  …………………………………………..<br>  当我们自己写代码运行时，一般用usb下载到IRAM，这个时候IRAM有多大，我们就能运行多大的代码（96KB）；第二个方法是下载到sd卡，由NorFlash把里面的代码放到IRAM里面，但是NorFlash只选择前16KB的代码放进IRAM，因此需要注意代码文件的大小。 </p>
+</li>
+<li><p>思路<br>  因为启动代码的大小是不定的，有些公司可能96kb就够了，有些公司可能1MB都不够。三星的解决方案是：把启动代码分为2半（BL1和BL2），这两部分协同工作来完成启动。</p>
+</li>
+<li><p>BL0代码含义<br>  关看门狗<br>  初始化指令cache<br>  初始化栈<br>  初始化堆<br>  初始化块设备复制函数device copy function<br>  设置SoC时钟系统<br>  复制BL1到内部IRAM（16KB）<br>  检查BL1的校验和<br>  跳转到BL1去执行</p>
+</li>
+<li><p>BL1代码含义<br>  初始化NandFlash<br>  将BL2读取到IRAM</p>
+</li>
+<li><p>BL2代码含义<br>  初始化DRAM<br>  将OS读取到DRAM中</p>
+</li>
+</ul>
+<h4 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h4><p>嵌入式开发，很多用的是Linux系统，也有用WinCE和其他系统,Linux系统中，多数为bootloader+ kernel + rootfs的模式。其中，所用的bootloader，多为uboot。负责初始化硬件和设置好软件环境，然后加载kernel，运行kernel，kernel运行后，再去加载rootfs，之后就是你所看到的运行的Linux了。</p>
+<p>在开发过程中，上述对应的文件每个系统都有差异，比如U-boot.bin，uImage，rootfs等，需要从PC上下载到Uboot的SDRAM，即内存中，然后再用对应命令或工具，将数据写入到某存储介质中。有时候也需要在发布产品之后，在系统运行的情况下，动态升级整个系统的固件的。</p>
+<blockquote>
+<p>刷机需要将对应的文件，烧写到存储介质上，此时，有两种方法：<br>一种是一步到位的方式，即直接通过某工具将文件写入到存储介质上。<br>另外一种是两步到位的方式，先通过某种方式把文件下载到Uboot中，再通过Uboot中的命令，去把数据写入到存储介质上。<br>…………………………………………..<br>x210开发板启动有SD/MMC卡启动和USB启动和Uart启动（异步串行接口），通过OM pin选择启动介质，当OM pin（0-5）为101100时为SD/MMC卡启动，当OM pin（0-5）为101101为USB启动。</p>
+</blockquote>
+<h6 id="sd卡刷机"><a href="#sd卡刷机" class="headerlink" title="sd卡刷机"></a>sd卡刷机</h6><blockquote>
+<p>在Uboot中，把下载到内存中的固件，写入到存储介质（iNand）上</p>
+</blockquote>
+<ul>
+<li><p>破坏iNand的uboot<br>  将iNand卡的uboot分区清除（填写0）：</p>
+<p>  ①将OM pin(0-5)拨为101100，0为gnd，1为vcc（vcc靠近核心板一侧），用usb转串口线连接电脑usb和开发板串口（默认Uart2,在两个接口之中远离核心板的为Uart2，另一个为Uart0），安装usb转串口驱动将usb模拟为串口（并且usb转串口线里面有芯片将usb协议转换成串口协议）。或者将串口线连接电脑串口和开发板串口，这样不需要驱动。</p>
+<p>  ②安装secureCRT（监视软件，按照说明破解），连接开发板串口的作用是将电脑作为控制台，为此需要软件。设置secureCRT，协议：Serial，接口，波特率：115200，数据流控制：全不选。3秒内按回车进入控制台。</p>
+<p>  ③在开发板的安卓环境下破坏iNand的uboot，在secureCRT，在linux和android系统下输入下面linux的dd命令，重启后显示错误即破坏成功。dd是Linux/UNIX下的一个非常有用的命令，作用是用指定大小的块拷贝一个文件，并在拷贝的同时进行指定的转换。<br>  //将大小为512字节（bs=512）的0（if=/dev/zero）写到iNand（of=/dev/block/mmcblk0）里面的1个扇区（count=1），该扇区为第1个扇区（seek=1），因为启动时IROM还是会先从iNand中读取前16KB，然后计算校验和。这时候因为有1个扇区被擦掉了，所以校验和不通过，所以启动失败（会从SD2去执行2nd启动）。</p>
+<p>  注意：破坏板载iNand的bootloader后，不插外部SD卡，启动时串口得到：SD checksum Error</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">busybox dd if=/dev/zero of=/dev/block/mmcblk0 bs=512 seek=1 count=1 conv=sync</span><br><span class="line"></span><br><span class="line">sync</span><br><span class="line"></span><br><span class="line">//可以使用脚本，命名write2sd,内容:</span><br><span class="line">#!/bin/sh</span><br><span class="line">sudo dd iflag=dsync oflag=dsync if=210.bin of=/dev/sdb seek=1</span><br><span class="line"></span><br><span class="line">//或者在secureCRT，uboot底下使用movi命令清除扇区（写内存地址的数据进某个分区）</span><br><span class="line">movi write x xx（x为分区，xx为内存地址，在secureCRT输入help movi可查询命令）</span><br><span class="line">movi write u-boot 0x30000000</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在windows下给sd卡写uboot<br>  ①格式化sd卡<br>  ②使用x210_Fusing_Tool.exe烧写安卓/linux的uboot.bin</p>
+</li>
+<li><p>在linux下给sd卡写uboot（虚拟机）<br>  ①格式化sd卡，用读卡器插入电脑，在虚拟机-可连接设备选择连接u盘设备，在命令行中输入：<code>ls /dev/sd*</code>查看，和之前对比，得知SD卡在linux中的设备编号，一般是/dev/sdb。<br>  ②制作SD启动卡，在linux终端输入<code>cd /mnt/hgfs/share/uboot_sd_fusing</code>进入文件夹和<code>./nand_fusing.sh /dev/sdb</code>将uboot刷进sd卡里。</p>
+</li>
+<li><p>利用uboot写固件到iNand<br>  ①插sd卡到开发板的SD2卡槽（靠近核心板的为SD2，远离的为SD3卡槽），启动开发板在自动启动前（3秒内）在secureCRT按回车停止自动启动安卓。</p>
+<p>  ②用usb-otg线连接电脑的usb和开发板的usb otg接口。</p>
+<p>  ③在secureCRT输入fastboot命令进入fastboot，如果分区数不为7，输入<code>fdisk -c 0</code>来分区。</p>
+<p>  ④在设备管理器更新驱动程序来安装fastboot驱动x210_android_driver（安装后显示为安卓设备：Android Bootloader Interface，win10需要禁用数字签名</p>
+<p>  …………………………………………..<br>  <a href="https://jingyan.baidu.com/article/ca00d56c5a8f86e99eebcf04.html" target="_blank" rel="noopener">win10禁用驱动签名方法</a>）（永久禁用可以在提示符后面输入bcdedit.exe /set nointegritychecks on后回车，开启数字签名的话bcdedit.exe /set nointegritychecks off回车）<br>  …………………………………………..</p>
+<p>  ⑤windows下fastboot软件使用：windows控制台输入<code>e:</code>和<code>cd E:\临时\3-嵌入式\实验\01刷机\4.fastboot\4.fastboot软件</code>进入fastboot文件夹执行fastboot命令来烧录系统到iNand。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">常用路径</span><br><span class="line">fastboot devices	命令用来查看当前连接的设备。（我们开发板看到的是：SMDKC110-01）</span><br><span class="line">fastboot flash x xx	命令用来烧录(flash)的，x为分区，xx为相对路径</span><br><span class="line">fastboot reboot		命令用来重启系统</span><br><span class="line">fastboot -w 		清除分区数据</span><br><span class="line"></span><br><span class="line">x210v3</span><br><span class="line">烧录安卓</span><br><span class="line">fastboot flash bootloader android4.0.4/uboot_inand.bin		烧uboot</span><br><span class="line">fastboot flash kernel android4.0.4/zImage-android	烧linux kernel</span><br><span class="line">fastboot flash system android4.0.4/x210.img		烧android rom</span><br><span class="line">uboot的参数设置：set bootcmd &apos;movi read kernel 30008000; bootm </span><br><span class="line"></span><br><span class="line">烧录linux+QT4.8</span><br><span class="line">fastboot flash bootloader linux+QT4.8/uboot_inand.bin	烧uboot</span><br><span class="line">fastboot flash kernel linux+QT4.8/zImage-qt		烧linux kernel</span><br><span class="line">fastboot flash system linux+QT4.8/rootfs_qt4.ext3		烧rootfs</span><br><span class="line"></span><br><span class="line">x210v3s</span><br><span class="line">分别在windows命令行执行以下命令烧录安卓</span><br><span class="line">fastboot flash bootloader android4.0/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android4.0/zImage-android	烧linux kernel</span><br><span class="line">fastboot flash system android4.0/x210.img		烧android rom</span><br><span class="line">uboot的参数设置：set bootcmd &apos;movi read kernel 30008000; bootm 30008000&apos;（默认就是这个，不用设置也行）</span><br><span class="line"></span><br><span class="line">烧录linux+QT</span><br><span class="line">fastboot flash bootloader linuxQT/uboot.bin	烧uboot</span><br><span class="line">fastboot flash kernel linuxQT/zImage-qt		烧linux kernel</span><br><span class="line">fastboot flash system linuxQT/rootfs_qt4.ext3		烧rootfs</span><br><span class="line">uboot的参数不用特意设置（因为我们刷了专为linux+QT定制的uboot，这个uboot中估计已经预制好了所有的启动参数）</span><br><span class="line"></span><br><span class="line">烧录android2.3</span><br><span class="line">fastboot flash bootloader android2.3/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android2.3/zImage		烧linux kernel</span><br><span class="line">fastboot flash system android2.3/x210.img		烧android rom</span><br><span class="line">注意：android2.3中使用了串口0（Urat0，靠近核心板），所以启动后要把串口插到串口0中，不然串口没有任何启动信息出来。android2.3中屏幕上的logo是在左上角（刷机成功的标志）</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="usb刷机"><a href="#usb刷机" class="headerlink" title="usb刷机"></a>usb刷机</h6><ul>
+<li><p>dnw工具下载<br>  ①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）</p>
+<p>  ②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>  没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（最好将驱动放在英文目录下，成功即显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。</p>
+<p>  …………………………………………..<br>  <a href="https://jingyan.baidu.com/article/ca00d56c5a8f86e99eebcf04.html" target="_blank" rel="noopener">win10禁用驱动签名方法</a>（永久禁用可以在提示符后面输入bcdedit.exe /set nointegritychecks on后回车，开启数字签名的话bcdedit.exe /set nointegritychecks off回车）因为驱动不包含驱动数字签名，windows会禁止安装。<br>  …………………………………………..</p>
+<p>  ③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。</p>
+<p>  ④下载代码，点击dnw软件的菜单usb port-transmit-transmit，下载x210_usb.bin到0xd0020010（地址为SRAM，作用是初始化DRAM），然后下载uboot.bin到0x23e00000（地址为DRAM），以上过程和sd刷卡不同，不是下载uboot到sd卡，而是直接下载到DRAM执行，重启之后DRAM的数据会被清除，uboot.bin大小为384kb,SRAM只有96kb，而下载到iNand需要使用fastboot下载。</p>
+<p>  ⑤下载uboot.bin之前打开secureCRT，下载uboot.bin之后马上按回车进入开发板的fastboot。</p>
+<p>  ⑥在secureCRT输入<code>fdisk -c 0</code>来给iNand分区，不然等会fastboot选择分区的时候识别不了。输入fastboot查看分区，7个分区即成功分区。</p>
+<p>  ⑦在windows命令行使用fastboot命令刷机，具体参考sd卡刷机。</p>
+</li>
+</ul>
+<h4 id="开发板实验准备"><a href="#开发板实验准备" class="headerlink" title="开发板实验准备"></a>开发板实验准备</h4><blockquote>
+<p>分析启动过程可知；210启动后先执行内部iROM中的BL0，BL0执行完后会根据OMpin的配置选择一个外部设备来启动（有很多，我们实际使用的有2个：usb启动和SD卡启动）。在usb启动时内部BL0读取到BL1后不做校验，直接从BL1的实质内部0xd0020010开始执行，因此usb启动的景象led.bin不需要头信息，因此我们从usb启动时直接将镜像下载到0xd0020010去执行即可；从SD启动时，BL0会首先读取sd卡得到完整的镜像（例如led.bin加上16字节的校验头），然后BL0会自己根据你的实际镜像（例如led.bin）来计算一个校验和(checksum)，然后和你完整镜像的头部中的checksum来比对。如果对应则执行BL1，如果不对应则启动失败（会转入执行2st启动，即SD2启动。如果这里已经是2st启动了则启动失败）。<br>…………………………………………..<br>注意，默认 andorid2.3,linux,WINCE 都使用 uart0 作为调试串口，只有 android4.0 使用 uart2 作为调试串口。 </p>
+</blockquote>
+<h6 id="sd卡下载"><a href="#sd卡下载" class="headerlink" title="sd卡下载"></a>sd卡下载</h6><ul>
+<li>将OM pin(0-5)拨为101100</li>
+<li>破坏iNand的uboot</li>
+<li>在windows下给sd卡写uboot（x210_Fusing_Tool.exe）</li>
+<li>在linux下给sd卡写uboot（虚拟机）（在linux终端输入<code>cd /mnt/hgfs/share/uboot_sd_fusing</code>进入文件夹和<code>./nand_fusing.sh(未定) /dev/sdb</code>将210.bin刷进sd卡里。）</li>
+</ul>
+<blockquote>
+<p>mkv210_image.c的作用：为BL1添加校验头。我们编译链接时只得到了led.bin，这个210.bin的得到和交叉编译工具链是完全无关的。由led.bin得到210.bin的过程是三星的S5PV210所特有的，因此需要我们自己去完成，为此我们写了mkv210_image.c来完成。<br>…………………………………………<br>整个程序工作流分析：<br>整个程序中首先申请一个16KB大小的buffer并且填充为0，要检验用户传参，在需要校验的内存区域中，所有内存中的内容按照字节为单位来进行相加，形成校验和，然后把所有内容按照各自的位置填充进去，最终把填充好的buffer写入到一个文件就形成了我们想要的镜像。</p>
+</blockquote>
+<ul>
+<li>使用<code>make led.bin</code>指令添加校验头,使用<code>make clean</code>清理文件。</li>
+</ul>
+<h6 id="usb下载"><a href="#usb下载" class="headerlink" title="usb下载"></a>usb下载</h6><ul>
+<li><p>dnw工具下载<br>  ①OM pin(5)打到VCC，OM pin(0-5)为101101，0为gnd，1为vcc（vcc靠近核心板一侧）</p>
+<p>  ②用usb-otg线连接电脑的usb和开发板的usb otg接口。因为X210开发板使用了软开关，但是代码没有启动操作系统，所以<br>  没去处理开关机，要一直按power键，抬起即关机，需要一直按着power键开机。在设备管理器更新驱动程序来安装dnw驱动（成功显示为通用串行总线控制器，dnw软件顶部usb显示为ok）。</p>
+<p>  ③打开dnw.exe（v0.60版本为x210专用），在dnw软件的菜单Configuration-option中设置serial port的波特率：115200，接口：com x（x为当前开发板串口连接电脑的com接口号）和usb port的download address：0xd0020010（0xd0020000-0xd002000f的16个字节用来放校验信息，但是usb不需要校验，所以从0xd0020010开始放启动代码）。</p>
+<p>  ④下载代码，在dnw软件的菜单usb port-transmit-transmit,选择镜像文件x210_usb.bin，地址是0xd0020010;选择镜像文件uboot.bin，刷机地址是0x23e00000，下载好之后，uboot就自动启动，此时3秒内要按回车，然后输入<code>fdisk -c 0</code>去重新分区，然后再输入fastboot。</p>
+<p>  ⑤windows下使用fastboot命令刷机，windows控制台输入<code>e:</code>和<code>cd E:\临时\3-嵌入式\实验\01刷机\4.fastboot\4.fastboot软件</code>进入fastboot文件夹执行fastboot命令来烧录系统到iNand。。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">常用路径</span><br><span class="line">fastboot devices	命令用来查看当前连接的设备。（我们开发板看到的是：SMDKC110-01）</span><br><span class="line">fastboot flash x xx	命令用来烧录(flash)的，x为分区，xx为相对路径（可以使用&amp;&amp;将命令一起执行）</span><br><span class="line">fastboot reboot		命令用来重启系统</span><br><span class="line">fastboot -w 		清除分区数据</span><br><span class="line"></span><br><span class="line">x210v3</span><br><span class="line">烧录安卓</span><br><span class="line">fastboot flash bootloader android4.0.4/uboot_inand.bin		烧uboot</span><br><span class="line">fastboot flash kernel android4.0.4/zImage-android	烧linux kernel</span><br><span class="line">fastboot flash system android4.0.4/x210.img		烧android rom</span><br><span class="line">uboot的参数设置：set bootcmd &apos;movi read kernel 30008000; bootm </span><br><span class="line"></span><br><span class="line">烧录linux+QT4.8</span><br><span class="line">fastboot flash bootloader linux+QT4.8/uboot_inand.bin	烧uboot</span><br><span class="line">fastboot flash kernel linux+QT4.8/zImage-qt		烧linux kernel</span><br><span class="line">fastboot flash system linux+QT4.8/rootfs_qt4.ext3		烧rootfs</span><br><span class="line"></span><br><span class="line">x210v3s</span><br><span class="line">烧录android4.0</span><br><span class="line">fastboot flash bootloader android4.0/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android4.0/zImage-android	烧linux kernel</span><br><span class="line">fastboot flash system android4.0/x210.img		烧android rom</span><br><span class="line">uboot的参数设置：set bootcmd &apos;movi read kernel 30008000; bootm 30008000&apos;（默认就是这个，不用设置也行）</span><br><span class="line"></span><br><span class="line">烧录linux+QT</span><br><span class="line">fastboot flash bootloader linuxQT/uboot.bin	烧uboot</span><br><span class="line">fastboot flash kernel linuxQT/zImage-qt		烧linux kernel</span><br><span class="line">fastboot flash system linuxQT/rootfs_qt4.ext3		烧rootfs</span><br><span class="line">uboot的参数不用特意设置（因为我们刷了专为linux+QT定制的uboot，这个uboot中估计已经预制好了所有的启动参数）</span><br><span class="line"></span><br><span class="line">烧录android2.3</span><br><span class="line">fastboot flash bootloader android2.3/uboot.bin		烧uboot</span><br><span class="line">fastboot flash kernel android2.3/zImage		烧linux kernel</span><br><span class="line">fastboot flash system android2.3/x210.img		烧android rom</span><br><span class="line">注意：android2.3中使用了串口0（Urat0，靠近核心板），所以启动后要把串口插到串口0中，不然串口没有任何启动信息出来。android2.3中屏幕上的logo是在左上角（刷机成功的标志）</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="实验01-led灯"><a href="#实验01-led灯" class="headerlink" title="实验01-led灯"></a>实验01-led灯</h2><h4 id="基本概念-1"><a href="#基本概念-1" class="headerlink" title="基本概念"></a>基本概念</h4><p>物理特性：LED有2个接线点，一个是LED的正极，一个是LED的负极。LED这个硬件的功能就是点亮或者不亮，物理上想要点亮一颗LED只需要给他的正负极上加正电压（形成正向电压差）即可，要熄灭一颗LED只需要去掉电压即可。</p>
+<p>GPIO是arm常见的一类引脚，有多个端口组（GPA0、GPJ0），每个端口组有若干个寄存器，通过改变寄存器的值来控制引脚，寄存器不同位数（大小）可能不同，通常用若干位组合来实现某项功能的不同表现（比如说GPJ0CON寄存器的1-4位用来控制GPJ0_3引脚），改变寄存器的值需要知道寄存器的地址。具体的内容可以查找数据手册文件S5PV210_UM_REV1.1。</p>
+<p>开发板上一共有5颗LED。其中D26的接法是：正极接5V，负极接地，只要上电就会常亮，这颗LED是电源指示灯。剩下4颗LED的接法是：正极接3.3V，负极接了SoC上的一个引脚（GPIO），具体详细接法是：</p>
+<blockquote>
+<p>D22：GPJ0_3<br>D23：GPJ0_4<br>D24：GPJ0_5<br>D25：PWMTOUT1(GPD0_1)</p>
+</blockquote>
+<p>因为正极已经定了（3.3V），而负极接在了SoC的引脚上，可以通过SoC中编程来控制负极的电压值，即通过程序控制负极输出低电平（0V），这样在正负极上就有了压差，LED即可点亮。</p>
+<h6 id="gpio"><a href="#gpio" class="headerlink" title="gpio"></a>gpio</h6><blockquote>
+<p>general purpose input output 通用输入输出<br>GPIO就是芯片的引脚（芯片上的引脚有些不是GPIO，只有一部分是），作为GPIO的这类引脚，他的功能和特点是可以被编程控制它的工作模式，也可以编程控制他的电压高低等。如果设计电路时把LED接在非GPIO上就不可能点亮。</p>
+</blockquote>
+<ul>
+<li>GPIO相关的寄存器<br>LED通过GPIO来间接控制，要操作这些GPIO，必须通过设置他们的寄存器，来驱动LED点亮，①GPJ0CON寄存器中GPIO配置为output模式，②GPJ0DAT寄存器应的位设置为0。<br>GPJ0相关的寄存器有以下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">GPJ0相关的寄存器</th>
+<th align="center">全称</th>
+<th align="center">功能</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GPJ0CON</td>
+<td align="center">GPJ0 control</td>
+<td align="center">GPJ0控制寄存器，用来配置各引脚的工作模式</td>
+</tr>
+<tr>
+<td align="center">GPJ0DAT</td>
+<td align="center">GPJ0 data</td>
+<td align="center">当引脚配置为input/output模式时，寄存器的相应位和引脚的电平高低相对应</td>
+</tr>
+<tr>
+<td align="center">GPJ0PUD</td>
+<td align="center">GPJ0 pull up down</td>
+<td align="center">控制引脚内部弱上拉、下拉</td>
+</tr>
+<tr>
+<td align="center">GPJ0DRV</td>
+<td align="center">GPJ0 driver</td>
+<td align="center">配置GPIO引脚的驱动能力</td>
+</tr>
+<tr>
+<td align="center">GPJ0CONPDN</td>
+<td align="center">GPJ0 control power down</td>
+<td align="center">低功耗模式下的控制寄存器</td>
+</tr>
+<tr>
+<td align="center">GPJ0PUDPDN</td>
+<td align="center">GPJ0 pull up down power down</td>
+<td align="center">低功耗模式下的上下拉寄存器</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>GPxCON、GPxDAT寄存器分析<br>  GPJ0端口一共有8个引脚：GPJ0_0 ～ GPJ0_7，<br>  GPJ0CON寄存器中设置8个引脚的工作模式（32/8=4，每个引脚可以分到4位，譬如GPJ0_0对应的bit位为bit0 ~ bit3，GPJ0_3对应的位为bit12 ~ bit15。工作方法是：给相应的寄存器位写入相应的值，该引脚硬件就会按照相应的模式去工作。譬如给bit12～bit15写入0b0001，GPJ0_3引脚就成为输出模式了）</p>
+<p>  GPxDAT寄存器根据GPJ0CON寄存器的设置，若GPJ0CON为input模式，即将输入的电平存进GPxDAT寄存器里面（低电平为0，高电平为1）；若GPJ0CON为output模式，即将GPxDAT寄存器里面设置的数据设置为引脚的电平。</p>
+</li>
+</ul>
+<h6 id="反汇编工具objdump"><a href="#反汇编工具objdump" class="headerlink" title="反汇编工具objdump"></a>反汇编工具objdump</h6><blockquote>
+<p>objdump是gcc工具链中的反汇编工具，作用是由编译链接好的elf格式的可执行程序反过来得到汇编源代码，指令示例：<code>arm-linux-objdump -D led.elf &gt; led_elf.dis</code>     <code>-D</code>表示反汇编;<code>&gt;</code>左边的是elf的可执行程序;<code>&gt;</code>右边的是反汇编生成的反汇编程序。</p>
+</blockquote>
+<ul>
+<li><p>反汇编的用途：</p>
+<ol>
+<li>逆向破解。</li>
+<li>调试程序时，反汇编代码可以帮助我们理解程序，尤其是在理解链接脚本、链接地址等概念时。</li>
+<li>把C语言源代码编译链接生成的可执行程序反汇编后得到对应的汇编代码，可以帮助我们理解C语言和汇编语言之间的对应关系。</li>
+</ol>
+</li>
+<li><p>反汇编文件的格式<br>  （汇编 assembly   反汇编 disassembly）<br>  标号地址、标号名字、指令地址、指令机器码、指令机器码反汇编到的指令<br>  扩展：ARM汇编中用地址池方式来实现非法立即数</p>
+</li>
+<li><p>指令地址<br>  下载烧录执行的bin文件，内部其实是一条一条的指令机器码。这些指令每一条都有一个指令地址，这个地址是连接的时候ld给指定的（ld根据我们写的链接脚本来指定）</p>
+</li>
+<li><p>分析链接脚本(linker script)</p>
+</li>
+</ul>
+<blockquote>
+<p>每一个链接过程都由链接脚本（一般以lds作为文件的后缀名）控制，链接脚本主要用于规定如何把输入文件内的section放入输出文件内, 并控制输出文件内各部分在程序地址空间内的布局。<br>…………………………………………..<br>反汇编的时候得到的指令地址是链接器考虑了链接脚本之后得到的地址，而我们写代码时通过指定连接脚本来让链接器给我们链接合适的地址。<br>但是有时候我们写的链接脚本有误（或者我们不知道这个链接脚本会怎么样），这时候可以通过看反汇编文件来分析这个链接脚本的效果，看是不是我们想要的，如果不是可以改了再看。</p>
+</blockquote>
+<h4 id="编程过程"><a href="#编程过程" class="headerlink" title="编程过程"></a>编程过程</h4><p>①编写汇编代码来设置各寄存器，文件后缀为S（assembly汇编）。</p>
+<blockquote>
+<p>汇编程序的后缀名.s和.S是区分大小写的，若是一小写的.s作为后缀那么则表示该汇编程序只包含汇编代码，编译器就不会进行预编译操作。若是以大写的.S作为后缀则表示该汇编代码中包含预编译代码，希望编译器进行预编译操作。</p>
+</blockquote>
+<p>②使用交叉编译工具链将汇编代码文件变为中间代码文件，文件后缀为o（object目标）；使用交叉编译工具链将中间代码文件变为可执行文件，文件后缀.elf（Executable Linkable Format）；使用交叉编译工具链将可执行文件变为镜像文件（二进制文件），文件后缀为bin（binary二进制）；使用交叉编译工具链将可执行文件变为反汇编代码文件，文件后缀为dis（disassembly反汇编）。</p>
+<p>③编写C语言代码来复制镜像文件并在文件开头加上校验头，文件后缀为c。</p>
+<p>④使用linux的gcc命令来编译+运行C语言代码文件，得到可执行文件+bin文件。</p>
+<p>⑤使用Makefile文件可将②、④步骤一起执行，无文件后缀，使用时只需<code>make</code>+指令即可，文件内容如下：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">led.bin: led.o</span></span><br><span class="line">	arm-linux-ld -Ttext 0x0 -o led.elf <span class="variable">$^</span> 		<span class="comment">#arm-linux-ld是一个链接程序工具，其作用主要是将汇编过的多个二进制文件进行链接，成为一个可执行的二进制文件（elf格式）;-Ttext 0x0 作用是设置初始地址。</span></span><br><span class="line">	arm-linux-objcopy -O binary led.elf led.bin 	<span class="comment">#arm-linux-objcopy被用来复制一个目标文件的内容到另一个文件中.此选项可以进行格式的转换.在实际编程的,用的最多的就是将ELF格式的可执行文件转换为二进制文件。</span></span><br><span class="line">	arm-linux-objdump -D led.elf &gt; led_elf.dis 	<span class="comment">#arm-linux-objdump常用来显示二进制文件信息,常用来查看反汇编代码，-D 作用是反汇编所有段。</span></span><br><span class="line">	gcc mkv210_image.c -o mkx210 			<span class="comment">#用C语言编写程序，gcc 作用是编译.c 文件，-o 作用是更改默认编译过的文件名。该.c 文件作用是根据源bin 文件创建带有校验头的bin 文件。</span></span><br><span class="line">	./mkx210 led.bin 210.bin 			<span class="comment">#./ 作用是运行本目录下的程序，led.bin 和210.bin 为参数，为c 文件操作两个文件的文件名。</span></span><br><span class="line">	</span><br><span class="line">%.o : %.S</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c</span><br><span class="line"></span><br><span class="line">%.o : %.c</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c </span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm *.o *.elf *.bin *.dis mkx210 -f</span><br></pre></td></tr></table></figure>
+
+<h4 id="实验项目"><a href="#实验项目" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="led灯-01-全亮"><a href="#led灯-01-全亮" class="headerlink" title="led灯-01-全亮"></a>led灯-01-全亮</h6><blockquote>
+<p>硬件接法和引脚：GPJ0_3 GPJ0_4 GPJ0_5    低电平亮/高电平灭。GPJ0CON（0xE0200240）寄存器和GPJ0DAT（0xE0200244）寄存器</p>
+</blockquote>
+<ul>
+<li><p>步骤<br>  ①使用工程管理，make编译得到led.bin和210.bin</p>
+<blockquote>
+<p><code>make Makefile //根据start.S、Makefile、mkv210_image.c创建start.o、led.elf、led.bin、210.bin</code></p>
+</blockquote>
+<p>  ②用usb启动dnw下载led.bin到0xd0020010（IRAM）或用sd卡烧录210.bin到sd卡。</p>
+<blockquote>
+<p>打开dnw.exe，在dnw软件的菜单Configuration-option中设置接口，在菜单usb port-transmit-transmit,选择镜像文件（例如led.bin）。开发板即运行程序。<br>  …………………………………………..<br>  <a href="https://jingyan.baidu.com/article/ca00d56c5a8f86e99eebcf04.html" target="_blank" rel="noopener">win10禁用驱动签名方法</a>（永久禁用可以在提示符后面输入bcdedit.exe /set nointegritychecks on后回车，开启数字签名的话bcdedit.exe /set nointegritychecks off回车）<br>  …………………………………………..<br>  windows：打开x210_Fusing_Tool.exe，选择路径，将210.bin镜像文件烧录到sd卡<br>  linux：在linux终端输入<code>cd /mnt/hgfs/share/uboot_sd_fusing</code>进入文件夹和<code>./write2sd /dev/sdb</code>将210.bin刷进sd卡里。</p>
+</blockquote>
+<p>  ③实验现象</p>
+<blockquote>
+<p>开发板上按下电源键之后4颗LED默认都是半亮的，当我们下载程序后其中3颗变的很亮，这说明我们的程序已经运行了。</p>
+</blockquote>
+</li>
+<li><p>makefile</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">led.bin: start.o </span></span><br><span class="line">	arm-linux-ld -Ttext 0x0 -o led.elf <span class="variable">$^</span></span><br><span class="line">	arm-linux-objcopy -O binary led.elf led.bin</span><br><span class="line">	arm-linux-objdump -D led.elf &gt; led_elf.dis</span><br><span class="line">	gcc mkv210_image.c -o mkx210</span><br><span class="line">	./mkx210 led.bin 210.bin</span><br><span class="line">	</span><br><span class="line">%.o : %.s</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c</span><br><span class="line"></span><br><span class="line">%.o : %.c</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c </span><br><span class="line"></span><br><span class="line"><span class="meta"><span class="meta-keyword">.PHONY</span>: clean	//<span class="meta-keyword">.PHONY</span>后面要加`:`，否则会报错：`*** missing separator. stop.`</span></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	rm *.o *.elf *.bin *.dis mkx210 -f</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>start.s</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> *	文件名：start.s</span></span><br><span class="line"><span class="comment"> *	作者：	pxf</span></span><br><span class="line"><span class="comment"> *	描述：	使210开发板的三颗led灯变亮</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="symbol">.global</span> _start	<span class="comment">@arm汇编注释用`@`，没有`.global _start`执行`.arm-none-linux-gnueabi-ld`会警告：`warning: cannot find entry symbol _start; defaulting to 00000000`</span></span><br><span class="line"><span class="symbol">_start</span>:</span><br><span class="line">	<span class="comment">@设置GPJ0CON（0xE0200240）寄存器，使GPJ0_3 GPJ0_4 GPJ0_5引脚变为输出引脚</span></span><br><span class="line">	<span class="keyword">ldr </span><span class="built_in">r0</span>, <span class="number">=0xE0200240</span></span><br><span class="line">	<span class="keyword">ldr </span><span class="built_in">r1</span>, <span class="number">=0x00111000</span></span><br><span class="line">	<span class="keyword">str </span><span class="built_in">r1</span>, [<span class="built_in">r0</span>]</span><br><span class="line">	</span><br><span class="line">	<span class="comment">@设置GPJ0DAT（0xE0200244）寄存器，使GPJ0_3 GPJ0_4 GPJ0_5引脚变为低电平</span></span><br><span class="line">	<span class="keyword">ldr </span><span class="built_in">r0</span>, <span class="number">=0xE0200244</span></span><br><span class="line">	<span class="keyword">ldr </span><span class="built_in">r1</span>, <span class="number">=0x00</span></span><br><span class="line">	<span class="keyword">str </span><span class="built_in">r1</span>, [<span class="built_in">r0</span>]</span><br><span class="line"></span><br><span class="line"><span class="symbol">flag</span>:</span><br><span class="line">	<span class="keyword">b </span>flag	<span class="comment">@最后一个回车如果是在linux里面编辑的不会警告，如果是windows里面编辑的会警告：`Warning: end of file not at end of a line; newline inserted`</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>mkv210_image.c</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * mkv210_image.c的主要作用就是由usb启动时使用的led.bin制作得到由sd卡启动的镜像210.bin</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="comment">/* 在BL0阶段，Irom内固化的代码读取nandflash或SD卡前16K的内容，</span></span><br><span class="line"><span class="comment"> * 并比对前16字节中的校验和是否正确，正确则继续，错误则停止。</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> BUFSIZE                 (16*1024)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> IMG_SIZE                (16*1024)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SPL_HEADER_SIZE         16</span></span><br><span class="line"><span class="comment">//#define SPL_HEADER              "S5PC110 HEADER  "</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> SPL_HEADER              <span class="meta-string">"****************"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span> *argv[])</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	FILE		*fp;</span><br><span class="line">	<span class="keyword">char</span>		*Buf, *a;</span><br><span class="line">	<span class="keyword">int</span>		BufLen;</span><br><span class="line">	<span class="keyword">int</span>		nbytes, fileLen;</span><br><span class="line">	<span class="keyword">unsigned</span> <span class="keyword">int</span>	checksum, count;</span><br><span class="line">	<span class="keyword">int</span>		i;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">// 1. 3个参数</span></span><br><span class="line">	<span class="keyword">if</span> (argc != <span class="number">3</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Usage: %s &lt;source file&gt; &lt;destination file&gt;\n"</span>, argv[<span class="number">0</span>]);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 2. 分配16K的buffer</span></span><br><span class="line">	BufLen = BUFSIZE;</span><br><span class="line">	Buf = (<span class="keyword">char</span> *)<span class="built_in">malloc</span>(BufLen);</span><br><span class="line">	<span class="keyword">if</span> (!Buf)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"Alloc buffer failed!\n"</span>);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">memset</span>(Buf, <span class="number">0x00</span>, BufLen);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 3. 读源bin到buffer</span></span><br><span class="line">	<span class="comment">// 3.1 打开源bin</span></span><br><span class="line">	fp = fopen(argv[<span class="number">1</span>], <span class="string">"rb"</span>);</span><br><span class="line">	<span class="keyword">if</span>( fp == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"source file open error\n"</span>);</span><br><span class="line">		<span class="built_in">free</span>(Buf);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 3.2 获取源bin长度</span></span><br><span class="line">	fseek(fp, <span class="number">0L</span>, SEEK_END);								<span class="comment">// 定位到文件尾</span></span><br><span class="line">	fileLen = ftell(fp);									<span class="comment">// 得到文件长度</span></span><br><span class="line">	fseek(fp, <span class="number">0L</span>, SEEK_SET);								<span class="comment">// 再次定位到文件头</span></span><br><span class="line">	<span class="comment">// 3.3 源bin长度不得超过16K-16byte</span></span><br><span class="line">	count = (fileLen &lt; (IMG_SIZE - SPL_HEADER_SIZE))</span><br><span class="line">		? fileLen : (IMG_SIZE - SPL_HEADER_SIZE);</span><br><span class="line">	<span class="comment">// 3.4 buffer[0~15]存放"S5PC110 HEADER  "</span></span><br><span class="line">	<span class="built_in">memcpy</span>(&amp;Buf[<span class="number">0</span>], SPL_HEADER, SPL_HEADER_SIZE);</span><br><span class="line">	<span class="comment">// 3.5 读源bin到buffer[16]</span></span><br><span class="line">	nbytes = fread(Buf + SPL_HEADER_SIZE, <span class="number">1</span>, count, fp);</span><br><span class="line">	<span class="keyword">if</span> ( nbytes != count )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"source file read error\n"</span>);</span><br><span class="line">		<span class="built_in">free</span>(Buf);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	fclose(fp);</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 4. 计算校验和</span></span><br><span class="line"> 	<span class="comment">// 4.1 从第16byte开始统计buffer中共有几个1</span></span><br><span class="line">	<span class="comment">// 4.1 从第16byte开始计算，把buffer中所有的字节数据加和起来得到的结果</span></span><br><span class="line">	a = Buf + SPL_HEADER_SIZE;</span><br><span class="line">	<span class="keyword">for</span>(i = <span class="number">0</span>, checksum = <span class="number">0</span>; i &lt; IMG_SIZE - SPL_HEADER_SIZE; i++)</span><br><span class="line">		checksum += (<span class="number">0x000000FF</span>) &amp; *a++;</span><br><span class="line">	<span class="comment">// 4.2 将校验和保存在buffer[8~15]！！！！</span></span><br><span class="line">	a = Buf + <span class="number">8</span>;							<span class="comment">// Buf是210.bin的起始地址，+8表示向后位移2个字，也就是说写入到第3个字</span></span><br><span class="line">	*( (<span class="keyword">unsigned</span> <span class="keyword">int</span> *)a ) = checksum;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 5. 拷贝buffer中的内容到目的bin</span></span><br><span class="line">	<span class="comment">// 5.1 打开目的bin</span></span><br><span class="line">	fp = fopen(argv[<span class="number">2</span>], <span class="string">"wb"</span>);</span><br><span class="line">	<span class="keyword">if</span> (fp == <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"destination file open error\n"</span>);</span><br><span class="line">		<span class="built_in">free</span>(Buf);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 5.2 将16k的buffer拷贝到目的bin中</span></span><br><span class="line">	a = Buf;</span><br><span class="line">	nbytes	= fwrite( a, <span class="number">1</span>, BufLen, fp);</span><br><span class="line">	<span class="keyword">if</span> ( nbytes != BufLen )</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"destination file write error\n"</span>);</span><br><span class="line">		<span class="built_in">free</span>(Buf);</span><br><span class="line">		fclose(fp);</span><br><span class="line">		<span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="built_in">free</span>(Buf);</span><br><span class="line">	fclose(fp);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>移位：左移+标志位的（0、1）逻辑右移操作 LSR</p>
+<h6 id="led灯-02-优化代码"><a href="#led灯-02-优化代码" class="headerlink" title="led灯-02-优化代码"></a>led灯-02-优化代码</h6><ol>
+<li>使用寄存器名字的宏定义来定义寄存器地址。</li>
+<li>用<code>b .</code>来实现死循环</li>
+<li>用.global把_start链接属性改为外部，消除链接时的警告(01已经实现)<blockquote>
+<p>global关键字用来让一个符号对链接器可见，可以供其他链接对象模块使用。<br><code>.global _start</code>让<code>_start</code>符号成为可见的标示符，这样链接器就知道跳转到程序中的什么地方并开始执行。linux寻找这个<code>_start</code>标签作为程序的默认进入点。<br>在汇编和C混合编程中，在GNU ARM编译环境下，汇编程序中要使用<code>.global</code>伪操作声明汇编程序为全局的函数，意即可被外部函数调用，同时C程序中要使用extern声明要调用的汇编语言程序。</p>
+</blockquote>
+</li>
+<li>点亮第四颗led灯（硬件接法和引脚：GPD0_1低电平亮/高电平灭。GPD0CON（0xE02000A0）寄存器和GPD0DAT（0xE02000A4）寄存器）</li>
+</ol>
+<h6 id="led灯-03-部分点亮"><a href="#led灯-03-部分点亮" class="headerlink" title="led灯-03-部分点亮"></a>led灯-03-部分点亮</h6><blockquote>
+<p>使用位运算点亮1颗LED,在GPJ0CON寄存器不需要修改，GPJ0DAT中设置相应的输出值即可。<br>常用位运算：<br>位与(<code>&amp;</code>)<br>位或(<code>|</code>)<br>位非（取反 <code>~</code>）<br>移位（左移<code>&lt;&lt;</code> 右移<code>&gt;&gt;</code>）</p>
+</blockquote>
+<ul>
+<li>步骤<br>  ①GPJ0DAT = 0x28<br>  ②使用位运算实现功能<blockquote>
+<p>1&lt;&lt;3  等于 0b1000<br>1&lt;&lt;5  等于 0b100000<br>(1&lt;&lt;3) | (1&lt;&lt;5)  等于 0b101000（二进制）<br>((0&lt;&lt;3) | (1&lt;&lt;4) | (0&lt;&lt;5)) 等于 0b010000</p>
+</blockquote>
+</li>
+</ul>
+<h6 id="led灯-04-闪烁"><a href="#led灯-04-闪烁" class="headerlink" title="led灯-04-闪烁"></a>led灯-04-闪烁</h6><ol>
+<li>编写循环函数，用一个寄存器存放一个数字，然后在循环中每个循环里给数字减1，然后再判断这个数字的值是否为0.如果为0则停止循环，如果不为0则继续循环。</li>
+<li>调用函数，汇编中主程序是一个死循环，这个死循环是我们汇编程序的主体，类似于C中的main函数。其他函数必须写在这个主死循环程序的后面（死循环外）。汇编中调用函数用bl指令，子函数中最后用mov pc, lr来返回。</li>
+</ol>
+<h6 id="led灯-05-跑马灯"><a href="#led灯-05-跑马灯" class="headerlink" title="led灯-05-跑马灯"></a>led灯-05-跑马灯</h6><blockquote>
+<p>位取反操作符实现单颗LED点亮,用移位实现4颗LED流水效果。mov r1, r1, ror#1</p>
+</blockquote>
+<blockquote>
+<p><font size="2">整个程序易错点：忘记修改makefile里面的文件名（忘记使用编译器）；忘记修改寄存器名字；ldr伪指令的操作数不加=；设置寄存器的值忘记要使用str；寄存器存放的值具体有几位；移位指令理解错误，移位后的数是放在第一个寄存器里面，并且无循环左移；移位的时候要注意寄存器是32位的；设置数据寄存器的时候要注意尽量不要把其他寄存器的值修改（先设置地址小的寄存器，即使寄存器大小不足32位，32位的通用寄存器的高位覆盖了下一个寄存器，这个时候要使用下一个寄存器则继续设置寄存器里面的值即可）；延迟函数使用了主函数正在使用的寄存器，导致结果错误；</font></p>
+</blockquote>
+<h2 id="实验02-启动代码"><a href="#实验02-启动代码" class="headerlink" title="实验02-启动代码"></a>实验02-启动代码</h2><h4 id="基本概念-2"><a href="#基本概念-2" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="看门狗"><a href="#看门狗" class="headerlink" title="看门狗"></a>看门狗</h6><p>硬件上是SoC内部的一个内部外设，watch dog timer：看门狗定时器。现实中因为一些外部因素，电子设备经常会跑飞或者死机（譬如极端炎热、极端寒冷、工业复杂场合）。在这种情况下我们希望设备自动复位而不需要人工干预（无人值守）。看门狗用来完成这个工作。看门狗其实是我们SoC内部的一个定时器，定好时间之后看门狗定时器会去计时，时间到之前必须去重新置位看门狗定时器，如果没有置位系统就会被强制复位。系统在正常工作时，系统软件会自动置位，所以看门狗定时器不会复位。但是系统一旦故障，看门狗就无法置位，然后下一个周期就会自动复位，达到我们期望的效果。</p>
+<p><font size="2">注：程序跑飞是指系统受到某种干扰后,程序计数器PC的值偏离了给定的唯一变化历程,导致程序运行偏离正常的运行路径；s5pv210内部的iROM代码（BL0）中，已经关闭看门狗。CPU内部没有BL0的，都要在启动代码前段自己写代码关看门狗。</font></p>
+<ul>
+<li>特殊功能寄存器(SFR)<br>WTCON（0xE2700000），其中bit5是看门狗的开关：0代表关，1代表开</li>
+</ul>
+<h6 id="c语言"><a href="#c语言" class="headerlink" title="c语言"></a>c语言</h6><blockquote>
+<p>C语言运行时（runtime）需要一定的条件，这些条件由汇编来提供。C语言运行时主要是需要栈。</p>
+</blockquote>
+<ul>
+<li><p>C语言与栈的关系<br>  C语言中的局部变量都是用栈来实现的。如果我们汇编部分没有给C部分预先设置合理合法的栈地址，那么C代码中定义的局部变量就会丢失。</p>
+<p>  编写单片机程序（譬如51单片机）或者编写应用程序时并没有去设置栈，但是C程序还是可以运行的。原因是：在单片机中由硬件初始化时提供了一个默认可用的栈，在应用程序中我们编写的C程序其实并不是全部，编译器（gcc）在链接的时候会帮我们自动添加一个头，这个头就是一段引导我们的C程序能够执行的一段汇编实现的代码，这个代码中就帮我们的C程序设置了栈及其他的运行时需要。</p>
+</li>
+<li><p>CPU模式和各种模式下的栈<br>  在ARM中37个寄存器中，每种模式下都有自己的独立的SP寄存器（r13），是因为如果各种模式都使用同一个SP，那么就意味着整个程序（操作系统内核程序、用户自己编写的应用程序）都是用一个栈的。你的应用程序如果一旦出错（譬如栈溢出），就会连累操作系统的栈也损坏，整个操作系统的程序就会崩溃。这样的操作系统设计是非常脆弱的，不合理的。</p>
+<p>  解决方案就是各种模式下用不同的栈。操作系统内核使用自己的栈，每个应用程序也使用自己独立的栈，这样各是各的，一个损坏不会连累其他人。</p>
+<p>  如何访问SVC模式下的SP？先把模式设置为SVC，再直接操作SP。但是因为系统在复位后就已经是SVC模式了，所以直接设置SP即可。</p>
+</li>
+<li><p>查阅文档并设置栈指针至合法位置<br>  栈必须是当前一段可用的内存（可用的意思是这个地方必须有被初始化过的可以访问的内存，而且这个内存只会被我们用作栈，不会被其他程序征用）<br>  当前CPU刚复位（刚启动），外部的DRRAM尚未初始化，目前可用的内存只有内部的SRAM（因为它不需初始化即可使用）。因此我们只能在SRAM中找一段内存来作为SVC的栈。</p>
+<p>  栈有四种：满减栈 满增栈 空减栈 空增栈<br>  满栈：进栈：先移动指针再存； 出栈：先出数据再移动指针<br>  空栈：xxx<br>  减栈：进栈：指针向下移动；     出栈：指针向上移动<br>  增栈：xxx</p>
+<p>  在ARM中，ATPCS（ARM关于程序应该怎么实现的一个规范）要求使用满减栈，所以不出意外都是用满减栈，结合iROM_application_note中的memory map，可知SVC栈应该设置为0xd0037D80<br>  汇编程序和C程序互相调用：bl cfuncion</p>
+</li>
+</ul>
+<h6 id="设置栈"><a href="#设置栈" class="headerlink" title="设置栈"></a>设置栈</h6><p>在工程中新建并且添加一个C语言源文件（led.c），注意添加时要修改Makefile。在汇编启动代码中设置好栈后，使用bl xxx的方式来调用C中的函数xxx</p>
+<ul>
+<li><p>使用C语言访问寄存器<br>  寄存器的地址类似于内存地址（IO与内存统一编址的），用C语言读写寄存器，就是用C语言来读写内存地址，就要用到指针。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> *p = (<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="number">0xE0200240</span>;</span><br><span class="line">*p = <span class="number">0x11111111</span>;</span><br><span class="line"></span><br><span class="line">*((<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="number">0xE0200240</span>) = <span class="number">0x11111111</span>;<span class="comment">//另一种写法</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>volatile<br>  volatile的作用是让程序在编译时，编译器不对程序做优化。优化有时候是可以的，但是有时候会使程序错误。比如说某个变量经过循环，里面的值不断发生改变，编译器会在预编译的时候就算好结果，在运行的时候就已经是最后的变量了。如果一个变量是易变的，不希望编译器帮我们做优化，就在这个变量定义时加volatile。</p>
+<p>  加不加有没有差别，取决于编译器。如果编译器做了优化则有差异；如果编译器本身没做优化，那就没有差别。</p>
+<p>  在我们这里（编译器是arm-2009q3），实际测试加不加效果是一样的。</p>
+</li>
+<li><p>编译报错<br>  连接阶段报错undefined reference to <code>__aeabi_unwind_cpp_pr1</code></p>
+<p>  解决：在编译时添加-nostdlib这个编译选项即可解决。nostdlib就是不使用标准函数库。标准函数库就是编译器中自带的函数库，用-nostdlib可以让编译器链接器优先选择我程序内自己写的函数库。</p>
+</li>
+</ul>
+<h6 id="icache"><a href="#icache" class="headerlink" title="icache"></a>icache</h6><ul>
+<li><p>什么是cache，有什么用<br>  cache是一种内存，叫高速缓存。<br>  从容量来说：CPU &lt;　寄存器 &lt; cache &lt; DDR<br>  从速度来说：CPU &gt;  寄存器 &gt; cache &gt; DDR</p>
+<p>  cache的存在，是因为寄存器和ddr之间速度差异太大，ddr的速度远不能满足寄存器的需要（不能满足cpu的需要，所以没有cache会拉低整个系统的整体速度）</p>
+<p>  整个系统中CPU的供应链由：寄存器+cache+DDR+硬盘/flash四阶组成，这是综合考虑了性能、成本后得到的妥协的结果。<br>  210内部有32KB icache和32kb dcache。icache是用来缓存指令的；dcache是用来缓存数据的。</p>
+</li>
+<li><p>cache的意义<br>  指令平时是放在硬盘/flash中的，运行时读取到DDR中，再从DDR中读给寄存器，再由寄存器送给cpu。但是DDR的速度和寄存器（代表的就是CPU）相差太大，如果CPU运行完一句再去DDR读取下一句，那么CPU的速度完全就被DDR给拖慢了。解决方案就是icache。<br>  icache工作时，会把我们CPU正在运行的指令的旁边几句指令事先给读取到icache中（CPU设计有一个基本原理：代码执行时，下一句执行当前一句代码旁边代码的可能性要大很多）。当下一句CPU要指令时，cache首先检查自己事先准备的缓存指令中有没这句，如果有就直接拿给CPU，如果没有则需要从DDR中重新去读取拿给CPU，并同时做一系列的动作：清缓存、重新缓存。</p>
+</li>
+<li><p>iROM中BL0对cache的操作<br>  icache的一切动作都是自动的，不需人为干预。我们所需要做的就是打开/关闭icache。在210的iROM中BL0已经打开了icache。</p>
+</li>
+<li><p>汇编代码读写cp15以开关icache<br>  mrc p15,0,r0,c1,c0,0;        // 读出p15的c1到r0中<br>  bic r0, r0, #(1&lt;&lt;12)        // bit12 置0  关icache,bic：清零<br>  orr r0, r0, #(1&lt;&lt;12)        // bit12 置1  开icache,orr：或运算<br>  mcr p15,0,r0,c1,c0,0;</p>
+</li>
+<li><p>实验结果分析<br>  结论1：irom中确实是打开了icache的。<br>  结论2：icache关闭确实比icache打开时led闪烁变慢，说明指令执行速度变慢。</p>
+</li>
+</ul>
+<h6 id="重定位"><a href="#重定位" class="headerlink" title="重定位"></a>重定位</h6><ul>
+<li><p>位置有关编码&amp;位置无关编码<br>  位置无关编码(PIC，position independent code)：汇编源文件被编码成二进制可执行程序时编码方式与位置（内存地址）无关。<br>  位置有关编码：汇编源码编码成二进制可执行程序后和内存地址是有关的，大部分指令是位置有关编码。</p>
+</li>
+<li><p>链接地址和运行地址<br>  设计一个程序时，通常会给这个程序指定一个链接地址。就是说我们在编译程序时其实心里是知道我们程序将来被运行时的地址（运行地址）的，而且必须给编译器链接器指定这个地址（链接地址）才行。最后得到的二进制程序理论上是和你指定的运行地址有关的，将来这个程序被执行时必须放在当时编译链接时给定的那个地址（链接地址）下才行，否则不能运行（就叫位置有关代码）。但是有个别特别的指令他可以和指定的地址（链接地址）没有关系，也就是说这些代码实际运行时不管放在哪里都能正常运行。<br>  位置无关代码要好一些，适应性强，放在哪里都能正常运行；位置有关代码就必须运行在链接时指定的地址上，适应性差。位置无关码有一些限制，不能完成所有功能，有时候不得不使用位置有关代码。<br>  我们之前的裸机程序中，Makefile中用 -Ttext 0x0 来指定链接地址是0x0。这意味着我们认为这个程序将来会放在0x0这个内存地址去运行。</p>
+<p>  但是实际上我们运行时的地址是0xd0020010(我们用dnw下载时指定的下载地址)。这两个地址看似不同，但是实际相同。这是因为S5PV210内部做了映射，把SRAM映射到了0x0地址去。</p>
+</li>
+<li><p>链接地址和运行地址指定方式<br>  链接地址：链接时指定的地址（指定方式为：Makefile中用-Ttext，或者链接脚本）</p>
+<p>  运行地址：程序实际运行时地址（指定方式：由实际运行时被加载到内存的哪个位置说了算，运行时的地址是由运行时决定的，编译链接时是无法绝对确定运行时地址的）</p>
+<p>  举例：1、linux中的应用程序。gcc hello.c -o hello，这时使用默认的链接地址就是0x0，所以应用程序都是链接在0地址的。因为应用程序运行在操作系统的一个进程中，在这个进程中这个应用程序独享4G的虚拟地址空间。所以应用程序都可以链接到0地址，因为每个进程都是从0地址开始的。（编译时可以不给定链接地址而都使用0）</p>
+<p>  2、210中的裸机程序。运行地址由我们下载时确定，下载时下载到0xd0020010，所以就从这里开始运行。（这个下载地址也不是我们随意定的，是iROM中的BL0加载BL1时事先指定好的地址，这是由CPU的设计决定的）。所以理论上我们编译链接时应该将地址指定到0xd0020010，但是实际上我们在之前裸机程序中都是使用位置无关码PIC，所以链接地址可以是0。</p>
+</li>
+<li><p>S5PV210的启动过程<br>  三星推荐和uboot的实现是不同的，三星推荐的启动方式中：bootloader必须小于96KB并大于16KB，假定bootloader为80KB，启动过程是这样子：先开机上电后BL0运行，BL0会加载外部启动设备中的bootloader的前16KB（BL1）到SRAM中去运行，BL1运行时会加载BL2（bootloader中80-16=64KB）到SRAM中（从SRAM的16KB处开始用）去运行；BL2运行时会初始化DDR并且将OS搬运到DDR去执行OS，启动完成。</p>
+<p>  uboot实际使用的方式：uboot大小随意，假定为200KB。启动过程是这样子：先开机上电后BL0运行，BL0会加载外部启动设备中的uboot的前16KB（BL1）到SRAM中去运行，BL1运行时会初始化DDR，然后将整个uboot搬运到DDR中，然后用一句长跳转（从SRAM跳转到DDR）指令从SRAM中直接跳转到DDR中继续执行uboot直到uboot完全启动。uboot启动后在uboot命令行中去启动OS。</p>
+</li>
+<li><p>重定位<br>  静态重定位：即在程序装入内存的过程中完成，是指在程序开始运行前，程序中的各个地址有关的项均已完成重定位，地址变换通常是在装入时一次完成的，以后不再改变，故称为静态重定位。<br>  动态重定位：它不是在程序装入内存时完成的，而是CPU每次访问内存时 由动态地址变换机构（硬件）自动进行把相对地址转换为绝对地址。动态重定位需要软件和硬件相互配合完成。</p>
+<p>  链接地址和运行地址有时候必须不相同，而且还不能全部用位置无关码，这时候只能重定位。</p>
+<p>  分散加载：把uboot分成2部分（BL1和整个uboot），两部分分别指定不同的链接地址。启动时将两部分加载到不同的地址（BL1加载到SRAM，整个uboot加载到DDR），这时候不用重定位也能启动。<br>  评价：分散加载其实相当于手工重定位。重定位是用代码来进行重定位，分散加载是手工操作重定位的。</p>
+</li>
+<li><p>从源码到可执行程序的步骤<br>  预编译：预编译器执行。譬如C中的宏定义就是由预编译器处理，注释等也是由预编译器处理的。</p>
+<p>  编译：  编译器来执行。把源码.c .S编程机器码.o文件。</p>
+<p>  链接：    链接器来执行。把.o文件中的各函数（段）按照一定规则（链接脚本来指定）累积在一起，形成可执行文件。</p>
+<p>  strip： strip是把可执行程序中的符号信息给拿掉，以节省空间。（Debug版本和Release版本）</p>
+<p>  objcopy：由可执行程序生成可烧录的镜像bin文件。</p>
+</li>
+<li><p>程序段的概念<br>  代码段、数据段、bss段（ZI段）、自定义段<br>  段就是程序的一部分，我们把整个程序的所有东西分成了一个一个的段，给每个段起个名字，然后在链接时就可以用这个名字来指示这些段。也就是说给段命名就是为了在链接脚本中用段名来让段站在核实的位置。</p>
+<p>  段名分为2种：一种是编译器链接器内部定好的；一种是程序员自己指定的、自定义的段名。</p>
+<p>  不可更改的段名：<br>  代码段：（.text），又叫文本段，代码段其实就是函数编译后生成的东西<br>  数据段：（.data），数据段就是C语言中有显式初始化为非0的全局变量<br>  bss段：（.bss），又叫ZI（zero initial）段，就是零初始化段，对应C语言中初始化为0的全局变量。</p>
+<p>  自定义的段名：<br>  段名由程序员自己定义，段的属性和特征也由程序员自己定义。</p>
+<p>  相关例子：<br>  C语言中全局变量如果未显式初始化（例：int a;），值是0。本质就是C语言把这类全局变量放在了bss段，从而保证C运行时环境。显式初始化为非0（例：int a = 1;）的全局变量的值在main之前就被赋值了，就是因为它把这类变量放在了.data段中，而.data段会在main执行之前被处理（初始化）。</p>
+</li>
+<li><p>链接脚本<br>  链接脚本其实是个规则文件，他是程序员用来指挥链接器工作的。链接器会参考链接脚本，并且使用其中规定的规则来处理.o文件中那些段，将其链接成一个可执行程序。<br>  链接脚本的关键内容有2部分：段名 + 地址（作为链接地址的内存地址）<br>  链接脚本的理解：<br>  SECTIONS {}    这个是整个链接脚本<br>  . 点号在链接脚本中代表当前位置。<br>  = 等号代表赋值</p>
+</li>
+</ul>
+<h6 id="sdram"><a href="#sdram" class="headerlink" title="sdram"></a>sdram</h6><blockquote>
+<p>SDRAM：synchronous dynamic random-access memory，同步动态随机存储器，特性：容量大、价格低、掉电易失性、随机读写、总线式访问<br>SDRAM属于动态内存（相对于静态内存SRAM），需要先运行一段初始化代码来初始化才能使用,不像SRAM开机上电后就可以直接运行。</p>
+</blockquote>
+<ul>
+<li>SDRAM数据手册<br>SDRAM在系统中属于SoC外接设备（外部外设。在外部的一般有：Flash、SDRAM/DDR、网卡芯片如DM9000、音频Codec。现在有一些高集成度的芯片也试图把这几个集成进去，做成真正的单芯片解决方案。）SDRAM通过地址总线和数据总线接口（总线接口）与SoC通信。</li>
+</ul>
+<p>开发板原理图上使用的是K4T1G164QQ，但是实际开发板上是另一款。但是这两款是完全兼容的，进行软件编程分析的时候完全可以参考K4T1G164QQ的文档。</p>
+<p>全球做SDRAM的厂商不多，二线厂家做的产品参数都是向一线厂家（三星、KingSton）看齐，目的是兼容一线厂家的设计，然后让在意成本的厂商选择它的内存芯片替代一线厂家的内存芯片。SDRAM的这个市场特征就导致这个东西比较标准化，大部分时候细节参数官方（芯片原厂家）都会给你一个参考值。</p>
+<p>K4T1G164QE：<br>K表示三星产品，4表示是DRAM，T表示产品号码，1G表示容量（1Gb，等于128MB，我们开发板X210上一共用了4片相同的内存，所以总容量是128×4=512MB）16表示单芯片是16位宽的，4表示是4bank</p>
+<p>三星官方的数据手册上其实没有芯片相关的参数设置信心，都是芯片选型与外观封装方面的信息，选型是给产品经理来看的，封装和电压等信息是给硬件工程师看的。软件工程师最关注的是工作参数信息，但是数据手册没有。</p>
+<ul>
+<li>原理图中SDRAM相关部分<br>S5PV210共有2个内存端口（就好像有2个内存插槽）。再结合查阅数据手册中内存映射部分，可知：两个内存端口分别叫DRAM0和DRAM1：<br>DRAM0：内存地址范围：0x20000000～0x3FFFFFFF（512MB），对应引脚是Xm1xxxx<br>DRAM1: 内存地址范围：0x40000000～0x7FFFFFFF（1024MB），对应引脚是Xm2xxxx</li>
+</ul>
+<p>结论：<br>(1)整个210最多支持内存为1.5GB，如果给210更多的内存CPU就无法识别。</p>
+<p>(2)210最多支持1.5GB内存，但是实际开发板不一定要这么多，譬如我们X210开发板就只有512MB内存，连接方法是在DRAM0端口分布256MB，在DRAM1端口分布了256MB。</p>
+<p>(3)由2可知，X210开发板上内存合法地址是：0x20000000～0x2FFFFFFF（256MB） + 0x40000000～0x4FFFFFFF（256MB）。当板子上DDR初始化完成之后，这些地址都是可以使用的；如果使用了其他地址譬如0x30004000就是死路一条。</p>
+<p>原理图中每个DDR端口都由3类总线构成：地址总线（Xmn_ADDR0 ~ XMnADDR13共14根地址总线） + 控制总线（中间部分，自己看原理图） + 数据总线（Xmn_DATA0 ~ XMnDATA31共32根数据线）</p>
+<p>分析：从数据总线的位数可以看出，我们用的是32位的（物理）内存。<br>原理图中画出4片内存芯片的一页，可以看出：X210开发板共使用了4片内存（每片1Gb=128MB，共512MB），每片内存的数据总线都是16位的（单芯片是16位内存）。如何由16位内存得到32位内存呢？可以使用并联方法。在原理图上横向的2颗内存芯片就是并联连接的。并联时地址总线接法一样，但是数据总线要加起来。这样连接相当于在逻辑上可以把这2颗内存芯片看成是一个（这一个芯片是32位的，接在Xm1端口上）。</p>
+<ul>
+<li>数据手册中SDRAM相关部分<br>看数据手册《NT5TU64M16GG-DDR2-1G-G-R18-Consumer》第10页的block diagram。这个框图是128Bb×8结构的，这里的8指的是8bank，每bank128Mbit。</li>
+</ul>
+<p>210的DDR端口信号中有BA0～BA2，接在内存芯片的BA0～BA2上，这些引脚就是用来选择bank的。每个bank内部有128Mb，通过row address（14位） + column address（10位）的方式来综合寻址。一共能寻址的范围是：2的14次方+2的10次方 = 2的24次方。对应16MB（128Mbit）内存。</p>
+<ul>
+<li>汇编初始化SDRAM（DDR2）<br>SDRAM初始化使用一个函数sdram_asm_init，函数在sdram_init.S文件中实现，是一个汇编函数。强调：汇编实现的函数在返回时需要明确使用返回指令（mov pc, lr）</li>
+</ul>
+<ol>
+<li>初始化DDR2准备<br>(1)DDR初始化和SoC（准确说是和SoC中的DDR控制器）有关，也和开发板使用的DDR芯片有关，和开发板设计时DDR的连接方式也有关。<br>(2)S5PV210的DDR初始化步骤在SoC数据手册：1.2.1.3 DDR2。可知初始化DDR共需27个步骤。<br>(3)之前分析过X210的内存连接方式是：在DRAM0上连接256MB，在DRAM1上连接了256MB。所以初始化DRAM时分为2部分，第一部分初始化DRAM0，第二部分初始化DRAM1.<br>(4)代码来自于：九鼎官方的uboot、九鼎的裸机教程中对DDR的初始化、根据实际改进。</li>
+<li>设置IO端口驱动强度<br>因为DDR芯片和S5PV210之间是通过很多总线连接的，总线的物理表现就是很多个引脚，也就是说DDR芯片和S5PV210芯片是通过一些引脚连接的。DDR芯片工作时需要一定的驱动信号，这个驱动信号需要一定的电平水平才能抗干扰，所以需要设置这些引脚的驱动能力，使DDR正常工作。<br>DRAM控制器对应的引脚设置为驱动强度2X（参考原厂代码）</li>
+<li>DRAM port 时钟设置<br>代码第128行到154行。主要是开启DLL（dram pll）然后等待锁存。<br>这段代码对应27步中的第2到第4步。</li>
+<li>DMC0_MEMCONTROL<br>burst length=4，1chip，······  对应值是0x00202400<br>DMC0_MEMCONFIG_0：DRAM0通道中memory chip0的参数设置寄存器<br>DMC0_MEMCONFIG_1：DRAM0通道中memory chip1的参数设置寄存器<br>推论：三星设置DRAM0通道，允许接2片256MB的内存，分别叫memory chip0和memory chip1，分别用这两个寄存器来设置它的参数。chip0的地址应该是0x20000000到0x2FFFFFFF，然后chip1的地址应该是<code>0x30000000~0x3FFFFFFF</code>.各自256MB。X210开发板实际在DRAM0端口只接了256MB的内存，所以只用了chip0，没有使用chip1.（2片芯片并联形成32位内存的，逻辑上只能算1片）。DMC0_MEMCONFIG_0有用，而DMC0_MEMCONFIG_1无用，所以设置默认值。</li>
+<li>DMC_DIRECTCMD<br>这个寄存器是个命令寄存器，我们210通过向这个寄存器写值来向DDR芯片发送命令（通过命令总线），这些命令应该都是用来配置DDR芯片工作参数。</li>
+<li>总结：DDR配置过程比较复杂，基本上是按照DDR控制器的时序要求来做的，其中很多参数要结合DDR芯片本身的参数来定，还有些参数是时序参数，要去详细计算。所以DDR配置非常繁琐、细致、专业。所以我们对DDR初始化的态度就是：学会这种思路和方法，结合文档和代码能看懂，会算一些常见的参数即可。</li>
+<li>重定位代码到SDRAM中<br>DRAM初始化之后，重定位代码过程和之前重定位到SRAM中完全相同。</li>
+</ol>
+<h6 id="时钟系统"><a href="#时钟系统" class="headerlink" title="时钟系统"></a>时钟系统</h6><blockquote>
+<p>什么是时钟？SoC为什么需要时钟？<br>(1)时钟是同步工作系统的同步节拍。<br>……………………….<br>(2)SoC内部有很多器件，譬如CPU、串口、DRAM控制器、GPIO等内部外设，这些东西要彼此协同工作，需要一个同步的时钟系统来指挥。这个就是我们SoC的时钟系统。</p>
+</blockquote>
+<ul>
+<li><p>SoC的时钟获得一般有：</p>
+<ul>
+<li>外部直接输入时钟信号，SoC有个引脚用来输入外部时钟信号，用的很少。</li>
+<li>外部晶振+内部时钟发生器产生时钟，大部分低频单片机都是这么工作的。</li>
+<li>外部晶振+内部时钟发生器+内部PLL产生高频时钟+内部分频器分频得到各种频率的时钟，210属于这种。</li>
+</ul>
+</li>
+<li><p>S5PV210时钟属于第三种。<br>主要是因为芯片外部电路不适宜使用高频率，因为传导辐射比较难控制；高频率的晶振价格成本高。SoC内部有很多部件都需要时钟，而且各自需要的时钟频率不同，没法统一供应。因此设计思路是PLL后先得到一个最高的频率（1GHz、1.2GHz），然后各外设使用分频器分频得到合适的频率。</p>
+</li>
+<li><p>时钟和系统性能的关系、超频、稳定性</p>
+</li>
+</ul>
+<p>(1)一般SoC时钟频率都是可以人为编程控制的，频率的高低对系统性能有很大影响。</p>
+<p>(2)S5PV210建议工作频率800MHz～1.2GHz，一般设置主频1GHz。如果你设置到1.2GHz就叫超频。超频的时候系统性能会提升，但是发热量也会增大，因此会影响系统稳定性。</p>
+<ul>
+<li>时钟和外设编程的关联</li>
+</ul>
+<p>(1)每个外设工作都需要一定频率的时钟，这些时钟都是由时钟系统提供的。时钟系统可以编程控制工作模式，因此程序员可以为每个外设指定时钟来源、时钟分频系统、从而制定这个外设的工作时钟。</p>
+<ul>
+<li>时钟和功耗控制的关系</li>
+</ul>
+<p>(1)SoC中各种设备工作时，时钟频率越高其功耗越大，发热越大，越容易不稳定，需要外部的散热条件越苛刻。</p>
+<p>(2)SoC内部有很多外设，这些外设不用的时候最好关掉（不关掉会一定程度浪费电），开关外设不是通过开关，而是通过时钟。也就是说我们给某个外设断掉时钟，这个外设就不工作了。</p>
+<ul>
+<li><p>S5PV210的时钟系统简介</p>
+<ul>
+<li><p>时钟域：MSYS、DSYS、PSYS<br>(1)S5PV210的时钟体系比较复杂，内部外设模块多，因此把整个内部的时钟划分为3大块，叫做3个域。</p>
+<p>(2)MSYS: CPU（Cortex-A8内核）、DRAM控制器（DMC0和DMC1）、IRAM&amp;IROM······</p>
+<p>(3)DSYS: 都是和视频显示、编解码等有关的模块</p>
+<p>(4)PSYS: 和内部的各种外设时钟有关，譬如串口、SD接口、I2C、AC97、USB等。</p>
+<p>(5)内部要分为3个域，因为210内部的这些模块彼此工作时钟速率差异太大了，所以有必要把高速的放一起，相对低速的放一起。</p>
+</li>
+<li><p>时钟来源：晶振+时钟发生器+PLL+分频电路<br>(1)S5PV210外部有4个晶振接口，设计板子硬件时可以根据需要来决定在哪里接晶振。接了晶振之后上电相应的模块就能产生振荡，产生原始时钟。原始时钟再经过一系列的筛选开关进入相应的PLL电路生成倍频后的高频时钟。高频时钟再经过分频到达芯片内部各模块上。（有些模块，譬如串口内部还有进一步的分频器进行再次分频使用）</p>
+</li>
+<li><p>PLL：APLL、MPLL、EPLL、VPLL<br>APLL：Cortex-A8内核 MSYS域<br>MPLL&amp;EPLL：DSYS PSYS<br>VPLL：Video视频相关模块</p>
+</li>
+</ul>
+</li>
+<li><p>S5PV210时钟域详解</p>
+<ul>
+<li>MSYS域：<br>ARMCLK：    给cpu内核工作的时钟，也就是所谓的主频。<br>HCLK_MSYS：    MSYS域的高频时钟，给DMC0和DMC1使用<br>PCLK_MSYS：    MSYS域的低频时钟<br>HCLK_IMEM：给iROM和iRAM（合称iMEM）使用</li>
+<li>DSYS域：<br>HCLK_DSYS：DSYS域的高频时钟<br>PCLK_DSYS：DSYS域的低频时钟</li>
+<li>PSYS域：<br>HCLK_PSYS：PSYS域的高频时钟<br>PCLK_PSYS：PSYS域的低频时钟<br>SCLK_ONENAND：</li>
+</ul>
+</li>
+<li><p>总结：210内部的各个外设都是接在（内部AMBA总线）总线上面的，AMBA总线有1条高频分支叫AHB，有一条低频分支叫APB。上面的各个域都有各自对应的HCLK_XXX和PCLK_XXX，其中HCLK_XXX就是XXX这个域中AHB总线的工作频率；PCLK_XXX就是XXX这个域中APB总线的工作频率。<br>SoC内部的各个外设其实是挂在总线上工作的，也就是说这个外设的时钟来自于他挂在的总线，譬如串口UART挂在PSYS域下的APB总线上，因此串口的时钟来源是PCLK_PSYS。<br>我们可以通过记住和分析上面的这些时钟域和总线数值，来确定我们各个外设的具体时钟频率。</p>
+</li>
+<li><p>各时钟典型值（默认值，iROM中设置的值）</p>
+</li>
+</ul>
+<p>(1)当210刚上电时，默认是外部晶振+内部时钟发生器产生的24MHz频率的时钟直接给ARMCLK的，这时系统的主频就是24MHz，运行非常慢。</p>
+<p>(2)iROM代码执行时第6步中初始化了时钟系统，这时给了系统一个默认推荐运行频率。这个时钟频率是三星推荐的210工作性能和稳定性最佳的频率。</p>
+<p>(3)各时钟的典型值：<br>    * freq(ARMCLK)             = 1000 MHz<br>    * freq(HCLK_MSYS)         = 200 MHz<br>    * freq(HCLK_IMEM)         = 100 MHz<br>    * freq(PCLK_MSYS)         = 100 MHz<br>    * freq(HCLK_DSYS)         = 166 MHz<br>    * freq(PCLK_DSYS)         = 83 MHz<br>    * freq(HCLK_PSYS)         = 133 MHz<br>    * freq(PCLK_PSYS)         = 66 MHz<br>    * freq(SCLK_ONENAND)     = 133 MHz, 166 MHz</p>
+<ul>
+<li>S5PV210时钟体系框图详解</li>
+</ul>
+<p>(1)时钟体系框图的位置：数据手册P361&amp;P362，Figure3-3</p>
+<p>(2)两张图之间是渐进的关系。第一张图从左到右依次完成了原始时钟生成-&gt;PLL倍频得到高频时钟-&gt;初次分频得到各总线时钟；第二张图是从各中间时钟（第一张图中某个步骤生成的时钟）到各外设自己使用的时钟（实际就是个别外设自己再额外分频的设置）。可见，第一张图是理解整个时钟体系的关键，第二种图是进一步分析各外设时钟来源的关键。</p>
+<p>(3)要看懂时钟体系框图，2个符号很重要：一个是MUX开关，另一个是DIV分频器。</p>
+<p>(3.1)MUX开关就是个或门，实际对应某个寄存器的某几个bit位的设置，设置值决定了哪条通道通的，分析这个可以知道右边的时钟是从左边哪条路过来的，从而知道右边时钟是多少。</p>
+<p>(3.2)DIV分频器，是一个硬件设备，可以对左边的频率进行n分频，分频后的低频时钟输出到右边。分频器在编程时实际对应某个寄存器中的某几个bit位，我们可以通过设置这个寄存器的这些对应bit位来设置分频器的分频系数（譬如左边进来的时钟是80MHz，分频系统设置为8，则分频器右边输出的时钟频率为10MHz）。</p>
+<p>(3.3)寄存器中的clock source x就是在设置MUX开关；clock divider control寄存器就是在设置分频器分频系数。</p>
+<ul>
+<li>时钟设置的关键性寄存器</li>
+</ul>
+<p>xPLL_LOCK：xPLL_LOCK寄存器主要控制PLL锁定周期的。</p>
+<p>xPLL_CON/xPLL_CON0/xPLL_CON1：PLL_CON寄存器主要用来打开/关闭PLL电路，设置PLL的倍频参数，查看PLL锁定状态等</p>
+<p>CLK_SRCn(n：0～6)：CLK_SRC寄存器是用来设置时钟来源的，对应时钟框图中的MUX开关。</p>
+<p>CLK_SRC_MASKn：CLK_SRC_MASK决定MUX开关n选1后是否能继续通过。默认的时钟都是打开的，好处是不会因为某个模块的时钟关闭而导致莫名其妙的问题，坏处是功耗控制不精细、功耗高。</p>
+<p>CLK_DIVn：各模块的分频器参数配置</p>
+<p>CLK_GATE_x：类似于CLK_SRC_MASK，对时钟进行开关控制</p>
+<p>CLK_DIV_STATn、CLK_MUX_STATn：这两类状态位寄存器，用来查看DIV和MUX的状态是否已经完成还是在进行中<br>总结：其中最重要的寄存器有3类：CON、SRC、DIV。其中CON决定PLL倍频到多少，SRC决定走哪一路，DIV决定分频多少。</p>
+<h4 id="实验项目-1"><a href="#实验项目-1" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="启动代码-01-watch-dog-timer"><a href="#启动代码-01-watch-dog-timer" class="headerlink" title="启动代码-01-watch dog timer"></a>启动代码-01-watch dog timer</h6><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># define WTCON <span class="number">0xE2700000</span></span><br><span class="line"></span><br><span class="line">//关看门狗（向WTCON的<span class="keyword">bit5写入0即可）</span></span><br><span class="line"><span class="keyword">ldr </span><span class="built_in">r0</span>, <span class="symbol">=WTCON</span></span><br><span class="line"><span class="keyword">ldr </span><span class="built_in">r1</span>, <span class="number">=0x0</span></span><br><span class="line"><span class="keyword">str </span><span class="built_in">r1</span>, [<span class="built_in">r0</span>]</span><br></pre></td></tr></table></figure>
+
+<h6 id="启动代码-02-设置栈"><a href="#启动代码-02-设置栈" class="headerlink" title="启动代码-02-设置栈"></a>启动代码-02-设置栈</h6><figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">#define</span> <span class="keyword">SVC_STACK	</span><span class="number">0xD0037D80</span></span><br><span class="line"></span><br><span class="line">//设置<span class="keyword">SVC栈</span></span><br><span class="line"><span class="keyword">ldr </span><span class="built_in">sp</span>, <span class="symbol">=SVC_STACK</span></span><br></pre></td></tr></table></figure>
+
+<p>设置栈之后就可以用汇编代码调用C语言代码，从而将实验代码用C语言来实现。在工程中新建并且添加一个C语言源文件（start.c），注意添加时要修改Makefile。在汇编启动代码中设置好栈后，使用bl xxx的方式来调用C中的函数xxx</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">%.o : %.S</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c -nostdlib</span><br><span class="line"></span><br><span class="line">%.o : %.c</span><br><span class="line">	arm-linux-gcc -o <span class="variable">$@</span> <span class="variable">$&lt;</span> -c -nostdlib</span><br><span class="line">//连接阶段报错undefined reference to `__aeabi_unwind_cpp_pr1`</span><br><span class="line">//解决：在编译时添加-nostdlib这个编译选项即可解决。nostdlib就是不使用标准函数库。标准函数库就是编译器中自带的函数库，用-nostdlib可以让编译器链接器优先选择我程序内自己写的函数库。</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>使用C语言访问寄存器<br>  寄存器的地址类似于内存地址（IO与内存统一编址的），用C语言读写寄存器，就是用C语言来读写内存地址，就要用到指针。<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">unsigned</span> <span class="keyword">int</span> *p = (<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="number">0xE0200240</span>;</span><br><span class="line">*p = <span class="number">0x11111111</span>;</span><br><span class="line"></span><br><span class="line">*((<span class="keyword">unsigned</span> <span class="keyword">int</span> *)<span class="number">0xE0200240</span>) = <span class="number">0x11111111</span>;<span class="comment">//另一种写法</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="启动代码-03-icache"><a href="#启动代码-03-icache" class="headerlink" title="启动代码-03-icache"></a>启动代码-03-icache</h6><p>汇编代码读写p15以开关icache</p>
+<ul>
+<li>mrc&amp;mcr指令<blockquote>
+<p>mrc指令将协处理器的寄存器中数值传送到ARM处理器的寄存器中。<br>mrc{条件}    协处理器编码,协处理器操作码1,目的寄存器,源寄存器1,源寄存器2,协处理器操作码2</p>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<p>mcr指令将ARM处理器的寄存器中的数据传送到协处理器的寄存器中。<br>mcr{条件}    协处理器编码,协处理器操作码1,源寄存器,目的寄存器1,目的寄存器2,协处理器操作码2</p>
+</blockquote>
+<p>当中，”条件”为指令运行的条件码。当”条件”忽略时指令为无条件运行。例：<code>mrc2</code>中，”条件”为Ob1111,指令为无条件运行指令。</p>
+<p>“协处理器编码”指定协处理器（p1-p15）</p>
+<p>“协处理器操作码1”为协处理器将运行的操作的操作码。对于<code>P15</code>协处理器来说，协处理器操作码1永远为0b000,当”协处理器操作码1”不为0b000时，该指令操作结果不可预知。</p>
+<p>mrc和mcr指令中，”目的寄存器/源寄存器”为ARM寄存器，当指令为mrc时，协处理器寄存器（c1-c15）的值传送到ARM寄存器中；当指令为mcr时，ARM寄存器的值传送到协处理器寄存器（c1-c15）中。ARM寄存器不能为PC，当”目的寄存器”为PC时，指令操作结果不可预知。</p>
+<p>mrc和mcr指令中，”源寄存器2/目的寄存器2”用于区分同一个编号的不同物理寄存器。当指令中不须要提供附加信息时，将C0指定为源寄存器2/目的寄存器2，否则指令操作结果不可预知。 </p>
+<p>“协处理器操作码2”提供附加信息，用于差别同一个编号的不同物理寄存器。当指令中指定附加信息时，省略协处理器操作码2或者将其指定为0,否则指令操作结果不可预知。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">mrc </span><span class="built_in">p15</span>,<span class="number">0</span>,<span class="built_in">r0</span>,<span class="built_in">c1</span>,<span class="built_in">c0</span>,<span class="number">0</span>	// 该指令将协处理器<span class="built_in">p15</span>的<span class="built_in">c1</span>寄存器中的数据送到<span class="meta">ARM</span>处理器的<span class="built_in">r0</span>寄存器中。</span><br><span class="line"><span class="keyword">bic </span><span class="built_in">r0</span>, <span class="built_in">r0</span>, #(<span class="number">1</span>&lt;&lt;<span class="number">12</span>)	// <span class="keyword">bit12 </span>置<span class="number">0</span>  关icache</span><br><span class="line"><span class="keyword">orr </span><span class="built_in">r0</span>, <span class="built_in">r0</span>, #(<span class="number">1</span>&lt;&lt;<span class="number">12</span>)	// <span class="keyword">bit12 </span>置<span class="number">1</span>  开icache</span><br><span class="line"><span class="symbol">mcr</span> <span class="built_in">p15</span>,<span class="number">0</span>,<span class="built_in">r0</span>,<span class="built_in">c1</span>,<span class="built_in">c0</span>,<span class="number">0</span>	// 该指令将<span class="meta">ARM</span>处理器的<span class="built_in">r0</span>寄存器中的数据送到协处理器<span class="built_in">p15</span>的<span class="built_in">c1</span>寄存器中。</span><br></pre></td></tr></table></figure>
+
+<h6 id="启动代码-04-重定位"><a href="#启动代码-04-重定位" class="headerlink" title="启动代码-04-重定位"></a>启动代码-04-重定位</h6><ul>
+<li><p>在SRAM中将代码从0xd0020010重定位(relocate)到0xd0024000<br>  本来代码是运行在0xd0020010的，但是因为一些原因我们又希望代码实际是在0xd0024000位置运行的。这时候就需要重定位了。这种情况对代码本身运行无实际意义，因为此代码为位置无关代码，但是某些情况重定位就是必须的，譬如在uboot中。</p>
+</li>
+<li><p>步骤<br>  第一：通过链接脚本将代码链接到0xd0024000（先准备好下面的代码）</p>
+<p>  第二：dnw下载时将bin文件下载到0xd0020010<br>  当把代码链接地址设置为0xd0024000时（Makefile、link.lds），实际隐含意思就是代码将来必须放在0xd0024000位置才能正确执行（除非代码是PIC位置无关码），就知道重定位代码的作用就是：在PIC执行完之前（在代码中第一句位置有关码执行之前）必须将整个代码搬移到0xd0024000位置去执行，这就是重定位。</p>
+<p>  第三：代码执行时通过代码前段的少量位置无关码（start.S）将整个代码搬移到0xd0024000（代码拷贝）</p>
+<p>  第四：清bss段（start.S），因为C语言规定显式初始化为0的全局变量，或者未显式初始化的全局变量的值为0</p>
+<p>  第五：使用一个长跳转跳转到0xd0024000处的代码继续执行（start.S），重定位完成</p>
+</li>
+<li><p>长跳转&amp;短跳转<br>  长跳转：是一句跳转指令（ARM中的跳转指令就是类似于分支指令B、BL等作用的指令），跳转指令通过给PC（r15）赋一个新值来完成代码段的跳转执行。长跳转指的是跳转到的地址和当前地址差异比较大，跳转的范围比较宽广。</p>
+<p>  执行完代码重定位后，实际上在SRAM中有2份代码的镜像（一份是我们下载到0xd0020010处开头的，另一份是重定位代码复制到0xd0024000处开头的），这两份内容完全相同，仅仅地址不同。重定位之后使用ldr pc, =led_blink这句长跳转直接从0xd0020010处代码跳转到0xd0024000开头的那一份代码的led_blink函数处去执行。（实际上此时在SRAM中有2个led_blink函数镜像，两个都能执行，如果短跳转bl led_blink则执行的就是0xd0020010开头的这一份，如果长跳转ldr pc, =led_blink则执行的是0xd0024000开头处的这一份）。这就是短跳转和长跳转的区别。</p>
+<p>  当链接地址和运行地址相同时，短跳转和长跳转实际效果是一样的；但是当链接地址不等于运行地址时，短跳转和长跳转就有差异了。这时候短跳转实际执行的是运行地址处的那一份，而长跳转执行的是链接地址处那一份。</p>
+<p>  重定位实际就是在运行地址处执行一段位置无关码PIC，让这段PIC（也就是重定位代码）从运行地址处把整个程序镜像拷贝一份到链接地址处，完了之后使用一句长跳转指令从运行地址处直接跳转到链接地址处去执行同一个函数（led_blink），这样就实现了重定位之后的无缝连接。</p>
+</li>
+<li><p>adr与ldr伪指令的区别<br>  ldr和adr都是伪指令，区别是ldr是长加载、adr是短加载。<br>  重点：adr指令加载符号地址，加载的是运行时地址；ldr指令在加载符号地址时，加载的是链接地址。<br>  只要知道adr和ldr分别用于加载运行地址和链接地址，从而可以判断是否需要重定位即可。</p>
+</li>
+<li><p>重定位（代码拷贝）<br>  重定位就是汇编代码中的copy_loop函数，代码的作用是使用循环结构来逐句复制代码到链接地址。<br>  复制的源地址是SRAM的0xd0020010，复制目标地址是SRAM的0xd0024000，复制长度是bss_start减去_start<br>  所以复制的长度就是整个重定位需要重定位的长度，也就是整个程序中代码段+数据段的长度。<br>  bss段（bss段中就是0初始化的全局变量）不需要重定位。</p>
+</li>
+<li><p>清bss段<br>  清除bss段是为了满足C语言的运行时要求（C语言要求显式初始化为0的全局变量，或者未显式初始化的全局变量的值为0，实际上C语言编译器就是通过清bss段来实现C语言的这个特性的）。一般情况下我们的程序是不需要负责清零bss段的（C语言编译器和链接器会帮我们的程序自动添加一段头程序，这段程序会在我们的main函数之前运行，这段代码就负责清除bss）。但是在我们代码重定位了之后，因为编译器帮我们附加的代码只是帮我们清除了运行地址那一份代码中的bss，而未清除重定位地址处开头的那一份代码的bss，所以重定位之后需要自己去清除bss。</p>
+</li>
+<li><p>长跳转<br>  清理完bss段后重定位就结束了。然后当前的状况是：<br>  1、当前运行地址还在0xd0020010开头的（重定位前的）那一份代码中运行着。</p>
+<p>  2、此时SRAM中已经有了2份代码，1份在d0020010开头，另一份在d0024000开头的位置。<br>  然后就要长跳转了。</p>
+</li>
+</ul>
+<h6 id="启动代码-05-初始化sdram"><a href="#启动代码-05-初始化sdram" class="headerlink" title="启动代码-05-初始化sdram"></a>启动代码-05-初始化sdram</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>设置link.lds文件，将连接地址改为0x20000000（dram0开始地址）</li>
+<li>设置Makefile文件，生成sdram_init.o文件</li>
+<li>添加s5pv210.h文件，内容为寄存器、内存、移位等宏定义</li>
+<li>修改start.S文件，跳转到sdram_asm_init.S文件初始化dram0</li>
+<li>编写sdram_asm_init.S文件，初始化dram0</li>
+</ol>
+<h6 id="启动代码-06-设置时钟"><a href="#启动代码-06-设置时钟" class="headerlink" title="启动代码-06-设置时钟"></a>启动代码-06-设置时钟</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>设置Makefile文件，生成clock.o文件</li>
+<li>修改start.S文件，<code>bl clock_init</code>短跳转到clock.S/clock.c文件设置时钟</li>
+<li>编写clock.S文件，设置时钟</li>
+</ol>
+<ul>
+<li><p>时钟设置的步骤：<br>  第1步：先选择不使用PLL。让外部24MHz原始时钟直接过去，绕过APLL那条路</p>
+<p>  第2步：设置锁定时间。默认值为0x0FFF，保险起见可以设置为0xFFFF</p>
+<p>  第3步：设置PLL，主要是设置PLL的倍频系统，决定由输入端24MHz的原始频率可以得到多大的输出频率。默认设置输出为ARMCLK为1GHz</p>
+<p>  第4步：设置分频系统，决定由PLL出来的最高时钟如何分频得到各个分时钟</p>
+<p>  第5步：打开PLL。已经设置好了所有的开关和分频系数，打开PLL后PLL开始工作，锁定频率后输出，然后经过分频得到各个频率。全部步骤涉及的寄存器：5个。<br>  第6步：收尾：<code>mov     pc, lr</code></p>
+</li>
+<li><p>CLK_SRC寄存器的设置分析<br>CLK_SRC寄存器其实是用来设置MUX开关的。在这里先将该寄存器设置为全0，主要是bit0和bit4设置为0，表示APLL和MPLL暂时都不启用。</p>
+</li>
+<li><p>CLK_LOCK寄存器的设置分析<br>设置PLL锁定延时的。官方推荐值为0xFFF，我们设置为0xFFFF。</p>
+</li>
+<li><p>PLL倍频的相关计算<br>(1)、设置了APLL和MPLL。<br>(2)、APLL和MPLL设置的关键都是M、P、S三个值，这三个值来自于官方数据手册的推荐值。</p>
+</li>
+<li><p>CLK_DIV寄存器的设置分析<br>  0x14131440含义分析：</p>
+<ul>
+<li>PCLK_PSYS = HCLK_PSYS / 2</li>
+<li>HCLK_PSYS = MOUT_PSYS / 5</li>
+<li>PCLK_DSYS = HCLK_DSYS / 2</li>
+<li>HCLK_DSYS = MOUT_DSYS / 4</li>
+<li>PCLK_MSYS = HCLK_MSYS / 2</li>
+<li>HCLK_MSYS = ARMCLK / 5</li>
+<li>SCLKA2M = SCLKAPLL / 5</li>
+<li>ARMCLK = MOUT_MSYS / 1</li>
+</ul>
+</li>
+<li><p>时钟经过上面PLL倍增和DIV分频之后得到以下时钟经典值</p>
+<ul>
+<li>freq(ARMCLK)             = 1000 MHz</li>
+<li>freq(HCLK_MSYS)         = 200 MHz</li>
+<li>freq(HCLK_IMEM)         = 100 MHz</li>
+<li>freq(PCLK_MSYS)         = 100 MHz</li>
+<li>freq(HCLK_DSYS)         = 166 MHz</li>
+<li>freq(PCLK_DSYS)         = 83 MHz</li>
+<li>freq(HCLK_PSYS)         = 133 MHz</li>
+<li>freq(PCLK_PSYS)         = 66 MHz</li>
+<li>freq(SCLK_ONENAND)     = 133 MHz, 166 MHz</li>
+</ul>
+</li>
+</ul>
+<h2 id="实验03-串口通信"><a href="#实验03-串口通信" class="headerlink" title="实验03-串口通信"></a>实验03-串口通信</h2><h4 id="基本概念-3"><a href="#基本概念-3" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="通信发展史"><a href="#通信发展史" class="headerlink" title="通信发展史"></a>通信发展史</h6><p>(1)、历史上通信：烽火台、狼烟；信件；电子通信（电报、电话、网络信号）</p>
+<p>(2)、通信中最重要的两个方面：信息表示、解析方法 + 信息的传输方法。</p>
+<p>(3)、通信双方事先需要约定好信息的表示方法和解析方法，做到一致，否则信息不能有效传递。</p>
+<p>(4)、信号的传输方法是指经过编码后的通信信息如何在传输介质上传输的过程。<br>总结：通信过程其实分为3个步骤：首先发送方先按照信息编码方式对有效信息进行编码（编程成可以在通信线路上传输的信号形态），然后编码后的信息在传输介质上进行传输，输送给接收方；最后接收方接收到编码信息后进行解码，解码后得到可以理解的有效信息。</p>
+<ul>
+<li>电子通信概念1：同步通信和异步通信</li>
+</ul>
+<p>(1)、同步和异步的区别：首先很多地方都有同步和异步的概念，简单来说就是发送方和接收方按照同一个时钟节拍工作就叫同步，发送方和接收方没有统一的时钟节拍、而各自按照自己的节拍工作就叫异步。</p>
+<p>(2)、同步通信中，通信双方按照统一节拍工作，所以配合很好；一般需要发送方给接收方发送信息同时发送时钟信号，接收方根据发送方给它的时钟信号来安排自己的节奏。同步通信用在通信双方信息交换频率固定，或者经常通信时。</p>
+<p>(3)、异步通信又叫异步通知。在双方通信的频率不固定时（有时3ms收发一次，有时3天才收发一次）不适合使用同步通信，而适合异步通信。异步通信时接收方不必一直在意发送方，发送方需要发送信息时会首先给接收方一个信息开始的起始信号，接收方接收到起始信号后就认为后面紧跟着的就是有效信息，才会开始注意接收信息，直到收到发送方发过来的结束标志。</p>
+<ul>
+<li>电子通信概念2：电平信号和差分信号</li>
+</ul>
+<p>(1)、电平信号和差分信号是用来描述通信线路传输方式的。也就是说如何在通信线路上表达1和0.</p>
+<p>(2)、电平信号的传输线中有一个参考电平线（一般是GND），然后信号线上的信号值是由信号线电平和参考电平线的电压差决定。</p>
+<p>(3)、差分信号的传输线中没有参考电平，所有都是信号线。然后1和0的表达靠信号线之间的电压差。<br>总结：电平信号的2根通信线之间的电平差异容易受到干扰，传输容易失败；差分信号不容易受到干扰因此传输质量比较稳定，现代通信一般都使用差分信号，电平信号几乎没有了。<br>总结2：看起来似乎相同根数的通信线下，电平信号要比差分信号要快；但是实际还是差分信号快，因为差分信号抗干扰能力强，因此1个发送周期更短。</p>
+<ul>
+<li>电子通信概念3：并行接口和串行接口</li>
+</ul>
+<p>(1)、串行、并行主要是考虑通信线的根数，就是发送方和接收方同时可以传递的信息量的多少</p>
+<p>(2)、譬如在电平信号下，1根参考电平线+1根信号线可以传递1位二进制；如果我们有3根线（2根信号线+1根参考线）就可以同时发送2位二进制；如果想同时发送8位二进制就需要9根线。</p>
+<p>(3)、在差分信号下，2根线（彼此差分）可以同时发送1位二进制；如果需要同时发送8位二进制，需要16根线。<br>总结：听起来似乎并行接口比串行接口要快（串行接口一次只能发送1位二进制，而并行接口一次可以发送多位二进制）要更优秀；但是实际上串行接口才是王道，用的比较广。因为更省信号线，而且对传输线的要求更低、成本更低；而且串行时可以通过提高通信速度来提高总体通信性能，不一定非得要并行。</p>
+<p>总结：其实这么多年发展，最终胜出的是：异步、串行、差分，譬如USB和网络通信。</p>
+<h6 id="串口通信"><a href="#串口通信" class="headerlink" title="串口通信"></a>串口通信</h6><ul>
+<li>串口通信的基本概念</li>
+</ul>
+<p>串口通信的特点：异步、电平信号、串行</p>
+<p>(1)、异步：串口通信的发送方和接收方之间是没有统一的时钟信号的。</p>
+<p>(2)、电平信号：串口通信出现的时间较早，速率较低，传输的距离较近，所以干扰还不太明显，因此当时使用了电平信号传输。后期出现的传输协议都改成差分信号传输了。</p>
+<p>(3)、串行通信：串口通信每次同时只能传输1个二进制位。</p>
+<ul>
+<li>RS232电平和TTL电平</li>
+</ul>
+<p>(1)电平信号是用信号线电平减去参考线电平得到电压差，这个电压差决定了传输值是1还是0（就像水位一样，高于地面多少为涨潮，低于多少为退潮）.</p>
+<p>(2)在电平信号时多少V代表1，多少V代表0不是固定的，取决于电平标准。譬如RS232电平中-3V～-15V表示1；+3～+15V表示0；TTL电平则是+5V表示1，0V表示0.</p>
+<p>(3)不管哪种电平都是为了在传输线上表示1和0.区别在于适用的环境和条件不同。RS232的电平定义比较大，适合干扰大、距离远的情况；TTL电平电压范围小，适合距离近且干扰小的情况。</p>
+<p>(4)我们台式电脑后面的串口插座就是RS232接口的，在工业上用串口时都用这个，传输距离小于15米；TTL电平一般用在电路板内部两个芯片之间。</p>
+<p>(5)对编程来说，RS232电平传输还是TTL电平是没有差异的。所以电平标准对硬件工程师更有意义，而软件工程师只要略懂即可。（把TTL电平和RS232电平混接是不可以的）</p>
+<ul>
+<li>波特率</li>
+</ul>
+<p>(1)波特率（bandrate），指的是串口通信的速率，也就是串口通信时每秒钟可以传输多少个二进制位。譬如每秒种可以传输9600个二进制位（传输一个二进制位需要的时间是1/9600秒，也就是104us），波特率就是9600.</p>
+<p>(2)串口通信的波特率不能随意设定，而应该在一些值中去选择。一般最常见的波特率是9600或者115200（低端单片机如51常用9600，高端单片机和嵌入式SoC一般用115200）.为什么波特率不可以随便指定？主要是因为：第一，通信双方必须事先设定相同的波特率这样才能成功通信，如果发送方和接收方按照不同的波特率通信则根本收不到，因此波特率最好是大家熟知的而不是随意指定的。第二，常用的波特率经过长久发展，就形成了共识，大家常用就是9600或者115200.</p>
+<ul>
+<li>起始位、数据位、奇偶校验位、停止位</li>
+</ul>
+<p>(1)串口通信时，收发是一个周期一个周期进行的，每周期传输n个二进制位。这一个周期就叫做一个通信单元，一个通信单元是由：起始位+数据位+奇偶校验位+停止位组成的。</p>
+<p>(2)起始位表示发送方要开始发送一个通信单元；数据位是一个通信单元中发送的有效信息位；奇偶校验位是用来校验数据位，以防止数据位出错的；停止位是发送方用来表示本通信单元结束标志的。</p>
+<p>(3)起始位的定义是串口通信标准事先指定的，是由通信线上的电平变化来反映的。</p>
+<p>(4)数据位是本次通信真正要发送的有效数据，串口通信一次发送多少位有效数据是可以设定的（一般可选的有6、7、8、9，99%情况下我们都是选择8位数据位。因为我们一般通过串口发送的文字信息都是ASCII码编码的，而ASCII码中一个字符刚好编码为8位。）</p>
+<p>(5)奇偶校验位是用来给数据位进行奇偶校验（把待校验的有效数据逐个位的加起来，总和为奇数奇偶校验位就为1，总和为偶数奇偶校验位就为0）的，可以在一定程度上防止位反转。</p>
+<p>(6)停止位的定义是串口通信标准事先指定的，是由通信线上的电平变化来反映的。常见的有1位停止位，1.5位停止位，2位停止位等。99%情况下都是用1位停止位。</p>
+<p>总结：串口通信时因为是异步通信，所以通信双方必须事先约定好通信参数，这些通信参数包括：波特率、数据位、奇偶校验位、停止位（串口通信中起始位定义是唯一的，所以一般不用选择）</p>
+<ul>
+<li><p>串口通信的基本原理</p>
+<ul>
+<li><p>单工通信和双工通信<br>(1)单工就是单方向，双工就是双方同时收发，同时只能但方向但是方向可以改变叫半双工</p>
+<p>(2)如果只能A发B收则单工，A发B收或者B发A收（两个方向不能同时）叫半双工，A发B收同时B发A收叫全双工。</p>
+</li>
+<li><p>三根通信线：Rx Tx GND<br>(1)任何通信都要有信息传输载体，或者是有线的或者是无线的。</p>
+<p>(2)串口通信是有线通信，是通过串口线来通信的。</p>
+<p>(3)串口通信线最少需要2根（GND和信号线），可以实现单工通信，也可以使用3根通信线（Tx、Rx、GND）来实现全双工。</p>
+<p>(4)一般开发板都会引出SoC上串口引脚直接输出的TTL电平的串口（X210开发板没有），插座用插针式插座，每个串口引出的都有3个线（Tx、Rx、GND），可以用这些插座直接连接外部的TTL电平的串口设备。</p>
+</li>
+</ul>
+</li>
+<li><p>通信参数（波特率、数据位、奇偶校验位、停止位等）</p>
+</li>
+</ul>
+<p>(1)串口通信属于基层基本性的通信规约，它自己本身不会去协商通信参数，需要通信前通信双方事先约定好通信参数（一般4个最重要的）</p>
+<p>(2)串口通信的任何一个关键参数设置错误，都会导致通信失败。譬如波特率调错了，发送方发送没问题，接收方也能接收，但是接收到全是乱码···</p>
+<ul>
+<li>信息以二进制流的方式在信道上传输</li>
+</ul>
+<p>(1)、串口通信的发送方每隔一定时间（时间固定为1/波特率，单位是秒）将有效信息（1或者0）放到通信线上去，逐个二进制位的进行发送。</p>
+<p>(2)接收方通过定时（起始时间由读到起始位标志开始，间隔时间由波特率决定）读取通信线上的电平高低来区分发送给我的是1还是0。依次读取数据位、奇偶校验位、停止位，停止位就表示这一个通信单元（帧）结束，然后中间是不定长短的非通信时间（发送方有可能紧接着就发送第二帧，也可能半天都不发第二帧，这就叫异步通信），下来就是第二帧·····<br>总结：第一，波特率非常重要；第二，数据位、奇偶校验位、停止位也很重要，否则可能认不清数据。第三，通过串口不管发数字、还是文本还是命令还是什么，都要先对发送内容进行编码，编码成二进制再进行逐个位的发送。</p>
+<p>(3)串口发送的一般都是字符，一般都是ASCII码编码后的字符，所以一般设置数据位都是8，方便刚好一帧发送1个字符。</p>
+<ul>
+<li>DB9接口介绍</li>
+</ul>
+<p>(1)DB9接口是串口通信早期比较常用的一种规范化接口。</p>
+<p>(2)串行通信在早期是计算机与外界通信的主要手段，那时候的计算机都有标准配置的串口以实现和外部通信。那时候就定义了一套标准的串口规约，DB9接口就是标准接口。</p>
+<p>(3)DB9接口中有9根通信线，其中3根很重要，为GND、Tx、Rx，必不可少；剩余6根都是和流控有关的，现代我们使用串口都是用来做调试一般都禁用流控，所以这6根没用。</p>
+<p>(4)现在一般使用串口时要记得把流控禁止掉，不然可能发生意想不到的问题。</p>
+<ul>
+<li><p>S5PV210串行通信接口</p>
+<ul>
+<li><p>串口的名称<br>(1)S5PV210的数据手册中串口控制器在section8.1</p>
+<p>(2)串口的官方名称叫：universal asynchronous reciver and transmitter，通用异步收发器。英文缩写是uart，中文简称串口。</p>
+</li>
+</ul>
+</li>
+<li><p>S5PV210的串口控制器工作原理框图</p>
+</li>
+</ul>
+<p>(1)整个串口控制器包含transmitter和receiver两部分，两部分功能彼此独立，transmitter负责210向外部发送信息，receiver负责从外部接收信息到210内部。</p>
+<p>(2)总线角度来讲，串口控制器是接在APB总线上的。对我们编程有影响的是：将来计算串口控制器的源时钟时是以APB总线来计算的。</p>
+<p>(3)transmitter由发送缓冲区和发送移位器构成。我们要发送信息时，首先将信息进行编码（一般用ASCII码）成二进制流，然后将一帧数据（一般是8位）写入发送缓冲区（从这里以后程序就不用管了，剩下的发送部分是硬件自动的），发送移位器会自动从发送缓冲区中读取一帧数据，然后自动移位（移位的目的是将一帧数据的各个位分别拿出来）将其发送到Tx通信线上。</p>
+<p>(4)receiver由接收缓冲区和接收移位器构成。当有人通过串口线向我发送信息时，信息通过Rx通信线进入我的接收移位器，然后接收移位器自动移位将该二进制位保存入我的接收缓冲区，接收完一帧数据后receiver会产生一个中断给CPU，CPU收到中断后即可知道receiver接收满了一帧数据，就会来读取这帧数据。</p>
+<p>总结：发送缓冲区和接收缓冲区是关键。发送移位器和接收移位器的工作都是自动的，不用编程控制的，所以我们写串口的代码就是：首先初始化（初始化的实质是读写寄存器）好串口控制器（包括发送控制器和接收控制器），然后要发送信息时直接写入发送缓冲区，要接收信息时直接去接收缓冲区读取即可。可见，串口底层的工作（譬如怎么移位的、譬如起始位怎么定义的、譬如TTL电平还是RS232电平等）对程序员是隐藏的，程序员不用去管。软件工程师对串口操作的接口就是发送/接收缓冲区（实质就是寄存器，操作方式就是读写内存）</p>
+<p>(5)串口控制器中有一个波特率发生器，作用是产生串口发送/接收的节拍时钟。波特率发生器其实就是个时钟分频器，它的工作需要源时钟（APB总线来），然后内部将源时钟进行分频（软件设置寄存器来配置）得到目标时钟，然后再用这个目标时钟产生波特率（硬件自动的）。</p>
+<ul>
+<li>自动流控（AFC：Auto flow control）</li>
+</ul>
+<p>(1)为什么需要流控？流控的目的是让串口通信非常可靠，在发送方速率比接收方快的时候流控可以保证发送和接收不会漏掉东西。</p>
+<p>(2)现在为什么不用流控？现在计算机之间有更好更高级（usb、internet）的通讯方式，串口已经基本被废弃了。现在串口的用途更多是SoC用来输出调试信息的。由于调试信息不是关键性信息、而且由于硬件发展串口本身速度已经相对很慢了，所以硬件都能协调发送和接收速率，因此流控已经失去意义了，所以现在基本都废弃了。</p>
+<ul>
+<li><p>串口高级功能<br>技术发展给串口叠加了一些高级功能，在像210这类的高级SoC的串口控制器中，都有这类高级功能。</p>
+</li>
+<li><p>FIFO模式及其作用</p>
+</li>
+</ul>
+<p>(1)典型的串口设计，发送/接收缓冲区只有1字节，每次发送/接收只能处理1帧数据。这样在单片机中没什么问题，但是到复杂SoC中（一般有操作系统的）就会有问题，会导致效率低下，因为CPU需要不断切换上下文。</p>
+<p>(2)解决方案就是想办法扩展串口控制器的发送/接收缓冲区，譬如将发送/接收缓冲器设置为64字节，CPU一次过来直接给发送缓冲区64字节的待发送数据，然后transmitter慢慢发，发完再找CPU再要64字节。但是串口控制器本来的发送/接收缓冲区是固定的1字节长度的，所以做了个变相的扩展，就是FIFO。</p>
+<p>(3)FIFO就是first in first out，先进先出。fifo其实是一种数据结构，这里这个大的缓冲区叫FIFO是因为这个缓冲区的工作方式类似于FIFO这种数据结构。</p>
+<ul>
+<li>DMA模式及其作用</li>
+</ul>
+<p>(1)DMA direct memory access，直接内存访问。DMA本来是DSP中的一种技术，DMA技术的核心就是在交换数据时不需要CPU参与，模块可以自己完成。</p>
+<p>(2)DMA模式要解决的问题和上面FIFO模式是同一个问题，就是串口发送/接收要频繁的折腾CPU造成CPU反复切换上下文导致系统效率低下。</p>
+<p>(3)传统的串口工作方式（无FIFO无DMA）效率是最低的，适合低端单片机；高端单片机上CPU事物繁忙所以都需要串口能够自己完成大量数据发送/接收。这时候就需要FIFO或者DMA模式。FIFO模式是一种轻量级的解决方案，DMA模式适合大量数据迸发式的发送/接收时。</p>
+<ul>
+<li>IrDA模式及其用法</li>
+</ul>
+<p>(1)IrDA其实就是红外，红外就是红外线通信（电视机、空调遥控器就是红外通信的）。</p>
+<p>(2)红外通信的原理是发送方固定间隔时间向接收方发送红外信号（表示1或0）或者不发送红外信号（表示0或者1），接收方每隔固定时间去判断有无红外线信号来接收1和0.</p>
+<p>(3)分析可知，红外通信和串口通信非常像，都是每隔固定时间发送1或者0（判断1或0的物理方式不同）给接收方来通信。因此210就利用串口通信来实现了红外发送和接收。</p>
+<p>(4)210的某个串口支持IrDA模式，开启红外模式后，我们只需要向串口写数据，这些数据就会以红外光的方式向外发射出去（当然是需要一些外部硬件支持的），然后接收方接收这些红外数据即可解码得到我们的发送信息。</p>
+<ul>
+<li>串行通信与中断的关系</li>
+</ul>
+<p>(1)串口通信分为发送/接收2部分。发送方一般不需要（也可以使用）中断即可完成发送，接收方必须（一般来说必须，也可以轮询方式接收）使用中断来接收。</p>
+<p>(2)发送方可以选择使用中断，也可以选择不使用中断。使用中断的工作情景是：发送方先设置好中断并绑定一个中断处理程序，然后发送方丢一帧数据给transmitter，transmitter发送耗费一段时间来发送这一帧数据，这段时间内发送方CPU可以去做别的事情，等transmitter发送完成后会产生一个TXD中断，该中断会导致事先绑定的中断处理程序执行，在中断处理程序中CPU会切换回来继续给transmitter放一帧数据，然后CPU切换离开；不使用中断的工作情景是：发送方事先禁止TXD中断（当然也不需要给相应的中断处理程序了），发送方CPU给一帧数据到transmitter，然后transmitter耗费一段时间来发送这帧数据，这段时间CPU在这等着（CPU没有切换去做别的事情），待发送方发送完成后CPU再给它一帧数据继续发送直到所有数据发完。CPU是怎么知道transmitter已经发送完了？原来是有个状态寄存器，状态寄存器中有一个位叫发送缓冲区空标志，transmitter发送完成（发送缓冲区空了）就会给这个标志位置位，CPU就是通过不断查询这个标志位为1还是0来指导发送是否已经完成的。</p>
+<p>(3)因为串口通信是异步的，异步的意思就是说发送方占主导权。也就是说发送方随时想发就能发，但是接收方只有时刻等待才不会丢失数据。所以这个差异就导致发送方可以不用中断，而接收方不得不使用中断模式。</p>
+<ul>
+<li>210串行通信接口的时钟设计</li>
+</ul>
+<p>(1)串口通信为什么需要时钟？因为串口通信需要一个固定的波特率，所以transmitter和receiver都需要一个时钟信号。</p>
+<p>(2)时钟信号从哪里来？源时钟信号是外部APB总线（PCLK_PSYS，66MHz）提供给串口模块的（这就是为什么我们说串口是挂在APB总线上的），然后进到串口控制器内部后给波特率发生器（实质上是一个分频器），在波特率发生器中进行分频，分频后得到一个低频时钟，这个时钟就是给transmitter和receiver使用的。</p>
+<p>(3)串口通信中时钟的设置主要看寄存器设置。重点的有：寄存器源设置（为串口控制器选择源时钟，一般选择为PCLK_PSYS，也可以是SCLK_UART），还有波特率发生器的2个寄存器。</p>
+<p>(4)波特率发生器有2个重要寄存器：UBRDIVn和UDIVSLOTn，其中UBRDIVn是主要的设置波特率的寄存器，UDIVSLOTn是用来辅助设置的，目的是为了校准波特率的。</p>
+<h4 id="编程过程-1"><a href="#编程过程-1" class="headerlink" title="编程过程"></a>编程过程</h4><ul>
+<li>x210串口通信编程</li>
+</ul>
+<p>(1)整个串口通信相关程序（函数）包含2部分：uart_init负责初始化串口，uart_putc负责发送一个字节</p>
+<ul>
+<li>串口控制器初始化关键步骤</li>
+</ul>
+<p>(1)初始化串口的Tx和Rx引脚所对应的GPIO（查原理图可知Rx和Rx分别对应GPA0_1和GPA0_0）</p>
+<p>(2)GPA0CON（0xE0200000），bit[3:0] = 0b0010    bit[7:4] = 0b0010    </p>
+<p>(3)初始化这几个关键寄存器UCON0 ULCON0 UMCON0 UFCON0 UBRDIV0 UDIVSLOT0</p>
+<ul>
+<li><p>主要的寄存器<br>(1)ULCON0 = 0x3        // 0校验位、8数据位、1停止位<br>(2)UCON0 = 0x5        // 发送和接收都是polling mode<br>(3)UMCON0 = 0x0        // 禁止modem、afc<br>(4)UFCON0 = 0x0        // 禁止FIFO模式<br>(5)UBRDIV0和UDIVSLOT0和波特率有关，根据公式算。</p>
+</li>
+<li><p>波特率的计算和设置</p>
+</li>
+</ul>
+<p>(1)第一步，用PCLK_PSYS（第三章，uart的PCLK_PSYS默认为66MHz，但实际计算分频之后为66.7MHz）和目标波特率去计算DIV_VAL: DIV_VAL = (PCLK / (bps x 16)) - 1</p>
+<p>(2)第二步，UBRDIV0寄存器中写入DIV_VAL的整数部分</p>
+<p>(3)第三步，用小数部分X16得到1个个数，查表得uBDIVSLOT0寄存器的设置值</p>
+<ul>
+<li>在C源文件中定义访问寄存器的宏</li>
+</ul>
+<p>(1)定义访问寄存器的宏，将来写代码时直接使用即可。</p>
+<p>(2)串口Tx、Rx对应的GPIO的初始化，给GPA0CON的相应bit位赋值为相应值，用C语言位操作来完成。</p>
+<p>(3)设置UCON、ULCON、UMCON、UFCON等主要控制寄存器。</p>
+<p>(4)设置UBRDIV0和UDIVSLOT0等寄存器。</p>
+<p>(5)串口发送和接收函数的编写，发送前要用while循环等待发送缓冲区为空才能发送。</p>
+<ul>
+<li><p>更改波特率<br>程序中改了波特率后，SecureCRT也要相应修改，不然收不到东西。</p>
+</li>
+<li><p>uart stdio的移植</p>
+</li>
+</ul>
+<p>(1)库头文件：#include &lt;stdio.h&gt;</p>
+<p>(2)stdio：standard input output，标准输入输出</p>
+<p>(3)标准输入输出就是操作系统定义的默认的输入和输出通道。一般在PC机的情况下，标准输入指的是键盘，标准输出指的是屏幕。</p>
+<p>(4)printf函数和scanf函数可以和底层输入/输出函数绑定，然后这两个函数就可以和stdio绑定起来。直接调用printf函数输出，内容就会被从标准输出输出出去。</p>
+<p>(5)此实验标准输出不是屏幕，是串口。标准输入不是键盘，也是串口。</p>
+<ul>
+<li>printf函数的工作原理</li>
+</ul>
+<p>(1)printf函数工作时内部实际调用了2个关键函数：一个是vsprintf函数（主要功能是格式化打印信息，最终得到纯字符串格式的打印信息等待输出），另一个就是真正的输出函数putc（操控标准输出的硬件，将信息发送出去）</p>
+<ul>
+<li>移植printf函数的三种思路</li>
+</ul>
+<p>(1)我们希望在我们的开发板上使用printf函数进行（串口）输出，使用scanf函数进行（串口）输入，就像在PC机上用键盘和屏幕进行输入输出一样。因此需要移植printf函数/scanf函数。</p>
+<p>(2)一般移植printf函数可以有3个途径获取printf的实现源码：最原始最原本的来源就是linux内核中的printf。难度较大、关键是麻烦；稍微简单些的方法是从uboot中移植printf；更简单的方法就是直接使用别人移植好的。</p>
+<p>(3)课程中使用第三种方法，别人移植好的printf函数来自于友善之臂的Tiny210的裸机教程中提供的。</p>
+<ul>
+<li><p>修改Makefile进行printf移植</p>
+</li>
+<li><p>添加link.lds链接脚本，指定连接地址到0xd0020010</p>
+</li>
+<li><p>gcc可变参数及va_arg介绍<br>(1)printf函数中首先使用了C语言的可变参数va_start/va_arg/va_end；<br>(2)了解C语言可变参数再分析。<br>(3)vsprintf函数详解<br>printf-vsprintf-vsnprintf-number<br>vsprintf函数的作用是按照的printf传进去的格式化标本，对变参进行处理，然后将之格式化后缓存在一个事先分配好的缓冲区中。<br>printf后半段调用putc函数将缓冲区中格式化好的字符串直接输出到标准输出。</p>
+</li>
+<li><p>串口实验烧录问题总结</p>
+<ul>
+<li><p>usb下载<br>(1)有时下载不了、有时下载但运行不了、有时正常下载运行。使用其他的dnw或更新dnw驱动，无法解决。</p>
+</li>
+<li><p>SD卡镜像烧录<br>(1)Windows下烧录镜像是使用九鼎提供的工具（X210光盘资料\A盘\tools\x210_Fusing_Tool.exe），注意运行时右键“以管理员身份运行”。</p>
+<p>(2)Linux下参考SD卡烧录镜像做裸机实验。</p>
+</li>
+<li><p>启动方式设置<br>(1)X210开发板的启动方式的选择，OM5设置为VCC则从USB启动，OM5设置成GND，则从iNand/SD卡启动。</p>
+<p>(2)开发板选择从iNand启动后，还要确保iNand中uboot是被擦除的。</p>
+<p>(3)关于如何破坏uboot，在linux/android系统中破坏uboot的方法。在uboot中破坏uboot的方法：movi write u-boot 0x30000000。有人擦除后错乱，进不了系统也从SD卡启动不了。方法一，改为：mw 0x30000000 0x0 0x100000，然后再movi write u-boot 0x30000000。</p>
+<p>(4)先用SD卡烧录启动之前的LED的项目，确保看到现象就证明烧录SD卡方法和启动SD卡都成功了，再做本节课的实验。</p>
+</li>
+</ul>
+</li>
+<li><p>链接脚本的影响<br>通过USB下载最多也只能下载96KB大小的bin，如果bin大于96KB，SRAM放不下会出错。如果用SD卡启动，那么mkv210_image.c决定了bin文件最大不能超过16KB。<br>文件过大，解决方法：</p>
+</li>
+</ul>
+<p>第一，在USB下载时，可以先下载一个x210_usb.bin，然后再将裸机程序连接到0x23E00000，然后再修改dnw中下载地址，将裸机代码下载到0x23E00000运行。（这时不需要重定位了）</p>
+<p>第二，在SD卡启动时，将整个裸机程序分为2部分；第一部分大小16KB以内，第二部分放剩下的（放在SD卡的后面的某个扇区开始的位置，譬如放在第50个扇区开始的位置），然后在裸机代码中进行重定位（SD卡中重定位）。</p>
+<h4 id="实验项目-2"><a href="#实验项目-2" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="串口通信-01-设置串口"><a href="#串口通信-01-设置串口" class="headerlink" title="串口通信-01-设置串口"></a>串口通信-01-设置串口</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>设置Makefile文件，生成uart.o文件</li>
+<li>修改start.S文件，<code>ldr pc, =uart_main</code>长跳转到uart.c文件设置时钟</li>
+<li>编写uart.c文件(用led.c文件修改)，初始化串口和编写发送、接收函数</li>
+</ol>
+<h6 id="串口通信-02-修改比特率"><a href="#串口通信-02-修改比特率" class="headerlink" title="串口通信-02-修改比特率"></a>串口通信-02-修改比特率</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>查看数据手册，得到波特率计算公式（常用波特率：115200、9600）</li>
+<li>根据波特率和公式，修改uart.c文件的相关寄存器。</li>
+<li>修改secureCRT连接时的波特率。</li>
+</ol>
+<h6 id="串口通信-03-移植printf"><a href="#串口通信-03-移植printf" class="headerlink" title="串口通信-03-移植printf"></a>串口通信-03-移植printf</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>复制要移植的头文件和库文件到代码目录下</li>
+<li>修改uart.c文件，加上”stdio.h”头文件和调用里面的printf函数</li>
+<li>修改Makefile文件，使其和lib文件夹里面的Makefile风格一致并调用它</li>
+</ol>
+<h2 id="实验04-中断"><a href="#实验04-中断" class="headerlink" title="实验04-中断"></a>实验04-中断</h2><h4 id="基本概念-4"><a href="#基本概念-4" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="按键中断"><a href="#按键中断" class="headerlink" title="按键中断"></a>按键中断</h6><ul>
+<li><p>物理特性<br>一般的按键都有4个引脚，这4个引脚成2对：其中一对是常开触点（不按则断开，按下则闭合）；一对是常闭触点（平时不按时是闭合的，按下后是断开的）</p>
+</li>
+<li><p>电学原理（结合原理图分析）</p>
+</li>
+</ul>
+<p>(1)硬件接法：SW5:GPH0_2    SW6:GPH0_3    SW7-SW10:GPH2_0-GPH2_3</p>
+<p>(2)按键的电路连接分析：平时按钮没有按下时，按钮内部断开，GPIO引脚处电压为高电平；当有人按下按钮时，按钮内部导通，外部VDD经过电阻和按钮连接到地，形成回路，此时GPIO引脚处电压就变成了低电平。此时VDD电压全部分压在了电阻上（这个电阻就叫分压电阻，这个电阻不能太小，因为电阻的功率是U^2/R）</p>
+<p>(3)总结：按键的工作方法：其实就是按键的按下与弹开，分别对应GPIO的两种电平状态（按下则GPIO为低电平，弹开则GPIO为高电平）。此时SoC内部可以通过检测这个GPIO的电平高低来判断按键有没有被按下，这个判断结果即可作为SoC的输入信号。</p>
+<ul>
+<li>按键属于输入类设备</li>
+</ul>
+<p>(1)按键一般用来做输入设备（由人向SoC发送信息的设备，叫输入设备），由人向SoC发送按键信号（按键信号有2种：按下信号和弹开信号）。</p>
+<p>(2)有些设备就是单纯的输入设备，譬如按键、触摸屏等；有些设备就是单纯的输出设备，譬如LCD；还有一些设备是既能输入又能输出的，叫输入输出设备（IO），譬如串口。</p>
+<ul>
+<li>按键的2种响应方法</li>
+</ul>
+<p>(1)SoC处理按键有2种思路：轮询方式和中断方式。</p>
+<p>(2)轮询方式，就是SoC主动的每隔一段时间去读取（按键所对应的）GPIO的电平高低，以此获得按键信息；缺点在于CPU要一直注意按键事件，会影响CPU做其他事情。</p>
+<p>(3)中断方式，就是SoC事先设定好GPIO触发的中断所对应的中断处理程序ISR，当外部按键按下或弹开时会自动触发GPIO对应的外部中断，导致ISR执行，从而自动处理按键信息。</p>
+<h6 id="轮询方式"><a href="#轮询方式" class="headerlink" title="轮询方式"></a>轮询方式</h6><ul>
+<li>按键对应的GPIO模式设置</li>
+</ul>
+<p>(1)按键接到GPIO上，按键按下还是弹起，决定外部电路的接通与否，从而决定这个GPIO引脚的电压是高还是低；这个电压可以作为这个GPIO引脚的输入信号，此时GPIO配置为输入模式，即可从SoC内部读取该引脚的电平为1还是0（1对应高电平，0对应低电平）。</p>
+<p>(2)GPH0CON(0xE0200C00) GPH0DAT(0xE0200C04) GPH2CON(0xE0200C40) GPH2DAT(0xE0200C44)</p>
+<p>(3)应该在CON寄存器中将GPIO设置为input模式，然后去读取DAT寄存器（读取到的相应位的值为1表示外部是高电平（对应按键弹起），读取到的位的值为0表明外部是低电平（按键按下））</p>
+<ul>
+<li>轮询方式处理按键的程序流程</li>
+</ul>
+<p>(1)第一步，先初始化GPIO模式为input；</p>
+<p>(2)第二步，循环读取GPIO的电平值，然后判断有无按键按下</p>
+<ul>
+<li>什么是按键消抖</li>
+</ul>
+<p>(1)按键这种物理器件本身会有抖动信号，抖动信号指的是在电平由高到低（也就是按键按下时）或者电平由低到高（也就是按键弹起时）过程中，电平的变化不是立刻变化，而是经过了一段时间的不稳定期才完成变化，在这个不稳定期间电平可能会时高时低反复变化，这个不稳定期就叫抖动（抖动期内获取按键信息是不可靠的，要想办法消抖）。</p>
+<p>(2)什么叫消抖？消抖就是用硬件或者软件方法来尽量减小抖动期对按键获取的影响。消抖常用2种思路：第一是硬件消抖，消抖思路就是尽量减小抖动时间，方法是通过硬件添加电容等元件来减小抖动；第二是软件消抖，消抖思路是发现一次按键按下/弹起事件后，不立即处理按键，而是延时一段时间（一般10～20ms，这就是消抖时间）后再次获取按键键值，如果此次获取和上次一样是按下/弹起，那就认为真的按下/弹起了。</p>
+<p>(3)一般比较精密需要的时候，需要硬件消抖和软件消抖一起配合。</p>
+<h6 id="中断体系"><a href="#中断体系" class="headerlink" title="中断体系"></a>中断体系</h6><ul>
+<li>什么是中断</li>
+</ul>
+<p>(1)中断的发明是用来解决宏观上的并行需要的。宏观就是从整体上来看，并行就是多件事情都完成了。</p>
+<p>(2)微观上的并行，就是指的真正的并行，就是精确到每一秒甚至每一刻，多个事情都是在同时进行的。宏观上面的并行并不等于围观的并行，有时候宏观上是并行的，微观上是串行的。</p>
+<p>(3)为什么需要中断？因为单核CPU实际无法并行的，但是通过中断机制，可以实现假并行。</p>
+<ul>
+<li>SoC对中断的实现机制：异常向量表</li>
+</ul>
+<p>(1)异常向量表是CPU中某些特定地址的特定定义。当中断发生的时候，中断要想办法通知CPU去处理中断，怎么做到？这就要靠异常向量表。</p>
+<p>(2)在CPU设计时，就事先定义了CPU中一些特定地址作为特定异常的入口地址（譬如定义0x00000000地址为复位异常向量地址，则发生复位异常时CPU会自动跳转到0x00000000地址去执行指令。又譬如外部中断对应的异常向量地址为0x30000008，则发生外部中断后，CPU会硬件自动跳转到0x30000008地址去执行指令。）</p>
+<p>(3)以上讲的是CPU硬件设计时对异常向量表的支持，下来就需要软件支持了。硬件已经决定了发生什么异常CPU自动跳转PC到哪个地址去执行，软件需要做的就是把处理这个异常的代码的首地址填入这个异常向量地址。</p>
+<ul>
+<li>S5PV210的异常向量表</li>
+</ul>
+<p>(1)异常向量表中各个向量的相对位置是固定的，但是他们的起始地址是不固定的，各种SoC可以不一样，而且复杂ARM中还可以让用户来软件设置这个异常向量表的基地址。</p>
+<p>(2)扩展到所有架构的CPU中：所有架构（譬如51单片机、PIC单片机）的CPU实现中断都是通过异常向量表实现的，这个机制是不变的；但是不同CPU异常向量表的构造和位置是不同的。</p>
+<ul>
+<li>异常和中断的区别和联系</li>
+</ul>
+<p>(1)针对SoC来说，发生复位、软中断、中断、快速中断、取指令异常、数据异常等，我们都统一叫异常。所以说：中断其实是异常的一种。</p>
+<p>(2)异常的定义就是突发事件，打断了CPU的正常常规业务，CPU不得不跳转到异常向量表中去执行异常处理程序；中断是异常的一种，一般特指SoC内的内部外设产生的打断SoC常规业务，或者外部中断（SoC的GPIO引脚传回来的中断）。</p>
+<ul>
+<li><p>异常向量表的编程处理</p>
+<ul>
+<li><p>像内存一样去访问异常向量表<br>(1)S5PV210的异常向量表可以改变（在CP15协处理器中），以适应操作系统的需求。但是目前系统刚启动时，此时DRAM尚未初始化，程序都在SRAM中运行。210在iRAM中设置了异常向量表，供暂时性使用。</p>
+<p>(2)查210的iROM application note文档中iRAM的地址分配，可知，iRAM中的异常向量表起始地址为0xD0037400。知道了异常向量表的起始地址后，各个异常对应的入口就很好知道了。</p>
+</li>
+<li><p>函数名的实质就是函数的首地址<br>(1)函数名在C语言中的理解方法和变量名其实没区别。编译器会把这个函数的函数体对应的代码段和这个函数的函数名（实质是符号）对应起来，等我们在使用这个函数名符号时，编译器会将函数的函数体实际上做替换。因为函数体都不止4字节，而函数名这个符号只能对应1个地址，所以实际对应的是函数体那一个代码段的首地址。</p>
+<p>(2)拿C语言中的语法来讲，函数名就是这个函数的函数指针。</p>
+</li>
+</ul>
+</li>
+<li><p>总结：当我们将异常处理程序的首地址和异常向量表绑定起来后，异常处理初步阶段就完成了。到目前可以保证相应异常发生后，硬件自动跳转到对应异常向量表入口去执行时，可以执行到我们事先绑定的函数。</p>
+</li>
+<li><p>为什么中断处理要先在汇编中进行</p>
+</li>
+</ul>
+<p>(1)中断处理要注意保护现场（中断从SVC模式来，则保存SVC模式下的必要寄存器的值）和恢复现场（中断处理完成后，准备返回SVC模式前，要将保存的SVC模式下的必要寄存器的值恢复回去，不然到了SVC模式后寄存器的值乱了，SVC模式下原来正在进行的常规任务就被你搞坏了）</p>
+<p>(2)保存现场包括：第一：设置IRQ栈；第二，保存LR；第三，保存R0～R12</p>
+<p>(3)为什么要保存LR寄存器？要考虑中断返回的问题。中断ISR执行完后如何返回SVC模式下去接着执行原来的代码。中断返回其实取决于我们进入中断时如何保存现场。中断返回时关键的2个寄存器就是PC和CPSR。所以我们在进入IRQ模式时，应该将SVC模式下的下一句指令的地址（中断返回地址）和CPSR保存起来，将来恢复时才可以将中断返回地址给PC，将保存的CPSR给CPSR。</p>
+<p>(4)中断返回地址就保存在LR中，而CPSR（自动）保存在（IRQ模式下的）SPSR中</p>
+<ul>
+<li><p>汇编保存现场和恢复现场<br>(1)保护现场关键是保存：中断处理程序的返回地址，r0-r12（cpsr是自动保存的）<br>(2)恢复现场主要是恢复：r0-r12，pc，cpsr</p>
+</li>
+<li><p>S5PV210的向量中断控制器</p>
+<ul>
+<li><p>异常处理的2个阶段<br>(1)可以将异常处理分为2个阶段来理解。第一个阶段是异常向量表跳转；第二个阶段就是进入了真正的异常处理程序irq_handler之后的部分。</p>
+</li>
+<li><p>回顾：中断处理的第一阶段（异常向量表阶段）处理。<br>(1)第一个阶段之所以能够进行，主要依赖于CPU设计时提供的异常向量表机制。第一个阶段的主要任务是从异常发生到响应异常并且保存/恢复现场、跳转到真正的异常处理程序处。<br>(2)第二个阶段的目的是识别多个中断源中究竟哪一个发生了中断，然后调用相应的中断处理程序来处理这个中断。</p>
+</li>
+<li><p>S3C2440的第二阶段处理过程<br>(1)第一个问题，怎么找到具体是哪个中断：S3C2440的中断控制器中有一个寄存器（32位的），寄存器的每一个位对应一个中断源（为了解决支持更多中断源，2440又设计了一个子中断机制。在一级中断寄存器中有一些中断是共用的一个bit位，譬如AC97和WDT。对于共用中断，用子中断来区分究竟是哪一个发生了中断）</p>
+<p>(2)第二个问题，怎么找到对应的isr的问题：首先给每个中断做了个编号，进入isr_handler之后先通过查阅中断源寄存器和子中断寄存器（中哪一位为1）确定中断的编号，然后用这个编号去isr数组（isr数组是中断初始化时事先设定好的，就是把各个中断的isr的函数名组成一个数组，用中断对应的编号作为索引来查询这个数组）中查阅得到isr地址。</p>
+</li>
+<li><p>评价：2440的中断处理设计不是特别优秀：第一个过程中使用子中断搞成2级的很麻烦；第二个过程中计算中断编号是个麻烦事，很耗费时间。而中断处理的时间是很宝贵的（系统有一个性能指标，叫实时性。实时性就是中断发生到响应的时间，这个时间越短越好。）</p>
+</li>
+<li><p>S5PV210的第二阶段处理过程<br>(1)第一个问题，怎么找到具体是哪个中断：S5PV210中因为支持的中断源很多，所以直接设计了4个中断寄存器，每个32位，每位对应一个中断源。（理论上210最多支持128个中断，实际支持不足128个，有些位是空的）；210没有子中断寄存器，每个中断源都是并列的。当中断发生时，在irq_handler中依次去查询4个中断源寄存器，看哪一个的哪一位被置1，则这个位对应的寄存器就发生了中断，即找到了中断编号。</p>
+<p>(2)第二个问题，怎么找到对应的isr的问题：210中支持的中断源多了很多，如果还使用2440的那一套来寻找isr地址就太慢了，太影响实时性了。于是210开拓了一种全新的寻找isr的机制。210提供了很多寄存器来解决每个中断源对应isr的寻找问题，具体寻找过程和建立过程见下节，实现的效果是当发生相应中断时，硬件会自动的将相应isr推入一定的寄存器中，我们软件只要去这个寄存器中执行函数就行了。</p>
+</li>
+</ul>
+</li>
+<li><p>总结：第一阶段都相同，第二阶段各不同</p>
+</li>
+</ul>
+<p>(1)第一阶段（异常向量表阶段）2440和210几乎是完全相同的。实际上几乎所有的CPU在第一阶段都是相同的。</p>
+<p>(2)第二阶段就彼此不同了。各个SoC根据自己对实时性的要求，和支持的中断源的多少，各自发明了各自处理中断，找到中断编号，进一步找到对应isr地址的方式。</p>
+<h6 id="中断寄存器"><a href="#中断寄存器" class="headerlink" title="中断寄存器"></a>中断寄存器</h6><ul>
+<li>VICnINTENABLE和VICnINTENCLEAR</li>
+</ul>
+<p>(1)VICnINTENABLE对应interrupt enable，INTENCLEAR对应interrupt enable clear</p>
+<p>(2)INTENABLE寄存器负责相应的中断的使能，INTENCLEAR寄存器负责相应的中断的禁止。</p>
+<p>(3)当我们想使能（意思就是启用这个中断，意思就是当硬件产生中断时CPU能接收的到）某个中断时，只要在这个中断编号对应的VICnINTENABLE的相应bit位写1即可（注意这个位写1其他位写0对其他位没有影响）；如果我们想禁止某个中断源时，只要向VICnINTENCLEAR中相应的位写1即可。</p>
+<p>注意：这里的设计一共有2种：有些CPU是中断使能和禁止是一个寄存器位，写1就使能写0就进制（或者反过来写1就进制写0就使能），这样的中断使能设计就要非常小心，要使用我们之前说过的读改写三部曲来操作；另一种就是使能和禁止分开为2个寄存器，要使能就写使能寄存器，要禁止就写禁止寄存器。这样的好处是我们使能/禁止操作时不需要读改写，直接写即可。</p>
+<ul>
+<li>VICnINTSELECT</li>
+</ul>
+<p>(1)设置各个中断的模式为irq还是fiq。一般都设置成irq</p>
+<p>(2)IRQ和FIQ究竟有何区别。210中支持2种中断，irq和fiq。irq是普通中断，fiq是快速中断。快速中断提供一种更快响应处理的中断通道，用于对实时性要求很高的中断源。fiq在CPU设计时预先提供了一些机制保证fiq可以被快速处理，从而保证实时性。fiq的限制就是只能有一个中断源被设置为fiq，其他都是irq。</p>
+<p>(3)CPU如何保证fiq比irq快？有2个原因：第一，fiq模式有专用的r8～r12，因此在fiq的isr中可以直接使用r8-r12而不用保存，这就能节省时间；第二，异常向量表中fiq是最后一个异常向量入口。因此fiq的isr不需要跳转，可以直接写在原地，这样就比其他异常少跳转一次，省了些时间。</p>
+<ul>
+<li>VICnIRQSTATUS和VICnFIQSTATUS</li>
+</ul>
+<p>(1)中断状态寄存器，是只读的。当发生了中断时，硬件会自动将该寄存器的对应位置为1，表示中断发生了。软件在处理中断第二阶段的第一阶段，就是靠查询这个寄存器来得到中断编号的。</p>
+<ul>
+<li>VICnVECTPRIORITY0～VICnVECTPRIORITY31</li>
+</ul>
+<p>(1)中断优先级设置寄存器，设置多个中断同时发生时先处理谁后处理谁的问题。一般来说高优先级的中断可以打断低优先级的中断，从而嵌套处理中断。当然了有些硬件/软件可以设置不支持中断嵌套。</p>
+<ul>
+<li>VICnVECTADDR0～VICnVECTADDR31、VICnADDR</li>
+</ul>
+<p>(1)这三个寄存器和210中断处理第二阶段的第二阶段有关。</p>
+<p>(2)VICnVECTADDR0到31这32个寄存器分别用来存放真正的各个中断对应的isr的函数地址。相当于每一个中断源都有一个VECTADDR寄存器，程序员在设置中断的时候，把这个中断的isr地址直接放入这个中断对应的VECTADDR寄存器即可。</p>
+<p>(3)VICnADDR这个寄存器是只需要读的，它里面的内容是由硬件自动设置的。当发生了相应中断时，硬件会自动识别中断编号，并且会自动找到这个中断的VECTADDR寄存器，然后将其读出复制到VICnADDR中，供我们使用。这样的设计避免了软件查找中断源和isr，节省了时间，提高了210的中断响应速度。</p>
+<h6 id="编程过程-2"><a href="#编程过程-2" class="headerlink" title="编程过程"></a>编程过程</h6><ul>
+<li><p>中断控制器初始化<br>主要工作有：第一阶段绑定异常向量表到异常处理程序；禁止所有中断源；选择所有中断类型为IRQ；清理VICnADDR寄存器为0.</p>
+</li>
+<li><p>中断的使能与禁止<br>思路是先根据中断号判断这个中断属于VIC几，然后在用中断源减去这个VIC的偏移量，得到这个中断号在本VIC中的偏移量，然后<code>1 &lt;&lt; x</code>位，写入相应的VIC的INTENABLE/INTENCLEAR寄存器即可。</p>
+</li>
+<li><p>绑定自己实现的isr到VICnVECTADDR</p>
+</li>
+</ul>
+<p>(1)搞清楚2个寄存器的区别：VICnVECTADDR和VICnADDR</p>
+<p>(2)VICVECTADDR寄存器一共有4×32个，每个中断源都有一个VECTADDR寄存器，我们应该将自己为这个中断源写的isr地址丢到这个中断源对应的VECTADDR寄存器中即可。</p>
+<ul>
+<li>真正的中断处理程序如何获取isr</li>
+</ul>
+<p>(1)当发生中断时，硬件会自动把相应中断源的isr地址从VICnVECTADDR寄存器中推入VICnADDR寄存器中，所以我们第二阶段的第二阶段isr_handler中，只需要到相应的VICnADDR中去拿出isr地址，调用执行即可。</p>
+<ul>
+<li><p>总结：第4步绑定isr地址到VICnVECTADDR和第5步中断发生时第二阶段的第二阶段如何获取isr地址，这两步是相关的。这两个的结合技术，就是我们一直在说的210的硬件自动寻找isr的机制。</p>
+</li>
+<li><p>整个中断的流程梳理：<br>整个中断的工作分为2部分，第一部分是我们为中断响应而做的预备工作：</p>
+</li>
+</ul>
+<ol>
+<li>初始化中断控制器</li>
+<li>绑定写好的isr到中断控制器</li>
+<li>相应中断的所有条件使能<br>第二部分是当硬件产生中断后如何自动执行isr：</li>
+<li>第一步，经过异常向量表跳转入IRQ/FIQ的入口</li>
+<li>第二步，做中断现场保护（在start.S中），然后跳入isr_handler</li>
+<li>第三步，在isr_handler中先去搞清楚是哪个VIC中断了，然后直接去这个VIC的ADDR寄存器中取isr来执行即可。</li>
+<li>第四步，isr执行完，中断现场恢复，直接返回继续做常规任务。</li>
+</ol>
+<ul>
+<li>外部中断</li>
+</ul>
+<p>(1)SoC支持的中断类型中有一类叫外部中断。内部中断就是指的中断源来自于SoC内部（一般是内部外设），譬如串口、定时器等部件产生的中断；外部中断是SoC外部的设备，通过外部中断对应的GPIO引脚产生的中断。</p>
+<p>(2)按键在SoC中就使用外部中断来实现。具体实现方法是：将按键电路接在外部中断的GPIO上，然后将GPIO配置为外部中断模式。此时人通过按按键改变按键电路的电压高低，这个电压高低会触发GPIO对应的外部中断，通过引脚传进去给CPU处理。</p>
+<p>(3)外部中断相关的介绍和寄存器都在2.2.6章节（属于GPIO部分）</p>
+<ul>
+<li>电平触发和边沿触发</li>
+</ul>
+<p>(1)外部中断的触发模式主要有2种：电平触发和边沿触发。</p>
+<p>(2)电平触发就是说GPIO上的电平只要满足条件，就会不停触发中断。电平触发分为高电平触发和低电平触发。电平触发的特点是，只要电平满足条件就会不停触发中断。</p>
+<p>(3)边沿触发分为上升沿触发、下降沿触发和双边沿触发三种。边沿触发不关心电平常规状态，只关心电平变化的瞬间（边沿触发不关心电平本身是高还是低，只关心变化是从高到低还是从低到高的这个过程）。分析按键的工作：如果我们关注的是按键按下和弹起这两个事件本身，那么应该用边沿触发来处理按键；如果我们关心的是按键按下/弹起的那一段时间，那么应该用电平触发。</p>
+<ul>
+<li>关键寄存器：CON、PEND、MASK</li>
+</ul>
+<p>(1)外部中断的主要配置寄存器有3个：EXT_CON、EXT_PEND、EXT_MASK</p>
+<p>(2)EXT_CON配置外部中断的触发方式。触发方式就是说外部电平怎么变化就能触发中断，也就是说这个外部中断产生的条件是什么</p>
+<p>(3)EXT_PEND寄存器是中断挂起寄存器。这个寄存器中每一位对应一个外部中断，平时没有中断时值为0。当发生了中断后，硬件会自动将这个寄存器中该中断对应的位置1，我们去处理完这个中断后应该手工将该位置0。这个PEND寄存器的位就相当于是一个标志，如果发生了中断但是我们暂时忙来不及去处理时，这个位一直是1（这就是挂起），直到我有空了去处理了这个中断才会手工清除（写代码清除）这个挂起位表示这个中断被我处理了。</p>
+<p>(4)EXT_MASK寄存器就是各个外部中断的使能/禁止开关。</p>
+<ul>
+<li>分析X210开发板的按键对应的EINT编号：EINT2、EINT3、EINT16、EINT17、EINT18、EINT19</li>
+</ul>
+<h4 id="实验项目-3"><a href="#实验项目-3" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="中断-01-按键轮询"><a href="#中断-01-按键轮询" class="headerlink" title="中断-01-按键轮询"></a>中断-01-按键轮询</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>新建key.c文件，设置相关的寄存器（GPH0CON、GPH0DAT、 GPH2CON、GPH2DAT）</li>
+<li>修改Makefile文件，生成key.o文件</li>
+<li>修改led.c，修改led灯闪烁的函数。</li>
+</ol>
+<h6 id="中断-02-移植printf"><a href="#中断-02-移植printf" class="headerlink" title="中断-02-移植printf"></a>中断-02-移植printf</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>在前面串口实验基础上，新建key.c文件，设置相关的寄存器（GPH0CON、GPH0DAT、 GPH2CON、GPH2DAT），调用打印函数。（调用其他文件的函数时在前面加上<code>extern 函数类型 函数名(函数参数类型)</code>）</li>
+<li>新增main.c文件，调用其他c文件的函数。</li>
+<li>增加led.c，修改led灯闪烁的函数。</li>
+<li>修改Makefile文件，生成key.o文件，led.o文件，main.o文件。</li>
+</ol>
+<h6 id="中断-03-按键中断"><a href="#中断-03-按键中断" class="headerlink" title="中断-03-按键中断"></a>中断-03-按键中断</h6><ul>
+<li>步骤</li>
+</ul>
+<ol>
+<li>在前面串口实验基础上，新建key.c文件，设置相关的寄存器：<br>GPH0CON、GPH2CON                    （外部中断的GPIO模式设置）<br>EXT_INT_0_CON、EXT_INT_2_CON        （中断触发模式设置）<br>EXT_INT_0_MASK、EXT_INT_2_MASK    （中断允许）<br>EXT_INT_0_PEND、EXT_INT_2_PEND    （中断挂起与清除中断挂起）<br>//挂起的时候系统不能响应其他中断（寄存器标志位）<br>//使能中断是能够被系统响应</li>
+<li>创建按键中断后，对应的isr函数（key.c）：<br>要执行的代码、清除中断挂起（EXT_INT_n_PEND）、清除读取isr函数的寄存器（VICnADDR）</li>
+<li>新建int.c文件，绑定异常向量表：<br>①给不同的中断写不同的函数（比如irq中断，分两部分，一部分写在start.S里面，先设置irq模式的栈，然后保存lr和r0-r12到栈里面（cpsr寄存器内容放进spsr寄存器），再调用int.c里面的中断函数，最后返回时把寄存器恢复；第二部分先判断isr函数在哪个VICnADDR寄存器里面，然后用函数指针来调用该函数；判断方法为读取VICnIRQSTATUS寄存器，第n个寄存器为1，代表第n个VICnADDR寄存器里面已经存放了isr函数；其他中断的功能暂时设置为打印一段话）<br>②将irs的函数名绑定（放到）到异常向量表不同中断对应的地址里面，当发送中断的时候VICnADDR寄存器自动将地址里面的函数地址放进VICnADDR寄存器里面。</li>
+<li>初始化中断控制器的基本寄存器（与第三步可以对调）<br>禁止所有中断，防止中断产生，系统无法找到对应中断（VICnINTENCLEAR = 0xffffffff;）<br>设置中断类型为IRQ（VICnINTSELEC = 0x0;）<br>清除VICnADDR寄存器，防止里面原本就有isr函数（VICnADDR = 0;）</li>
+<li>绑定isr函数到中断控制器硬件<br>每个中断有对应编号，将对应的函数名（函数地址）放进对应的VICnVECTADDRn寄存器去，当系统检测到中断时，会将VICnVECTADDRn寄存器里面的函数地址推到相应的VICnADDR寄存器里面去。</li>
+<li>使能中断（启用中断）<br>根据中断编号，往VICnINTENABLE寄存器里面对应位写1，即使系统能够识别并处理该中断。</li>
+<li>创建main.c文件调用以上函数</li>
+</ol>
+<ul>
+<li>过程梳理</li>
+</ul>
+<ol>
+<li>main函数调用uart_init()初始化函数，调用key_init_interrupt()初始化函数，system_init_exception()初始化函数，绑定isr函数到对应中断编号的寄存器里面，开启对应编号中断。</li>
+<li>当中断发生时，VICnIRQSTATUS寄存器对应位自动置1（中断编号对应的位），VIC0VECTADDR寄存器对应位的函数自动推到相应的VICnADDR寄存器（中断编号对应的位），然后中断给CPU发送中断请求，系统判断是什么中断，然后根据异常向量表进入对应的中断模式，并进行中断处理，IRQ_handle保护现场、IRQ_handler利用VICnIRQSTATUS寄存器判断接下来要执行的代码在哪个VICnADDR寄存器里，然后运行该寄存器里面的代码。</li>
+</ol>
+<h2 id="实验05-定时器"><a href="#实验05-定时器" class="headerlink" title="实验05-定时器"></a>实验05-定时器</h2><h4 id="基本概念-5"><a href="#基本概念-5" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="定时器"><a href="#定时器" class="headerlink" title="定时器"></a>定时器</h6><p>(1)定时器与计数器。定时器是SoC中常见外设,计数器是用来计数的（每隔一个固定时间会计一个数）；因为计数器的计数时间周期是固定的，因此到了一定时间只要用计数值×计数时间周期，就能得到一个时间段（xx时间后），这个时间段就是我们定的时间（这就是定时器了）。</p>
+<p>(2)定时器/计数器作为SoC的外设，主要用来实现定时执行代码的功能。定时器相对于SoC来说，就好象闹钟相对于人来说意义一样。</p>
+<p>(3)定时器可以让SoC在执行主程序的同时，可以（通过定时器）具有计时功能，到了一定时间（计时结束）后，定时器会产生中断提醒CPU，CPU会去处理中断并执行定时器中断的ISR。从而去执行预先设定好的事件。</p>
+<p>(4)定时器就好象是CPU的一个秘书一样，这个秘书专门管帮CPU来计时，并到时间后提醒CPU要做某件事情。所以CPU有了定时器之后，只需预先把自己xx时间之后必须要做的事情绑定到定时器中断ISR即可，到了时间之后定时器就会以中断的方式提醒CPU来处理这个事情。</p>
+<ul>
+<li>定时器的原理</li>
+</ul>
+<p>(1)定时器计时其实是通过计数来实现的。定时器内部有一个计数器，这个计数器根据一个时钟（这个时钟源来自于ARM的APB总线，然后经过时钟模块内部的分频器来分频得到）来工作。每隔一个时钟周期，计数器就计数一次，定时器的时间就是计数器计数值×时钟周期。</p>
+<p>(2)定时器内部有1个寄存器TCNT，计时开始时我们会把一个总的计数值（譬如说300）放入TCNT寄存器中，然后每隔一个时钟周期（假设为1ms）TCNT中的值会自动减1（硬件自动完成，不需要CPU软件去干预），直到TCNT中减为0的时候，TCNT就会触发定时器中断。</p>
+<p>(3)定时时间是由2个东西共同决定的：一个是TCNT中的计数值，一个是时钟周期。譬如上例中，定时周期就为300×1ms = 300ms。</p>
+<ul>
+<li>定时器和看门狗、RTC、蜂鸣器的关系</li>
+</ul>
+<p>(1)这几个东西都是和时间有关的部件。</p>
+<p>(2)看门狗其实就是一个定时器，只不过定时时间到了之后不只是中断，还可以复位CPU</p>
+<p>(3)RTC是实时时钟，它和定时器的差别就好象闹钟（定时器）和钟表（RTC）的差别一样。</p>
+<p>(4)蜂鸣器是一个发声设备，在ARM里面蜂鸣器是用定时器模块来驱动的。</p>
+<ul>
+<li><p>S5PV210中的定时器<br>在S5PV210内部，一共有4类定时器件。这4类定时器件的功能、特征是不同的。</p>
+<ul>
+<li><p>PWM定时器<br>(1)Pulse Width Modulation,简称脉宽调制。这种是最常用的，平时所说的定时器一般指的是这个。像简单单片机（譬如51单片机）中的定时器也是这类。</p>
+<p>(2)为什么叫PWM定时器，因为一般SoC中产生PWM信号都是靠这个定时器模块的。</p>
+<p>(3)S5PV210有5个PWM定时器。其中0、1、2、3各自对应一个外部GPIO，可以通过这些对应的GPIO产生PWM波形信号并输出；timer4没有对应的外部GPIO（因此不是为了生成PWM波形而是为了产生内部定时器中断而生的）</p>
+<p>(4)S5PV210的5个PWM定时器的时钟源为PCLK_PSYS，timer0和timer1共同使用一个预分频器、timer2、3、4共同使用一个预分频器；每个timer有一个专用的独立的分频器；预分频器和分频器构成了2级分频系统，将PCLK_PSYS两级分频后生成的时钟供给timer模块作为时钟周期。</p>
+</li>
+<li><p>系统定时器<br>(1)系统（指的是操作系统）定时器，系统定时器也是用来产生固定时间间隔（TCNT×时钟周期）信号的，称为systick，这个systick用来给操作系统提供tick信号。</p>
+<p>(2)产生systick作为操作系统的时间片（time slice）的。</p>
+<p>(3)一般做操作系统移植的时候，这里不会由我们自己来做，一般原厂提供的基础移植部分就已经包含了，所以这里我也从来没有研究过。</p>
+</li>
+<li><p>看门狗定时器<br>(1)看门狗定时器本质上也是一个定时器，和上面2个没有任何本质区别。</p>
+<p>(2)看门狗定时器可以设置在时间到了的时候产生中断，也可以选择发出复位信号复位CPU。</p>
+<p>(3)看门狗定时器在实践中应用很多，尤其是工业领域（环境复杂、干扰多）机器容易出问题，而且出问题后后果很严重，此时一般都会用看门狗来进行系统复位。</p>
+</li>
+<li><p>实时时钟RTC（real time clock）<br>(1)区分时间段和时间点。时间段是相对的，两个时间点相减就会得到一个时间段；而时间点是绝对的，是绝无仅有的一个时间点。</p>
+<p>(2)定时器关注的是时间段（而不是时间点），定时器计时从开启定时器的那一刻开始，到定的时间段结束为止产生中断；RTC中工作用的是时间点（xx年x月x日x时x分x秒星期x）。</p>
+<p>(3)RTC和定时器的区别，就相当于是钟表和闹钟的区别。</p>
+</li>
+</ul>
+</li>
+</ul>
+<h6 id="pwm定时器"><a href="#pwm定时器" class="headerlink" title="pwm定时器"></a>pwm定时器</h6><ul>
+<li>S5PV210的PWM定时器框图</li>
+</ul>
+<p>(1)关键点：时钟源、预分频器、分频器、TCMPB&amp;TCNTB、dead zone</p>
+<ul>
+<li>预分频器与分频器</li>
+</ul>
+<p>(1)两级分频是串联（级联）的，所以两级分频的分频数是相乘的。</p>
+<p>(2)两级分频的分频系数分别在TCFG0(TIMER CONFIGURATION) 和TCFG1两个寄存器中设置。</p>
+<p>(3)预分频器有2个，prescaler0为timer0&amp;timer1共用；prescaler1为timer2、3、4共用；两个prescaler都是8个bit位，因此prescaler value范围为0～255；所以预分频器的分频值范围为1～256（注意实际分频值为prescaler value + 1）。</p>
+<p>(4)分频器实质上是一个MUX开关，多选一开关决定了走哪个分频系数路线。可以选择的有1/1，1/2，1/4，1/8，1/16等。</p>
+<p>(5)计算一下，两级分频下来，分频最小为1/1（也可能是1/2），最大分频为1/256×16（1/4096）。</p>
+<p>(6)在PCLK_PSYS为66MHz的情况下（默认时钟设置就是66MHz的），此时两级分频后的时钟周期范围为0.03us到62.061us；再结合TCNTB的值的设置（范围为1～2的32次方），可知能定出来的时间最长为266548.27s（折合74小时多，远远够用了）。</p>
+<ul>
+<li>TCNT&amp;TCMP、TCNTB&amp;TCMPB、TCNTO</li>
+</ul>
+<p>(1)TCNT和TCNTB是相对应的，TCNTB是有地址的寄存器，供程序员操作；TCNT在内部和TCNTB相对应，它没有寄存器地址，程序员不能编程访问这个寄存器。</p>
+<p>(2)TCNT寄存器功能就是用来减1的，它是内部的不能读写；我们向TCNT中写要通过TCNTB往进写；读取TCNT寄存器中的值要通过读取相对应的TCNTO寄存器。</p>
+<p>(3)工作流程就是：我们事先算好TCNT寄存器中开始减的那个数（譬如300），然后将之写入TCNTB寄存器中，在启动timer前，将TCNTB中的值刷到TCNT寄存器中（有一位寄存器专门用来操作刷数据过去的），刷过去后就可以启动定时器开始计时；在计时过程中如果想知道TCNT寄存器中的值减到多少了，可以读取相应的TCNTO寄存器来得知。</p>
+<p>(4)定时功能只需要TCNT、TCNTB两个即可；TCNTO寄存器用来做一些捕获计时；TCMPB用来生成PWM波形。</p>
+<ul>
+<li>自动重载和双缓冲（auto-reload and double buffering）</li>
+</ul>
+<p>(1)定时器工作的时候，一次定时算一个工作循环。定时器默认是单个循环工作的，也就是说定时一次，计时一次，到期中断一次就完了。下次如果还要再定时中断，需要另外设置。</p>
+<p>(2)但是现实中用定时器来做的时候往往是循环的，最简单最笨的方法就是写代码反复重置定时器寄存器的值（在每次中断处理的isr中再次给TCNTB中赋值，再次刷到TCNT中再次启动定时器），早期的单片机定时器就是这样的；但是现在的高级SoC中的定时器已经默认内置了这种循环定时工作模式，就叫自动装载（auto-reload）机制。</p>
+<p>(3)自动装载机制就是当定时器初始化好开始计时后再不用管了，他一个周期到了后会自己从TCNTB中再次装载值到TCNT中，再次启动定时器开始下个循环。</p>
+<ul>
+<li>PWM</li>
+</ul>
+<p>(1)PWM(pulse wide modulation 脉宽调制)</p>
+<p>(2)PWM波形是一个周期性波形，周期为T，在每个周期内波形是完全相同的。每个周期内由一个高电平和一个低电平组成。</p>
+<p>(3)PWM波形有2个重要参数：一个是周期T，另一个是占空比duty（占空比就是一个周期内高电平的时间除以周期时间的商）。</p>
+<p>(4)对于一个PWM波形，知道了周期T和占空比duty，就可以算出这个波形的所有细节。譬如高电平时间为T<em>duty，低电平时间为T</em>(1-duty)。</p>
+<p>(5)PWM波形有很多用处，譬如通信上用PWM来进行脉宽调制对基波进行载波调制；在发光二极管LED照明领域可以用PWM波形来调制电流进行调光；用来驱动蜂鸣器等设备。</p>
+<ul>
+<li>PWM波形的生成原理</li>
+</ul>
+<p>(1)PWM波形其实就是用时间来控制电平高低，所以用定时器来实现PWM波形是天经地义的。</p>
+<p>(2)早期的简单单片机里（譬如51单片机）是没有专用的PWM定时器的，那时候我们需要自己结合GPIO和定时器模块来手工生产PWM波形（流程是这样：先将GPIO引脚电平拉高、同时启动定时器定T x duty时间，时间到了在isr中将电平拉低，然后定时T x (1-duty)后再次启动定时器，然后时间到了后在isr中将电平拉高，然后再定时T x duty时间再次启动定时器····如此循环即可得到周期为T，占空比为duty的PWM波形）。</p>
+<p>(3)后来因为定时器经常和PWM产生纠结一起，所以设计SoC的时候就直接把定时器和一个GPIO引脚内部绑定起来了，然后在定时器内部给我们设置了PWM产生的机制，可以更方便的利用定时器产生PWM波形。此时我们利用PWM定时器来产生PWM波形再不用中断了。绑定了之后坏处就是GPIO引脚是固定的、死板的、不能随便换的；好处是不用进入中断isr中，直接可以生成PWM。</p>
+<p>(4)在S5PV210中，PWM波形产生有2个寄存器很关键，一个是TCNTB、一个是TCMPB。其中，TCNTB决定了PWM波形的周期，TCMPB决定了PWM波形的占空比。</p>
+<p>(5)最终生成的PWM波形的周期是：TCNTB×时钟周期（PCLK_PSYS经过两极分频后得到的时钟周期）。注意这个周期是PWM中高电平+低电平的总时间，不是其中之一。</p>
+<p>(6)最终生成的PWM波形的占空比是：TCMPB/TCNTB</p>
+<ul>
+<li>输出电平翻转器</li>
+</ul>
+<p>(1)PWM定时器可以规定：当TCNT&gt;TCMPB时为高电平，当TCNT&lt;TCMPB时为低电平。也可以规定：当TCNT&gt;TCMPB时为低电平，当TCNT&lt;TCMPB时为高电平。在这两种规定下，计算时TCMP寄存器的值会变化。</p>
+<p>(2)基于上面讲的，当duty从30%变到70%时，我们TCMPB寄存器中的值就要改（譬如TCNTB中是300时，TCMPB就要从210变化到90）。这样的改变可以满足需要，但是计算有点麻烦。于是乎210的PWM定时器帮我们提供了一个友好的工具叫做电平翻转器。</p>
+<p>(3)电平翻转器在电路上的实质就是一个电平取反的部件，在编程上反映为一个寄存器位。写0就关闭输出电平反转，写1就开启输出电平反转。开启后和开启前输出电平刚好高低反转。（输出电平一反转30%的duty就变成70%了）</p>
+<p>(4)实战中到底是TCNT和TCMPB谁大谁小时高电平还是低电平，一般不用理论分析，只要写个代码然后用示波器实际看一下出来的波形就知道了；如果反了就直接开启电平翻转器即可。</p>
+<ul>
+<li>死区生成器</li>
+</ul>
+<p>(1)PWM有一个应用就是用在功率电路中用来对交流电压进行整流。整流时2路整流分别在正电平和负电平时导通工作，不能同时导通（同时导通会直接短路，瞬间的同时导通都会导致电路烧毁）。大功率的开关电源、逆变器等设备广泛使用了整流技术。特别是逆变器，用SoC的GPIO输出的PWM波形来分别驱动2路整流的IGBT。</p>
+<p>(2)PWM波形用来做整理时要求不能同时高或低，因为会短路。但是实际电路是不理想的，不可能同时上升/下降沿，所以比较安全的做法是留死区。</p>
+<p>(3)死区这东西离不了也多不了。死区少了容易短路，死区多了控制精度低了不利于产品性能的提升。</p>
+<p>(4)S5PV210给大家提供了自带的死区生成器，只要开启死区生成器，生产出来的PWM波形就自带了死区控制功能，用户不用再自己去操心死区问题。</p>
+<p>(5)大部分人工作是用不到这个的，直接关掉死区生成器即可。</p>
+<ul>
+<li>蜂鸣器的工作原理</li>
+</ul>
+<p>(1)蜂鸣器里面有2个金属片，离的很紧但没挨着；没电的时候两个片在弹簧本身张力作用下分开彼此平行；有电的时候两边分别充电，在异性电荷的吸力作用下两个片挨着；</p>
+<p>(2)我们只要以快速的频率给蜂鸣器的正负极：供电、断电。进行这样的循环，蜂鸣器的两个弹簧片就会挨着分开挨着分开···形成敲击，发出声音。</p>
+<p>(3)因为人的耳朵能听见的声音频率有限制（20Hz-20000Hz），我们做实验时一般给个2KHz的频率，大部分人都能听到（听不到的就就近医院处理）。</p>
+<p>(4)频率高低会影响声音的音频，一般是音频越低声音听起来越低沉、音频越高听起来越尖锐。</p>
+<p>(5)根据以上的分析，可以看出，只要用PWM波形的电压信号来驱动蜂鸣器，把PWM波形的周期T设置为要发出的声音信号的1/频率即可；PWM的占空比只要确保能驱动蜂鸣器即可（驱动能力问题，一般引脚驱动能力都不够，所以蜂鸣器会额外用三极管来放大流来供电）。</p>
+<ul>
+<li>原理图和硬件信息</li>
+</ul>
+<p>(1)查阅原理图可知，开发板底板上的蜂鸣器通过GPD0_2（XpwmTOUT2）引脚连接在SoC上。</p>
+<p>(2)GPD0_2引脚通过限流电阻接在三极管基极上，引脚有电蜂鸣器就会有电（三极管导通）；引脚没电蜂鸣器就会没电（三极管关闭）。这些都是硬件问题，软件工程师不用管，软件工程师只要写程序控制GPD0_2引脚的电平产生PWM波形即可。</p>
+<p>(3)GPD0CON(0xE02000A0)，要把bit8～bit11设置为0b0010（功能选择为TOUT_2，就是把这个引脚设置为PWM输出功能）</p>
+<p>(4)从GPD0_2引脚可以反推出使用的是timer2这个PWM定时器。</p>
+<ul>
+<li>PWM定时器的主要寄存器详解</li>
+</ul>
+<p>(1)相关的寄存器有TCFG0、TCFG1、CON、TCNTB2、TCMPB2、TCNTO2</p>
+<ul>
+<li>蜂鸣器和PWM定时器编程实践<br>基于uart_stdio项目源码来添加PWM定时器驱动蜂鸣器实验。注意：PWM定时器来产生PWM波形时是不需要中断干预的。</li>
+</ul>
+<h6 id="看门狗定时器"><a href="#看门狗定时器" class="headerlink" title="看门狗定时器"></a>看门狗定时器</h6><ul>
+<li>看门狗</li>
+</ul>
+<p>(1)看门狗定时器和普通的定时器并无本质区别。定时器可以设定一个时间，在这个时间完成之前定时器不断计时，时间到的时候定时器会复位CPU（重启系统）。</p>
+<p>(2)系统正常工作的时候当然不希望被重启，但是系统受到干扰、极端环境等可能会产生异常工作或者不工作，这种状态可能会造成不良影响（至少是不工作），此时解决方案就是重启系统。</p>
+<p>(3)普通设备重启不是问题，但是有些设备人工重启存在困难。这时候我们希望系统能够自己检验自己是否已经跑飞，并且在意识到自己跑飞的时候，可以很快的（几个ms或者更短）自我重启。这个功能就要靠看门狗定时器来实现。</p>
+<p>(4)典型应用的情景是：我们在应用程序中打开看门狗设备，初始化好给它一个时间，然后应用程序使用一个线程来喂狗，这个线程的执行时间安全短于看门狗的复位时间。当系统（或者应用程序）异常后，喂狗线程自然就不工作了，然后到时候看门狗就会复位。</p>
+<p>(5)补充：实战中有时候为了绝对的可靠，我们并不会用SoC中自带的看门狗，而是使用专门的外置的看门狗芯片来实现看门狗。</p>
+<ul>
+<li>S5PV210看门狗定时器的结构框图</li>
+</ul>
+<p>(1)PCLK_PSYS经过两级分频后生成WDT（watchdog timer）的时钟周期，然后把要定的时间写到WTDAT寄存器中，刷到WTCNT寄存器中去减1，减到0时（定时时间到）产生复位信号或中断信号。</p>
+<p>(2)典型应用中是配置为产生复位信号，我们应该在WTCNT寄存器减到0之前给WTDAT寄存器中重新写值以喂狗。</p>
+<ul>
+<li>看门狗定时器的主要寄存器<br>WTCON WTDAT WTCNT WTCLRINT</li>
+</ul>
+<h6 id="实时时钟rtc"><a href="#实时时钟rtc" class="headerlink" title="实时时钟rtc"></a>实时时钟rtc</h6><ul>
+<li>何为实时时钟</li>
+</ul>
+<p>(1)real time clock，真实时间，就是所谓的xx年x月x日x时x分x秒星期x</p>
+<p>(2)RTC是SoC中一个内部外设，RTC有自己独立的晶振提供RTC时钟源（32.768KHz），内部有一些寄存器用来记录时间（年月日时分秒星期）。一般情况下为了在系统关机时时间仍然在走，还会给RTC提供一个电池供电。</p>
+<ul>
+<li>S5PV210实时时钟的结构框图</li>
+</ul>
+<p>(1)时间寄存器7个</p>
+<p>(2)闹钟发生器</p>
+<ul>
+<li>闹钟发生器</li>
+</ul>
+<p>(1)可以定闹钟时间，到时间会产生RTC alarm interrupt，通知系统闹钟定时到了。</p>
+<p>(2)闹钟定时是定的时间点，而timer定时是定的时间段。</p>
+<ul>
+<li>S5PV210实时时钟的主要寄存器</li>
+</ul>
+<p>(1)INTP 中断挂起寄存器</p>
+<p>(2)RTCCON    RTC控制寄存器</p>
+<p>(3)RTCALM ALMxxx    闹钟功能有关的寄存器</p>
+<p>(4)BCDxxx   时间寄存器</p>
+<ul>
+<li>BCD码</li>
+</ul>
+<p>(1)RTC中所有的时间（年月日时分秒星期，包括闹钟）都是用BCD码编码的。</p>
+<p>(2)BCD码本质上是对数字的一种编码。用来解决这种问题：由56得到0x56（或者反过来）。也就是说我们希望十进制的56可以被编码成56（这里的56不是十进制56，而是两个数字5和6）。</p>
+<p>(3)BCD码的作用在于可以将十进制数拆成组成这个十进制数的各个数字的编码，变成编码后就没有位数的限制了。譬如我有一个很大的数123456789123456789，如果这个数纯粹当数字肯定超出了int的范围，计算机无法直接处理。要想让计算机处理这个数，计算机首先得能表达这个数，表达的方式就是先把这个数转成对应的BCD码（123456789123456789）</p>
+<p>(4)BCD码在计算机中可以用十六进制的形式来表示。也就是说十进制的56转成BCD码后是56，在计算机中用0x56来表达（暂时存储与运算）。</p>
+<p>(5)需要写2个函数，一个是bcd转十进制，一个是十进制转bcd。当我们要设置时间时（譬如要设置为23分），我们需要将这个23转成0x23然后再赋值给相应的寄存器BCDMIN；当我们从寄存器BCDMIN中读取一个时间时（譬如读取到的是0x59），需要将之当作BCD码转成十进制再去显示（0x59当作BCD码就是59，转成十进制就是59，所以显示就是59分）。</p>
+<ul>
+<li>设置时间与读取显示时间</li>
+</ul>
+<p>(1)为了安全，默认情况下RTC读写是禁止的，此时读写RTC的时间是不允许的；当我们要更改RTC时间时，应该先打开RTC的读写开关，然后再进行读写操作，操作完了后立即关闭读写开关。</p>
+<p>(2)读写RTC寄存器时，一定要注意BCD码和十进制之间的转换。</p>
+<p>(3)年的问题。S5PV210中做了个设定，BCDYEAR寄存器存的并不是完整的年数（譬如今年2015年），而是基于2000年的偏移量来存储的，譬如今年2015年实际存的就是15（2015-2000）.还有些RTC芯片是以1970年（貌似）为基点来记录的。</p>
+<h4 id="实验项目-4"><a href="#实验项目-4" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="定时器-01-蜂鸣器"><a href="#定时器-01-蜂鸣器" class="headerlink" title="定时器-01-蜂鸣器"></a>定时器-01-蜂鸣器</h6><p>步骤：</p>
+<ol>
+<li>在前面串口实验基础上，新建pwm.c文件，设置相关的寄存器：<br>GPD0CON（设置GPD0_2引脚，将其配置为XpwmTOUT_2）<br>TCFG0（设置预分频器为65）<br>TCFG1（设置分频器为1）<br>CON（打开auto-reload、刷新TCNTB到TCNT中）<br>TCNTB2（时钟频率/蜂鸣器频率，蜂鸣器频率越高音调越高，自动刷进TCNT2）<br>TCMPB2（TCMPB2/TCNTB2=占空比，占空比越大声音越大）</li>
+<li>修改uart.c、start.S文件，使其符合新实验</li>
+<li>创建main.c文件，调用初始化uart、pwm的函数</li>
+<li>修改Makefile文件，增加pwm.o、main.o文件</li>
+</ol>
+<h6 id="定时器-02-看门狗中断"><a href="#定时器-02-看门狗中断" class="headerlink" title="定时器-02-看门狗中断"></a>定时器-02-看门狗中断</h6><p>步骤：</p>
+<ol>
+<li>在前面中断实验基础上，新建wdt.c文件，设置相关的寄存器：<br>WTCON（设置预分频器为65、分频器为128，使能中断）<br>WTDAT（定时/时钟周期）<br>WTCNT（一开始里面的值为默认值，经过一个周期才自动将WTDAT的值写进去，可以人为先写进去，值为WTDAT）<br>WTCON（打开看门狗）</li>
+<li>编写中断处理函数，打印一段文字，然后清理中断</li>
+<li>修改start.S文件，使其符合新实验</li>
+<li>修改main.c文件，调用初始化uart、wdt的函数</li>
+<li>修改Makefile文件，增加wdt.o文件</li>
+</ol>
+<h6 id="定时器-03-看门狗复位"><a href="#定时器-03-看门狗复位" class="headerlink" title="定时器-03-看门狗复位"></a>定时器-03-看门狗复位</h6><p>步骤：</p>
+<ol>
+<li>在前面看门狗中断实验基础上，修改wdt.c文件，设置相关的寄存器：<br>WTCON（使能中断改为使能复位）</li>
+<li>删除int.c文件，使其符合新实验</li>
+<li>修改main.c文件，删除中断函数</li>
+<li>烧录210.bin到sd卡，因为看门狗复位可能导致sram的代码丢失</li>
+</ol>
+<h6 id="定时器-04-rtc定时器"><a href="#定时器-04-rtc定时器" class="headerlink" title="定时器-04-rtc定时器"></a>定时器-04-rtc定时器</h6><p>步骤：</p>
+<ol>
+<li>在前面中断实验基础上，新建rtc.c文件，设置相关的寄存器：<br>sett_ime函数、get_time函数（注意要使用bcd码转换）<br>RTCCON（打开rtc读写开关，写进数据，关闭读写开关）<br>BCDYEAR、BCDMON、BCDDATE、BCDHOUR、BCDMIN、BCDSEC、BCDDAY（rtc时间寄存器）<br>rtc_set_alarm函数<br>ALMSEC（一分钟的第几秒，产生中断）<br>RTCALM（使能总中断、秒中断）</li>
+<li>编写bcd码转换函数，将十进制和十六进制互相转换</li>
+<li>编写isr_rtc_alarm函数，打印一段话，清中断（INTP寄存器）</li>
+<li>修改main.c文件，调用初始化中断、rtc的函数</li>
+</ol>
+<h2 id="实验06-sd卡启动"><a href="#实验06-sd卡启动" class="headerlink" title="实验06-sd卡启动"></a>实验06-sd卡启动</h2><h4 id="基本概念-6"><a href="#基本概念-6" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="sd卡的编程接口"><a href="#sd卡的编程接口" class="headerlink" title="sd卡的编程接口"></a>sd卡的编程接口</h6><ul>
+<li>SD卡的物理接口</li>
+</ul>
+<p>(1)SD卡由9个针脚与外界进行物理连接，这9个脚中有2个地，1个电源，6个信号线。</p>
+<ul>
+<li>SD协议与SPI协议</li>
+</ul>
+<p>(1)SD卡与SRAM/DDR/SROM之类的东西的不同：SRAM/DDR/SROM之类的存储芯片是总线式的，只要连接上初始化好之后就可以由SoC直接以地址方式来访问；但是SD卡不能直接通过接口给地址来访问，它的访问需要按照一定的接口协议（时序）来访问。</p>
+<p>(2)SD卡虽然只有一种物理接口，但是却支持两种读写协议：SD协议和SPI协议。</p>
+<pre><code>* SPI协议特点（低速、接口操作时序简单、适合单片机）
+(1)SPI协议是单片机中广泛使用的一种通信协议，并不是为SD卡专门发明的。
+(2)SPI协议相对SD协议来说速度比较低。
+(3)SD卡支持SPI协议，就是为了单片机方便使用。
+
+* SD协议特点（高速、接口时序复杂，适合有SDIO接口的SoC）
+(1)SD协议是专门用来和SD卡通信的。
+(2)SD协议要求SoC中有SD控制器，运行在高速率下，要求SoC的主频不能太低。</code></pre><ul>
+<li>S5PV210的SD/MMC控制器</li>
+</ul>
+<p>(1)数据手册Section8.7，为SD/MMC控制器介绍。</p>
+<p>(2)SD卡内部除了存储单元Flash外，还有SD卡管理模块，我们SoC和SD卡通信时，通过9针引脚以SD协议/SPI协议向SD卡管理模块发送命令、时钟、数据等信息，然后从SD卡返回信息给SoC来交互。工作时每一个任务（譬如初始化SD卡、譬如读一个块、譬如写、譬如擦除····）都需要一定的时序来完成（所谓时序就是先向SD卡发送xx命令，SD卡回xx消息，然后再向SD卡发送xx命令····）</p>
+<h6 id="s5pv210的sd卡启动详解"><a href="#s5pv210的sd卡启动详解" class="headerlink" title="s5pv210的sd卡启动详解"></a>s5pv210的sd卡启动详解</h6><ul>
+<li>SoC为何要支持SD卡启动</li>
+</ul>
+<p>(1)一个普遍性的原则就是：SoC支持的启动方式越多，将来使用时就越方便，用户的可选择性就越大，SoC的适用面就越广。</p>
+<p>(2)SD卡有一些好处：比如可以在不借用专用烧录工具（类似Jlink）的情况下对SD卡进行刷机，然后刷机后的SD卡插入卡槽，SoC既可启动；譬如可以用SD卡启动进行量产刷机（量产卡）。像我们X210开发板，板子贴片好的时候，内部iNand是空的，此时直接启动无启动；板子出厂前官方刷机时是把事先做好的量产卡插入SD卡卡槽，然后打到iNand方式启动；因为此时iNand是空的所以第一启动失败，会转而第二启动，就从外部SD2通道的SD卡启动了。启动后会执行刷机操作对iNand进行刷机，刷机完成后自动重启（这回重启时iNand中已经有image了，所以可以启动了）。刷机完成后SD量产卡拔掉，烧机48小时，无死机即可装箱待发货。</p>
+<ul>
+<li>SD卡启动的难点（SRAM、DDR、SDCard）</li>
+</ul>
+<p>(1)SRAM、DDR都是总线式访问的，SRAM不需初始化既可直接使用而DDR需要初始化后才能使用，但是总之CPU可以直接和SRAM/DRAM打交道；而SD卡需要时序访问，CPU不能直接和SD卡打交道；NorFlash读取时可以总线式访问，所以Norflash启动非常简单，可以直接启动，但是SD/NandFlash不行。</p>
+<p>(2)以前只有Norflash可以作为启动介质，台式机笔记本的BIOS就是Norflash做的。后来三星在2440中使用了SteppingStone的技术，让Nandflash也可以作为启动介质。SteppingStone（翻译为启动基石）技术就是在SoC内部内置4KB的SRAM，然后开机时SoC根据OMpin判断用户设置的启动方式，如果是NandFlash启动，则SoC的启动部分的硬件直接从外部NandFlash中读取开头的4KB到内部SRAM作为启动内容。</p>
+<p>(3)启动基石技术进一步发展，在6410芯片中得到完善，在210芯片时已经完全成熟。210中有96KB的SRAM，并且有一段iROM代码作为BL0，BL0再去启动BL1（210中的BL0做的事情在2440中也有，只不过那时候是硬件自动完成的，而且体系没有210中这么详细）。</p>
+<ul>
+<li>S5PV210的启动过程</li>
+</ul>
+<p>(1)210启动首先执行内部的iROM（也就是BL0），BL0会判断OMpin来决定从哪个设备启动，如果启动设备是SD卡，则BL0会从SD卡读取前16KB（不一定是16，反正16是工作的）到SRAM中去启动执行（这部分就是BL1，这就是steppingstone技术）</p>
+<p>(2)BL1执行之后剩下的就是软件的事情了，SoC就不用再去操心了（也就是说SD卡里面只有一个小于等于16KB的bin文件）。</p>
+<ul>
+<li>SD卡启动流程（bin文件小于16KB时和大于16KB时）</li>
+</ul>
+<p>(1)启动的第一种情况是整个镜像大小小于16KB。这时候相当于我的整个镜像作为BL1被steppingstone直接硬件加载执行了而已。</p>
+<p>(2)启动的第二种情况就是整个镜像大小大于16KB。（只要大于16KB，哪怕是17KB，或者是700MB都是一样的）这时候就要把整个镜像分为2部分：第一部分16KB大小，第二部分是剩下的大小。然后第一部分作为BL1启动，负责去初始化DRAM并且将第二部分加载到DRAM中去执行（uboot就是这样做的）。</p>
+<ul>
+<li>隐含要点</li>
+</ul>
+<p>(1)问题：iROM究竟是怎样读取SD卡/NandFlash的？</p>
+<p>(2)三星在iROM中事先内置了一些代码去初始化外部SD卡/NandFlash，并且内置了读取各种SD卡/NandFlash的代码在iROM中。BL0（SteppingStone技术）执行时就是通过调用这些iROM application note：block device copy function来读取外部SD卡/NandFlash中的BL1的。</p>
+<ul>
+<li>扇区和块的概念</li>
+</ul>
+<p>(1)早期的块设备就是软盘硬盘这类磁存储设备，这种设备的存储单元不是以字节为单位，而是以扇区为单位。磁存储设备读写的最小单元就是扇区，不能只读取或写部分扇区。这个限制是磁存储设备本身物理方面的原因造成的，也成为了我们编程时必须遵守的规律。</p>
+<p>(2)一个扇区有好多个字节（一般是512个字节）。早期的磁盘扇区是512字节，实际上后来的磁盘扇区可以做的比较大（譬如1024字节，譬如2048字节，譬如4096字节），但是因为原来最早是512字节，很多的软件（包括操作系统和文件系统）已经默认了512这个数字，因此后来的硬件虽然物理上可能支持更大的扇区，但是实际上一般还是兼容512字节扇区这种操作方法。</p>
+<p>(3)一个扇区可以看成是一个块block（块的概念就是：不是一个字节，是多个字节组成一个共同的操作单元块），所以就把这一类的设备称为块设备。常见的块设备有：磁存储设备硬盘、软盘、DVD和Flash设备（U盘、SSD、SD卡、NandFlash、Norflash、eMMC、iNand）</p>
+<p>(4)linux里有个mtd驱动，就是用来管理这类块设备的。</p>
+<p>(5)磁盘和Flash以块为单位来读写，就决定了我们启动时device copy function只能以整块为单位来读取SD卡。</p>
+<ul>
+<li>用函数指针方式调用device copy function</li>
+</ul>
+<p>(1)第一种方法：宏定义方式来调用。好处是简单方便，坏处是编译器不能帮我们做参数的静态类型检查。</p>
+<p>(2)第二种方法：用函数指针方式来调用（注意要解引用，因为函数地址里面也是一个地址）。</p>
+<ul>
+<li>分散加载</li>
+</ul>
+<p>(1)将代码分为2部分：第一部分BL1小于等于16KB，第二部分为任意大小，iROM代码执行完成后从SD卡启动会自动读取BL1到SRAM中执行；BL1执行时负责初始化DDR，然后手动将BL2从SD卡copy到DDR中正确位置，然后BL1远跳转到BL2中执行BL2.</p>
+<p>(2)代码分为2部分，这种技术叫分散加载。这种分散加载的方法可以解决问题，但是比较麻烦。分散加载的缺陷：第一，代码完全分2部分，完全独立，代码编写和组织上麻烦；第二，无法让工程项目兼容SD卡启动和Nand启动、NorFlash启动等各种启动方式。</p>
+<p>(3)细节1：程序整个分为2个文件夹BL1和BL2，各自管理各自的项目。</p>
+<p>(4)细节2：BL1中要完成：关看门狗、设置栈、开iCache、初始化DDR、从SD卡复制BL2到DDR中特定位置，跳转执行BL2。</p>
+<p>(5)细节3：BL1在SD卡中必须从Block1开始（Block0不能用，这个是三星官方规定的），长度为16KB内，我们就定为16KB（也就是32个block）；BL2理论上可以从33扇区开始，但是实际上为了安全都会留一些空扇区作为隔离，譬如可以从45扇区开始，长度由自己定（实际根据自己的BL2大小来分配长度，我们实验时BL2非常小，因此我们定义BL2长度为16KB，也就是32扇区）。</p>
+<p>(6)细节4：DDR初始化好之后，整个DDR都可以使用了，这时在其中选择一段长度足够BL2的DDR空间即可。我们选0x23E00000（因为我们BL1中只初始化了DDR1，地址空间范围是0x20000000～0x2FFFFFFF）。</p>
+<ul>
+<li>uboot：</li>
+</ul>
+<p>(1)第二种思路：程序代码仍然包括BL1和BL2两部分，但是组织形式上不分为2部分而是作为一个整体来组织。它的实现方式是：iROM启动然后从SD卡的扇区1开始读取16KB的BL1然后去执行BL1，BL1负责初始化DDR，然后从SD卡中读取整个程序（BL1+BL2）到DDR中，然后从DDR中执行（利用ldr pc, =main这种方式以远跳转从SRAM中运行的BL1跳转到DDR中运行的BL2）。</p>
+<ul>
+<li>uboot的SD卡启动细节</li>
+</ul>
+<p>(1)uboot编译好之后有200多KB，超出了16KB。uboot的组织方式就是前面16KB为BL1，剩下的部分为BL2.</p>
+<p>(2)uboot在烧录到SD卡的时候，先截取uboot.bin的前16KB（实际脚本截取的是8KB）烧录到SD卡的block1～bolck32；然后将整个uboot烧录到SD卡的某个扇区中（譬如49扇区）</p>
+<p>(3)实际uboot从SD卡启动时是这样的：iROM先执行，根据OMpin判断出启动设备是SD卡，然后从S卡的block1开始读取16KB（8KB）到SRAM中执行BL1，BL1执行时负责初始化DDR，并且从SD卡的49扇区开始复制整个uboot到DDR中指定位置（0x23E00000）去备用；然后BL1继续执行直到ldr pc, =main时BL1跳转到DDR上的BL2中接着执行uboot的第二阶段。</p>
+<p>总结：uboot中的这种启动方式比上节讲的分散加载的好处在于：能够兼容各种启动方式。</p>
+<h6 id="x210开发板的软开关按键问题"><a href="#x210开发板的软开关按键问题" class="headerlink" title="x210开发板的软开关按键问题"></a>x210开发板的软开关按键问题</h6><ul>
+<li>X210开发板的软启动电路详解</li>
+</ul>
+<p>(1)210供电需要的电压比较稳定，而外部适配器的输出电压不一定那么稳定，因此板载了一个文稳压器件MP1482.这个稳压芯片的作用就是外部适配器电压在一定范围内变化时稳压芯片的输出电压都是5V。</p>
+<p>(2)MP1482芯片有一个EN（Enable）引脚，这个引脚可以让稳压芯片输出或关闭输出。EN为高电平时有输出电压，EN引脚为低电平时稳压芯片无输出。</p>
+<p>(3)两个因素可以影响EN引脚的电平：第一个是POWER按键（SW1），POWER按键按下时EN为高电平，POWER按键弹起时EN为低电平；第二个是POWER_LOCK（EINT0）引脚，这个引脚为POWER_LOCK模式下高电平，则EN为高；若这个引脚为EINT0模式或者为POWER_LOCK模式但输出为低电平，则EN为低。</p>
+<p>(4)图中还有EINT1引脚，这个引脚的作用是用来做中断，提供给CPU用来唤醒的。</p>
+<ul>
+<li>软启动</li>
+</ul>
+<p>(1)一般的电路设计都是用拨码开关来做电源开关的（打到一侧则接通，打到另一侧则关闭）。这种方式的优点是设计简单，缺点是电路太简单，整个主板要么有电要么没电无法做休眠模式、低功耗模式等。</p>
+<p>(2)软启动电路是比较接近于实际产品的，其他开发板的硬开关其实是简化版的，和实际产品还有差异。</p>
+<ul>
+<li>开发板供电置锁原理和分析</li>
+</ul>
+<p>(1)软开关在设计时有一个置锁电路，用EINT0（也就是GPH0_2）引脚来控制的。</p>
+<p>(2)EINT0这个引脚是有复用设计（两个完全不相干的功能挤在同一个引脚上，同时我们只能让这个引脚用于其中一种功能，这就叫复用）的，一个是GPIO（也就是GPH0_2引脚）、一个是PS_HOLD_CONTROL。（注意：EINT0功能算是GPIO下的一个子功能）</p>
+<p>(3)PS_HOLD在Section2.4 Power Management章节下的4.10.5.8节下。</p>
+<p>(4)PS_HOLD_CONTROL寄存器（0xE010E81C），共有3个位有用。<br>    bit0, 0表示这个引脚为GPIO功能，1表示这个引脚为PS_HOLD功能<br>    bit9，0表示这个引脚方向为输入，1表示这个引脚方向为输出<br>    bit8，0表示这个引脚输出为低电平，1表示输出为高电平。<br>分析：我们要使用软启动置锁，则需要将bit0、8、9都置为1即可。</p>
+<ul>
+<li>写代码+实验验证</li>
+</ul>
+<p>(1)要想让开发板和普通的开发板一样，一按下按键程序运行后即可松手不会断电，则只要在程序的开头部分添加代码去置锁开关板即可。</p>
+<p>(2)置锁代码的方法是：给PS_HOLD_CONTROL寄存器的bit0、8、9均写入1即可。</p>
+<p>(3)注意：此时开发板已经置锁，POWER按键已经失效，关机时需要按下复位按键。</p>
+<h4 id="实验项目-5"><a href="#实验项目-5" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="sd卡启动-01-分散加载"><a href="#sd卡启动-01-分散加载" class="headerlink" title="sd卡启动-01-分散加载"></a>sd卡启动-01-分散加载</h6><ul>
+<li>步骤：</li>
+</ul>
+<ol>
+<li><p>创建两个文件夹：BL1、BL2</p>
+</li>
+<li><p>创建write2sd文件，目的是将BL1.bin和BL2.bin写进sd卡的扇区1和扇区45，内容为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/sh</span></span><br><span class="line">sudo dd iflag=dsync oflag=dsync <span class="keyword">if</span>=./BL1/BL1_SD.bin of=/dev/sdb seek=1</span><br><span class="line">sudo dd iflag=dsync oflag=dsync <span class="keyword">if</span>=./BL2/BL2_SD.bin of=/dev/sdb seek=45</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建Makefile，目的是进入BL1、BL2文件夹调用里面的Makefile，内容是：</p>
+<figure class="highlight makefile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">all:</span></span><br><span class="line">	make -C ./BL1</span><br><span class="line">	make -C ./BL2</span><br><span class="line"></span><br><span class="line"><span class="section">clean:</span></span><br><span class="line">	make clean -C ./BL1</span><br><span class="line">	make clean -C ./BL2</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在BL1文件夹下，修改start.S文件（基于led灯实验），使其初始化ddr后跳转到重定位的C语言代码</p>
+</li>
+<li><p>创建sd_relocate.c文件，由start.S跳转，完成两个任务，第一个是读取sd卡的BL2到ddr（因为不能直接用地址访问sd卡，所以只能调用函数来执行这个功能），第二个是跳转到ddr的BL2位置并执行BL2（方法：调用不传参的函数，地址为BL2）</p>
+</li>
+<li><p>创建Makefile文件，目的为编译连接</p>
+</li>
+<li><p>修改link.lds文件，使其连接地址为iram的地址（0xd0020010）</p>
+</li>
+<li><p>在BL2文件夹下，创建start.S文件，目的是跳转到C语言代码里面</p>
+</li>
+<li><p>添加led.c文件（led灯实验）</p>
+</li>
+<li><p>修改Makefile文件，目的为编译连接，并去掉添加校验头的部分（因为校验头已经在BL1里面加过）</p>
+</li>
+<li><p>创建link.lds文件，使其连接地址为iram的地址（0x23E00000）</p>
+</li>
+<li><p>进入linux虚拟机，使用make指令编译连接，然后插入sd卡，执行wirte2sd文件，将镜像文件写进sd卡</p>
+</li>
+</ol>
+<h2 id="实验07-nand"><a href="#实验07-nand" class="headerlink" title="实验07-nand"></a>实验07-nand</h2><h4 id="nand基本概念"><a href="#nand基本概念" class="headerlink" title="nand基本概念"></a>nand基本概念</h4><h6 id="nandflash接口"><a href="#nandflash接口" class="headerlink" title="nandflash接口"></a>nandflash接口</h6><ul>
+<li>Nand的型号与命名</li>
+</ul>
+<p>(1)Nand的型号命名都有含义，K9F2G08：K9F表示是三星公司的NandFlash系列。2G表示Nand的大小是2Gbit（256MB）。08表示Nand是8位的（8位就是数据线有8根）</p>
+<p>(2)Nand命名中可以看出：厂家、系列型号、容量大小、数据位数。</p>
+<ul>
+<li>Nand的数据位</li>
+</ul>
+<p>(1)Nand有8位数据位、16位数据位的。做电路时/写软件时应该根据自己实际采购的Nnad的位数来设计电路/写软件。</p>
+<p>(2)说明Nand是并行接口的（8/16位）</p>
+<p>(3)Nand的数据线上传递的不一定全部是有效数据，也可能有命令、地址等。</p>
+<ul>
+<li>Nand的功能框图</li>
+</ul>
+<p>(1)Nand的结构可以看成是一个矩阵式存储器，其中被分成一个一个的小块，每一小块可以存储一个bit位，然后彼此以一定单位组合成整个Nand。</p>
+<p>(2)Nand中可以被单次访问的最小单元（就是说对Nand进行一次读写至少要读写这么多，或者是这么多的整数倍）叫做Page（页），在K9F2G08芯片中，Page的大小是2KB+64B。也就是说我们要读写K9F2G08，每次至少要读写2KB或者n X 2KB，即使我们只是想要其中的一个字节。这就是我们说的典型的块设备（现在有些块设备为了方便，提供了一种random read模式，可以只读取1个字节）。</p>
+<p>(3)页往上还有个Block（块）的概念，1个块等于若干个页（譬如在K9F2G08中1个块等于64页）。</p>
+<p>(4)块往上就是整个Nand芯片了，叫做Device。一个Device是若干个Block，譬如K9F2F08一个Device有2028个block。所以整个Device大小为：2048×64×2K = 256MB</p>
+<p>(5)块设备分page、block有什么意义？首先要明白，块设备不能完全按字节访问而必须块访问是物理上的限制，而不是人为设置的障碍。其次，Page和Block各有各的意义，譬如Nand中：Page是读写Nand的最小单位；Block是擦除Nand的最小单位。（这些规则都是Nand的物理原理和限制要求的）。</p>
+<p>(6)Nand芯片中主要包含2部分：Nand存储颗粒+Nand接口电路。存储颗粒就是纯粹的Nand原理的存储单元，类似于仓库；Nand接口电路是用来管理存储颗粒，并且给外界提供一个统一的Nand接口规格的访问接口的。</p>
+<p>(7)Nand中有多个存储单元，每个单元都有自己的地址（地址是精确到字节的）。所以Nand是地址编排精确到字节，但是实际读写却只能精确到页（所以Nand的很多操作都要求给的地址是页对齐的，譬如2K、4K、512K等这样的地址，不能给3000B这样的地址）。Nand读写时地址传递是通过IO线发送的，因为地址有30位而IO只有8位，所以需要多个cycle才能发送完毕。一般的Nand都是4cycle或者5cycle发送地址（从这里把Nand分为了4cycle Nand和5cycle Nand）。</p>
+<p>总结：Nand芯片内部有存储空间，并且有电路来管理这些存储空间，向外部提供统一的Nand接口的访问规则，然后外部的SoC可以使用Nand接口时序来读写这个Nand存储芯片。Nand接口是一种公用接口，是一种标准，理论上来说外部SoC可以直接模拟Nand接口来读写Nand芯片，但是实际上因为nand接口对时序要求非常严格，而且时序很复杂，所以一般的SoC都是通过专用的硬件的Nand控制器（这些控制器一般是作为SoC的内部外设来存在的）来操控Nand芯片的。</p>
+<ul>
+<li>NandFlash的结构</li>
+</ul>
+<p>Nand的单元组织：block与page（大页Nand与小页Nand）</p>
+<p>(1)Nand的页和以前讲过的块设备（尤其是硬盘）的扇区是类似的。扇区最早在磁盘中是512字节，后来也有些高级硬盘扇区不是512字节而是1024字节/2048字节/4096字节等。Nand也是一样，不同的Nand的页的大小是不同的，也有512字节/1024字节/2048字节/4096字节等。</p>
+<p>(2)一个block等于多少page也是不定的，不同的Nand也不同。一个Nand芯片有多少block也是不定的，不同的Nand芯片也不同。</p>
+<ul>
+<li>带内数据和带外数据（ECC与坏块标记）</li>
+</ul>
+<p>(1)Nand的每个页由2部分组成，这2部分各自都有一定的存储空间。譬如K9F2G08中为2K+64字节。其中的2K字节属于带内数据，是我们真正的存储空间，将来存储在Nand中的有效数据就是存在这2K范围内的（我们平时计算nand的容量时也是只考虑这2KB）；64字节的带外数据不能用来存储有效数据，是作为别的附加用途的（譬如用来存储ECC数据、用来存储坏块标志等）</p>
+<p>(2)什么是ECC：（error correction code，错误校验码）。因为Nand存储本身出错（位反转）概率高（Nand较Nor最大的缺点就是稳定性），所以当我们将有效信息存储到Nand中时都会同时按照一定算法计算一个ECC信息（譬如CRC16等校验算法），将ECC信息同时存储到Nand这个页的带外数据区。然后等将来读取数据时，对数据用同样的算法再计算一次ECC，并且和从带外数据区读出的ECC进行校验。如果校验通过则证明Nand的有效数据可信，如果校验不通过则证明这个数据已经被损坏（只能丢弃或者尝试修复）。</p>
+<p>(3)坏块标志：Nand芯片用一段时间后，可能某些块会坏掉（这些块无法擦除了，或者无法读写了），nand的坏块非常类似于硬盘的坏道。坏块是不可避免的，而且随着Nand的使用坏块会越来越多。当坏块还不算太多时这个Nand都是可以用的，除非坏块太多了不划算使用了才会换新的。所以我们为了管理Nand发明了一种坏块标志机制。Nand的每个页的64字节的带外数据中，我们（一般是文件系统）定义一个固定位置（譬如定位第24字节）来标记这个块是好的还是坏的。文件系统在发现这个块已经坏了没法用了时会将这个块标记为坏块，以后访问nand时直接跳过这个块即可。</p>
+<ul>
+<li>Nand的地址时序</li>
+</ul>
+<p>(1)nand的地址有多位，分4/5周期通过IO引脚发送给Nand芯片来对Nand进行寻址。寻址的最小单位是字节，但是读写的最小单位是页。</p>
+<p>(2)nand的地址在写代码时要按照Nand要求的时序和顺序去依次写入。</p>
+<ul>
+<li>Nand的命令码</li>
+</ul>
+<p>(1)外部SoC要想通过Nand控制器来访问Nand（实质就是通过Nand接口），就必须按照Nand接口给nand发送命令、地址、数据等信息来读写Nand。</p>
+<p>(2)Nand芯片内部的管理电路本身可以接收外部发送的命令，然后根据这些命令来读写Nand内容与外部SoC交互。所以我们对nand进行的所有操作（擦除、读、写···）都要有命令、地址、数据的参与才能完成，而且必须按照Nand芯片规定的流程来做。</p>
+<ul>
+<li>NandFlash的常见操作及流程分析</li>
+</ul>
+<ol>
+<li>坏块检查<br>(1)Flash使用之前要先统一擦除（擦除的单位是块）。Flash类设备一般将数据都擦除为1，所以擦干净之后读出来的值是0xff。</li>
+</ol>
+<p>(2)检查坏块的思路就是：先块擦除，然后将整块读出来，依次检测各自节是否为0xff，如果是则表明不是坏块，如果不是则表明是坏块。</p>
+<ol start="2">
+<li>页写（program）操作<br>(1)写之前确保这个页是被擦除干净的。如果不是擦除过的页，写进去的值有可能是错的。</li>
+</ol>
+<p>(2)写操作（write）在flash的操作中就叫编程（program）</p>
+<p>(3)SoC写Flash时通过命令线、IO线依次发送写命令、写页地址、写数据等进入NandFlash。</p>
+<p>(4)写的过程：SOC通过Nand控制器和Nand芯片完成顺序对接，然后按照时序要求将一页数据发给Nand芯片内部的接口电路。接口电路先接收收据到自己的缓冲区，然后再集中写入Nand芯片的存储区域中。Nand接口电路将一页数据从缓冲区中写入Nand存储系统中需要一定的时间，这段时间Nand芯片不能再响应SOC发过来的其他命令，所以SoC要等待Nand接口电路忙完。等待方法是SoC不断读取状态寄存器（这个状态寄存器有2种情况：一种是SoC的Nand控制器自带的，另一种是SoC通过发命令得到命令响应得到的），然后通过检查这个状态寄存器的状态位就能知道Nand接口电路刚才写的那一页数据写完了没、写好了没。直到SoC收到正确的状态寄存器响应才能认为刚才要写的那一页数据已经ok。（如果SoC收到的状态一直不对，可以考虑重写或者认为这一页所在的块已经是坏块，或者整个Nand芯片已经死机了）。</p>
+<p>(5)正常情况下到了第四步就已经完了。但是因为Nand的读写有不靠谱情况，因此我们为了安全会去做ECC校验。ECC校验有硬件式校验和软件式校验2种。软件式校验可以采用的策略有很多，其中之一（Nand芯片手册上推荐的方式）：将刚才写入的1页数据读出来，和写入的内容进行逐一对比。如果读出的和写入的完全一样，说明刚才的写入过程正确完成了；如果读出来的和写入的不完全一样那就说明刚才的写入有问题。</p>
+<p>(6)硬件式ECC：SoC的Nand控制器可以提供硬件式ECC（这个也是比较普遍的情况）。硬件式ECC就是在Nand的控制器中有个硬件模块专门做ECC操作。当我们操作Nand芯片时，只要按照SoC的要求按时打开ECC生成开关，则当我们写入Nand芯片时SoC的Nand控制器的ECC模块会自动生成ECC数据放在相应的寄存器中，然后我们只需要将这生成的ECC数据写入Nand芯片的带外数据区即可；在将来读取这块Nand芯片时，同样要打开硬件ECC开关，然后开始读，在读的过程当中硬件ECC会自动计算读进来的一页数据的ECC值并将之放到相应的寄存器中。然后我们再读取带外数据区中原来写入时存入的ECC值，和我们刚才读的时候得到的ECC值进行校验。校验通过则说明读写正确，校验不通过则说明不正确（放弃数据或者尝试修复）。</p>
+<ol start="3">
+<li>擦除（erase）操作<br>(1)擦除时必须给块对齐的地址。如果给了不对齐的地址，结果是不可知的（有些Nand芯片没关系，它内部会自动将其对齐，而有些Nand会返回地址错误）。</li>
+</ol>
+<p>(2)读写时给的地址也是一样，要求是页对齐地址。如果给了不对齐的，也是有可能对有可能错。</p>
+<ol start="4">
+<li>页读（read）操作</li>
+</ol>
+<h6 id="nandflash控制器"><a href="#nandflash控制器" class="headerlink" title="nandflash控制器"></a>nandflash控制器</h6><ul>
+<li>SoC的Nand控制器的作用</li>
+</ul>
+<p>（1）Nand芯片本身通过Nand接口电路来存取数据，Nand接口电路和soc之间通过Nand接口时序来通信。Nand接口时序相对复杂，如果要Soc完全用软件来实现Nand接口时序有一些不好（主要是：第一很难保证时序能满足、容易不稳定；第二代码很难写）。解决方案是：在SoC内部集成一个Nand控制器（实质就是块硬件电路，这个硬件电路完全满足Nand接口时序的操作，然后将接口时序的操作寄存器化）。</p>
+<p>（2）soc和Nand芯片之间通信，在soc没有Nand控制器时需要soc自己来处理接口时序，编程很麻烦，需要程序员看Nand芯片的接口时序图，严格按照接口时序图中编程（尤其要注意各个时间参数）；在Soc有Nand控制器时soc只需要编程操控Nand控制器的寄存器即可，Nand控制器内部硬件会根据寄存器值来生成合适的Nand接口时序和Nand芯片通信。所以在有Nand控制器时编程要简单很多，我们读写Nand芯片时再也不用关注Nand接口时序了，只要关注soc的Nand控制器的寄存器即可。</p>
+<p>（3）扩展来讲，现在的技术趋势就是：几乎所有的外设在soc内部都有对应的控制器来与其通信，那么SoC内部集成的各种控制器（也就是各种内部外设）越多，则Soc硬件能完成的功能越多，将来用这个Soc来完成相应任务时软件编程越简单。譬如说图形处理和图像处理领域，2D图像编码（jpeg编码）、视频编码（h.264编码），现在大部分的application级别的soc都有集成的内部编码器（像s5Pv210就有、更复杂的譬如4418、6818就更不用说了，只会更多更先进），我们可以利用这些硬件编码器来进行快速编解码，这样软件工作量和难度降低了很多（这就是所谓的硬件加速）。</p>
+<ul>
+<li><p>结构框图分析<br>（1）结构框图中关键点：SFR（编程时就是通过读写SFR来产生Nand接口时序以读写Nand芯片的）+ Nand interface（硬件接口，将来和Nand芯片的相应引脚进行连接）+ECC生成器</p>
+</li>
+<li><p>S5PV210的Nand控制器的主要寄存器<br>NECONE、NECONT、NECMMD、NEADDR、NEDATA、NEMECCDO&amp;NEMECCD1、NESECCD、NESTAT</p>
+</li>
+<li><p>Nand操作代码解析</p>
+</li>
+</ul>
+<p>总结<br>（1）像 NandFlash这类芯片，通过专用的接口时序和soc内部的控制器相连（这种连接方式是非常普遍的像LCD、DDR等都是类似的连接）.这种接法和设计对我们编程来说，关键在于两点：SoC的控制器的寄存器理解和Nand芯片本身的文档、流程图等信息。<br>（2）对于我们来说，学习 Nand1ash，要注意的是：要结合SoC的数据手册、Nand芯片的数据手册、示例代码三者来理解。</p>
+<h4 id="inand基本概念"><a href="#inand基本概念" class="headerlink" title="inand基本概念"></a>inand基本概念</h4><ul>
+<li><p>iNand/eMc/ SDCard/ MMcCard的关联<br>（1）最早出现的是MAC卡，卡片式结构，按照MC协议设计。（相较于 NandE1ash芯片来说，MAC卡有2个优势：第一是卡片化，便于拆装；第二是统一了协议接口，兼容性好。）<br>（2）后来出现SD卡，兼容MMC协议。SD卡较MC有一些改进，譬如写保护、速率、容量等。<br>（3）SD卡遵守SD协议，有多个版本。多个版本之间向前兼容。<br>（4） iNand/eMMC在$D卡的基础上发展起来，较SD卡的区别就是将sD卡芯片化了（解决卡的接触不良问题，便于设备迷你化）<br>（5） iNand和eMMC的关联：eMMc是协议， iNand是Sandisk公司符合eMMc协议的一种芯片系列名称。</p>
+</li>
+<li><p>iNand/eMMC的结构框图及其与 Nandflash的区别</p>
+</li>
+</ul>
+<p>（1）iNand内部也是由存储系统和接口电路构成，和Nand结构特性类似，不同之处在于接口电路功能不同</p>
+<p>（2）iNand的接口电路挺复杂，功能很健全。譬如：<br>第一，提供eMMc接口协议，和soc的eMMc接口控制器通信对接。<br>第二，提供块的ECC校验相关的逻辑，也就是说 iNand本身自己完成存储系统的ECC功能，soc使用iNand时自己不用写代码来进行ECC相关操作，大大简化了soc的编程难度。（ Nandflash分2种：SLC和MLC，sLc更稳定，但是容量小价格高；MLC容易出错，但是容量大价格低）<br>第三，iNand芯片内部使用MLC Nand颗粒，所以性价比很高。<br>第四，iNand接口电路还提供了 cache机制，所以inand的操作速度很快。</p>
+<ul>
+<li>iNand/ec的物理接口和sD卡物理接口的对比</li>
+</ul>
+<p>（1）S5PV210芯片本身支持4通道的SD/MMC，在X210中实际是在sd/MMC0通道接了 iNand芯片，而SD/MMC2接了SD卡（SD/MMC3也接了SD卡）.</p>
+<p>（2）对比 inand和sD卡接线，发现：这两个接线几乎是一样的，唯一的区别就是SD卡IO线有4根，而 iNand的IO线有8根。</p>
+<p>（3）这个告诉我们，我们在实际操作iNand芯片时和操作SD卡时几乎是一样的（物理接线几乎一样，软件操作协议几乎一样）</p>
+<ul>
+<li>结论： iNand/eMMc其实就是芯片化的sD/MMC卡，软件操作和sD卡相同。<br>分析iNand芯片的操作代码时，其实就是以前的SD卡的操作代码。一些细节的区别就是为了区分各种不同版本的SD卡、iNand的细节差异。</li>
+</ul>
+<h6 id="sd卡-inand操作"><a href="#sd卡-inand操作" class="headerlink" title="sd卡-inand操作"></a>sd卡-inand操作</h6><ul>
+<li>硬件接口：DATA、CLK、CMD</li>
+</ul>
+<p>（1） iNand的io线有8根，支持1、4、8线并行传输模式；SD卡io线有4根，支持1、4线并行传输模式</p>
+<p>（2）CMD线用来传输命令、CLK线用来传输时钟信号。</p>
+<p>（3）接口有CLK线，工作时主机soc通过CLK线传输时钟信号给SD卡/ iNand芯片，说明：SD/ iNand是同步的SD/ iNand的工作速率是由主机给它的CLK频率决定的。</p>
+<ul>
+<li><p>命令响应的操作模式<br>（1）SD协议事先定义了很多标准命令（CMD0、CMD1………），每个命令都有它的作用和使用条件和对应的响应。SD卡工作的时候就是一个一个的命令周期组合起来的，在一个命令周期中，主机先发送CMD给SD卡然后SD卡解析这个命令并且执行这个命令，然后SD卡根据结果回发给主机SoC一个响应。（有些命令是不需要响应的，这时SD卡不会给主机回发响应，主机也不用等待响应）    。标准的命令+响应的周期中，主机发完一个命令后应该等待SD卡的响应而不是接着发下一条命令。</p>
+</li>
+<li><p>SD/iNand的体系结构图<br>（1）SD卡内部有一个接口控制器这个控制器类似于一个单片机，这个单片机的程序功能就是通过CMD线接收外部主机soc发给SD卡的命令码，然后执行这个命令并且回发响应给主机soc。这个单片机处理命令及回发响应遵循的就是SD协议。这个单片机同时可以控制SD卡内部的存储单元，可以读写存储单元。</p>
+</li>
+<li><p>SD/iNand的寄存器（重点是RCA寄存器）</p>
+</li>
+</ul>
+<p>（1）注意这里说的是SD卡内部的寄存器，而不是主机Soc的SD控制器的寄存器。（很多外置芯片内部都是有寄存器的，这些寄存器可以按照一定的规则访问，访问这些寄存器可以得知芯片的一些信息）</p>
+<p>（2）RCA （relative address，相对地址寄存器）.我们在访问SD卡时，实际上SD卡内部每个存储单元的地址没有绝对数字，都是使用相对地址。相对地址由SD卡自己决定的，存放在RCA寄存器中。</p>
+<ul>
+<li>Soc的sD/MMc/ iNand控制器简介</li>
+</ul>
+<p>（1）不同的sσC可能在SD/MMC/iNand等支持方面有差异，但是如果支持都是通过内部提供SD控制器来支持的</p>
+<p>（2）S5PV210的SD卡控制器在Section8.7部分</p>
+<h6 id="sd-inand代码分析"><a href="#sd-inand代码分析" class="headerlink" title="sd-inand代码分析"></a>sd-inand代码分析</h6><ul>
+<li>命令码CMD和ACMD</li>
+</ul>
+<p>（1）SD卡工作在命令+响应的模式下</p>
+<p>（2）SD协议的命令分2种：CMDx和 ACMDX.CMD是单命令命令，就是单独发一个CMD即可表示一个意思。ACMD是一种扩展，就是发2个cMD加起来表示一个意思。可以认为ACMDX=cMDy+cMDz（y一般是55）</p>
+<ul>
+<li>卡类型识别SD or MMC</li>
+</ul>
+<p>（1）MMC协议、SD协议、eMMC协议本身是一脉相承的，所以造成了一定的兼容性，所以当我们SoC控制器工作时连接到SoC上的可能是一个MC卡、也可能是SD卡、也可能是iNand芯片。主机SoC需要去识别这个卡到底是什么版本的卡</p>
+<p>（2）SoC如何区分卡种类？因为不同版本的卡内部协议不同的，所以对卡识别命令的响应也是不同的。SoC通过发送一些命令、听取响应就可以根据不同的响应判定卡的版本</p>
+<ul>
+<li>卡状态</li>
+</ul>
+<p>（1）SD卡内部的接口控制器类似于一个单片机，这个单片机其实是一个状态机。所以SD卡任何时候都属于某一种状态（空闲状态、准备好状态、读写状态、出错状态··都是事先定义好的），在这种状态下能够接受的命令是一定的，接受到命令之后执行一定的操作然后根据操作结果会跳转为其他状态。如果主机发过来的命令和当前状态不符状态机就不响应，如果收到命令和当前状态相符就会执行相应操作，执行完之后根据结果跳转为其他状态。</p>
+<ul>
+<li>卡回复类型</li>
+</ul>
+<p>（1）一般来说，SD卡的命令都属于：命令+响应的模式。也有极少数的SD卡命令是不需要回复的</p>
+<p>（2）卡回复有R1、R7、R1B等8种类型，每种卡回复类型都有自己的解析规则。然后卡在特定状态下响应特定命令时有可能回复哪种响应都是sD协议事先规定好的，详细细节要查阅协议文档。</p>
+<ul>
+<li><p>SD/iNand相关的GPIo初始化<br>GPG0相关的GPIo初始化，参考LED部分的设置技术</p>
+</li>
+<li><p>SD/ iNand相关的时钟系统设置</p>
+</li>
+</ul>
+<p>（1）SD卡本身工作需要时钟，但是自己又没有时钟发生单元，依靠主机soc的控制器通过SD接口中的CLK线传一个时钟过来给$D卡内部使用。所以主机SD卡控制器先初始化好自己的时钟，然后将自己的时钟传给SD卡</p>
+<p>（2）因为此时刚开始和SD卡通信，主机不清楚SD卡属于哪个版本（高版本和低版本的SD卡的读写速率不同，高版本的可以工作在低版本的速率下，低版本的SD卡不能工作在高版本速率下），所以先给SD卡发400KHz的低速率时钟，SD卡拿到这个时钟后就能工作了。然后在后面和SD卡进行进一步通信时去识别SD卡的版本号，识别后再根据SD卡的版本进一步给它更合适的时钟。</p>
+<ul>
+<li>命令发送函数解析</li>
+<li>卡类型识别操作时序</li>
+<li>卡读写时序</li>
+</ul>
+<h2 id="实验08-i2c"><a href="#实验08-i2c" class="headerlink" title="实验08-i2c"></a>实验08-i2c</h2><h4 id="基本概念-7"><a href="#基本概念-7" class="headerlink" title="基本概念"></a>基本概念</h4><p>内部集成电路(Inter－Integrated Circuit,I2C)</p>
+<h6 id="i2c通信-芯片间通信"><a href="#i2c通信-芯片间通信" class="headerlink" title="i2c通信-芯片间通信"></a>i2c通信-芯片间通信</h6><ul>
+<li>物理接口：SCL + SDA</li>
+</ul>
+<p>(1)SCL(serial clock)：时钟线，传输CLK信号，一般是I2C主设备向从设备提供时钟的通道（有时钟线，大部分都是同步传输）</p>
+<p>(2)SDA(serial data): 数据线，通信数据都通过SDA线传输（一根线，串行）</p>
+<ul>
+<li>通信特征：串行、同步、非差分、低速率</li>
+</ul>
+<p>(1)I2C属于串行通信，所有的数据以位为单位在SDA线上串行传输。</p>
+<p>(2)同步通信就是通信双方工作在同一个时钟下，一般是通信的A方通过一根CLK信号线传输A自己的时钟给B，B工作在A传输的时钟下。所以同步通信的显著特征就是：有CLK通信线。</p>
+<p>(3)非差分。因为I2C通信速率不高，而且通信双方距离很近，所以使用电平信号通信。</p>
+<p>(4)低速率。I2C一般是用在同一个板子上的2个IC之间的通信，而且用来传输的数据量不大，所以本身通信速率很低（一般几百KHz，不同的I2C芯片的通信速率可能不同，具体在编程的时候要看自己所使用的设备允许的I2C通信最高速率，不能超过这个速率）</p>
+<ul>
+<li>突出特征1：主设备+从设备</li>
+</ul>
+<p>(1)I2C通信的时候，通信双方地位是不对等的，而是分主设备和从设备。通信由主设备发起，由主设备主导，从设备只是按照I2C协议被动的接受主设备的通信，并及时响应。</p>
+<p>(2)谁是主设备、谁是从设备是由通信双方来定的（I2C协议并无规定），一般来说一个芯片可以只能做主设备、也可以只能做从设备、也可以既能当主设备又能当从设备（软件配置）。</p>
+<ul>
+<li>突出特征2：可以多个设备挂在一条总线上（从设备地址）</li>
+</ul>
+<p>(1)I2C通信可以一对一（1个主设备对1个从设备），也可以一对多（1个主设备对多个从设备）。</p>
+<p>(2)主设备来负责调度总线，决定某一时间和哪个从设备通信。注意：同一时间内，I2C的总线上只能传输一对设备的通信信息，所以同一时间只能有一个从设备和主设备通信，其他从设备处于“冬眠”状态，不能出来捣乱，否则通信就乱套了。</p>
+<p>(3)每一个I2C从设备在通信中都有一个I2C从设备地址，这个设备地址是从设备本身固有的属性，然后通信时主设备需要知道自己将要通信的那个从设备的地址，然后在通信中通过地址来甄别是不是自己要找的那个从设备。（这个地址是一个电路板上唯一的，不是全球唯一的）</p>
+<ul>
+<li>主要用途：SoC和周边外设之间的通信（典型的如EEPROM、电容触摸IC、各种sensor等）</li>
+</ul>
+<h6 id="i2c通信时序"><a href="#i2c通信时序" class="headerlink" title="i2c通信时序"></a>i2c通信时序</h6><p>时序：字面意思，时序就是时间顺序，实际上在通信中时序就是通信线上按照时间顺序发生的电平变化，以及这些变化对通信的意义就叫时序。</p>
+<ul>
+<li>I2C的总线空闲状态、起始位、结束位</li>
+</ul>
+<p>(1)I2C总线上有1个主设备，n（n&gt;=1）个从设备。I2C总线上有2种状态；空闲态（所有从设备都未和主设备通信，此时总线空闲）和忙态（其中一个从设备在和主设备通信，此时总线被这一对占用，其他从设备必须歇着）。</p>
+<p>(2)整个通信分为一个周期一个周期的，两个相邻的通信周期是空闲态。每一个通信周期由一个起始位开始，一个结束位结束，中间是本周期的通信数据。</p>
+<p>(3)起始位并不是一个时间点，起始位是一个时间段，在这段时间内总线状态变化情况是：SCL线维持高电平，同时SDA线发生一个从高到低的下降沿。</p>
+<p>(4)与起始位相似，结束位也是一个时间段。在这段时间内总线状态变化情况是：SCL线维持高电平，同时SDA线发生一个从低到高的上升沿。</p>
+<ul>
+<li>I2C数据传输格式（数据位&amp;ACK）</li>
+</ul>
+<p>(1)每一个通信周期的发起和结束都是由主设备来做的，从设备只有被动的响应主设备，没法自己自发的去做任何事情。</p>
+<p>(2)主设备在每个通信周期会先发8位的从设备地址（其实8位中只有7位是从设备地址，还有1位表示主设备下面要写入还是读出）到总线（主设备是以广播的形式发送的，只要是总线上的所有从设备其实都能收到这个信息）。然后总线上的每个从设备都能收到这个地址，并且收到地址后和自己的设备地址比较看是否相等。如果相等说明主设备本次通信就是给我说话，如果不想等说明这次通信与我无关，不用听了不管了。</p>
+<p>(3)发送方发送一段数据后，接收方需要回应一个ACK。这个响应本身只有1个bit位，不能携带有效信息，只能表示2个意思（要么表示收到数据，即有效响应；要么表示未收到数据，无效响应）</p>
+<p>(4)在某一个通信时刻，主设备和从设备只能有一个在发（占用总线，也就是向总线写），另一个在收（从总线读）。如果在某个时间主设备和从设备都试图向总线写那就完蛋了，通信就乱套了。</p>
+<ul>
+<li>数据在总线上的传输协议</li>
+</ul>
+<p>(1)I2C通信时的基本数据单位也是以字节为单位的，每次传输的有效数据都是1个字节（8位）。</p>
+<p>(2)起始位及其后的8个clk中都是主设备在发送（主设备掌控总线），此时从设备只能读取总线，通过读总线来得知主设备发给从设备的信息；然后到了第9周期，按照协议规定从设备需要发送ACK给主设备，所以此时主设备必须释放总线（主设备把总线置为高电平然后不要动，其实就类似于总线空闲状态），同时从设备试图拉低总线发出ACK。如果从设备拉低总线失败，或者从设备根本就没有拉低总线，则主设备看到的现象就是总线在第9周期仍然一直保持高，这对主设备来说，意味着我没收到ACK，主设备就认为刚才给从设备发送的8字节不对（接收失败）</p>
+<h6 id="s5pv210的i2c控制器"><a href="#s5pv210的i2c控制器" class="headerlink" title="s5pv210的i2c控制器"></a>s5pv210的i2c控制器</h6><p>通信双方本质上是通过时序在工作，但是时序会比较复杂不利于SoC软件完成，于是乎解决方案是SoC内部内置了硬件的控制器来产生通信时序。这样我们写软件时只需要向控制器的寄存器中写入配置值即可，控制器会产生适当的时序在通信线上和对方通信。</p>
+<ul>
+<li>结构框图</li>
+</ul>
+<p>(1)时钟部分，时钟来源是PCLK_PSYS，经过内部分频最终得到I2C控制器的CLK，通信中这个CLK会通过SCL线传给从设备。</p>
+<p>(2)I2C总线控制逻辑（前台代表是I2CCON、I2CSTAT这两个寄存器），主要负责产生I2C通信时序。实际编程中要发送起始位、停止位、接收ACK等都是通过这两个寄存器（背后所代表的电路模块）实现的。</p>
+<p>(3)移位寄存器（shift register），将代码中要发送的字节数据，通过移位寄存器变成1个位一个位的丢给SDA线上去发送/接收。学过数字电路的同学应该对移位寄存器不陌生。</p>
+<p>(4)地址寄存器+比较器。本I2C控制器做从设备的时候用。(我没用过，理论分析)</p>
+<ul>
+<li>系统分析I2C的时钟</li>
+</ul>
+<p>(1)I2C时钟源头来源于PCLK（PCLK_PSYS，等于65MHz），经过了2级分频后得到的。</p>
+<p>(2)第一级分频是I2CCON的bit6，可以得到一个中间时钟I2CCLK（等于PCLK/16或者PCLK/512）</p>
+<p>(3)第二级分频是得到最终I2C控制器工作的时钟，以I2CCLK这个中间时钟为来源，分频系数为[1,16]</p>
+<p>(4)最终要得到时钟是2级分频后的时钟，譬如一个可用的设置是：65000KHz/512/4=31KHz</p>
+<ul>
+<li>主要寄存器I2CCON、I2CSTAT、I2CADD、I2CDS</li>
+</ul>
+<p>I2CCON + I2CSTAT：主要用来产生通信时序和I2C接口配置。</p>
+<p>I2CADD：用来写自己的slave address</p>
+<p>I2CDS：发送/接收的数据都放在这里</p>
+<h6 id="x210板载gsensor介绍"><a href="#x210板载gsensor介绍" class="headerlink" title="x210板载gsensor介绍"></a>x210板载gsensor介绍</h6><ul>
+<li>原理图查阅</li>
+</ul>
+<p>(1)gsensor的供电由PWMTOUT3引脚控制。当PWMTOUT3输出低电平时gsensor无电不工作；当输出高电平时gsensor才会工作。</p>
+<p>(2)gsensor的SDA和SCL接的是S5PV210的I2C端口0</p>
+<p>(3)将来编程时在gsensor_init函数中要去初始化相关的GPIO。要把相应的GPIO设置为正确的模式和输入输出值。</p>
+<ul>
+<li>重力加速度传感器简介</li>
+</ul>
+<p>(1)用在手机、平板、智能手表等设备上，用来感受人的手的移动，获取一些运动的方向性信息用来给系统作为输入参量。</p>
+<p>(2)可以用来设计智能手表的计步器功能。</p>
+<p>(3)重力加速度传感器、地磁传感器、陀螺仪等三个传感器结合起来，都是用来感谢运动的速度、方位等信息的，所以现在最新的有9轴传感器，就是把三者结合起来，并且用一定的算法进行综合得出结论，目的是更加准确。</p>
+<p>(4)一般传感器的接口有2种：模拟接口和数字接口。模拟接口是用接口电平变化来作为输出的（譬如模拟接口的压力传感器，在压力不同时输出电平在0～3.3V范围内变化，每一个电压对应一个压力。），SOC需要用AD接口来对接这种传感器对它输出的数据进行AD转换，转换得到数字电压值，再用数字电压值去校准得到压力值；数字接口是后来发展出来的，数字接口的sensor是在模拟接口的sensor基础上，内部集成了AD，直接（通过一定的总线接口协议，一般是i2C）输出一个数字值的参数，这样SoC直接通过总线接口初始化、读取传感器输出的参数即可（譬如gsensor、电容触摸屏IC）。</p>
+<ul>
+<li>I2C从设备的设备地址</li>
+</ul>
+<p>(1)KXTE9的I2C地址固定为0b0001111（0x0f）</p>
+<p>(2)I2C从设备地址本身是7位的，但是在I2C通信中发送I2C从设备地址时实际发送的是8位，这8位中高7位（bit7-bit1）对应I2C从设备的7位地址，最低一位（LSB）存放的是R/W信息（就是说下一个数据是主设备写从设备读（对应0），还是主设备读从设备写（对应1））</p>
+<p>(3)基于上面讲的，对于KXTE9来说，主设备（SoC）发给gsensor信息时，SAD应该是：0b00011110(0x1E)如果是主设备读取gsensor信息时，SAD应该是：0b00011111（0x1F）</p>
+<ul>
+<li>I2C从设备的通信速率</li>
+</ul>
+<p>(1)I2C协议本身属于低速协议，通信速率不能太高。</p>
+<p>(2)实际上通信的主设备和从设备本身都有最高的通信速率限制（属于各个芯片本身的参数），实际编程时怎么确定最终的通信速率？只要小于两个即可。</p>
+<p>(3)一般来说只能做从设备的sensor芯片本身i2c通信速率偏低，像KXTE9最高支持400KHz的频率。</p>
+<h6 id="I2C总线的通信流程"><a href="#I2C总线的通信流程" class="headerlink" title="I2C总线的通信流程"></a>I2C总线的通信流程</h6><ul>
+<li>S5PV210的主发送流程图</li>
+<li>S5PV210的主接收流程图</li>
+<li>gsensor的写寄存器流程图</li>
+<li>gsensor的读寄存器流程图</li>
+</ul>
+<ul>
+<li>I2C通信代码分析1</li>
+</ul>
+<p>(1)控制器初始化：s3c24xx_i2c_init<br>,初始化GPIO，设置IRQEN和ACKEN，初始化I2C时钟,I2C控制器主模式开始一次读写：s3c24xx_i2c_message_start</p>
+<p>(2)I2C控制器主模式结束一次读写：s3c24xx_i2c_stop</p>
+<ul>
+<li>I2C通信代码分析2</li>
+</ul>
+<p>框架分析：我们最终目的是通过读写gsensor芯片的内部寄存器来得到一些信息。为了完成这个目的，我们需要能够读写gsensor的寄存器，根据gsensor的规定我们需要按照一定的操作流程来读写gsensor的内部寄存器，这是一个层次（姑且叫做传输层、协议层、应用层）；我们要按照操作流程去读写寄存器，就需要考虑I2C接口协议（这就是所谓的物理层，本质就是那些时序）。此时主机SoC有或者没有控制器，有控制器时考虑控制器的寄存器，没控制器时要自己软件模拟时序。</p>
+<p>协议层的代码主要取决于gsensor芯片；物理层代码主要取决于主机SoC。</p>
+<ul>
+<li>gsensor写寄存器：gsensor_i2c_write_reg</li>
+<li>gsensor读寄存器：gsensor_i2c_read_reg</li>
+<li>gsensor编程：gsensor_initial等</li>
+</ul>
+<h2 id="实验09-adc"><a href="#实验09-adc" class="headerlink" title="实验09-adc"></a>实验09-adc</h2><h4 id="基本概念-8"><a href="#基本概念-8" class="headerlink" title="基本概念"></a>基本概念</h4><p>(1)ADC:analog digital converter,AD转换，模数转换，模拟转数字<br>(2)CPU本身是数字的，而外部世界变量（如电压、温度、高度、压力···）都是模拟的，所以需要用CPU来处理这些外部的模拟变量的时候就需要做AD转换。</p>
+<h6 id="模拟量和数字量"><a href="#模拟量和数字量" class="headerlink" title="模拟量和数字量"></a>模拟量和数字量</h6><p>(1)模拟的就是连续的，现实生活当中的时间、电压、高度等都是模拟的（连续分布的，划分的话可以无限的更小划分）。模拟量反映在数学里面就是无限小数位（从0到1之间有无数个数）</p>
+<p>(2)数字的就是离散的，离线的就是不连续的。这种离散处理实际上是从数学上对现实中的模拟量的一种有限精度的描述。数字化就是离散化，就是把连续分布的模拟量按照一定精度进行取点（采样）变成有限多个不连续分布的数字值，就叫数字量。</p>
+<p>(3)数字化的意义就在于可以用（离散）数学来简化描述模拟量，这东西是计算机技术的基础。</p>
+<p>(4)计算机处理参量的时候都是数字化的，计算机需要数字化的值来参与运算。如果系统输入参数中有模拟量，就需要外加AD转换器将模拟量转成数字量再给计算机。</p>
+<p>(5)纯粹用cpu是不可能实现数字转模拟，因为cpu本身就是数字的。使用一些（具有一些积分或微分效果的）物理器件就可实现数字转模拟。</p>
+<p>(6)数字转模拟的作用。譬如可以用来做波形发生器。</p>
+<h6 id="adc主要相关概念"><a href="#adc主要相关概念" class="headerlink" title="adc主要相关概念"></a>adc主要相关概念</h6><ul>
+<li>量程（模拟量输入范围）</li>
+</ul>
+<p>(1)AD转换器是一个电子器件，所以他只能输入电压信号。其他种类的模拟信号要先经过传感器（Sensor）的转换变成模拟的电压信号然后才能给AD。</p>
+<p>(2)AD输入端的模拟电压要求有一个范围，一般是0～3.3V或0～5V或者是0～12V等等。模拟电压的范围是AD芯片本身的一个参数。实际工作时给AD的电压信号不能超过这个电压范围。</p>
+<ul>
+<li>精度（分辨率resolution）</li>
+</ul>
+<p>(1)AD转换输出的数字值是有一定的位数的（譬如说10位，意思就是输出的数字值是用10个二进制位来表示的，这种就叫10位AD）。这个位数就表示了转换精度。</p>
+<p>(2)10位AD就相当于把整个范围分成了1024个格子，每个格子之间的间隔就是电压的表示精度。加入AD芯片的量程是0～3.3V，则每个格子代表的电压值是3.3V/1024=0.0032265V。如果此时AD转换后得到的数字量是447，则这个数字量代表的模拟值是：447×0.0032265V=1.44V。</p>
+<p>(3)AD的位数越多，则每个格子表示的电压值越小，将来算出来的模拟电压值就越精确。</p>
+<p>(4)AD的模拟量程一样的情况下，AD精度位数越多精度越高，测出来的值越准。但是如果AD的量程不一样。譬如2个AD，A的量程是0～50V，B的量程是0～0.5V，A是12位的，B是10位的，可能B的精度比A的还要高。（A的精度：50/1024=0.04883，B的精度：0.5/4096=0.000122）</p>
+<ul>
+<li>转换速率（MSPS与conventor clock的不同）</li>
+</ul>
+<p>(1)首先要明白：AD芯片进行AD转换是要耗费时间的。这个时间需要多久，不同的芯片是不一样的，同一颗芯片在配置不一样（譬如说精度配置为10位时时间比精度配置为12位时要小，譬如说有些AD可以配转换时钟，时钟频率高则转换时间短）时转换时间也不一样。</p>
+<p>(2)详细的需要时间可以参考数据手册。一般数据手册中描述转换速率用的单位是MSPS（第一个M是兆，S是sample，就是采样；PS就是per second，总的意思就是兆样本每秒，每秒种转出来多少M个数字值）</p>
+<p>(3)AD工作都需要一个时钟，这个时钟有一个范围，我们实际给他配置时不要超出这个范围就可以了。AD转换是在这个时钟下进行的，时钟的频率控制着AD转换的速率。注意：时钟频率和MSPS不是一回事，只是成正比不是完全相等。譬如S5PV210中的AD转换器，MSPS = 时钟频率/5</p>
+<ul>
+<li>通道数</li>
+</ul>
+<p>(1)AD芯片有多少路analog input通道，代表了将来可以同时进行多少路模拟信号的输入。</p>
+<h6 id="s5pv210的adc控制器"><a href="#s5pv210的adc控制器" class="headerlink" title="s5pv210的adc控制器"></a>s5pv210的adc控制器</h6><ul>
+<li>ADC和（电阻式）触摸屏的关系</li>
+</ul>
+<p>(1)ADC在210的数据手册的Section10.7</p>
+<p>(2)电阻式触摸屏本身工作时依赖于AD转换，所以在210的SoC中电阻触摸屏接口本身和ADC接口是合二为一的。或者说电阻触摸屏接口使用了（复用了）ADC的接口。</p>
+<ul>
+<li>ADC的工作时钟框图</li>
+</ul>
+<p>(1)ADCCLK是ADC控制器工作的时钟，也就是1.13.2.3节中讲到的conventor clock。从时钟框图可以看出，它是PCLK（当然是PCLK_PSYS）经过了一次分频后得到的。所以将来初始化ADC控制器时一定有一个步骤是初始化这里的分频器。</p>
+<ul>
+<li>210的10个ADC通道（注意ADC引脚和GPIO的区别）</li>
+</ul>
+<p>(1)210一共支持10个ADC通道，分别叫AIN[0] ~ AIN[9]。理论上可以同时做10路AD转换。</p>
+<p>(2)SoC的引脚至少分2种：digit数字引脚和analog模拟引脚。我们以前接触的GPIO都属于数字引脚，ADC channel通道引脚属于模拟引脚。数字引脚和模拟引脚一般是不能混用的。</p>
+<ul>
+<li>ADC控制器的主要寄存器</li>
+</ul>
+<p>TSADCCON0</p>
+<p>TSDATX0  TSDATY0        转出来的AD值存在这里，我们读也是读这里</p>
+<p>CLRINTADC0                清中断</p>
+<p>ADCMUX                    选择当前正在操作的AD通道</p>
+<p>(1)等待触摸屏转换完毕的方法有2种：一种是检查标志位，第二种是中断。第一种方式下我们先开启一次转换然后循环不停检查标志位直到标志位为1表明已经转换完可以去读了；第二种方式下就是设置好中断，写好中断isr来读取AD转换数据。然后开启中断后CPU就不用管了，等AD转换完成后会生成一个中断信号给CPU，就会进入中断处理流程。第一种方法是同步的，第二种方式是异步的。</p>
+<p>(2)AD转换都是需要反复进行的，那么转完一次一般要立即开启下一次转换，所以需要有一种机制能够在一次转完时自动开启下一次。这个机制就叫start by read，这个机制的工作方法是：当我们读取本次AD转换的AD值后，硬件自动开启下一次AD转换。</p>
+<h6 id="ad转换的编程"><a href="#ad转换的编程" class="headerlink" title="ad转换的编程"></a>ad转换的编程</h6><ul>
+<li>AD控制器初始化</li>
+<li>循环进行AD采样</li>
+<li>AD转换的编程实践2</li>
+<li>编译运行调试</li>
+<li>start by read模式介绍</li>
+</ul>
+<p>(1)应用方法：开启start by read模式，第一次先读一次丢掉，这次读就能开启下一次AD转换，然后以后就可以不停的读取AD值了。</p>
+<ul>
+<li>DAC的应用简介</li>
+</ul>
+<h2 id="实验10-lcd显示器"><a href="#实验10-lcd显示器" class="headerlink" title="实验10-lcd显示器"></a>实验10-lcd显示器</h2><h4 id="基本概念-9"><a href="#基本概念-9" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>LCD简介</li>
+</ul>
+<p>(1)LCD(Liquid Crystal Display)俗称液晶。</p>
+<p>(2)液晶是一种材料，液晶这种材料具有一种特点：可以在电信号的驱动下液晶分子进行旋转，旋转时会影响透光性，因此我们可以在整个液晶面板后面用白光照（称为背光），可以通过不同电信号让液晶分子进行选择性的透光，此时在液晶面板前面看到的就是各种各样不同的颜色，这就是LCD显示。</p>
+<p>(3)被动发光和主动发光。有些显示器（譬如LED显示器、CRT显示器）自己本身会发光称为主动发光，有些（LCD）本身不会发光只会透光，需要背光的协助才能看起来是发光的，称为被动发光。</p>
+<p>(4)液晶应用领域：电视机、电脑显示屏、手机显示屏、工业显示屏等····</p>
+<ul>
+<li>其他主流显示设备（LED、CRT、等离子、OLED）</li>
+</ul>
+<p>(1)CRT：阴极摄像管显示器。</p>
+<p>(2)等离子显示：未成为主流</p>
+<p>(3)OLED：目前未成为主流，但是很有市场潜力</p>
+<p>(4)LED：主要用在户外大屏幕</p>
+<p>(5)LCD：目前是主流显示器</p>
+<ul>
+<li>LCD的显示原理和特点(液晶分子透光+背光)</li>
+</ul>
+<p>(1)白光其实是由各种不同颜色的光组成的，所以白光被选择性透光之后可以产生各种不同颜色的光。</p>
+<ul>
+<li>LCD的发展史和种类(TN/STN/TFT)</li>
+</ul>
+<p>(1)TN最早。坏处是响应性不够好，有拖尾现象。</p>
+<p>(2)STN是TN的升级版。有效解决拖尾现象，显示更清晰。</p>
+<p>(3)TFT的最大特点就是超薄。</p>
+<p>(4)TFT技术之上发展出来很多更新的技术。</p>
+<p><a href="http://blog.163.com/tao198352__4232/blog/static/85020645201062285210682/" target="_blank" rel="noopener">参考资料一</a></p>
+<p><a href="http://display.ofweek.com/2013-12/ART-8321301-8300-28763136.html" target="_blank" rel="noopener">参考资料二</a></p>
+<h6 id="lcd的接口技术"><a href="#lcd的接口技术" class="headerlink" title="lcd的接口技术"></a>lcd的接口技术</h6><p>从电平角度来讲本质上都是TTL信号</p>
+<p>(1)什么是TTL接口。+5V表示逻辑1，0V表示逻辑0.这种就叫TTL电平，和CMOS电平相对比。</p>
+<p>(2)SoC的LCD控制器硬件接口是TTL电平的，LCD这边硬件接口也是TTL电平的。所以他们俩本来是可以直接对接的，手机、平板、开发板都是这样直接对接的（一般用软排线连接）。</p>
+<p>(3)TTL电平的缺陷就是不能传递太远，如果LCD屏幕和主板控制器太远（1米甚至更远）就不能直接TTL连接了，要进行转换。转换方式：主机SoC(TTL) -&gt;VGA-&gt; LCD屏幕(TTL)</p>
+<ul>
+<li><p>各种接口（TTL、LVDS、EDP、MIPI、）在传输速率、距离、适配性方面不同<a href="http://blog.csdn.net/wocao1226/article/details/23870149" target="_blank" rel="noopener">参考资料</a></p>
+</li>
+<li><p>RGB接口详解(参考数据手册P1207页时序图)</p>
+</li>
+</ul>
+<p>(1)VD[23:0]：24根数据线，用来传输图像信息。可见LCD是并行接口，速率才够快。</p>
+<p>(2)HSYNC(水平同步信号) </p>
+<p>(3)VSYNC(垂直同步信号)：时序信号线，为了让LCD能够正常显示给的控制信号。</p>
+<p>(4)VCLK(像素时钟)：LCD工作时需要主板控制器给LCD模组一个工作时钟信号，就是VCLK。</p>
+<p>(5)VDEN(数据有效标志)：时序信号，和HSYNC、VSYNC结合使用。</p>
+<p>(6)LEND(行结束标志，不是必须的)：时序信号，非必须，譬如X210接口就没有。</p>
+<h6 id="lcd显示图像"><a href="#lcd显示图像" class="headerlink" title="lcd显示图像"></a>lcd显示图像</h6><ul>
+<li>像素(pixel)</li>
+</ul>
+<p>(1)像素就是组成图像的最基本元素，或者说显示中可以被控制的最小单位，整个图像就是由很多个像素组成的。</p>
+<p>(2)像素可以被单独控制，或控制其亮或不亮（单色屏）、或控制其亮度强弱（譬如亮50%，35%，这样叫灰度屏，以前的黑白电视机）、或控制其显示一定的颜色（这就是我们现在最常用的彩色显示屏）。</p>
+<p>总结：像素很重要，整个显示图像是由一个个的像素组成的。我们要在显示器上显示一个图像，就是把这个图像离散化成一个一个的点，然后把各个点的颜色对应在显示器的像素上。</p>
+<ul>
+<li>扫描</li>
+</ul>
+<p>(1)扫描是一个动作而不是一个名字，扫描就是依次将颜色数值放入屏幕中所有的像素的这个过程。</p>
+<p>(2)扫描这个词是由最早的CRT显示器遗留下来的，到LCD显示器的年代本来已经失去意义了，但是我们还是延续着这么叫。</p>
+<p>(3)显示器的扫描显示原理依赖于人眼的视觉暂留。只要显示器扫描频率大于人眼的发现频率，人眼看到的图像就是恒定的。如果扫描频率偏小人眼就会看到闪动。（扫描频率的概念就叫做刷新率）</p>
+<ul>
+<li>驱动器&amp;控制器</li>
+</ul>
+<p>(1)LCD驱动器一般和LCD显示面板集成在一起（本来是分开的，做面板的是只做面板的，譬如说三星、LG、台湾的友达、奇美都是做面板的；驱动器也由专门的IC厂商生产；集成厂商买来面板和驱动器后集成在一起做成LCD屏幕），面板只负责里面的液晶分子旋转透光，面板需要一定的模拟电信号来控制液晶分子；LCD驱动器芯片负责给面板提供控制液晶分子的模拟电信号，驱动器的控制信号（数字信号）来自于自己的数字接口，这个接口就是LCD屏幕的外部接口（第二节中讲到的接口）</p>
+<p>(2)LCD控制器一般集成在SoC内部，他负责通过数字接口向远端的LCD驱动器提供控制像素显示的数字信号。LCD控制器的关键在于时序，它必须按照一定的时序和LCD驱动器通信；LCD控制器受SoC控制，SoC会从内存中拿像素数据给LCD控制器并最终传给LCD驱动器。</p>
+<ul>
+<li>显示内存(简称：显存)</li>
+</ul>
+<p>(1)SoC在内存中挑选一段内存（一般来说是程序员随便挑选的，但是挑选的时候必须符合一定规矩），然后通过配置将LCD控制器和这一段内存（以后称为显存）连接起来构成一个映射关系。一旦这个关系建立之后，LCD控制器就会自动从显存中读取像素数据传输给LCD驱动器。这个显示的过程不需要CPU的参与。</p>
+<p>(2)显示体系建立起来后，CPU就不用再管LCD控制器、驱动器、面板这些东西了；以后CPU就只关心显存了，因为我只要把要显示的图像的像素数据丢到显存中，硬件就会自动响应（屏幕上就能自动看到显示的图像了）。</p>
+<p>总结：LCD显示是分为2个阶段的：第一个阶段就是建立显示体系的过程，目的就是CPU初始化LCD控制器使其和显存联系起来构成映射；第二个阶段就是映射建立之后，此阶段主要任务是将要显示的图像丢到显存中去。</p>
+<h6 id="lcd的六个主要时序参数"><a href="#lcd的六个主要时序参数" class="headerlink" title="lcd的六个主要时序参数"></a>lcd的六个主要时序参数</h6><ul>
+<li>LCD显示单位：帧（frame）</li>
+</ul>
+<p>(1)显示器上一整个画面的内容成为一个帧(frame)，整个显示器工作时是一帧一帧的在显示。</p>
+<p>(2)电影实际就是以每秒种24帧的速度在播放图片。</p>
+<p>(3)帧内数据：一帧分为多行，一行分为多像素，因此一帧图像其实就是多个像素组成的矩阵。</p>
+<p>(4)帧外数据：整个视频由很多个帧构成，最终播放视频时逐个播放各个图像帧即可。</p>
+<ul>
+<li>LCD显示一帧图像的过程</li>
+</ul>
+<p>(1)首先把帧分为行，然后再把行分为像素，然后逐个像素去显示。（显示像素：其实就是LCD驱动器按照接收到的LCD控制器给的显示数据，驱动一个像素的液晶分子旋转，让这个像素显示出相应的颜色值的过程）</p>
+<p>(2)关键点：LCD控制器和驱动器之间一次只能传一个像素点的显示数据。所以一帧图像在屏幕上其实是串行的依次被显示上去的，不是同一时间显示出来的。</p>
+<ul>
+<li>为了向前兼容出现的六个时序参数<br>HSPW 水平同步信号脉宽<br>HBPD 水平同步信号前肩<br>HFPD 水平同步信号后肩<br>VSPW 垂直同步信号脉宽<br>VBPD 垂直同步信号前肩<br>VFPD 垂直同步信号后肩</li>
+</ul>
+<p>(1)一行的通信过程是这样的：LCD控制器先发送一个HSYNC高电平脉冲（脉冲宽度是HSPW），脉冲告诉驱动器下面的信息是一行信息。然后开始这一行信息，这一行信息包括3部分：HBPD+有效行信息+HFPD。其中前肩和后肩都属于时序信息（和LCD屏幕具体有关），有效行信息就是横向分辨率。所以你可以认为一行总共包含4部分：HSPW+HBPD+有效行信息+HFPD。</p>
+<p>(2)一帧图像其实就是一列，一列图像由多个行组成，每行都是上面讲的这个时序。</p>
+<p>(3)一帧图像的通信过程是这样的：整个帧图像信号分为4部分：VSPW+VBPD+帧有效信号+VFPD。VSPW是帧同步信号宽度，用来告诉驱动器一帧图像要开始了；VBPD和VFPD分别是垂直同步信号前后肩。</p>
+<p>(4)必须说明：这6个参数对于LCD显示器其实本来是没用的，这些信号其实是老式的CRT显示器才需要的，LCD本身不需要，但是出于历史兼容性要求，LCD选择了兼容CRT显示器的这些时序要求，所以理解LCD显示器时序和编程时，用CRT的方式来理解不会错。</p>
+<p>(5)要注意，这几个时序参数本身是LCD屏幕本身的参数，与LCD控制器无关。所以同一个主板如果接的屏幕不一样则时序参数设置也会不同。这些参数的来源一般是：第一，厂家会直接给出，一般以实例代码的形式给出；第二，来自于LCD的数据手册。</p>
+<p>第一种方式，查看九鼎的210裸机教程（x210v3裸机开发教程\src\template-framebuffer-font\source\hardware\s5pv210-fb.c的第774行）<br>        .h_fp            = 210,        // 160-210-354<br>        .h_bp            = 38,        // 46<br>        .h_sw            = 10,        // 1-40<br>        .v_fp            = 22,        // 7-22-147<br>        .v_fpe            = 1,<br>        .v_bp            = 18,        // 23<br>        .v_bpe            = 1,<br>        .v_sw            = 7,        // 1-20<br>第二种方式，查看LCD数据手册（X210光盘资料\A盘\DataSheet\AT070TN92.pdf）</p>
+<ul>
+<li>补充：</li>
+</ul>
+<p>1、注意这些数字的单位。H开头的三个单位都是DCLK(像素时钟),V开头的三个单位是TH。这样设置的好处是我们改变了像素时钟的设置时，不用改变这里的时序参数。</p>
+<p>2、这些时序参数如果没设置好会影响什么？屏幕会跑偏。</p>
+<h6 id="lcd显示的主要相关概念"><a href="#lcd显示的主要相关概念" class="headerlink" title="lcd显示的主要相关概念"></a>lcd显示的主要相关概念</h6><ul>
+<li>像素（pixel）</li>
+</ul>
+<p>(1)整个图像是由一个个的像素组成的，像素就是一个显示点。<br>1.14.7.2、像素间距（pitch）</p>
+<p>(1)pitch是连续2个像素的像素中心的距离。一般的像素是方形的，所以横向pitch和纵向的pitch一样的。但是也有不一样的。</p>
+<p>(2)像素间距会影响屏幕的最佳观看距离。像素间距大的适合远距离看，像素间距小的适合近距离看。</p>
+<ul>
+<li>分辨率（resolution）</li>
+</ul>
+<p>(1)整个屏幕的横向和纵向的像素个数就叫分辨率，譬如X210开发板用的屏幕是800×480.</p>
+<p>(2)屏幕尺寸和分辨率无关的，像开发板的屏幕尺寸是7寸的（纯屏幕对角线尺寸是7英寸）。</p>
+<p>(3)屏幕尺寸和分辨率和像素间距三者之间有关联。</p>
+<ul>
+<li>清晰度</li>
+</ul>
+<p>(1)清晰度是一个主观概念，是人眼对显示效果的一个主观判断。说白了就是人看起来感觉清晰不清晰。</p>
+<p>(2)客观来讲，清晰度由分辨率和像素间距共同决定。一般的，屏幕尺寸固定时分辨率越高越清晰，分辨率越低就越不清晰；分辨率固定下，屏幕尺寸越小越清晰，越大越不清晰。</p>
+<p>(3)清晰度还由其他很多因素共同决定。</p>
+<ul>
+<li>像素深度（bits per pixel，简称bpp）</li>
+</ul>
+<p>(1)一个像素在计算机中由多少个字节数据来描述。</p>
+<p>(2)计算机中用二进制位来表示一个像素的数据，用来表示一个像素的数据位越多，则这个像素的颜色值更加丰富、分的更细，颜色深度就更深。</p>
+<p>(3)一般来说像素深度有这么几种：1位、8位、16位、24位、32位。</p>
+<ul>
+<li>颜色在计算机中的表示</li>
+</ul>
+<p>(1)颜色是主观存在，颜色其实是自然光在人的眼睛中和大脑中产生的一种映像。</p>
+<p>(2)颜色的本质决定于光的波长。</p>
+<ul>
+<li>自然光的颜色是连续的</li>
+</ul>
+<p>(1)光的波长是连续的，导致颜色也是连续的。理论上，只要你的眼睛分辨能力足够好，可以在自然界中发现无数中颜色。</p>
+<ul>
+<li>计算机中的颜色是离散的</li>
+</ul>
+<p>(1)计算机中不可能存储无数种颜色，所以必须将颜色有限化，所以就用有限种颜色来代表自然界中的无限种颜色。这个理论非常类似于之前学过的AD转换。</p>
+<p>(2)这种离散化表达颜色的缺点是不够真实，漏掉了很多种颜色。因此计算机中所能表达的颜色没有自然界中丰富（计算机屏幕上显示的图像和真实图像有差别）</p>
+<p>(3)计算机所能表达的颜色种类个数，这个参数叫：像素深度bpp。</p>
+<ul>
+<li>常见像素深度：1位、8位、16位、24位、32位</li>
+</ul>
+<p>1位：用1个二进制位来表示颜色，这种就叫单色显示。示例就是小饭店、理发店门口的LED屏。</p>
+<p>8位：用8个二进制位来表示颜色，此时能表示256种颜色。这种叫灰度显示。这时候是黑白的，没有彩色，我们把纯白到纯黑分别对应255到0，中间的数值对应不同的灰。示例就是以前的黑白电视机。</p>
+<p>16位：用16个二进制位表示颜色，此时能表示65536种颜色。这时候就可以彩色显示了，一般是RGB565的颜色分布（用5位二进制表示红色、用6位二进制表示绿色、用5位二进制表示蓝色）。这种红绿蓝都有的颜色表示法就是一种模拟自然界中所有颜色的表示方式。但是因为RGB的颜色表达本身二进制位数不够多（导致红绿蓝三种颜色本身分的都不够细致），所以这样显示的彩色失真比较重，人眼能明显看到显示的不真实。</p>
+<p>24位：用24个二进制位来表示颜色，此时能表示16777216种颜色。这种表示方式和16位色原理是一样的，只是RGB三种颜色各自的精度都更高了（RGB各8位），叫RGB888。此时颜色比RGB565更加真实细腻，虽然说比自然界无数种颜色还是少了很多，不过由于人眼的不理想性所以人眼几乎不能区分1677万种颜色和无数种颜色的差别了。于是乎就把这种RGB888的表示方法叫做真彩色。（RGB565就是假彩色）</p>
+<p>32位：总共用32位二进制来表示颜色，其中24位表示红绿蓝三元色（还是RGB888分布），剩下8位表示透明度。这种显色方式就叫ARGB（A是阿尔法，表示透明度），现在PC机中一般都用ARGB表示颜色。</p>
+<p>补充：颜色的组成，三元色（三基色）是RGB，也就是说所有的颜色都可以由红绿蓝三种颜色组成。</p>
+<h6 id="s5pv210的lcd控制器"><a href="#s5pv210的lcd控制器" class="headerlink" title="s5pv210的lcd控制器"></a>s5pv210的lcd控制器</h6><ul>
+<li>FIMD结构框图</li>
+</ul>
+<p>(1)210的LCD控制器叫FIMD，FIMD是210内部和图像处理相关的一些部件，在摄像头等和图像处理有关的部分都可以有关联。</p>
+<p>(2)FIMD在内部与AHB总线等相连接，在外部提供RGB接口、I80接口、YUV接口与外部相连接，我们实际使用的是RGB接口。</p>
+<ul>
+<li>虚拟屏幕叠加（数据手册P1194）</li>
+</ul>
+<p>(1)虚拟屏幕的意思是，我们平时看到的屏幕上显示出来的场景实际是很多个屏幕显示叠加在一起的效果（譬如新闻图像、电视台台标、下方飘动的字幕新闻）</p>
+<p>(2)像S5PV210的LCD控制器中有5个虚拟屏幕Window0到Window4，虚拟屏幕不存在于真实而存在于内存中。（之前讲过，LCd显示时实际是显示的是对应的内存中的显存区域的数值）虚拟屏幕其实就是一个内存中的显存区域，有几个显存区域就有几个虚拟屏幕，但是这些虚拟屏幕都被映射到一个真实的显示屏上面，所以将来真实的现实效果实际是这几个虚拟屏幕的显示内容的叠加。（叠加时要注意上面一层会覆盖下面一层，所以要注意谁在前谁在后，设置寄存器时有这个选项）</p>
+<p>(3)使用虚拟屏幕而不是整个LCD使用一个显存是有一定好处的：第一，可以保证不污染源图像，方便程序处理；第二，可以减少屏幕刷新，提高显示效率，减少CPU工作量。</p>
+<ul>
+<li>虚拟显示（数据手册P1206）</li>
+</ul>
+<p>(1)如何实现在小分辨率的屏幕上（真实）显示大分辨率的图像</p>
+<p>(2)细节上，我们需要屏幕上看到不同图像时，需要对显存区域进行刷新。即使我们只需要屏幕显示移动一点点，整个屏幕对应的显存空间也需要整个重新刷新，工作量和完全重新显示一幅图像是一样的。这个显然不好，这样CPU刷新屏幕的工作量太大了，效率很低。</p>
+<p>(3)如何能够在显示一个大图片的不同区域时让CPU刷新屏幕工作量减少？有，方法就是虚拟显示。具体做法就是在内存中建立显示缓存的时候实际建立一个很大的区域，然后让LCD去对应其中的一部分区域作为有效的显示区域。将来要显示大图像时，直接将大图像全部一次性加载入显示缓存区，然后通过移动有效显示区域就可以显示大图像的不同区域了。</p>
+<ul>
+<li>主要寄存器简介</li>
+</ul>
+<h4 id="实验项目-6"><a href="#实验项目-6" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="lcd显示器-01-控制器初始化"><a href="#lcd显示器-01-控制器初始化" class="headerlink" title="lcd显示器-01-控制器初始化"></a>lcd显示器-01-控制器初始化</h6><ul>
+<li>LCD编程实战1-LCD控制器初始化</li>
+</ul>
+<p>参考代码lcd_init函数详解</p>
+<p>(1)要想LCD工作，必须给LCD屏幕和显存之间建立一个映射（映射是在CPU初始化LCD控制器来完成的）。本部分就是在完成这个过程（这也是LCD显示的2个阶段的第一阶段，第二阶段中我们只需要给显存中丢入相应的数据，LCD屏幕就会自动显示相应内容）。</p>
+<h6 id="lcd显示器-02-显示像素"><a href="#lcd显示器-02-显示像素" class="headerlink" title="lcd显示器-02-显示像素"></a>lcd显示器-02-显示像素</h6><ul>
+<li>LCD编程实战2-显示像素&amp;刷背景</li>
+</ul>
+<p>(1)显示像素</p>
+<p>(2)刷背景色</p>
+<h6 id="lcd显示器-03-画线"><a href="#lcd显示器-03-画线" class="headerlink" title="lcd显示器-03-画线"></a>lcd显示器-03-画线</h6><ul>
+<li>LCD编程实战3-横线竖线斜线&amp;画圆</li>
+</ul>
+<p>(1)画横线&amp;竖线</p>
+<p>(2)斜线</p>
+<h6 id="lcd显示器-04-显示字符"><a href="#lcd显示器-04-显示字符" class="headerlink" title="lcd显示器-04-显示字符"></a>lcd显示器-04-显示字符</h6><ul>
+<li>LCD编程实战4-写英文中文字符</li>
+</ul>
+<h6 id="lcd显示器-05-画图"><a href="#lcd显示器-05-画图" class="headerlink" title="lcd显示器-05-画图"></a>lcd显示器-05-画图</h6><ul>
+<li>LCD编程实战5-画图</li>
+</ul>
+<p>图片显示分析</p>
+<p>(1)图像是彩色的，而之前的文字、图形都是单色的。之前的图形文字绘制函数都有个color参数，就是传给显存告诉它这个像素的显示颜色。</p>
+<p>(2)一副分辨率是800×480，BPP是24的图片，实际上就是800×480×3字节的数据。将来写代码将图片显示到LCD中时，图片将会以 unsigned char pic_data[800×480×3]的形式出现。</p>
+<ul>
+<li>Image2LCD使用简介</li>
+</ul>
+<p>(1)如何由一副图片得到它对应的数据的数组？要用取模工具，如Image2LCD。<br>1.14.14.3、画图函数的编写</p>
+<ul>
+<li><p>画图函数的显示效果测试</p>
+</li>
+<li><p>RGB的像素顺序调整</p>
+</li>
+</ul>
+<p>(1)图片中红色的变成了蓝色、蓝色的变成了红色，这就说明RGB顺序反了。</p>
+<p>(2)解决方案一：重新使用Image2LCD来取模，取模时RGB顺序对调。</p>
+<p>(3)解决方案二：不重新取模，改代码，在color形成的时候调换顺序。</p>
+<ul>
+<li>小分辨率图片显示</li>
+</ul>
+<p>(1)本质上大小分辨率的图像显示都是一样的，都是：都是在图像的每个像素点对应的显存中填入相应的颜色值即可。</p>
+<h6 id="lcd显示器-06-未完成事项"><a href="#lcd显示器-06-未完成事项" class="headerlink" title="lcd显示器-06-未完成事项"></a>lcd显示器-06-未完成事项</h6><ul>
+<li>RGB565和RGB888</li>
+</ul>
+<p>(1)单片机等性能和资源有限的平台会用RGB565，嵌入式平台习惯用RGB888.</p>
+<p>(2)有时候手头只有RGB888的颜色值，但是显示部分却只接受RGB565的（有时候反过来），这时候就需要在2种颜色之间做转换。</p>
+<ul>
+<li>不同分辨率、不同起点坐标下的显示</li>
+</ul>
+<p>(1)屏幕分辨率和图像分辨率不同时的显示。我们现在写的代码都是没有考虑的。</p>
+<p>(2)图像起点坐标（左上角坐标）不一定在屏幕左上角，也可能在屏幕的任何其他区域，这种情况下画图的函数要做处理来支持。</p>
+<p>(3)分辨率不同而且起始坐标不同下，这两个问题组合起来也对画图函数提出了更高要求。</p>
+<ul>
+<li>bmp图片格式解析及显示</li>
+</ul>
+<p>(1)我们当前的图像数据是用Image2LCD工具转过来的。实践中是不可能手工用工具来转的（你想一下Image2LCD也是一个软件，既然它能转，我们也应该可以用软件来转）</p>
+<p>(2)bmp格式的图片本身遵照一定的格式来存储的，我们只需按照bmp的解析格式来读取文件就可得到这幅图片的图像数据的二进制，直接拿去显示。（这就是图片文件的本质）</p>
+<ul>
+<li>jgp、png、gif等压缩图片的解码和显示</li>
+</ul>
+<p>(1)对于以上压缩格式的图片是不能直接解析的，必须用相应的库来解压缩图片之后才能拿来显示。</p>
+<p>(2)不同的格式的图片其压缩算法不同，解压缩算法自然也不同。开源社区中每种压缩格式都有个对应的库，库里提供了这种格式的压缩和解压缩函数，我们只需要移植这个库并且调用它来压缩或解压缩即可。</p>
+<ul>
+<li>图片缩小和放大显示</li>
+</ul>
+<p>(1)图片数据源本来是400×200的，但是显示时我希望显示成100×50的，这时候就要显示函数后台对源图像进行先缩小，然后再显示。这时候就需要一个缩小算法。（譬如最简单的算法就是抽点采样）</p>
+<p>(2)图片数据源是100×50的，但是显示时希望全屏显示（800×480），这时候就需要对源图像进行放大然后再显示（当然了显示出来图像清晰度肯定比较低），这时候就需要一种放大算法（譬如插点方式）</p>
+<ul>
+<li>显示动画</li>
+</ul>
+<p>(1)动态刷屏形成动画</p>
+<p>(2)立体3D图像显示（伪3D）</p>
+<h2 id="实验11-触摸屏"><a href="#实验11-触摸屏" class="headerlink" title="实验11-触摸屏"></a>实验11-触摸屏</h2><h4 id="基本概念-10"><a href="#基本概念-10" class="headerlink" title="基本概念"></a>基本概念</h4><h6 id="输入类设备简介"><a href="#输入类设备简介" class="headerlink" title="输入类设备简介"></a>输入类设备简介</h6><ul>
+<li>input/output</li>
+</ul>
+<p>(1)IO输入输出，是计算机系统中的一个概念。计算机的主要功能就是从外部获取数据然后进行计算加工得到输出数据并输出给外部（计算机可以看成数据处理器）。计算机和外部交互就是通过IO。每一台计算机都有个标准输入和标准输出。</p>
+<ul>
+<li>常见输入类设备</li>
+</ul>
+<p>(1)键盘、鼠标、触摸屏、游戏摇杆、传感器、（摄像头并不是一个典型的输入类设备）</p>
+<ul>
+<li>触摸屏的特点</li>
+</ul>
+<p>(1)触摸屏和人的关系很紧密，尤其是电容式触摸屏。</p>
+<p>(2)触摸屏和显示器关系很紧密。</p>
+<p>(3)典型应用：手机、平板电脑、收银机、工业领域。</p>
+<ul>
+<li>触摸屏的分类</li>
+</ul>
+<p>(1)常见的触摸屏分为2种：电阻式触摸屏和电容式触摸屏。早期用电阻式触摸屏，后来发明了电容式触摸屏。</p>
+<p>(2)这两种的特性不同、接口不同、编程方法不同、原理不同。</p>
+<ul>
+<li>触摸屏和显示屏的联系与区别</li>
+</ul>
+<p>(1)首先要搞清楚：触摸屏是触摸屏，用来响应人的触摸事件的；显示屏是显示屏，用来显示的。现在用的显示屏一般都是LCD。</p>
+<p>(2)为什么很多人会搞混这两个概念，主要是因为一般产品上触摸屏和显示屏是做在一起的。一般外层是一层触摸屏，触摸屏是透明的，很薄；底下是显示屏用来显示图像，平时看到的图像是显示屏显示并且透过触摸屏让人看到的。</p>
+<h6 id="电阻式触摸屏的原理"><a href="#电阻式触摸屏的原理" class="headerlink" title="电阻式触摸屏的原理"></a>电阻式触摸屏的原理</h6><ul>
+<li>薄膜+玻璃（需要尖锐硬物点击）</li>
+</ul>
+<p>(1)要点是薄、透明。前面板硬度稍弱，可以被硬物按下弯曲，后面板硬度很高，不会弯曲。</p>
+<p>(2)前面板和后面板在平时没有挨住，在外力按下之下，前面板发生（局部）形变，在这一点上前后面板会挨住。</p>
+<ul>
+<li>ITO（导电+透明+均匀压降）</li>
+</ul>
+<p>(1)ITO是一种材料，其实是一种涂料，特点就是透明、导电、均匀涂抹。</p>
+<p>(2)本来玻璃和塑料都是不导电的，但是涂上ITO之后就变成导电了（同时还保持着原来透明的特性）。</p>
+<p>(3)ITO不但导电而且有电阻，所以中间均匀涂抹了ITO之后就相当于在x1和y1之间接了一个电阻，在x2和y2之间也接了一个电阻。因为ITO形成的等效电阻在整个板上是均匀分布的，所在在板子上某一点的电压值和这一点的位置值成正比。</p>
+<p>(4)触摸屏经过操作，按下之后要的就是按下的坐标，坐标其实就是位置信息，这个位置信息和电压成正比了，而这一点的电压可以通过AD转换得到。这就是整个电阻式触摸屏的工作原理。</p>
+<ul>
+<li>X/Y轴分时AD转换</li>
+</ul>
+<p>(1)下面要研究如何得到按下的这点的电压。</p>
+<p>(2)在第一个面板的一对电极上加电压，然后在另一个面板的一个电极和第一个面板的地之间去测量。在没有按下时测试无结果，但是在有人按下时在按下的那一点2个面板接触，接触会导致第二个面板上整体的电压值和接触处的电压值相等，所以此时测量到的电压就是接触处在第一个面板上的电压值。</p>
+<p>(3)以上过程在一个方向进行一次即可测得该方向的坐标值，进行完之后撤掉电压然后在另一个方向的电极上加电压，故伎重施，即可得到另一个方向的坐标。至此一次触摸事件结束。</p>
+<ul>
+<li>电压值对应坐标值（校准）</li>
+</ul>
+<p>(1)电压值和坐标值成正比的，所以需要去校准它。校准就是去计算(0, 0)坐标点的电压值是多少。</p>
+<h6 id="s5pv210的电阻触摸屏控制器"><a href="#s5pv210的电阻触摸屏控制器" class="headerlink" title="s5pv210的电阻触摸屏控制器"></a>s5pv210的电阻触摸屏控制器</h6><ul>
+<li>ADC与触摸屏控制器结构框图</li>
+</ul>
+<p>(1)S5PV210一共支持10路模拟输入，分别为AIN0-AIN9.其中AIN0和AIN1是只做模拟输入的，AIN2-AIN9分别可以支持2个电阻式触摸屏。所以4个模拟输入引脚负责一个电阻式触摸屏。</p>
+<p>(2)AD转换和触摸屏控制部分有2个附属单元。其中一个是反向控制AINn引脚的逻辑，主要作用是在触摸屏获取坐标的过程中分时给xy方向供电和测量；第二个是中断产生部件，如果AD转换完成（主要针对AIN0和AIN1这两路的）或者触摸屏被人按下/弹起时，中断产生部件会产生一个中断通知CPU来处理事件，这样就不用轮询监测触摸屏事件了。</p>
+<ul>
+<li>Normal Operation Mode &amp; Separate X/Y Position Convertion Mode</li>
+</ul>
+<p>(1)AD转换器有2种工作模式：正常操作模式和分时X/Y位置转换模式。</p>
+<p>(2)正常操作模式用作普通的AD转换，分时X/Y位置转换模式用作电阻式触摸屏。正常AD转换下将AD转换值放在TSDATX中，在分时X/Y模式下会将X/Y坐标分别放在TSDATX和TSDATY中。</p>
+<p>(3)对于AIN0和AIN1来说没有这么多模式，他们只能工作在普通模式；对于AIN2-AIN9来说，因为被复用，所以才有2种模式。如果我们将这几个引脚用作普通AD转换则配置为普通模式，如果用作电阻式触摸屏检测，则配置成分时X/Y模式。</p>
+<ul>
+<li>中断参与</li>
+</ul>
+<p>(1)其实普通AD转换和触摸屏AD转换本身都可以不在中断参与下完成。</p>
+<p>(2)普通AD转换如果不要中断，那就去查询。开启一次转换后然后不断查询标志位，直到AD转换完硬件自动置位标志位后我们才去读取转换值就不会错。当然也可以用中断，控制器提供了一个相应的中断给普通AD转换。</p>
+<p>(3)触摸屏也可以用或者不用中断。对于SoC来说永远不知道人会什么时候按下或者弹起触摸屏，所以触摸屏的按下/弹起对SoC来说是纯粹的异步事件。对于这种情况SOC只有2种解决方案：轮询和中断。<br>1.15.3.4、主要寄存器</p>
+<h6 id="电容触摸屏的原理"><a href="#电容触摸屏的原理" class="headerlink" title="电容触摸屏的原理"></a>电容触摸屏的原理</h6><ul>
+<li>人体电流感应</li>
+</ul>
+<p>(1)利用人体电流感应现象，在手指和屏幕之间形成一个电容，手指触摸时吸走一个微小电流，这个电流会导致触摸板上4个电极上发生电流流动，控制器通过计算这4个电流的比例就能算出触摸点的坐标（这个计算过程中涉及到AD转换）。</p>
+<ul>
+<li>专用电路计算坐标</li>
+</ul>
+<p>(1)电阻式触摸屏本身是一个完全被动器件，里面没有任何IC和电路，它的工作逻辑完全在SoC控制器上；但是电容式触摸屏不同，电容式触摸屏需要自带一个IC进行坐标计算。因此电容式触摸屏工作时不需要主机SoC控制器参与。</p>
+<p>(2)为什么这样设计？主要原因是因为电容式触摸屏的坐标计算太复杂，普通程序员无法写出合适的代码解决这个问题，因此在电容式触摸屏中除了触摸板之外还附加了一个IC进行专门的坐标点计算和统计。这个IC全权负责操控触摸板得到触摸操作信息，然后再通过数字接口和主机SoC进行通信。</p>
+<ul>
+<li>多个区块支持多点触摸</li>
+</ul>
+<p>(1)电阻触摸屏不支持多点触摸，这是它本身的原理所限制，无法改变无法提升。</p>
+<p>(2)电容式触摸屏可以支持多点触摸（也可以单点触摸）。按照之前讲的电容式触摸屏的原理，单个电容式触摸屏面板也无法支持多点触摸，但是可以将一个大的触摸面板分成多个小的区块，每个区块相当于是一个独立的小的电容式触摸屏面板。</p>
+<p>(3)多个区块支持多点触摸让电容触摸屏坐标计算变复杂了，但是这个复杂性被电容触摸IC吸收了，还是通过数字接口和主机SoC通信报告触摸信息（触摸点数、每个触摸点的坐标等）。</p>
+<ul>
+<li>对外提供I2C的访问接口</li>
+</ul>
+<p>(1)整个电容触摸屏包含2部分：触摸板和电容触摸IC。触摸板就是一个物理器件，电容触摸IC一般做到触摸屏的软排线（FPC）上面，电容触摸IC负责操控触摸板、通过AD转换和分析得到触摸点个数、触摸坐标等信息，然后以特定的数字接口与SoC通信。这个数字接口就是I2C。</p>
+<p>(2)对于我们主机SoC来说，电容式触摸屏其实就是一个I2C从设备。主机只需要通过I2C总线对这个从设备进行访问即可（从设备有自己特定的从设备地址）。从这里来讲，其实电容式触摸屏和其他的传感器（gsensor等）并没有任何区别。</p>
+<h6 id="ft5x06电容触摸IC简介"><a href="#ft5x06电容触摸IC简介" class="headerlink" title="ft5x06电容触摸IC简介"></a>ft5x06电容触摸IC简介</h6><ul>
+<li>电阻式触摸屏和电容式触摸屏的特点对比</li>
+</ul>
+<p>(1)耐久性        电容式触摸屏不容易坏，电阻式触摸屏易坏</p>
+<p>(2)抗干扰性        电容式触摸屏差一些，电阻式触摸屏要好一些</p>
+<p>(3)精准度        电容式触摸屏差一些，电阻式触摸屏好一些</p>
+<p>(4)用户体验        电容式触摸屏要好一些，电阻式触摸屏要差一些</p>
+<p>(5)价格            电容式触摸屏贵一些，电阻式触摸屏便宜很多</p>
+<ul>
+<li>工业应用中用电阻式触摸屏</li>
+</ul>
+<p>(1)消费电子产品（手机、平板电脑）用电容式触摸屏。但是在工业领域都是用电阻式触摸屏，就是因为工业领域环境比较恶劣，电容式触摸屏容易受干扰，所以不合适。</p>
+<ul>
+<li>触摸屏的发展方向</li>
+</ul>
+<p>(1)更薄、更透明、更精准、支持点数更多。</p>
+<p>(2)把电容触摸屏和LCD做在一起。可以做到更薄、更透明、价格更低。但是面临的困难是抗干扰性要求更高。</p>
+<ul>
+<li>ft5x06的数据手册浏览<br>(1)软件工程师并不关心触摸屏的工艺问题，只关心软件编程接口（物理层是I2C）。</li>
+</ul>
+<h2 id="实验12-shell"><a href="#实验12-shell" class="headerlink" title="实验12-shell"></a>实验12-shell</h2><h4 id="基本概念-11"><a href="#基本概念-11" class="headerlink" title="基本概念"></a>基本概念</h4><ul>
+<li>壳与封装</li>
+</ul>
+<p>(1)shell就是壳的意思，在计算机中经常提到shell是用户操作接口的意思。</p>
+<p>(2)因为计算机程序本身很复杂，里面的实现和外面的调用必须分开。接口本身就是对内部复杂的实现的一种封装，外部只需要通过接口就可以很容易的实现效果，但是却不用理会内部实现的复杂性和原理。</p>
+<h6 id="程序或操作系统的用户接口"><a href="#程序或操作系统的用户接口" class="headerlink" title="程序或操作系统的用户接口"></a>程序或操作系统的用户接口</h6><p>(1)操作系统运行起来后都会给用户提供一个操作界面，这个操作界面就叫shell。用户可以通过shell来调用操作系统内部的复杂实现。</p>
+<p>(2)shell编程就是在shell层次上进行编程。譬如linux中的脚本编程、windows中的批处理。</p>
+<ul>
+<li>两种shell：GUI和cmdline</li>
+</ul>
+<p>(1)GUI（图形用户界面），特点是操作简单、易学易用，适合使用电脑来工作的人。</p>
+<p>(2)cmdline(命令行界面)，譬如linux的终端和windows的cmd，特点是不易用易学，优点是可以进行方便的shell编程，适合做开发的人。</p>
+<p>(3)展望：将来的shell应该是声音图像等接口的。</p>
+<ul>
+<li>shell的运行原理：由消息接收、解析、执行构成的死循环</li>
+</ul>
+<p>(1)我们主要分析命令行shell的运行原理。</p>
+<p>(2)命令行shell其实就是一个死循环。这个死循环包含3个模块，这3个模块是串联的，分别是命令接收、命令解析、命令执行。</p>
+<p>(3)命令行有一个标准命令集，用户在操作的时候必须知道自己想要的操作用通过哪个命令来实现，不能随便输入命令。如果用户输入了一个不是标准命令的命令（不能识别的命令），提示用户这不是一个合法命令，然后重新回到命令行让用户输入下一个命令。</p>
+<p>(4)用户输入命令的界面是一个命令行，命令行的意思就是用户输入的命令是以行为单位的，更好理解的说用户输入的命令在用户按下回车键之后就算是结束了，shell可以开始接收了。</p>
+<ul>
+<li>shell举例：uboot、linux终端、Windows图形界面等</li>
+</ul>
+<p>(1)常见的shell，uboot就是一个裸机程序构成的shell（本课程要完成的shell也是裸机的），linux终端和windows的cmd是操作系统下的命令行shell。windows图形界面、ubuntu图形界面、android的图形界面这些都是图形界面的shell，网页类型的shell，典型代表就是路由器。</p>
+<h4 id="实验项目-7"><a href="#实验项目-7" class="headerlink" title="实验项目"></a>实验项目</h4><h6 id="shell-01-输入回显"><a href="#shell-01-输入回显" class="headerlink" title="shell-01-输入回显"></a>shell-01-输入回显</h6><ul>
+<li>shell实战1-从零写最简单shell</li>
+</ul>
+<p>使用printf和scanf做输入回显，定义简单命令集</p>
+<h6 id="shell-02-移植"><a href="#shell-02-移植" class="headerlink" title="shell-02-移植"></a>shell-02-移植</h6><ul>
+<li>shell实战2-将简易shell移植到开发板中</li>
+</ul>
+<p>工程选定、文件复制、Makefile书写</p>
+<ul>
+<li>printf和scanf函数（本质是putc和getc函数）的移植</li>
+</ul>
+<p>(1)puts和putchar函数比较简单，注意的地方就是windows和linux中的回车键定义的不同。</p>
+<p>所以在putchar函数中如果用户要输出’\n’时，实际输出”\r\n”</p>
+<p>(2)gets和getchar是从Windows中的SecureCRT终端输入字符串到裸机程序中。这里面至少有2个问题：用户输入回显问题、用户按回车键问题、用户按BackSpace退格键问题</p>
+<p>(3)自己实现回显</p>
+<p>(4)用户按回车键问题，在getchar中解决。方法是碰到’\r’时直接返回’\n’</p>
+<ul>
+<li>编译下载和调试验证</li>
+</ul>
+<h6 id="shell-03-标准命令集"><a href="#shell-03-标准命令集" class="headerlink" title="shell-03-标准命令集"></a>shell-03-标准命令集</h6><ul>
+<li>shell实战3-定义标准命令集及解析</li>
+<li>添加cmd_parser和cmd_exec</li>
+<li>实现简单的cmd_parser</li>
+<li>实现对应的cmd_exec</li>
+</ul>
+<h6 id="shell-04-添加命令"><a href="#shell-04-添加命令" class="headerlink" title="shell-04-添加命令"></a>shell-04-添加命令</h6><ul>
+<li>shell实战4-添加第一个命令</li>
+</ul>
+<p>命令任务分析</p>
+<p>(1)第一个命令：led，实现的功能是控制板载LED的亮和灭</p>
+<p>(2)命令定义：led on 表示点亮led，led off 熄灭led</p>
+<p>(3)扩展：led 1 on 表示点亮第一个led。</p>
+<ul>
+<li>命令解析</li>
+</ul>
+<p>(1)命令解析其实就是把一个类似 led on这种命令解析成led和on两个字符串，放在一个字符串数组中。</p>
+<h6 id="shell-05-其他命令"><a href="#shell-05-其他命令" class="headerlink" title="shell-05-其他命令"></a>shell-05-其他命令</h6><ul>
+<li>shell实战5-添加其他命令</li>
+</ul>
+<h6 id="shell-06-开机倒计时"><a href="#shell-06-开机倒计时" class="headerlink" title="shell-06-开机倒计时"></a>shell-06-开机倒计时</h6><ul>
+<li>shell实战6-实现开机倒计时自动执行命令</li>
+</ul>
+<p>(1)计时功能。要用计时的部件（定时器）来完成。</p>
+<p>(2)主程序</p>
+<p>注意：C语言中声明全局变量时不能加初始化，如果加了编译器就会把这个声明当作定义</p>
+<h6 id="shell-07-环境变量"><a href="#shell-07-环境变量" class="headerlink" title="shell-07-环境变量"></a>shell-07-环境变量</h6><ul>
+<li>shell实战7-初步实现环境变量</li>
+</ul>
+<p>环境变量就好象程序的全局变量一样，整个程序中唯一。可以影响程序的执行，环境变量可以支持一些命令来查询环境变量、设置环境变量、保存环境变量（必须借助flash才能完成。本节只在内存中实现环境变量所以无法保存）。</p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#x210开发板arm裸机实验"><span class="toc-text">x210开发板arm裸机实验</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#支持的外部存储器"><span class="toc-text">支持的外部存储器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#x210使用的启动方式"><span class="toc-text">x210使用的启动方式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#刷机"><span class="toc-text">刷机</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡刷机"><span class="toc-text">sd卡刷机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb刷机"><span class="toc-text">usb刷机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#开发板实验准备"><span class="toc-text">开发板实验准备</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡下载"><span class="toc-text">sd卡下载</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#usb下载"><span class="toc-text">usb下载</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验01-led灯"><span class="toc-text">实验01-led灯</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-1"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#gpio"><span class="toc-text">gpio</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#反汇编工具objdump"><span class="toc-text">反汇编工具objdump</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编程过程"><span class="toc-text">编程过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-01-全亮"><span class="toc-text">led灯-01-全亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-02-优化代码"><span class="toc-text">led灯-02-优化代码</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-03-部分点亮"><span class="toc-text">led灯-03-部分点亮</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-04-闪烁"><span class="toc-text">led灯-04-闪烁</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#led灯-05-跑马灯"><span class="toc-text">led灯-05-跑马灯</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验02-启动代码"><span class="toc-text">实验02-启动代码</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-2"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#看门狗"><span class="toc-text">看门狗</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#c语言"><span class="toc-text">c语言</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#设置栈"><span class="toc-text">设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#icache"><span class="toc-text">icache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#重定位"><span class="toc-text">重定位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sdram"><span class="toc-text">sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#时钟系统"><span class="toc-text">时钟系统</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-1"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-01-watch-dog-timer"><span class="toc-text">启动代码-01-watch dog timer</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-02-设置栈"><span class="toc-text">启动代码-02-设置栈</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-03-icache"><span class="toc-text">启动代码-03-icache</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-04-重定位"><span class="toc-text">启动代码-04-重定位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-05-初始化sdram"><span class="toc-text">启动代码-05-初始化sdram</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#启动代码-06-设置时钟"><span class="toc-text">启动代码-06-设置时钟</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验03-串口通信"><span class="toc-text">实验03-串口通信</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-3"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#通信发展史"><span class="toc-text">通信发展史</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信"><span class="toc-text">串口通信</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编程过程-1"><span class="toc-text">编程过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-2"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-01-设置串口"><span class="toc-text">串口通信-01-设置串口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-02-修改比特率"><span class="toc-text">串口通信-02-修改比特率</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#串口通信-03-移植printf"><span class="toc-text">串口通信-03-移植printf</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验04-中断"><span class="toc-text">实验04-中断</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-4"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#按键中断"><span class="toc-text">按键中断</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#轮询方式"><span class="toc-text">轮询方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断体系"><span class="toc-text">中断体系</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断寄存器"><span class="toc-text">中断寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#编程过程-2"><span class="toc-text">编程过程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-3"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-01-按键轮询"><span class="toc-text">中断-01-按键轮询</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-02-移植printf"><span class="toc-text">中断-02-移植printf</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#中断-03-按键中断"><span class="toc-text">中断-03-按键中断</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验05-定时器"><span class="toc-text">实验05-定时器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-5"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#定时器"><span class="toc-text">定时器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#pwm定时器"><span class="toc-text">pwm定时器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#看门狗定时器"><span class="toc-text">看门狗定时器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#实时时钟rtc"><span class="toc-text">实时时钟rtc</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-4"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#定时器-01-蜂鸣器"><span class="toc-text">定时器-01-蜂鸣器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#定时器-02-看门狗中断"><span class="toc-text">定时器-02-看门狗中断</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#定时器-03-看门狗复位"><span class="toc-text">定时器-03-看门狗复位</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#定时器-04-rtc定时器"><span class="toc-text">定时器-04-rtc定时器</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验06-sd卡启动"><span class="toc-text">实验06-sd卡启动</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-6"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡的编程接口"><span class="toc-text">sd卡的编程接口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#s5pv210的sd卡启动详解"><span class="toc-text">s5pv210的sd卡启动详解</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#x210开发板的软开关按键问题"><span class="toc-text">x210开发板的软开关按键问题</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-5"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡启动-01-分散加载"><span class="toc-text">sd卡启动-01-分散加载</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验07-nand"><span class="toc-text">实验07-nand</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nand基本概念"><span class="toc-text">nand基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#nandflash接口"><span class="toc-text">nandflash接口</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#nandflash控制器"><span class="toc-text">nandflash控制器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#inand基本概念"><span class="toc-text">inand基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#sd卡-inand操作"><span class="toc-text">sd卡-inand操作</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#sd-inand代码分析"><span class="toc-text">sd-inand代码分析</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验08-i2c"><span class="toc-text">实验08-i2c</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-7"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#i2c通信-芯片间通信"><span class="toc-text">i2c通信-芯片间通信</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#i2c通信时序"><span class="toc-text">i2c通信时序</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#s5pv210的i2c控制器"><span class="toc-text">s5pv210的i2c控制器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#x210板载gsensor介绍"><span class="toc-text">x210板载gsensor介绍</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#I2C总线的通信流程"><span class="toc-text">I2C总线的通信流程</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验09-adc"><span class="toc-text">实验09-adc</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-8"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#模拟量和数字量"><span class="toc-text">模拟量和数字量</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#adc主要相关概念"><span class="toc-text">adc主要相关概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#s5pv210的adc控制器"><span class="toc-text">s5pv210的adc控制器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ad转换的编程"><span class="toc-text">ad转换的编程</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验10-lcd显示器"><span class="toc-text">实验10-lcd显示器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-9"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd的接口技术"><span class="toc-text">lcd的接口技术</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示图像"><span class="toc-text">lcd显示图像</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd的六个主要时序参数"><span class="toc-text">lcd的六个主要时序参数</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示的主要相关概念"><span class="toc-text">lcd显示的主要相关概念</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#s5pv210的lcd控制器"><span class="toc-text">s5pv210的lcd控制器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-6"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-01-控制器初始化"><span class="toc-text">lcd显示器-01-控制器初始化</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-02-显示像素"><span class="toc-text">lcd显示器-02-显示像素</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-03-画线"><span class="toc-text">lcd显示器-03-画线</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-04-显示字符"><span class="toc-text">lcd显示器-04-显示字符</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-05-画图"><span class="toc-text">lcd显示器-05-画图</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#lcd显示器-06-未完成事项"><span class="toc-text">lcd显示器-06-未完成事项</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验11-触摸屏"><span class="toc-text">实验11-触摸屏</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-10"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#输入类设备简介"><span class="toc-text">输入类设备简介</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#电阻式触摸屏的原理"><span class="toc-text">电阻式触摸屏的原理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#s5pv210的电阻触摸屏控制器"><span class="toc-text">s5pv210的电阻触摸屏控制器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#电容触摸屏的原理"><span class="toc-text">电容触摸屏的原理</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#ft5x06电容触摸IC简介"><span class="toc-text">ft5x06电容触摸IC简介</span></a></li></ol></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实验12-shell"><span class="toc-text">实验12-shell</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基本概念-11"><span class="toc-text">基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#程序或操作系统的用户接口"><span class="toc-text">程序或操作系统的用户接口</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#实验项目-7"><span class="toc-text">实验项目</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-01-输入回显"><span class="toc-text">shell-01-输入回显</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-02-移植"><span class="toc-text">shell-02-移植</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-03-标准命令集"><span class="toc-text">shell-03-标准命令集</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-04-添加命令"><span class="toc-text">shell-04-添加命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-05-其他命令"><span class="toc-text">shell-05-其他命令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-06-开机倒计时"><span class="toc-text">shell-06-开机倒计时</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#shell-07-环境变量"><span class="toc-text">shell-07-环境变量</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-02-05-x210开发板/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2020-04-30-嵌入式知识梳理/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2020-01-31-嵌入式知识/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

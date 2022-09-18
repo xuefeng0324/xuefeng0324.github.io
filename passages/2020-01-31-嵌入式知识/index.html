@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>嵌入式知识 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式,">
+  
+
+  
+  <meta name="description" content="嵌入式基础知识（概念）">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-01-31
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    嵌入式知识
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#嵌入式系统">嵌入式系统</a><ul>
+<li><a href="#特点">特点</a></li>
+<li><a href="#组成">组成</a><ul>
+<li><a href="#内存的访问方式">内存的访问方式</a></li>
+<li><a href="#io的访问方式">io的访问方式</a></li>
+<li><a href="#冯诺依曼结构与哈佛结构">冯诺依曼结构与哈佛结构</a></li>
+<li><a href="#寄存器">寄存器</a></li>
+</ul>
+</li>
+<li><a href="#电子器件的发展方向">电子器件的发展方向</a></li>
+<li><a href="#可编程器件的特点">可编程器件的特点</a></li>
+</ul>
+</li>
+<li><a href="#编程语言">编程语言</a><ul>
+<li><a href="#编程及运行过程">编程及运行过程</a></li>
+<li><a href="#交叉编译">交叉编译</a></li>
+<li><a href="#指令集">指令集</a></li>
+</ul>
+</li>
+<li><a href="#arm">arm</a><ul>
+<li><a href="#arm的内核版本号-soc版本号-芯片型号">arm的内核版本号-soc版本号-芯片型号</a></li>
+<li><a href="#寄存器-1">寄存器</a><ul>
+<li><a href="#特殊功能寄存器">特殊功能寄存器</a></li>
+<li><a href="#通用寄存器">通用寄存器</a></li>
+</ul>
+</li>
+<li><a href="#存储器">存储器</a></li>
+<li><a href="#arm的基本设定">arm的基本设定</a></li>
+<li><a href="#arm处理器工作模式">arm处理器工作模式</a></li>
+<li><a href="#arm异常">arm异常</a></li>
+<li><a href="#指令-伪指令">指令-伪指令</a><ul>
+<li><a href="#指令">指令</a></li>
+<li><a href="#伪指令">伪指令</a></li>
+</ul>
+</li>
+<li><a href="#立即数">立即数</a></li>
+<li><a href="#协处理器">协处理器</a></li>
+<li><a href="#arm汇编特点">arm汇编特点</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<h2 id="嵌入式系统"><a href="#嵌入式系统" class="headerlink" title="嵌入式系统"></a>嵌入式系统</h2><h4 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h4><ul>
+<li>专用、软硬件可裁剪可配置</li>
+<li>低功耗、高可靠性、高稳定性</li>
+<li>软件代码短小精悍</li>
+<li>代码可固化</li>
+<li>实时性</li>
+<li>弱交互性</li>
+<li>专用开发工具及开发环境</li>
+<li>专业开发人员</li>
+</ul>
+<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
+<li>硬件：<br>微处理器<br>存储器（寄存器、内存、外存）<br>I/O接口、输入输出设备等等</li>
+<li>软件：<br>嵌入式操作系统<br>BSP——board support package板级支持包<br>应用软件</li>
+</ul>
+<h6 id="内存的访问方式"><a href="#内存的访问方式" class="headerlink" title="内存的访问方式"></a>内存的访问方式</h6><ul>
+<li>内存通过CPU的地址总线来寻址定位，然后通过CPU数据总线来读写。</li>
+<li>CPU的地址总线的位数是CPU设计时确定的，因此一款CPU所能寻址的范围是一定的，而内存是需要占用CPU的寻址空间的。</li>
+<li>内存与CPU的这种总线式连接方式是一种直接连接，优点是效率高访问快，缺点是资源有限，扩展性差。</li>
+</ul>
+<h6 id="io的访问方式"><a href="#io的访问方式" class="headerlink" title="io的访问方式"></a>io的访问方式</h6><ul>
+<li>IO指的是与CPU连接的各种外设。</li>
+<li>CPU访问各种外设有2种方式：一种是类似于访问内存的方式，即把外设的寄存器当作一个内存地址来读写，从而以访问内存相同的方式来操作外设，叫IO与内存统一编址方式；另一种是使用专用的CPU指令来访问某种特定外设，叫IO与内存独立编址。</li>
+</ul>
+<h6 id="冯诺依曼结构与哈佛结构"><a href="#冯诺依曼结构与哈佛结构" class="headerlink" title="冯诺依曼结构与哈佛结构"></a>冯诺依曼结构与哈佛结构</h6><ul>
+<li>程序和数据都放在内存中，且不彼此分离的结构称为冯诺依曼结构。譬如Intel的CPU均采用冯诺依曼结构。冯诺依曼结构中程序和数据不区分的放在一起，因此安全和稳定性是个问题，好处是处理起来简单。</li>
+<li>程序和数据分开独立放在不同的内存块中，彼此完全分离的结构称为哈佛结构。譬如大部分的单片机（MCS51、ARM9等）均采用哈佛结构。哈佛结构中程序（一般放在ROM、flash中）和数据（一般放在RAM中）独立分开存放，因此好处是安全和稳定性高，缺点是软件处理复杂一些（需要统一规划链接地址等）  </li>
+</ul>
+<h6 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h6><blockquote>
+<p>SoC中有2类寄存器：通用寄存器和SFR</p>
+</blockquote>
+<p>1.通用寄存器（ARM中有37个）是CPU的组成部分，CPU的很多活动都需要通用寄存器的支持和参与。<br>2.SFR（special function register，特殊功能寄存器）不在CPU中，而存在于CPU的外设中，我们通过访问外设的SFR来编程操控这个外设，这就是硬件编程控制的方法。</p>
+<ul>
+<li>CPU可以像访问内存一样访问寄存器</li>
+<li>寄存器是CPU的硬件设计者制定的，目的是留作外设被编程控制的“活动开关”</li>
+<li>正如汇编指令集是CPU的编程接口API一样，寄存器是外设硬件的软件编程接口API。使用软件编程控制某一硬件，其实就是编程读写该硬件的寄存器。</li>
+<li>寄存器中每个bit位都有特定含义，因此编程操作时需要位操作。</li>
+<li>单个寄存器的位宽一般和CPU的位宽一样，以实现最佳访问效率</li>
+</ul>
+<p>3.编程访问寄存器的方法</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//汇编</span></span><br><span class="line">ldr r1, =<span class="number">0xE0200280</span></span><br><span class="line">str r0, [r1]</span><br><span class="line">mov r0, #<span class="number">0</span></span><br><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x30008000</span>;</span><br><span class="line">*p = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
+
+<h4 id="电子器件的发展方向"><a href="#电子器件的发展方向" class="headerlink" title="电子器件的发展方向"></a>电子器件的发展方向</h4><ul>
+<li>模拟器件 -&gt; 数字器件</li>
+<li>ASIC（专用集成电路） -&gt; 可编程器件</li>
+</ul>
+<h4 id="可编程器件的特点"><a href="#可编程器件的特点" class="headerlink" title="可编程器件的特点"></a>可编程器件的特点</h4><ul>
+<li>CPU在固定频率的时钟控制下节奏运行。</li>
+<li>CPU可以通过总线读取外部存储设备中的二进制指令集，然后解码执行。</li>
+<li>这些可以被CPU解码执行的二进制指令集是CPU设计的时候确定的，是CPU的设计者定义的，本质上是一串由1和0组成的数字。这就是CPU的汇编指令集。</li>
+</ul>
+<h2 id="编程语言"><a href="#编程语言" class="headerlink" title="编程语言"></a>编程语言</h2><ul>
+<li>编程语言发展过程：<br>纯机器码编程<br>汇编语言编程<br>C语言编程<br>C++语言编程<br>Java C#等语言编程<br>脚本语言编程</li>
+<li>汇编语言就是CPU的机器指令集的助记符，是一款CPU的本质特征。</li>
+<li>不同CPU的机器指令集设计不同，因此汇编程序不能在不同CPU间互相移植。（C语言可移植性高，但是不同cpu需要不同的编译器编译）</li>
+<li>使用汇编编程可以充分发挥CPU的设计特点，所以汇编编程效率最高，因此在操作系统内核中效率极其重要处都需要用汇编处理。</li>
+</ul>
+<h4 id="编程及运行过程"><a href="#编程及运行过程" class="headerlink" title="编程及运行过程"></a>编程及运行过程</h4><ul>
+<li>程序员用汇编指令编程 –&gt;经汇编器汇编成二进制可执行程序文件–&gt;二进制文件被CPU读取进去–&gt;CPU内部电路对二进制文件解码–&gt;解码通过则CPU执行指令、完成指令动作。</li>
+<li>如果程序员用C语言等高级语言编程，则编译器先将C语言程序编译为汇编程序，再进行上面的后续部分。</li>
+</ul>
+<h4 id="交叉编译"><a href="#交叉编译" class="headerlink" title="交叉编译"></a>交叉编译</h4><blockquote>
+<p>A(类)机编写（源代码）、编译得到可执行程序，发布给B(类)机运行。</p>
+</blockquote>
+<ul>
+<li>嵌入式开发的CPU比较简单，本身无法搭建开发环境，有些甚至操作系统都没有。交叉编译可以用高性能机器为低性能机器开发软件（包括裸机软件、系统级和应用级软件）</li>
+<li>必须使用专用的交叉编译工具链（toolschain）。</li>
+<li>由于可执行程序不能本地运行调试，因此必须配合一定手段（专用调试器、JTAG调试器、USB下载、串口下载、SD启动、网络共享等）将可执行程序加载到目标嵌入式设备上运行及调试。</li>
+</ul>
+<h4 id="指令集"><a href="#指令集" class="headerlink" title="指令集"></a>指令集</h4><ul>
+<li><p>CISC:complex instruction set computer——复杂指令集CPU<br>CISC体系的设计理念是用最少的指令来完成任务（譬如计算乘法只需要一条MUL指令即可，但是越复杂的算法使用的指令就越多，算法越多指令也越多），因此CISC的CPU本身设计复杂、工艺复杂，但好处是编译器好设计。CISC出现较早，至今Intel还一直采用CISC设计。</p>
+</li>
+<li><p>Reduced Instruction-Set Computer——精简指令集CPU<br>RISC的设计理念是让软件来完成具体的任务，CPU本身仅提供基本功能指令集。因此RISC的CPU的指令集中只有很少的指令，这种设计相对于CISC，CPU的设计和工艺简单了，但是编译器的设计变难了。</p>
+</li>
+</ul>
+<h2 id="arm"><a href="#arm" class="headerlink" title="arm"></a>arm</h2><h4 id="arm的内核版本号-soc版本号-芯片型号"><a href="#arm的内核版本号-soc版本号-芯片型号" class="headerlink" title="arm的内核版本号-soc版本号-芯片型号"></a>arm的内核版本号-soc版本号-芯片型号</h4><p><img src="/images/arm_version.png" alt></p>
+<ul>
+<li><p>概念：<br>SoC = System on Chip（在芯片上做系统）<br>v     version<br>m     microcontroller微控制器就是单片机STM32<br>a     application应用级处理器就是手机、平板、电脑的CPU<br>r     realtime 实时处理器响应速度快，主要用在工业、航天等领域<br>外设：Peripheral<br>实时操作系统：RTOS<br>非实时操作系统：linux windows android<br>ARM内核是一种CPU的内核设计方案（一种方案一种指令集）,以这个设计为核心、在CPU的周围添加其他外围模块,比如串口、IIC、LCD控制器等模块,就成为一个以该ARM内核为核心、加上自己的外围设备组成的一块芯片。<br>ARM内核版本号和SoC版本号是由ARM确定的，而SoC型号是由半导体公司确定的。Cortex系列后ARM产品线分割成3个系列，这个是市场细分的需要和选择。</p>
+</li>
+<li><p>ARM是RISC架构<br>常用ARM汇编指令只有二三十条<br>ARM是低功耗CPU<br>ARM的架构非常适合单片机、嵌入式，尤其是物联网领域；而服务器等高性能领域目前主导还是Intel</p>
+</li>
+<li><p>ARM是统一编址的<br>大部分ARM（M3 M4 M7 M0 ARM9 ARM11 A8 A9等）都是32位架构<br>32位ARM CPU支持的内存少于4G，通过CPU地址总线来访问<br>SoC中的各种内部外设通过各自的SFR编程访问，这些SFR的访问方式类似于访问普通内存，这叫IO与内存统一编址。</p>
+</li>
+<li><p>ARM是哈佛结构的<br>常见ARM（除ARM7外）都是哈佛结构的<br>哈佛结构保证了ARM CPU运行的稳定性和安全性，因此ARM适用于嵌入式领域<br>哈佛结构也决定了ARM裸机程序（使用实地址即物理地址）的链接比较麻烦，必须使用复杂的链接脚本告知链接器如何组织程序；对于OS之上的应用（工作在虚拟地址之中）则不需考虑这么多</p>
+</li>
+</ul>
+<h4 id="寄存器-1"><a href="#寄存器-1" class="headerlink" title="寄存器"></a>寄存器</h4><h6 id="特殊功能寄存器"><a href="#特殊功能寄存器" class="headerlink" title="特殊功能寄存器"></a>特殊功能寄存器</h6><blockquote>
+<p>SFR：special function register</p>
+</blockquote>
+<h6 id="通用寄存器"><a href="#通用寄存器" class="headerlink" title="通用寄存器"></a>通用寄存器</h6><blockquote>
+<p>General register,ARM共有37个寄存器，都是32位长度,每种模式下最多只能使用18个寄存器。37个寄存器中30个为“通用”型，其余的1个固定用作PC，1个固定用作CPSR，5个固定用作5种异常模式下的SPSR。在ARM中共有6个名叫r13（又叫sp）的寄存器，但是在每种特定处理器模式下，只有一个r13是当前可见的，其他的r13必须切换到他的对应模式下才能看到。这种设计叫影子寄存器（banked register）</p>
+</blockquote>
+<p><img src="/images/General_register.png" alt></p>
+<h4 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h4><table>
+<thead>
+<tr>
+<th align="center">名称</th>
+<th align="center">英文全称</th>
+<th align="center">说明</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ROM</td>
+<td align="center">read only memory</td>
+<td align="center">只读存储器</td>
+<td align="center"><font size="2">任何时候都可以读取，但不能直接通过地址总线、数据总线写，要通过专用io接口去写</font></td>
+</tr>
+<tr>
+<td align="center">RAM</td>
+<td align="center">ramdom access memory</td>
+<td align="center">随机访问存储器</td>
+<td align="center">可以不按顺序，随机访问</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">RAM种类</th>
+<th align="center">英文全称</th>
+<th align="center">说明</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">DRAM</td>
+<td align="center">dynamic ram</td>
+<td align="center">动态RAM</td>
+<td align="center">DRAM分为很多种，常见的主要有FPRAM/FastPage、EDORAM、SDRAM、DDR RAM、RDRAM、SGRAM以及WRAM等，适合手机电脑</td>
+</tr>
+<tr>
+<td align="center">SRAM</td>
+<td align="center">static ram</td>
+<td align="center">静态RAM</td>
+<td align="center">速度最快，最昂贵，所以适合单片机</td>
+</tr>
+<tr>
+<td align="center">IRAM</td>
+<td align="center">internal ram</td>
+<td align="center">内部RAM</td>
+<td align="center">内部RAM，指的是集成到SoC内部的RAM</td>
+</tr>
+</tbody></table>
+<ul>
+<li><font size="2" color="green"><strong>补充：<br>  1.动态内存中所谓的”动态”，指的是当我们将数据写入DRAM后，经过一段时间，数据会丢失，因此需要一个额外设电路进行内存刷新操作。<br>  具体的工作过程是这样的：一个DRAM的存储单元存储的是0还是1取决于电容是否有电荷，有电荷代表1，无电荷代表0。但时间一长，代表1的电容会放电，代表0的电容会吸收电荷，这就是数据丢失的原因。<br>  刷新操作定期对电容进行检查，若电量大于满电量的1／2，则认为其代表1，并把电容充满电；若电量小于1／2，则认为其代表0，并把电容放电，藉此来保持数据的连续性。<br>  2.DDR RAM：double data rate ram 双通道的ram （可以在一个时钟读写两次数据，目前电脑内存用得最多）</strong></font>
+
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">ROM种类</th>
+<th align="center">英文全称</th>
+<th align="center">说明</th>
+<th align="center">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">SROM</td>
+<td align="center">static rom</td>
+<td align="center">静态ROM</td>
+<td align="center">静态只读存储器</td>
+</tr>
+<tr>
+<td align="center">IROM</td>
+<td align="center">internal rom</td>
+<td align="center">内部ROM</td>
+<td align="center">指的是集成到SoC内部的ROM</td>
+</tr>
+<tr>
+<td align="center">PROM</td>
+<td align="center">programmable rom</td>
+<td align="center">可编程的ROM</td>
+<td align="center">一次性的，软件灌入后无法修改</td>
+</tr>
+<tr>
+<td align="center">EPROM</td>
+<td align="center">erasable programmable rom</td>
+<td align="center">可擦除可编程ROM</td>
+<td align="center">通过紫外光的照射擦除原先的程序，是一种通用的存储器</td>
+</tr>
+<tr>
+<td align="center">EEPROM</td>
+<td align="center">electrically erasable programmable rom</td>
+<td align="center">带电可擦可编程ROM</td>
+<td align="center">通过电子擦出，价格很高，写入时间很长，写入很慢</td>
+</tr>
+<tr>
+<td align="center">FLASH</td>
+<td align="center">flash memory</td>
+<td align="center">闪存/电子式可擦除可编程只读存储器</td>
+<td align="center">主要用于一般性数据存储和在计算机与其他数字产品间交换传输数据，如储存卡与U盘。闪存是一种特殊的、以宏块抹写的EPROM，同时具备快速读取数据的优势</td>
+</tr>
+<tr>
+<td align="center">NOR Flash</td>
+<td align="center">not or flash</td>
+<td align="center">单元按照或非的方式连起来</td>
+<td align="center">使用随机读取技术，用户可以直接运行装载在NOR FLASH里面的代码，这样可以减少SRAM的容量从而节约了成本</td>
+</tr>
+<tr>
+<td align="center">NAND Flash</td>
+<td align="center">not and flash</td>
+<td align="center">单元按照与非的方式连起来</td>
+<td align="center">NAND Flash没有采取内存的随机读取技术，它的读取是以一次读取一块的形式来进行的，通常是一次读取512个字节，采用这种技术的Flash比较廉价</td>
+</tr>
+<tr>
+<td align="center">ONENAND</td>
+<td align="center"></td>
+<td align="center">nandflash的一种</td>
+<td align="center">既实现NOR Flash的高速读取速度，又保留了NAND Flash的大容量数据存储的优点</td>
+</tr>
+<tr>
+<td align="center">eMMC</td>
+<td align="center">embedded multi media card</td>
+<td align="center">嵌入式多媒体控制器</td>
+<td align="center">采用统一的MMC标准接口，自身集成MMC Controller，存储单元与NANDFLASH相同。</td>
+</tr>
+</tbody></table>
+<ul>
+<li><font size="2" color="green"><strong>补充：<br>  0、手机软件一般放在EEPROM中；我们打电话，有些最后拨打的号码，暂时是存在SRAM中的，不是马上写入通过记录（通话记录保存在EEPROM中），因为当时有很重要工作（通话）要做，如果写入，漫长的等待是让用户忍无可忍的。<br>  l、NOR的读速度比NAND稍快一些。<br>  2、 NAND的写入速度比NOR快很多。<br>  3、NAND的4ms擦除速度远比NOR的5s快。<br>  4、大多数写入操作需要先进行擦除操作。<br>  5、NAND的擦除单元更小，相应的擦除电路更少。<br>  6、一般小容量的用NOR Flash，因为其读取速度快、价格高，可以与CPU进行总线式相连，多用来存储操作系统等重要信息，而大容量的用NAND FLASH（也因为容量大，进行总线式相连浪费寻址空间），最常见的NAND FLASH应用是嵌入式系统采用的DOC（Disk On Chip）。此外，NAND的实际应用方式要比NOR复杂的多。NOR可以直接使用，并可在上面直接运行代码；而NAND需要I/O接口，因此使用时需要驱动程序（或者用一小块NOR Flash来启动）。不过当今流行的操作系统对NAND结构的Flash都有支持。此外，Linux内核也提供了对NAND结构的Flash的支持。<br>  7、OneNAND器件有两种类型：muxed和demuxed。对于muxed型，地址引脚和数据引脚结合在一起，而demuxed型芯片这两个引脚是分开的。当关注的是减少引脚数时，选择muxed OneNAND可能好一些。<br>  8、eMMC简化手机存储器的设计，更新速度快，加速产品研发速度。iNand和moviNand遵循eMMC标准。<br>  9、NAND Flash的类型有SLC(Single-Level Cell，单层单元，在每个单元中存储一个Bit，这种设计提高了耐久性、准确性和性能，它的价格最高)、MLC(Multi-Level Cell，多层单元，架构可以为每个单元存储2个Bit。尽管在存储单元中存储多个Bit似乎能够很好地利用空间，在相同空间内获得更大容量，但它的代价是使用寿命降低，可靠性降低，MLC SSD使得在PC和笔记本电脑上增加闪存成为可能)、eMLC(Enterprise Multi-Level Cell，企业多级单元，是MLC NAND 闪存的一个“增强型”的版本，它在一定程度上弥补了SLC和MLC之间的性能和耐久差距)和TLC(Triple-Level Cell，三层单元，最便宜，每个单元存储3比特，通常用于性能和耐久性要求相对较低的消费级电子产品)<br>  10、一般PC机都是：很小容量的BIOS（NorFlash）+ 大容量的硬盘（类似于NandFlash）+ 大容量的DRAM<br>  一般的单片机：很小容量的NorFlash + 很小容量的SRAM<br>  嵌入式系统：因为NorFlash很贵，随意现在很多嵌入式系统倾向于不用NorFlash，<br>  直接用：外接的大容量Nand + 外接大容量DRAM + SoC内置SRAM<br>  11、SD和microSD(TF)卡区别:SD卡 比TF卡的尺寸要大;SD卡一般都用在大一些的电子设备,如电脑，相机，AV等器材，而TF一般用在手机上。TF卡插入适配器（adapter）可以转换成SD卡，但SD卡一般无法转换成TF卡。SD卡上有一个（lock）开关，即写保护开关，TF卡没有。<br>  12、硬盘按照访问方式分机械硬盘(HDD:Hard Disk Drive)、固态硬盘(SSD:Solid State Drive，Nand-MLC)、混合硬盘(HH:Dhybrid hard drive);按接口可分为IDE、SATA、PATA、SCSI</strong></font>
+
+</li>
+</ul>
+<h4 id="arm的基本设定"><a href="#arm的基本设定" class="headerlink" title="arm的基本设定"></a>arm的基本设定</h4><blockquote>
+<p>现在ARM一般采用的是32位架构.</p>
+<ul>
+<li>ARM约定（与vc等可能不同，word为16bits）:<br>byte     ：8 bits<br>Halfword     ：16 bits (2 byte)<br>Word     :32 bits (4 byte)</li>
+<li>大部分ARM core 提供：<br>ARM指令集（32-bit）<br>Thumb指令集（16-bit ）<br>Thumb2指令集（16 &amp; 32bit）<br>Jazelle cores 支持 Java bytecode</li>
+</ul>
+</blockquote>
+<h4 id="arm处理器工作模式"><a href="#arm处理器工作模式" class="headerlink" title="arm处理器工作模式"></a>arm处理器工作模式</h4><ul>
+<li>ARM 有7个基本工作模式:<br>User : 非特权模式，大部分任务执行在这种模式</li>
+</ul>
+<p>FIQ :   当一个高优先级（fast) 中断产生时将会进入这种模式<br>IRQ :   当一个低优先级（normal) 中断产生时将会进入这种模式<br>Supervisor :当复位或软中断指令执行时将会进入这种模式<br>Abort : 当存取异常时将会进入这种模式<br>Undef : 当执行未定义指令时会进入这种模式</p>
+<p>System : 使用和User模式相同寄存器集的特权模式</p>
+<ul>
+<li>注意：<br>除User（用户模式）是Normal（普通模式）外，其他6种都是Privilege（特权模式）。Privilege中除Sys模式外，其余5种为异常模式。各种模式的切换，可以是程序员通过代码主动切换（通过写CPSR寄存器）；也可以是CPU在某些情况下自动切换。各种模式下权限和可以访问的寄存器不同。</li>
+</ul>
+<h4 id="arm异常"><a href="#arm异常" class="headerlink" title="arm异常"></a>arm异常</h4><blockquote>
+<p>正常工作之外的流程都叫异常;异常会打断正在执行的工作，并且一般我们希望异常处理完成后继续回来执行原来的工作;中断是异常的一种。</p>
+</blockquote>
+<ul>
+<li><p>异常向量表<br>所有的CPU都有异常向量表，这是CPU设计时就设定好的，是硬件决定的；当异常发生时，CPU会自动动作（PC跳转到异常向量处处理异常，有时伴有一些辅助动作）；异常向量表是硬件向软件提供的处理异常的支持。</p>
+</li>
+<li><p>ARM的异常处理机制<br>当异常产生时：<br>ARM core拷贝 CPSR 到 SPSR_<mode><br>设置适当的 CPSR 位：<br>改变处理器状态进入 ARM 态（以下操作只能在 ARM 态执行）<br>改变处理器模式进入相应的异常模式<br>设置中断禁止位禁止相应中断 (如果需要)<br>保存返回地址到 LR_<mode><br>设置 PC 为相应的异常向量<br>返回时, 异常处理需要:<br>从 SPSR_<mode>恢复CPSR<br>从LR_<mode>恢复PC<br>以下操作只能在 ARM 态执行.</mode></mode></mode></mode></p>
+</li>
+<li><p>异常向量表（Vector Table）<br>以下是CPU设计时提供的异常向量表，一般成为一级向量表。有些CPU为了支持多个中断，还会提供二级中断向量表，处理思路类似于这里说的一级中断向量表。</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">地址</th>
+<th align="center">内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">…</td>
+<td align="center">…</td>
+</tr>
+<tr>
+<td align="center">0x1C</td>
+<td align="center">FIQ</td>
+</tr>
+<tr>
+<td align="center">0x18</td>
+<td align="center">IRQ</td>
+</tr>
+<tr>
+<td align="center">0x14</td>
+<td align="center">（Reserved)</td>
+</tr>
+<tr>
+<td align="center">0x10</td>
+<td align="center">Data Abort</td>
+</tr>
+<tr>
+<td align="center">0x0C</td>
+<td align="center">Prefetch Abort</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">Software Interrupt</td>
+</tr>
+<tr>
+<td align="center">0x04</td>
+<td align="center">Undefined Instruction</td>
+</tr>
+<tr>
+<td align="center">0x00</td>
+<td align="center">Reset</td>
+</tr>
+</tbody></table>
+<h4 id="指令-伪指令"><a href="#指令-伪指令" class="headerlink" title="指令-伪指令"></a>指令-伪指令</h4><blockquote>
+<p>（汇编）指令是CPU机器指令的助记符，经过编译后会得到一串10组成的机器码，可以由CPU读取执行。<br>（汇编）伪指令本质上不是指令（只是和指令一起写在代码中），它是编译器环境提供的，目的是用来指导编译过程，经过编译后伪指令最终不会生成机器码。</p>
+</blockquote>
+<h6 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h6><ul>
+<li><p>两种不同风格的ARM指令<br>ARM官方的ARM汇编风格：指令一般用大写、Windows中IDE开发环境（如ADS、MDK等）常用。如： LDR R0, [R1]<br>GNU风格的ARM汇编：指令一般用小写字母、linux中常用。如：ldr r0, [r1]</p>
+</li>
+<li><p>常用ARM指令1：数据处理指令<br>数据传输指令    mov mvn<br>算术指令        add sub rsb adc sbc rsc<br>逻辑指令        and orr eor bic<br>比较指令        cmp cmn tst teq<br>乘法指令        mvl mla umull umlal smull smlal<br>前导零计数        clz</p>
+</li>
+<li><p>常用ARM指令2：cpsr访问指令<br>mrs &amp; msr<br>mrs用来读psr，msr用来写psr<br>CPSR寄存器比较特殊，需要专门的指令访问，这就是mrs和msr。</p>
+</li>
+<li><p>常用ARM指令3：跳转(分支)指令<br>b &amp; bl &amp; bx<br>b 直接跳转（就没打开算返回）<br>bl branch and link，跳转前把返回地址放入lr中，以便返回，以便用于函数调用<br>bx跳转同时切换到ARM模式，一般用于异常处理的跳转。</p>
+</li>
+<li><p>常用ARM指令4：访存指令<br>ldr/str &amp;    ldm/stm &amp; swp<br>单个字/半字/字节访问 ldr/str<br>多字批量访问  ldm(load register mutiple)/stm（store register mutiple）<br>swp r1, r2, [r0]<br>swp r1, r1, [r0]</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">//<span class="number">8</span>种后缀</span><br><span class="line"><span class="symbol">ia</span>（increment after）		<span class="comment">@先传输，再地址+4</span></span><br><span class="line"><span class="symbol">ib</span>（increment <span class="keyword">before）	</span>	<span class="comment">@先地ascending传输</span></span><br><span class="line"><span class="symbol">da</span>（decrement after）		<span class="comment">@先传输，再地址-4</span></span><br><span class="line"><span class="symbol">db</span>（decrement <span class="keyword">before）	</span>	<span class="comment">@先地址-4，再传输</span></span><br><span class="line"><span class="symbol">fd</span>（full descending）		<span class="comment">@满递减堆栈</span></span><br><span class="line"><span class="symbol">ed</span>（empty descending）		<span class="comment">@空递减堆栈</span></span><br><span class="line"><span class="symbol">fa</span>（full ascending）		<span class="comment">@满递增堆栈</span></span><br><span class="line"><span class="symbol">ea</span>（empty ascending）		<span class="comment">@空递增堆栈</span></span><br><span class="line"></span><br><span class="line"><span class="comment">@感叹号的作用就是r0的值在ldm过程中发生的增加或者减少最后写回到r0去，也就是说ldm时会改变r0的值。</span></span><br><span class="line"><span class="keyword">ldmia	</span><span class="built_in">r0</span>, &#123;<span class="built_in">r2</span> - <span class="built_in">r3</span>&#125;</span><br><span class="line"><span class="keyword">ldmia	</span><span class="built_in">r0</span>！, &#123;<span class="built_in">r2</span> - <span class="built_in">r3</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">@^的作用：在目标寄存器中有pc时，会同时将spsr写入到cpsr，一般用于从异常模式返回。</span></span><br><span class="line"><span class="keyword">ldmfd	</span><span class="built_in">sp</span>!, &#123;<span class="built_in">r0</span> - <span class="built_in">r6</span>, <span class="built_in">pc</span>&#125;</span><br><span class="line"><span class="keyword">ldmfd	</span><span class="built_in">sp</span>!, &#123;<span class="built_in">r0</span> - <span class="built_in">r6</span>, <span class="built_in">pc</span>&#125;^</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>常用ARM指令5：软中断指令<br>swi（software interrupt）<br>软中断指令用来实现操作系统中系统调用</p>
+</li>
+</ul>
+<p><a href="https://blog.csdn.net/u011449588/article/details/44945411" target="_blank" rel="noopener">arm指令</a></p>
+<ul>
+<li>协处理器cp15操作指令<br>mcr &amp; mrc<br>mrc用于读取CP15中的寄存器<br>mcr用于写入CP15中的寄存器<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">@opcode_1：对于cp15永远为0</span></span><br><span class="line"><span class="comment">@Rd：ARM的普通寄存器</span></span><br><span class="line"><span class="comment">@Crn：cp15的寄存器，合法值是c0～c15</span></span><br><span class="line"><span class="comment">@Crm：cp15的寄存器，一般均设为c0</span></span><br><span class="line"><span class="comment">@opcode_2：一般省略或为0</span></span><br><span class="line"><span class="symbol">mcr</span>&#123;&lt;cond&gt;&#125;	<span class="built_in">p15</span>, &lt;opcode_1&gt;, &lt;Rd&gt;, &lt;Crn&gt;, &lt;Crm&gt;, &#123;&lt;opcode_2&gt;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">@例子，其他见uboot源码start.S中相关代码</span></span><br><span class="line"><span class="keyword">mrc </span>	<span class="built_in">p15</span>, <span class="number">0</span>, <span class="built_in">r0</span>, <span class="built_in">c1</span>, <span class="built_in">c0</span>, <span class="number">0</span></span><br><span class="line"><span class="keyword">orr	</span>	<span class="built_in">r0</span>, <span class="built_in">r0</span>, <span class="number">#1</span></span><br><span class="line"><span class="symbol">mcr</span> 	<span class="built_in">p15</span>, <span class="number">0</span>, <span class="built_in">r0</span>, <span class="built_in">c1</span>, <span class="built_in">c0</span>, <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h6 id="伪指令"><a href="#伪指令" class="headerlink" title="伪指令"></a>伪指令</h6><ul>
+<li><p>伪指令的意义<br>伪指令不是指令，伪指令和指令的根本区别是经过编译后会不会生成机器码。伪指令的意义在于指导编译过程。伪指令是和具体的编译器相关的，我们使用gnu工具链，因此学习gnu环境下的汇编伪指令。</p>
+</li>
+<li><p>gnu汇编中的一些符号<br>@用来做注释。可以在行首也可以在代码后面同一行直接跟，和C语言中//类似<br>#做注释，一般放在行首，表示这一行都是注释而不是代码。<br>：以冒号结尾的是标号<br>.  点号在gnu汇编中表示当前指令的地址<br>#立即数前面要加#或$，表示这是个立即数</p>
+</li>
+<li><p>常用gnu伪指令</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">.global</span> _start		<span class="comment">@ 给_start外部链接属性</span></span><br><span class="line"><span class="symbol">.section</span> <span class="meta">.text</span>		<span class="comment">@ 指定当前段为代码段</span></span><br><span class="line"><span class="symbol">.ascii</span> .<span class="keyword">byte </span>.short <span class="meta">.long</span> <span class="meta">.word</span> </span><br><span class="line"><span class="symbol">.quad</span> .float .<span class="keyword">string </span><span class="comment">@ 定义数据</span></span><br><span class="line"><span class="symbol">.align</span> <span class="number">4</span>			<span class="comment">@ 以16字节对齐</span></span><br><span class="line"><span class="symbol">.balignl</span> <span class="number">16</span> <span class="number">0xabcdef</span>gh 	<span class="comment">@ 16字节对齐填充</span></span><br><span class="line"><span class="symbol">.equ</span>			<span class="comment">@ 类似于C中宏定义</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>如果一个变量的内存地址正好位于它长度的整数倍，他就被称做自然对齐。比如在32位cpu下，假设一个整型变量的地址为0x00000004(为4的倍数)，那它就是自然对齐的，而如果其地址为0x00000002（非4的倍数）则是非对齐的。</p>
+<ul>
+<li><p>偶尔会用到的gnu伪指令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.end			@标识文件结束</span><br><span class="line">.include			@ 头文件包含</span><br><span class="line">.arm / .code32	@声明以下为arm指令</span><br><span class="line">.thumb / .code16	@声明以下为thubm指令</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>最重要的几个伪指令<br>ldr     大范围的地址加载指令<br>adr        小范围的地址加载指令<br>adrl     中等范围的地址加载指令<br>nop     空操作<br>ARM中有一个ldr指令，还有一个ldr伪指令,一般都使用ldr伪指令而不用ldr指令。<br>adr编译时会被1条sub或add指令替代，而ldr编译时会被一条mov指令替代或者文字池方式处理。<br>adr总是以PC为基准来表示地址，因此指令本身和运行地址有关，可以用来检测程序当前的运行地址在哪里。<br>ldr加载的地址和链接时给定的地址有关，由链接脚本决定。</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ldr </span><span class="built_in">r0</span>, <span class="number">#0xff</span> 		<span class="comment">@ldr指令</span></span><br><span class="line"><span class="keyword">ldr </span><span class="built_in">r0</span>, <span class="number">=0xfff</span>l		<span class="comment">@伪指令,涉及到合法/非法立即数，涉及到ARM文字池</span></span><br><span class="line"><span class="comment">@adr和ldr的差别：ldr加载的地址在链接时确定，而adr加载的地址在运行时确定；所以我们可以通过adr和ldr加载的地址比较来判断当前程序是否在链接时指定的地址运行。</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="立即数"><a href="#立即数" class="headerlink" title="立即数"></a>立即数</h4><blockquote>
+<p>立即数有合法立即数与非法立即数，ARM指令都是32位，除了指令标记和操作标记外，本身只能附带很少位数的立即数。因此立即数有合法和非法之分。<br>合法立即数：经过任意位数的移位后非零部分可以用8位表示的即为合法立即数</p>
+</blockquote>
+<h4 id="协处理器"><a href="#协处理器" class="headerlink" title="协处理器"></a>协处理器</h4><blockquote>
+<p>SoC内部另一处理核心，协助主CPU实现某些功能，被主CPU调用执行一定任务。ARM设计上支持多达16个协处理器，但是一般SoC只实现其中的CP15.（cp：coprocessor）<br>协处理器和MMU、cache、TLB等处理有关，功能上和操作系统的虚拟地址映射、cache管理等有关。</p>
+</blockquote>
+<h4 id="arm汇编特点"><a href="#arm汇编特点" class="headerlink" title="arm汇编特点"></a>arm汇编特点</h4><ul>
+<li><p>ARM汇编特点1：LDR/STR架构<br>ARM采用RISC架构，CPU本身不能直接读取内存，而需要先将内存中内容加载入CPU中通用寄存器中才能被CPU处理。<br>ldr（load register）指令将内存内容加载入通用寄存器。<br>str（store register）指令将寄存器内容存入内存空间中。<br>ldr/str组合用来实现 ARM CPU和内存数据交换</p>
+</li>
+<li><p>ARM汇编特点2：8种寻址方式<br>寄存器寻址            mov r1, r2<br>立即寻址                mov r0, #0xFF00<br>寄存器移位寻址        mov r0, r1, lsl #3<br>寄存器间接寻址        ldr r1, [r2]<br>基址变址寻址            ldr r1, [r2, #4]<br>多寄存器寻址            ldmia r1!, {r2-r7, r12}<br>堆栈寻址                stmfd sp!, {r2-r7, lr}<br>相对寻址                beq flag<br>flag:</p>
+</li>
+<li><p>ARM汇编特点3：指令后缀<br>同一指令经常附带不同后缀，变成不同的指令。经常使用的后缀有：<br>B（byte）功能不变，操作长度变为8位<br>H（half word）功能不变，长度变为16位<br>S（signed）功能不变，操作数变为有符号<br>如 ldr ldrb ldrh ldrsb ldrsh<br>S（S标志）功能不变，影响CPSR标志位<br>如 mov和movs        movs r0, #0</p>
+</li>
+<li><p>ARM汇编特点4：条件执行后缀</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mov r0, r1<span class="comment">//相当于C语言中的r0 = r1;</span></span><br><span class="line">moveq r0, r1<span class="comment">//如果eq后缀成立，则直接执行mov r0, r1；如果eq不成立则本句代码直接作废，相当于没有</span></span><br><span class="line"><span class="comment">//类似于C语言中 if (eq)&#123;r0 = r1;&#125;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>条件后缀执行注意2点：<br>1、条件后缀是否成立，不是取决于本句代码，而是取决于这句代码之前的代码运行后的结果。<br>2、条件后缀决定了本句代码是否被执行，而不会影响上一句和下一句代码是否被执行。</p>
+<p><img src="/images/sign.png" alt><br>GT greater than<br>LT less than</p>
+<ul>
+<li>ARM汇编特点5：多级指令流水线</li>
+</ul>
+<p><img src="/images/instructions.png" alt></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌入式系统"><span class="toc-text">嵌入式系统</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#特点"><span class="toc-text">特点</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#io的访问方式"><span class="toc-text">io的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#电子器件的发展方向"><span class="toc-text">电子器件的发展方向</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#可编程器件的特点"><span class="toc-text">可编程器件的特点</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#编程语言"><span class="toc-text">编程语言</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#编程及运行过程"><span class="toc-text">编程及运行过程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#交叉编译"><span class="toc-text">交叉编译</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令集"><span class="toc-text">指令集</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arm"><span class="toc-text">arm</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的内核版本号-soc版本号-芯片型号"><span class="toc-text">arm的内核版本号-soc版本号-芯片型号</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#寄存器-1"><span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#特殊功能寄存器"><span class="toc-text">特殊功能寄存器</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#通用寄存器"><span class="toc-text">通用寄存器</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#存储器"><span class="toc-text">存储器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm的基本设定"><span class="toc-text">arm的基本设定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm处理器工作模式"><span class="toc-text">arm处理器工作模式</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm异常"><span class="toc-text">arm异常</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#指令-伪指令"><span class="toc-text">指令-伪指令</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#指令"><span class="toc-text">指令</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#伪指令"><span class="toc-text">伪指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#立即数"><span class="toc-text">立即数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#协处理器"><span class="toc-text">协处理器</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#arm汇编特点"><span class="toc-text">arm汇编特点</span></a></li></ol></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-01-31-嵌入式知识/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2020-02-05-x210开发板/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2020-01-26-c语言知识2/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

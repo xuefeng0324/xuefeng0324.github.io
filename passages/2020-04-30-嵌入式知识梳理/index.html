@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>嵌入式知识梳理 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="嵌入式,">
+  
+
+  
+  <meta name="description" content="较为全面梳理嵌入式知识">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2020-04-30
+    </span>
+    
+      <span>
+        | <a href="/categories/嵌入式/"><i class="fa fa-bookmark"></i>嵌入式</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    嵌入式知识梳理
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#嵌入式">嵌入式</a><ul>
+<li><a href="#嵌入式概念">嵌入式概念</a></li>
+<li><a href="#arm公司">ARM公司</a></li>
+<li><a href="#指令集架构-arm内核-芯片型号">指令集架构、arm内核、芯片型号</a></li>
+<li><a href="#开发板组成">开发板组成</a></li>
+</ul>
+</li>
+<li><a href="#寄存器">寄存器</a><ul>
+<li><a href="#内部寄存器">内部寄存器</a></li>
+<li><a href="#运行模式">运行模式</a></li>
+<li><a href="#异常向量表">异常向量表</a></li>
+<li><a href="#外部寄存器">外部寄存器</a></li>
+<li><a href="#独立编址统一编址">独立编址&amp;统一编址</a></li>
+<li><a href="#看门狗">看门狗</a></li>
+</ul>
+</li>
+<li><a href="#存储器">存储器</a><ul>
+<li><a href="#存储器概念">存储器概念</a></li>
+<li><a href="#ram">RAM</a><ul>
+<li><a href="#sramstatic-ram静态随机存取存储器">SRAM（Static RAM，静态随机存取存储器）</a></li>
+<li><a href="#dramdynamic-ram动态随机存取存储器">DRAM（Dynamic RAM，动态随机存取存储器）</a><ul>
+<li><a href="#sdramsynchronous-dram同步动态随机存取存储器">SDRAM（Synchronous DRAM，同步动态随机存取存储器）</a></li>
+<li><a href="#ddr-sdramdouble-data-rate二倍速率同步动态随机存取存储器">DDR SDRAM（Double Data Rate二倍速率同步动态随机存取存储器）</a></li>
+<li><a href="#ddrii-ddr2double-data-rate-2第二代同步双倍速率动态随机存取存储器">DDRII /DDR2(Double Data Rate 2，第二代同步双倍速率动态随机存取存储器)</a></li>
+<li><a href="#ddr3double-data-rate-3第三代同步双倍速率动态随机存取存储器">DDR3(Double Data Rate 3，第三代同步双倍速率动态随机存取存储器)</a></li>
+<li><a href="#ddr4double-data-rate-4第四代同步双倍速率动态随机存取存储器">DDR4(Double Data Rate 4，第四代同步双倍速率动态随机存取存储器)</a></li>
+</ul>
+</li>
+<li><a href="#iraminternal-ram内部随机存取存储器">IRAM（internal RAM，内部随机存取存储器）</a></li>
+</ul>
+</li>
+<li><a href="#romread-only-memory只读存储器">ROM(READ Only Memory，只读存储器)</a><ul>
+<li><a href="#mask-rom掩模型只读存储器">MASK ROM（掩模型只读存储器）</a></li>
+<li><a href="#promprogrammable-rom可编程只读存储器">PROM（Programmable ROM，可编程只读存储器）</a></li>
+<li><a href="#epromerasable-programmable可擦可编程只读存储器">EPROM（Erasable Programmable，可擦可编程只读存储器）</a></li>
+<li><a href="#eepromelectrically-erasable-programmable电可擦可编程只读存储器">EEPROM（Electrically Erasable Programmable，电可擦可编程只读存储器）</a></li>
+<li><a href="#flash-memory快闪存储器">Flash Memory（快闪存储器）</a><ul>
+<li><a href="#nor-flashnot-or-flash">NOR Flash（Not OR Flash）</a></li>
+<li><a href="#nand-flashnot-and-flash">NAND Flash（Not AND Flash）</a></li>
+</ul>
+</li>
+<li><a href="#irominternal-rom内部只读存储器">IROM（internal ROM，内部只读存储器）</a></li>
+</ul>
+</li>
+<li><a href="#不同系统的存储器配置">不同系统的存储器配置</a></li>
+</ul>
+</li>
+<li><a href="#arm汇编">ARM汇编</a><ul>
+<li><a href="#机器指令-伪指令-宏指令">机器指令、伪指令、宏指令</a></li>
+<li><a href="#arm汇编指令">ARM汇编指令</a><ul>
+<li><a href="#mov">MOV</a></li>
+<li><a href="#str">STR</a></li>
+<li><a href="#ldr">LDR</a></li>
+<li><a href="#跳转指令">跳转指令</a></li>
+<li><a href="#b">B</a></li>
+<li><a href="#bl">BL</a></li>
+<li><a href="#thumb指令">Thumb指令</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#5g">5G</a></li>
+</ul>
+<!-- tocstop -->
+
+<h3 id="嵌入式"><a href="#嵌入式" class="headerlink" title="嵌入式"></a>嵌入式</h3><h5 id="嵌入式概念"><a href="#嵌入式概念" class="headerlink" title="嵌入式概念"></a>嵌入式概念</h5><p>嵌入式即嵌入式系统，IEEE（美国电气和电子工程师协会）对其定义是用于控制、监视或者辅助操作机器和设备的装置，是一种专用的计算机系统。国内普遍认同的嵌入式系统定义是以应用为中心，以计算机技术为基础，软硬件可裁剪，适应应用系统对功能、可靠性、成本、体积、功耗等严格要求的专用计算机系统；从应用对象上加以定义来说，嵌入式系统是软件和硬件的综合体，还可以涵盖机械等附属装置。</p>
+<p>嵌入式系统作为装置或设备的一部分，它是一个控制程序存储在ROM中的嵌入式处理器控制板。事实上，所有带有数字接口的设备，如手表、微波炉、录像机、汽车等，都使用嵌入式系统，有些嵌入式系统还包含操作系统，但大多数嵌入式系统都是由单个程序实现整个控制逻辑。</p>
+<p>嵌入式这个概念很广泛，可裁剪定制的电路都可称之为嵌入式。就算是你现在用的电脑，如果把摄像头，音频之类的去掉，按照你的要求定制个电脑，其实也可以叫嵌入式。在这种设备上运行的软件就叫嵌入式软件。</p>
+<h5 id="ARM公司"><a href="#ARM公司" class="headerlink" title="ARM公司"></a>ARM公司</h5><p>ARM全称为Advanced RISC Machine（机翻：先进的RISC机器），关键就在于RISC这个简写上面。当时的主流是复杂指令集运算(Complex Instruction Set Computing，CISC)，英特尔公司就是采用复杂指令集的方式来制作CPU。好处是使用较少指令就能执行任务，能够完成许多复杂的功能，速度更快。坏处是20%的指令被使用频率是80%，80%的指令被使用的频率是20%。而且当时的复杂指令集的功耗比精简指令集高。</p>
+<p>ARM公司当时采用精简指令集运算(Reduced Instruction Set Computing，RISC)据说是因为没钱，因为设计复杂指令集需要比较高的技术和人才，同时他们也没能力像英特尔一样自己生产芯片，所以当时就是设计指令集和芯片方案，到后来因为精简指令集的优势显现，所以ARM公式越做越好。好处是每条指令使用频率都差不多，每条指令长度一样（复杂指令集可以不一样长度），容易进行优化（优化得好可能比复杂指令集还快）；功耗低（具体原因大家可以百度）。坏处是因为都是精简指令，许多功能需要工程师自己写代码实现（可能对ARM是好处，不用自己写指令），同样的功能，精简指令集需要的指令比复杂指令集需要的指令多。</p>
+<p>英特尔在电脑领域的地位很高，因为对于电脑来说，功耗和性能，其实是性能比较重要。而ARM公司能够活下来的原因是嵌入式，嵌入式设备追求的恰好是低功耗，低成本。所以这就是为什么一说到嵌入式，都不得不说到ARM的原因。但是到了今天，情况也有变化，比如ARM也有高功耗的芯片设计方案，英特尔也有低功耗的电池省电方案。</p>
+<h5 id="指令集架构、arm内核、芯片型号"><a href="#指令集架构、arm内核、芯片型号" class="headerlink" title="指令集架构、arm内核、芯片型号"></a>指令集架构、arm内核、芯片型号</h5><p>嵌入式有两个架构，一个是指令集架构（可以理解为不同指令集架构的指令不一样），另一个是内核（可以理解为芯片的设计方案）。通常指令集架构和内核有对应关系。下图第一列为指令集架构，第二列为内核。</p>
+<p><img src="/images/20200430_1.jpg" alt></p>
+<p>片上系统(System-on-a-Chip，Soc)就是尽可能将多的东西集成到一个芯片里面，比如说存储器，好处就是体积小功耗低。实际上今天很多被叫成CPU的芯片其实是Soc芯片，但是并不影响交流，只要知道哪颗芯片就行，就像手机有的CPU也算Soc，但是一般都记芯片的型号，不纠结是CPU芯片还是Soc芯片（如：高通骁龙820其实是Soc芯片，但是大家都习惯叫CPU）。</p>
+<h5 id="开发板组成"><a href="#开发板组成" class="headerlink" title="开发板组成"></a>开发板组成</h5><p>嵌入式产品往往不是一家公司单独设计出来的，一方面大部分公司技术不到位，另一方面别人的东西比较成熟，成本低。这里我举个例子，随便网上找的粤嵌的嵌入式开发板（粤嵌打钱！）</p>
+<p><img src="/images/20200430_2.png" alt></p>
+<p><img src="/images/20200430_3.png" alt></p>
+<p>更多内容可以查看下面链接<br><a href="https://blog.csdn.net/baidu_35679960/article/details/77606930" target="_blank" rel="noopener">指令集架构、arm内核、SoC、处理器、CPU、GPU等的关系</a></p>
+<h3 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h3><p>寄存器是有限存贮容量的高速存贮部件，它们可用来暂存指令、数据和地址。寄存器是CPU的组成部分，因为在CPU内，所以CPU对其读写速度zd是最快的，不需要IO传输。但同时也决定了此类寄存器数量非常有限，有限到几乎每个存储都有自己的名字，而且有些还有多个名字（R15和PC指的是同一个寄存器）。</p>
+<p>寄存器的作用主要是：<br>可将寄存器内的数据进行算术及逻辑运算；<br>存于寄存器内的地址可用来指向内存的某个位置，即间接寻址；<br>可以用来读写数据到电脑的周边设备。</p>
+<h5 id="内部寄存器"><a href="#内部寄存器" class="headerlink" title="内部寄存器"></a>内部寄存器</h5><p>这里讲的内部寄存器为采用ARM7内核（芯片设计方案）的内部寄存器。不同内核的芯片可能内部寄存器有所不同。</p>
+<p>ARM7微处理器内含37个32位内部寄存器（Cortex-A8微处理器有40个32位长的寄存器），其中31个为通用寄存器，6个为状态寄存器。</p>
+<p>(1) R0～R12：均为32位通用寄存器，用于数据操作。绝大多数16位Thumb指令只能访问R0～R7，而32位Thumb-2指令可以访问所有寄存器。（平时就是用来装一下数据或者用来进行间接寻址，和学的汇编差不多，但是arm汇编和汇编有些差别，后面讲arm汇编会讲到）</p>
+<p>(2)R13（SP）堆栈指针：堆栈指针的最低两位永远是0，这意味着堆栈总是4字节对齐的。（堆栈，一般用来存放函数参数，从栈顶开始放起，放进之后SP减4）</p>
+<p>(3)R14（LR）程序连接寄存器：当呼叫一个子程序时，由R14存储返回地址。（当使用bl指令跳转的时候，本来将要执行的指令地址会自动放进lr寄存器，要跳转的子程序地址放进pc寄存器，然后程序就跳到pc寄存器指向的地址，然后当你想要返回的时候，就可以用mov pc,lr或mov r15,r14来返回）</p>
+<p>(4)R15（PC）程序计数器：指向当前的程序地址，如果修改它的值，就能改变程序的执行流。（其实就是相当于一个指针，指向下一条命令）</p>
+<p>(5)6个状态寄存器（1个CPSR、5个SPSR），用以标识CPU的工作状态及程序的运行状态，均为32位。 </p>
+<h5 id="运行模式"><a href="#运行模式" class="headerlink" title="运行模式"></a>运行模式</h5><p>要了解CPSR、SPSR寄存器，需要知道运行模式，这两个寄存器就是要根据运行模式放状态进去的。ARM微处理器支持7种运行模式。</p>
+<p>用户模式（User），快速中断模式（FIQ），普通中断模式（IRQ），管理模式（Svc），数据访问中止模式（Abort），未定义指令中止模式（Und），系统模式（Sys）。</p>
+<p>在用户模式下，应用程序不能够访问一些受操作系统保护的系统资源，应用程序也不能直接进行处理器模式的切换。除用户模式之外的其他6种处理器模式称为特权模式。在这些模式下，程序可以访问所有的系统资源，也可以任意地进行处理器模式的切换。系统模式可以访问所有的系统资源，也可以直接进行处理器模式切换。除系统模式外，其他5种特权模式又称异常模式。主要是在外部中断或者程序执行非法操作时会触发。</p>
+<p><img src="/images/20200430_4.png" alt></p>
+<p>在每一种处理器模式下有一组相应的寄存器，上图中，每个模式下面都写了寄存器的名字，除了用户模式和系统模式都只能访问17个寄存器之外，其他模式都可以访问18个寄存器（模式下面没写的就不能访问）。</p>
+<p>①用户模式和系统模式可以访问的寄存器一模一样。</p>
+<p>②R0-R7在所有模式都一样，用的都是同样的寄存器。</p>
+<p>③到了R8-R12，快速中断模式却格格不入，据说是切换模式的时候R1-R12的值都会被保存（备份）起来，而快速中断比外部中断快的一部分原因就是少保存5个寄存器的值。</p>
+<p>④请注意，虽然图上面写着R8_fiq，但是实际上每个模式下面都是清一色的R0-R15，每个模式下的R8都叫R8，只不过这里为了区分用不同名字。</p>
+<p>⑤R13（sp）、R14（lr）在异常模式下面都是用了新的寄存器，好处就是不用另外保存这两个寄存器的内容，直接变换模式。</p>
+<p>⑥R15（pc）指向要执行的代码，只要一个就行了。</p>
+<p>⑦CPSR和SPSR就是用来存放运行模式的状态的，CPSR放的是当前的运行模式的状态，当从用户模式切换到异常模式的时候，CPSR就要修改，但是改之前先把原来的值放进SPSR里面，到时候要切换回去的时候，就能根据SPSR返回。</p>
+<p>更详细内容可以查看ppt：第2章-嵌入式微处理器（54-57）</p>
+<h5 id="异常向量表"><a href="#异常向量表" class="headerlink" title="异常向量表"></a>异常向量表</h5><p>为什么ppt里面异常向量会和寄存器放在一起，其实也是有关联的，因为通常是异常产生导致了运行模式的切换（切换到异常模式），既然产生了异常，就要解决异常，解决的方法就放在异常向量表里。</p>
+<p><img src="/images/20200430_5.png" alt></p>
+<p>当异常产生时，系统会自动找到相应的异常向量地址，地址里面并不是指令，而是另一个地址（类似指针，指向其他地址），通过取异常向量地址里面的地址去执行相应的指令（套娃警告），因为有的异常不可能只用一条指令就可以处理完（0x00000000-0x00000003四个字节共32位只能放一条32位指令或者一个32位地址）。而快速中断之所以放在最后，是因为后面可以直接就接上要执行的代码，根本不用跳转，所以快速中断的快速也体现在这个地方。</p>
+<h5 id="外部寄存器"><a href="#外部寄存器" class="headerlink" title="外部寄存器"></a>外部寄存器</h5><p>有内部寄存器，当然就有外部寄存器，不过一般外部寄存器也叫外设寄存器，外部寄存器虽然也用于存放数据，但是它保存的数据具有特殊的用途。每个外设都是通过读写其寄存器来控制的。</p>
+<p>外设寄存器也称为I/O端口，通常包括：控制寄存器（对外部设备进行控制）、状态寄存器（反映了外部设备的工作状态或方式）和数据寄存器（CPU与外部设备交换数据）三大类。</p>
+<p>和内部寄存器不一样的是，外设寄存器有地址，通常也是根据地址，给外设寄存器里面写值来控制外设。至于为什么内部寄存器直接写名字就行，而外部寄存器需要找地址，是因为外部寄存器太多了，一一“命名”会浪费空间，我们在ppt里面看到的那些花里胡哨的名称其实是厂家写在数据手册里面的，汇编代码直接写这些名称电脑是识别不了的，要查表才能清楚外部寄存器的功能和地址。</p>
+<h5 id="独立编址-amp-统一编址"><a href="#独立编址-amp-统一编址" class="headerlink" title="独立编址&amp;统一编址"></a>独立编址&amp;统一编址</h5><p>CPU的地址总线的位数在设计的时候就已经确定，所以CPU的最大寻址空间是一定的。而内存是占用了CPU的寻址空间的。而CPU不仅要访问内存，还要访问各种外设（IO），对外设的访问，通常有两种方式。</p>
+<p>一种是类似于访问内存，把外设的寄存器，当做一个内存地址来访问，从而可以像访问内存一样去访问外设，这种方式即是内存与外设统一的编址方式，称作统一编址（也称为“I/O内存”方式）。另一种是使用专用的CPU指令来进行访问特定的外设，称作独立编址（也称为“I/O端口”方式）。</p>
+<p>外设与内存统一的编址方式，优点是编程简单，因为可以像访问内存一样去访问外设。缺点是IO也占用CPU的寻址空间（因为部分寻址空间用来寻找外设寄存器了，所以内存不能太大）。而独立编址的方式，优点是不占用CPU的寻址空间，但是CPU的构造比较复杂(因为额外的CPU指令需要对CPU进行额外的设计处理)。</p>
+<p>英特尔的处理器采用的就是独立编址，ARM一般是统一编址。</p>
+<h5 id="看门狗"><a href="#看门狗" class="headerlink" title="看门狗"></a>看门狗</h5><p>看门狗（watch dog timer）在Soc芯片上，看门狗定时器。现实中因为一些外部因素，电子设备经常会死机（比如极端炎热、极端寒冷、工业复杂场合）。在这种情况下我们希望设备自动复位而不需要人工干预（无人值守）。所以设计了看门狗用来完成这个工作。看门狗其实是我们SoC内部的一个定时器，定好时间之后看门狗定时器会去计时，时间到之前必须去重新置位，如果没有进行置位操作，系统就会被强制复位。系统在正常工作时，系统软件会自动置位，所以看门狗定时器不会将系统复位。但是系统一旦故障，系统软件就无法置位，然后下一个周期就会自动复位（常用来检测设备卡不卡）。而这个定时器可以用我们上面讲到的外部寄存器来控制是否来开启它。</p>
+<h3 id="存储器"><a href="#存储器" class="headerlink" title="存储器"></a>存储器</h3><h4 id="存储器概念"><a href="#存储器概念" class="headerlink" title="存储器概念"></a>存储器概念</h4><p>存储器单元实际上是时序逻辑电路的一种。</p>
+<p><img src="/images/20200430_6.png" alt></p>
+<p>按存储器的读写功能分类<br>只读存储器(ROM)：存储的内容是固定不变的，只能读出而不能写入的半导体存储器。<br>随机读写存储器(RAM)：既能读出又能写入的半导体存储器。 </p>
+<p>按存储方式分类<br>随机存储器：任何存储单元的内容都能被随机存取，且存取时间和存储单元的物理位置无关。<br>顺序存储器：只能按某种顺序来存取，存取时间与存储单元的物理位置有关。</p>
+<p>按在计算机系统中的作用分类<br>主存储器（内存）：用于存放活动的程序和数据，其速度高、容量较小、每位价位高。<br>辅助存储器（外存储器）：主要用于存放当前不活跃的程序和数据，其速度慢、容量大、每位价位低。<br>缓冲存储器：主要在两个不同工作速度的部件起缓冲作用。</p>
+<p>——百度百科</p>
+<h4 id="RAM"><a href="#RAM" class="headerlink" title="RAM"></a>RAM</h4><p>RAM(Random Access Memory，随机存取存储器)<br>RAM的特点是：电脑开机时，操作系统和应用程序的所有正在运行的数据和程序都会放置其中，并且随时可以对存放在里面的数据进行修改和存取。它的工作需要由持续的电力提供，一旦系统断电，存放在里面的所有数据和程序都会自动清空掉，并且再也无法恢复。</p>
+<p>根据组成元件的不同，RAM内存又分为十八种，本篇推文只选取常见的和嵌入式相关的介绍。</p>
+<h5 id="SRAM（Static-RAM，静态随机存取存储器）"><a href="#SRAM（Static-RAM，静态随机存取存储器）" class="headerlink" title="SRAM（Static RAM，静态随机存取存储器）"></a>SRAM（Static RAM，静态随机存取存储器）</h5><p>静态，指的是内存里面的数据可以长驻其中而不需要随时进行存取。每6颗电子管组成一个位存储单元，因为没有电容器，因此不断电即可正常运作（不用刷新），因此它可以比一般的动态随机处理内存处理速度更快更稳定，往往用来做高速缓存。（别问，问就是贵）</p>
+<h5 id="DRAM（Dynamic-RAM，动态随机存取存储器）"><a href="#DRAM（Dynamic-RAM，动态随机存取存储器）" class="headerlink" title="DRAM（Dynamic RAM，动态随机存取存储器）"></a>DRAM（Dynamic RAM，动态随机存取存储器）</h5><p>这是最普通的RAM，一个电子管与一个电容器组成一个位存储单元，DRAM将每个内存位作为一个电荷保存在位存储单元中，用电容的充放电来做储存动作，但因电容本身有漏电问题，因此必须每几微秒就要刷新一次（这就叫动态），否则数据会丢失。存取时间和放电时间一致，约为2 ~ 4ms。因为成本比较便宜，通常都用作计算机内的主存储器。</p>
+<p>经过多年的发展，DRAM也有了许多船新的版本，同样也只介绍一部分。</p>
+<h6 id="SDRAM（Synchronous-DRAM，同步动态随机存取存储器）"><a href="#SDRAM（Synchronous-DRAM，同步动态随机存取存储器）" class="headerlink" title="SDRAM（Synchronous DRAM，同步动态随机存取存储器）"></a>SDRAM（Synchronous DRAM，同步动态随机存取存储器）</h6><p>这是一种与CPU实现外频Clock同步的内存模式，一般都采用168Pin的内存模组，工作电压为3.3V。所谓clock同步是指内存能够与CPU同步存取资料，这样可以取消等待周期，减少数据传输的延迟，因此可提升计算机的性能和效率。通常DRAM是有一个异步接口的，这样它可以随时响应控制输入的变化。而SDRAM有一个同步接口，在响应控制输入前会等待一个时钟信号，这样就能和计算机的系统总线同步。</p>
+<p>接下来，也是套娃时间，SDRAM经过发展，也有了新技术。</p>
+<h6 id="DDR-SDRAM（Double-Data-Rate二倍速率同步动态随机存取存储器）"><a href="#DDR-SDRAM（Double-Data-Rate二倍速率同步动态随机存取存储器）" class="headerlink" title="DDR SDRAM（Double Data Rate二倍速率同步动态随机存取存储器）"></a>DDR SDRAM（Double Data Rate二倍速率同步动态随机存取存储器）</h6><p>作为SDRAM的换代产品，它具有两大特点：其一，速度比SDRAM有一倍的提高（这就叫double，二倍速率）；其二，采用了DLL（Delay Locked Loop：延时锁定回路）提供一个数据滤波信号。这是目前内存市场上的主流模式。</p>
+<h6 id="DDRII-DDR2-Double-Data-Rate-2，第二代同步双倍速率动态随机存取存储器"><a href="#DDRII-DDR2-Double-Data-Rate-2，第二代同步双倍速率动态随机存取存储器" class="headerlink" title="DDRII /DDR2(Double Data Rate 2，第二代同步双倍速率动态随机存取存储器)"></a>DDRII /DDR2(Double Data Rate 2，第二代同步双倍速率动态随机存取存储器)</h6><p>由JEDEC(电子设备工程联合委员会)进行开发的新生代内存技术标准，它与上一代DDR内存技术标准最大的不同就是，虽然同是采用了在时钟的上升/下降延同时进行数据传输的基本方式，但DDR2内存却拥有两倍于上一代DDR内存预读取能力(即：4bit数据读预取)。换句话说，DDR2内存每个时钟能够以4倍外部总线的速度读/写数据，并且能够以内部控制总线4倍的速度运行。</p>
+<h6 id="DDR3-Double-Data-Rate-3，第三代同步双倍速率动态随机存取存储器"><a href="#DDR3-Double-Data-Rate-3，第三代同步双倍速率动态随机存取存储器" class="headerlink" title="DDR3(Double Data Rate 3，第三代同步双倍速率动态随机存取存储器)"></a>DDR3(Double Data Rate 3，第三代同步双倍速率动态随机存取存储器)</h6><p>DDR3和DDR2一样没有增加工作频率，继续提升数据传输位宽变为8bit，为DDR2两倍，因此也在同样工作频率下达到更高带宽。</p>
+<h6 id="DDR4-Double-Data-Rate-4，第四代同步双倍速率动态随机存取存储器"><a href="#DDR4-Double-Data-Rate-4，第四代同步双倍速率动态随机存取存储器" class="headerlink" title="DDR4(Double Data Rate 4，第四代同步双倍速率动态随机存取存储器)"></a>DDR4(Double Data Rate 4，第四代同步双倍速率动态随机存取存储器)</h6><p>DDR4相比DDR3最大的区别有三点：16bit预取机制（DDR3为8bit），同样内核频率下理论速度是DDR3的两倍；更可靠的传输规范，数据可靠性进一步提升；工作电压降为1.2V，更节能。</p>
+<p>下面是另一个概念（JOJO，我不套娃啦），IRAM不是某种存储器，而且某些存储器的总称。</p>
+<h5 id="IRAM（internal-RAM，内部随机存取存储器）"><a href="#IRAM（internal-RAM，内部随机存取存储器）" class="headerlink" title="IRAM（internal RAM，内部随机存取存储器）"></a>IRAM（internal RAM，内部随机存取存储器）</h5><p>看名字就知道，集成在一块芯片（CPU或者Soc）里面的RAM就叫IRAM，是一个电子产品技术。有集成DRAM的，也有集成SRAM的。嵌入式设备一般集成SRAM到芯片里面，因为SRAM成本高，往往嵌入式只会使用很小的容量，也就更容易集成到芯片里面。</p>
+<p>速度快+通电直接使用（不用初始化）+成本高，鸡贼的设计师想出了鸡贼的方案（对于嵌入式开发板）。通电直接使用，代表一通电就能运行代码，而DRAM需要用代码来初始化。目前通电就能运行代码的就只有SRAM（RAM）和NOR Flash（ROM）。​但是一断电SRAM里面的代码就丢失，这个时候就要用到ROM的NOR Flash了，ROM断电不丢失，其中的NOR Flash通电就能使用，所以就先将NOR Flash通电，运行里面的代码，这个代码的效果是将外存的内容放到SRAM去运行，详细的情况在后面会讲到，这些器件的物理特性正是嵌入式启动如此复杂的原因。</p>
+<h4 id="ROM-READ-Only-Memory，只读存储器"><a href="#ROM-READ-Only-Memory，只读存储器" class="headerlink" title="ROM(READ Only Memory，只读存储器)"></a>ROM(READ Only Memory，只读存储器)</h4><p>ROM是线路最简单半导体电路，通过掩模工艺，一次性制造，在元件正常工作的情况下，其中的代码与数据将永久保存，并且不能够进行修改。一般应用于PC系统的程序码、主机板上的 BIOS (基本输入/输出系统Basic Input/Output System)等。它的读取速度比RAM慢很多。</p>
+<p>根据组成元件的不同，ROM分为五种，下面都会列出来，但是最重要的是Flash，其他看看就行。</p>
+<h5 id="MASK-ROM（掩模型只读存储器）"><a href="#MASK-ROM（掩模型只读存储器）" class="headerlink" title="MASK ROM（掩模型只读存储器）"></a>MASK ROM（掩模型只读存储器）</h5><p>制造商为了大量生产ROM内存，需要先制作一颗有原始数据的ROM或EPROM作为样本，然后再大量复制，这一样本就是MASK ROM，而烧录在MASK ROM中的资料永远无法做修改。它的成本比较低。</p>
+<h5 id="PROM（Programmable-ROM，可编程只读存储器）"><a href="#PROM（Programmable-ROM，可编程只读存储器）" class="headerlink" title="PROM（Programmable ROM，可编程只读存储器）"></a>PROM（Programmable ROM，可编程只读存储器）</h5><p>这是一种可以用刻录机将资料写入的ROM内存，但只能写入一次，所以也被称为“一次可编程只读存储器”(One Time Progarmming ROM，OTP-ROM)。PROM在出厂时，存储的内容全为1，用户可以根据需要将其中的某些单元写入数据0(部分的PROM在出厂时数据全为0，则用户可以将其中的部分单元写入1)， 以实现对其“编程”的目的，这种是早期的产品，现在已经不可能使用了。</p>
+<h5 id="EPROM（Erasable-Programmable，可擦可编程只读存储器）"><a href="#EPROM（Erasable-Programmable，可擦可编程只读存储器）" class="headerlink" title="EPROM（Erasable Programmable，可擦可编程只读存储器）"></a>EPROM（Erasable Programmable，可擦可编程只读存储器）</h5><p>这是一种具有可擦除功能，擦除后即可进行再编程的ROM内存，写入前必须先把里面的内容用紫外线照射它的IC卡上的透明视窗的方式来清除掉，也就是通过紫外光的照射擦出原先的程序。这一类芯片比较容易识别，其封装中包含有“石英玻璃窗”，一个编程后的EPROM芯片的“石英玻璃窗”一般使用黑色不干胶纸盖住， 以防止遭到阳光直射。</p>
+<h5 id="EEPROM（Electrically-Erasable-Programmable，电可擦可编程只读存储器）"><a href="#EEPROM（Electrically-Erasable-Programmable，电可擦可编程只读存储器）" class="headerlink" title="EEPROM（Electrically Erasable Programmable，电可擦可编程只读存储器）"></a>EEPROM（Electrically Erasable Programmable，电可擦可编程只读存储器）</h5><p>功能与使用方式与EPROM一样，不同之处是清除数据的方式，它是以约20V的电压来进行清除的。另外它还可以用电信号进行数据写入。这类ROM内存多应用于即插即用（PnP）接口中。</p>
+<h5 id="Flash-Memory（快闪存储器）"><a href="#Flash-Memory（快闪存储器）" class="headerlink" title="Flash Memory（快闪存储器）"></a>Flash Memory（快闪存储器）</h5><p>这是一种可以直接在主机板上修改内容而不需要将IC（芯片）拔下的内存，当电源关掉后储存在里面的资料并不会流失掉，在写入资料时必须先将原本的资料清除掉，然后才能再写入新的资料（Flash擦除只能从1翻转到0，无法从0翻转到1。擦除过程就是将flash中的某一个扇区全写0xFFFFFFF，再写入数据。），缺点为写入资料的速度太慢。它结合了ROM和RAM的长处，不仅具备电子可擦出可编程（EEPROM）的性能，还不会断电丢失数据。在过去的20年里，嵌入式系统一直使用ROM（EPROM）作为它们的存储设备，然而近年来Flash全面代替了ROM（EPROM）在嵌入式系统中的地位。</p>
+<p>大家发现没，虽然后来新的存储器都分别属于RAM和ROM这两种存储器，但是很明显有很多特性和最初的RAM、ROM已经不同了，好像违反了“设定”，我觉得这个其实有点像版本更新，有的地方继承了之前的属性，有的地方则进行了改良。所以我们看到书上的ROM是只读的，而我们的硬盘是ROM，那我们的硬盘怎么写进数据。看到上面的介绍，你的疑惑可能就得到了解决。然后，下面就是Flash的套娃了，同样，它也有很多种，这里只讲常见的或者与嵌入式相关的。</p>
+<h6 id="NOR-Flash（Not-OR-Flash）"><a href="#NOR-Flash（Not-OR-Flash）" class="headerlink" title="NOR Flash（Not OR Flash）"></a>NOR Flash（Not OR Flash）</h6><p>NOR Flash是一种非易失闪存技术，是Intel在1988年创建，里面的单元是按照所谓或非的方式连起来的。NOR Flash 的特点是芯片内执行（XIP ，eXecute In Place），这样应用程序可以直接在Flash闪存内运行，不必再把代码读到系统RAM中，也可以替代SRAM。NOR 的传输效率很高，在1 ~ 4MB的小容量时具有很高的成本效益，但是很低的写入和擦除速度大大影响到它的性能。</p>
+<h6 id="NAND-Flash（Not-AND-Flash）"><a href="#NAND-Flash（Not-AND-Flash）" class="headerlink" title="NAND Flash（Not AND Flash）"></a>NAND Flash（Not AND Flash）</h6><p>NAND Flash是也一种非易失闪存技术，1989年，东芝公司发表了NAND flash结构，强调降低每比特的成本（便宜），更高的性能，并且像磁盘一样可以通过接口轻松升级，里面的单元是按照所谓与非的方式连起来的，所用的线比NOR Flash少，但是性能不如NOR Flash。NAND Flash没有采取内存的随机读取技术，它的读取是以一次读取一块的形式来进行的，通常是一次读取512个字节，采用这种技术的Flash比较廉价。用户不能直接运行NAND Flash上的代码。NAND Flash是一种存储芯片，要使用它需要特殊的系统接口。</p>
+<p>这些最早出现的、最原始的Flash颗粒组成芯片（NandFlash、NorFlash），芯片中只是对存储单元做了最基本的读写接口，要求开发板的SoC来提供Flash读写的控制器以和Flash进行读写时序。</p>
+<p>缺陷：1、读写接口时序比较复杂。2、内部无坏块处理机制，需要SoC自己来管理Flash的坏块；3、各家厂家的Flash接口不一致，甚至同一个厂家的不同型号、系列的Flash接口都不一致，这就造成产品升级时很麻烦。</p>
+<p>NandFlash分MLC（Multi Level Cell，多层单元）和SLC（Single Level Cell，单层单元）两种。SLC技术比较早，可靠性高，缺点是容量不大（贵，一般SLC Nand都是512MB以下）；MLC技术比较新，不成熟，可靠性差，优点是容量可以做很大很便宜，现在基本都在发展MLC技术。下面是NAND Flash的套娃。</p>
+<ul>
+<li>iNAND &amp; OneNAND<br>基于NAND（iNAND可以将内置的MLC FLASH模拟成为为SLC），SanDisk公司研发了iNAND存储芯片，可以简单的看成SD卡或MMC卡芯片化。优点：提高性能减少SOC的工作量，节约SOC资源；读写速度快；产品更可靠稳定iNAND内置掉电保护；降低系统成本等。</li>
+</ul>
+<p>三星公司研发了OneNAND存储芯片，既实现NOR Flash的高速读取速度，又保留了Nand Flash的大容量数据存储的优点。OneNAND和Flex-OneNAND是融合存储器，将NAND内核，SRAM，纠错引擎和逻辑电路集成在具有NOR接口的单个​​芯片中。</p>
+<p>下面为使用NAND Flash芯片的一些产品，外加了控制芯片、接口等，严格来说其实并不能归为NAND Flash。</p>
+<ul>
+<li>SD卡（Secure Digital Memory Card）<br>SD存储卡是一种基于半导体快闪记忆器的新一代记忆设备，由于它体积小、数据传输速度快、可热插拔等优良的特性，被广泛地于便携式装置上使用，例如数码相机、平板电脑和多媒体播放器等。SD卡是由松下电器、东芝和SanDisk联合推出。SD卡是将NAND Flash芯片叠加到一起，扩大容量，同时添加管理系统芯片。Nand Flash是不可以直接使用的,需要驱动程序，SD则自带驱动程序。通常数码相机用的那种大卡就是SD卡。SD卡是遵照SD规范来发布的。这些规范规定了SD卡的读写速度、读写接口时序、读写命令集、卡大小尺寸、引脚个数及定义。这样做的好处就是不同厂家的SD卡可以通用。</li>
+</ul>
+<p>SD卡是基于MMC卡（Multi-Media Card，多媒体卡）发展的（MMC卡可以被SD读卡器读写，而SD卡不可以被MMC读卡器读写。），MMC卡是基于SM卡（Smart Media，智能媒体卡）发展的，有兴趣可以去百度。</p>
+<ul>
+<li><p>Micro SD卡（Micro SD Card）<br>Micro SD Card，原名Trans-flash Card（TF卡），2004年正式更名为Micro SD Card，由SanDisk（闪迪）公司发明，主要用于移动电话。是采用SanDisk（闪迪）的NAND MLC技术以及控制器技术。通常手机用的那种小卡就是Micro SD卡。</p>
+</li>
+<li><p>eMMC(embedded multi media card)<br>eMMC为MMC协会所订立的、主要是针对手机或平板电脑等产品的内嵌式存储器标准规格。eMMC的一个明显优势是在封装中集成了一个控制器，它提供标准接口并管理内存，使得是手机厂商就能专注于产品开发的其他部分，并缩短向市场推出产品的时间，eMMC=NAND flash+controller+standard interface。</p>
+</li>
+<li><p>SSD（Solid State Disk或Solid State Drive）<br>固态硬盘的存储介质分为两种，一种是采用闪存（FLASH芯片）作为存储介质，另外一种是采用DRAM作为存储介质。</p>
+</li>
+</ul>
+<p>基于闪存类：基于闪存的固态硬盘（IDEFLASH DISK、Serial ATA Flash Disk）：采用Flash芯片作为存储介质，这也是通常所说的SSD。它的外观可以被制作成多种模样，例如：笔记本硬盘、微硬盘、存储卡、U盘等样式。这种SSD固态硬盘最大的优点就是可以移动，而且数据保护不受电源控制，能适应于各种环境，适合于个人用户使用。</p>
+<p>SSD除了使用Flash存储介质之外，还有主控芯片，内部包含存储算法、数据传输算法等等，也有不同的接口。由于固态硬盘技术与传统硬盘技术不同，所以产生了不少新兴的存储器厂商。厂商只需购买NAND存储器，再配合适当的控制芯片，就可以制造固态硬盘了。新一代的固态硬盘普遍采用SATA-2接口、SATA-3接口、SAS接口、MSATA接口、PCI-E接口、NGFF接口、CFast接口、SFF-8639接口和M.2 NVME/SATA协议。</p>
+<p>内部由Nand的存储颗粒构成（iNand、MoviNand、SSD），再集成了块设备管理单元，综合了SD卡为代表的各种卡的优势和原始的NandFlash芯片的优势：有统一的接口标准（包括引脚定义、物理封装、接口时序）；与原始的Nand一样，以芯片的方式来发布而不是以卡的方式；内部内置了Flash管理模块，提供了诸如坏块管理等功能，让Nand的管理容易了起来。</p>
+<p>基于DRAM类：采用DRAM作为存储介质，应用范围较窄。它仿效传统硬盘的设计，可被绝大部分操作系统的文件系统工具进行卷设置和管理，并提供工业标准的PCI和FC接口用于连接主机或者服务器。应用方式可分为SSD硬盘和SSD硬盘阵列两种。它是一种高性能的存储器，而且使用寿命很长，美中不足的是需要独立电源来保护数据安全。DRAM固态硬盘属于比较非主流的设备。 </p>
+<p>至于HHD（机械硬盘）和SSD（固态硬盘）走的路线不一样，感兴趣的可以看这个链接的视频：</p>
+<p><a href="https://www.sohu.com/a/212319162_239778" target="_blank" rel="noopener">硬盘的发展史，你都了解吗？</a></p>
+<h5 id="IROM（internal-ROM，内部只读存储器）"><a href="#IROM（internal-ROM，内部只读存储器）" class="headerlink" title="IROM（internal ROM，内部只读存储器）"></a>IROM（internal ROM，内部只读存储器）</h5><p>集成到Soc里面的ROM都叫IROM，嵌入式设备一般集成NorFlash到芯片里面。</p>
+<p>鸡贼的设计师这个时候又跳出来了，NOR Flash可以直接运行代码，那是不是可以直接用NOR Flash来初始化DRAM？</p>
+<p>是的，其实一般的单片机和电脑都是用NOR Flash来初始化其他内存和硬盘的，至于初始化是什么，其实就是初始化一下堆栈、寄存器，开启时钟，嵌入式还要开启看门狗。​因为成本高，NOR Flash很小，不能装下操作系统，所以NOR Flash的代码负责把硬盘的代码放到内存里面，然后内存再运行。</p>
+<p>嵌入式系统的做法不同，因为之前第一篇推文就写过，嵌入式的开发板芯片、核心板、底板可能是不同厂商设计的。设计芯片的厂商就单单设计一个芯片，里面就IRAM和IROM可以放，如果只有IROM是不好的。</p>
+<p>因为NOR Flash有一个缺点，前面讲过的，读写时间长。擦除NOR器件时是以64～128KB的块进行的，执行一个写入/擦除操作的时间为5s，与此相反，擦除NAND器件是以8～32KB的块进行的，执行相同的操作最多只需要4ms。因为嵌入式经常跑一些比较小的程序，不一定要启动操作系统。代码比较小，直接放进NOR Flash运行比较方便，也不用启动DRAM。但是因为放进NOR Flash的速度实在是太慢了，所以用一个IRAM（SRAM）来实现这个功能。</p>
+<p>开机后，NOR Flash启动IRAM启动看门狗之类的初始化，然后NOR Flash将外存相应的代码2放进SRAM，这个外存可以是NAND，也可以是SD卡，或者直接用usb端口/串口端口下载数据到SRAM，不用NOR Flash找（电脑传输数据），这个就是代码1的功能，代码1放在NOR Flash里面，也在NOR Flash里面运行。如果是比较小的代码，通常用usb端口或者串口端口来下载（当时粤嵌实验下载代码用的就是串口端口），直接下载到IRAM，然后运行，但是断电之后就会丢失数据（所以每次实验都要重新下载代码）。</p>
+<p><img src="/images/20200430_7.png" alt></p>
+<p>如果是启动操作系统的话一般NOR Flash启动IRAM，IRAM启动NAND和DRAM，然后DRAM运行操作系统。代码1在NOR Flash里面，也在NOR Flash里面执行；代码2在NAND Flash里面，但是被NOR Flash放到SRAM里面执行；操作系统在NAND Flash里面，被SRAM放到DRAM里面执行。</p>
+<p><img src="/images/20200430_8.png" alt></p>
+<p>注意：为什么要放来放去，一个是代码只能在NOR Flash、IRAM、DRAM里面运行，NOR Flash太慢了，DRAM第二阶段初始前不能使用。另一个是代码只能放在NOR Flash（启动代码1）和NAND Flash（启动代码2、操作系统）里面，等到要用的时候就从这两个拿出来给SRAM和DRAM运行。</p>
+<p>NAND Flash不能运行代码，IRAM是断电丢失数据，所以只能从NAND Flash搬代码到IRAM去运行，然后初始化DRAM，这个时候DRAM就能运行代码，于是IRAM又将NAND的操作系统搬过去，然后DRAM运行代码，就能启动操作系统。</p>
+<p>至于为什么第一副图IRAM没有去NAND Flash取代码，是因为嵌入式开发板有好几种启动模式，当你拨动一个开关的时候，如果是usb模式（代码1负责识别），IRAM就不会去NAND Flash找代码；如果是SD卡/emmc模式，IRAM就会去找SD卡或者NAND。</p>
+<h4 id="不同系统的存储器配置"><a href="#不同系统的存储器配置" class="headerlink" title="不同系统的存储器配置"></a>不同系统的存储器配置</h4><p>现在的电脑：很小容量的BIOS（NOR Flash）+ 很大容量的硬盘（SSD或者HDD）+ 大容量的DRAM（DDR3或者DDR4）。</p>
+<p>一般的单片机：很小容量的NOR Flash + 很小容量的SRAM。</p>
+<p>嵌入式系统：SoC内置IRAM（SRAM） + SoC内置IROM（NOR Flash）+外接的大容量Nand Flash + 外接大容量DRAM（DDR2） 。</p>
+<p>更多内容可以查看下面链接<br><a href="https://blog.csdn.net/zhanghuiliang/article/details/2450583" target="_blank" rel="noopener">存储器分类及定义</a><br><a href="https://www.ednchina.com/news/20170727memory.html" target="_blank" rel="noopener">5种传统+3种新型存储器大剖析：我国能否打破巨头垄断？</a></p>
+<h3 id="ARM汇编"><a href="#ARM汇编" class="headerlink" title="ARM汇编"></a>ARM汇编</h3><h4 id="机器指令、伪指令、宏指令"><a href="#机器指令、伪指令、宏指令" class="headerlink" title="机器指令、伪指令、宏指令"></a>机器指令、伪指令、宏指令</h4><p>机器指令被处理器直接执行，伪指令和宏指令不能。机器指令包括ARM指令集和Thumb指令集（经常简称指令）；</p>
+<p>伪指令是在源程序汇编期间，由汇编编译器处理。其作用是为汇编程序完成准备工作;</p>
+<p>宏指令在程序中用于调用宏，宏是一段独立的程序代码；在程序汇编时，对宏调用进行展开，用宏体代替宏指令。</p>
+<p>ARM指令和ARM伪指令之间的本质区别是：<br>ARM指令有一一对应的机器码。ARM汇编器在汇编ARM指令时，每条ARM指令都有一条对应的机器码，这是固定的对应关系。</p>
+<p>ARM伪指令没有一一对应的机器码。ARM汇编器在编译一条伪指令时，会使用一条或几条ARM指令的机器码来实现一条ARM伪指令的功能，在不同的上下文环境中，同样一条ARM伪指令汇编后得到的机器指令是不同的（机械指令编译成二进制文件是一样的，但放在不同位置的同样的伪指令编译出来的二进制代码是有可能不同的）。</p>
+<h4 id="ARM汇编指令"><a href="#ARM汇编指令" class="headerlink" title="ARM汇编指令"></a>ARM汇编指令</h4><p>ARM汇编指令很多，但是真正常用的不是很多。<br>比较有用的是MOV、B、BL、LDR、STR</p>
+<p>mov r1, #0x53000000   ;立即数寻址方式<br>mov r2, #0x0<br>str r2, [r1]</p>
+<h5 id="MOV"><a href="#MOV" class="headerlink" title="MOV"></a>MOV</h5><p>MOV掌握几个寻址方式就可以了，而且ARM的立即数寻址方式，立即数要求以“#”作前缀，对于十六进制的数，还要求在#后面加上0x或者&amp;。</p>
+<h5 id="STR"><a href="#STR" class="headerlink" title="STR"></a>STR</h5><p>STR是比较重要的指令了，跟它对应的是LDR。ARM指令集是加载/存储型的，也就是说它只处理在寄存器中的数据。那么对于系统存储器的访问就经常用到STR和LDR了。STR是把寄存器上的数据传输到指定地址的存储器（内存）上。格式：</p>
+<p>STR(条件)  源寄存器，&lt;存储器地址&gt;<br>比如 STR R0, [R1] ，意思是R0-&gt; [R1]，它把源寄存器写在前面，跟MOV、LDR相反。</p>
+<h5 id="LDR"><a href="#LDR" class="headerlink" title="LDR"></a>LDR</h5><p>LDR就是把数据从存储器传输到寄存器上。而且有个伪指令也是LDR。</p>
+<p>ldr r2,#0x55aa        ;LDR指令<br>ldr r2,=0x55aa        ;LDR伪指令</p>
+<p>作为伪指令的时候，LDR的格式如下：<br>LDR 寄存器，=数字常量/Label</p>
+<p>它的作用是把一个32位的地址或者常量调入寄存器。大家可能会问，LDR指令也可以吧？应该是这样的。不过，LDR是伪指令，编译时编译器会处理它。规则如下：如果该数字常量在MOV指令范围内，汇编器会把这个指令作为MOV（变成MOV指令）。如果不在MOV范围中，汇编器把该常量放在程序后面，用LDR来读取（变成LDR指令），PC和该常量的偏移量不能超过4KB。</p>
+<p>伪指令LDR{cond} register, ={expr|label-expr}<br>expr为32位常量。编译器根据expr的取值情况来处理这条伪指令：<br>1、当expr表示的地址没有超过mov或mvn指令中地址的取值范围时，编译器用合适的mov指令或mvn指令代替该LDR伪指令。<br>2、当expr表示的地址超过了mov或mvn指令中地址的取值范围时，编译器将该常数放在缓冲区中，同时用一条基于PC的LDR指令读取该常数。</p>
+<p>通过上面两种可以得出伪指令LDR和ARM指令LDR的区别，具体使用时，可以不用考虑二者的区别，由编译器决定的，你只要清楚它的功能就行。</p>
+<h5 id="跳转指令"><a href="#跳转指令" class="headerlink" title="跳转指令"></a>跳转指令</h5><p>ARM有两种跳转方式。<br>（1）mov pc &lt;跳转地址&gt;<br>这种向程序计数器PC直接写跳转地址，能在4GB连续空间内任意跳转。<br>（2）通过 B BL BLX BX 可以完成在当前指令向前或者向后32MB的地址空间的跳转（为什么是32MB呢？寄存器是32位的，此时的值是24位有符号数，所以32MB）。</p>
+<h5 id="B"><a href="#B" class="headerlink" title="B"></a>B</h5><p>B是最简单的跳转指令。要注意的是，跳转指令的实际值不是绝对地址，而是相对地址——是相对当前PC值的一个偏移量，它的值由汇编器计算得出。</p>
+<h5 id="BL"><a href="#BL" class="headerlink" title="BL"></a>BL</h5><p>BL非常常用。它在跳转之前会用寄存器LR(R14)中保存PC的当前内容。BL的经典用法如下：</p>
+<p>bl NEXT ; 跳转到NEXT<br>……<br>NEXT:</p>
+<p>;代码<br>……<br>mov pc, lr    ;从子程序返回</p>
+<h5 id="Thumb指令"><a href="#Thumb指令" class="headerlink" title="Thumb指令"></a>Thumb指令</h5><p>ARM体系结构还支持16位的Thumb指令集。Thumb指令集是ARM指令集的子集，它保留了32位代码优势的同时还大大节 省了存储空间。由于Thumb指令集的长度只有16位，所以它的指令比较多。它和ARM各有自己的应用场合。对于系统性能有较高要求，应使用32位存储系 统和ARM指令集；对于系统成本和功耗有较高要求，应使用16位存储系统和ARM指令集。</p>
+<p>更多内容可以查看下面链接<br><a href="https://blog.csdn.net/qq_40531974/article/details/83897559" target="_blank" rel="noopener">ARM汇编指令集汇总</a></p>
+<h3 id="5G"><a href="#5G" class="headerlink" title="5G"></a>5G</h3><p>其实说实话，我对5G没什么了解，只知道G是generation，5G就是第5代通讯的意思，然后5G大致有三个发展方向，一个是速度快，第二个是延迟短，第三是广泛连接。</p>
+<p>分别体现在eMBB（Enhanced Mobile Broadband，增强移动宽带）、uRLLC（Ultra-reliable and Low Latency Communications，超高可靠与低时延通信）、mMTC（大规模物联网）三个技术层面上。</p>
+<p>eMBB发展的好处显而易见，能够快速传输数据，和中国9亿网民息息相关。</p>
+<p>uRLLC发展的好处是什么？还有人会不会在想网速快就延迟短？其实，网速慢不代表延迟一定高，网速快不代表延迟低。具体原理不展开了，大家可以去百度一下。延迟短，就意味着能够接近实时。华为有个广告就是两个半架的钢琴：两个地方，每个地方半架钢琴，两个人一起演奏，声音传输到屏幕上几乎没有延迟。这个技术还可以用来进行远程医疗等。</p>
+<p>mMTC发展的目标很明确了，就是物联网，广泛的连接，使得智能家居、甚至智能城市发展更加迅速。</p>
+<p>想要了解更多，比如中国5G在面向消费者（5G手机）、运营商（基站设备）、网络架构等方面可以查看下面这两篇文章。</p>
+<p><a href="https://mp.weixin.qq.com/s/OPR1o6s7T4Li1KtHgQoYkg" target="_blank" rel="noopener">5G啊5G，你是不是只比4G多一G？</a><br><a href="https://xueqiu.com/3317448239/133320342?sharetime=2" target="_blank" rel="noopener">中国5G的真正实力，终于有人说明白了！</a></p>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#嵌入式"><span class="toc-text">嵌入式</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#嵌入式概念"><span class="toc-text">嵌入式概念</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#ARM公司"><span class="toc-text">ARM公司</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#指令集架构、arm内核、芯片型号"><span class="toc-text">指令集架构、arm内核、芯片型号</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开发板组成"><span class="toc-text">开发板组成</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#内部寄存器"><span class="toc-text">内部寄存器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#运行模式"><span class="toc-text">运行模式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#异常向量表"><span class="toc-text">异常向量表</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#外部寄存器"><span class="toc-text">外部寄存器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#独立编址-amp-统一编址"><span class="toc-text">独立编址&amp;统一编址</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#看门狗"><span class="toc-text">看门狗</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存储器"><span class="toc-text">存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#存储器概念"><span class="toc-text">存储器概念</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#RAM"><span class="toc-text">RAM</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#SRAM（Static-RAM，静态随机存取存储器）"><span class="toc-text">SRAM（Static RAM，静态随机存取存储器）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#DRAM（Dynamic-RAM，动态随机存取存储器）"><span class="toc-text">DRAM（Dynamic RAM，动态随机存取存储器）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#SDRAM（Synchronous-DRAM，同步动态随机存取存储器）"><span class="toc-text">SDRAM（Synchronous DRAM，同步动态随机存取存储器）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#DDR-SDRAM（Double-Data-Rate二倍速率同步动态随机存取存储器）"><span class="toc-text">DDR SDRAM（Double Data Rate二倍速率同步动态随机存取存储器）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#DDRII-DDR2-Double-Data-Rate-2，第二代同步双倍速率动态随机存取存储器"><span class="toc-text">DDRII /DDR2(Double Data Rate 2，第二代同步双倍速率动态随机存取存储器)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#DDR3-Double-Data-Rate-3，第三代同步双倍速率动态随机存取存储器"><span class="toc-text">DDR3(Double Data Rate 3，第三代同步双倍速率动态随机存取存储器)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#DDR4-Double-Data-Rate-4，第四代同步双倍速率动态随机存取存储器"><span class="toc-text">DDR4(Double Data Rate 4，第四代同步双倍速率动态随机存取存储器)</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IRAM（internal-RAM，内部随机存取存储器）"><span class="toc-text">IRAM（internal RAM，内部随机存取存储器）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ROM-READ-Only-Memory，只读存储器"><span class="toc-text">ROM(READ Only Memory，只读存储器)</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MASK-ROM（掩模型只读存储器）"><span class="toc-text">MASK ROM（掩模型只读存储器）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PROM（Programmable-ROM，可编程只读存储器）"><span class="toc-text">PROM（Programmable ROM，可编程只读存储器）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EPROM（Erasable-Programmable，可擦可编程只读存储器）"><span class="toc-text">EPROM（Erasable Programmable，可擦可编程只读存储器）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#EEPROM（Electrically-Erasable-Programmable，电可擦可编程只读存储器）"><span class="toc-text">EEPROM（Electrically Erasable Programmable，电可擦可编程只读存储器）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Flash-Memory（快闪存储器）"><span class="toc-text">Flash Memory（快闪存储器）</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#NOR-Flash（Not-OR-Flash）"><span class="toc-text">NOR Flash（Not OR Flash）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#NAND-Flash（Not-AND-Flash）"><span class="toc-text">NAND Flash（Not AND Flash）</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#IROM（internal-ROM，内部只读存储器）"><span class="toc-text">IROM（internal ROM，内部只读存储器）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#不同系统的存储器配置"><span class="toc-text">不同系统的存储器配置</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ARM汇编"><span class="toc-text">ARM汇编</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#机器指令、伪指令、宏指令"><span class="toc-text">机器指令、伪指令、宏指令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ARM汇编指令"><span class="toc-text">ARM汇编指令</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#MOV"><span class="toc-text">MOV</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#STR"><span class="toc-text">STR</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#LDR"><span class="toc-text">LDR</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#跳转指令"><span class="toc-text">跳转指令</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#B"><span class="toc-text">B</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#BL"><span class="toc-text">BL</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#Thumb指令"><span class="toc-text">Thumb指令</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5G"><span class="toc-text">5G</span></a></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2020-04-30-嵌入式知识梳理/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2022-09-18-低功耗蓝牙/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2020-02-05-x210开发板/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>

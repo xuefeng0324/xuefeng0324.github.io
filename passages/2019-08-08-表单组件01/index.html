@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+  
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta name="author" content="Peng Xuefeng">
+  
+  
+  <title>表单组件01 | Mylog</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+
+
+
+
+  
+    <meta name="keywords" content="微信小程序,微信小程序组件之表单组件,">
+  
+
+  
+  <meta name="description" content="button、checkbox、form">
+
+  
+
+  
+    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.1/dist/av-min.js" async></script>
+  
+
+  
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  
+
+  
+    <script src="//unpkg.com/valine/dist/Valine.min.js" async></script>
+  
+
+  
+
+
+
+
+
+
+  <script>
+  // theme-ad's config script
+  // it can be used in every script
+  
+  window.AD_CONFIG = {
+    leancloud: {"appid":"NEkcFXWlMNvrkLMaEswSfvM5-gzGzoHsz","appkey":"lqM12chVkQBDlkx4JFfQt8AE","comment":true,"count":true},
+    welcome: {"enable":"ture","interval":30},
+    start_time: "2019-07-01",
+    passwords: ["3cfd009be3e1c39b5075a477f946fbd5322ac1a8176d9fc527e38fd6a0f246c3", ],
+    is_post: true,
+    lock: false,
+    author: "Peng Xuefeng",
+    share: {"twitter":true,"facebook":true,"weibo":true,"qq":true,"wechat":true},
+    mathjax: true,
+    page_type: "",
+    root: "/"
+  };
+</script>
+
+  <script src="/vendor/sha256.min.js"></script>
+<script src="/js/auth.js"></script>
+<script src="/js/index.js"></script>
+<script src="/vendor/qrcode.min.js"></script>
+
+  
+    <link rel="icon" href="/images/favicon.ico">
+    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/index.css">
+<link rel="stylesheet" href="/styles/components/highlight/highlight.css">
+
+  
+
+
+</head>
+  <body>
+    <header class="site-header">
+  <div class="site-header-brand">
+    
+      <span class="site-header-brand-title">
+        <a href="/">HI</a>
+      </span>
+    
+    
+      <span class="site-header-brand-motto"> | 安静写些东西</span>
+    
+  </div>
+  <div class="site-header-right">
+    <nav class="site-header-navigation">
+      
+        <a href="/" target="_self">首页</a>
+      
+        <a href="/archives/" target="_self">归档</a>
+      
+        <a href="/tags/" target="_self">标签</a>
+      
+        <a href="/categories/" target="_self">分类</a>
+      
+        <a href="/friends/" target="_self">友链</a>
+      
+        <a href="/about/" target="_self">关于</a>
+      
+       
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+    </nav>
+    <div class="site-header-btn">
+      
+        <a href="https://github.com/xuefeng0324" target="_blank" id="site-github">
+          <i class="fa fa-github-alt"></i>
+        </a>
+      
+        <a href="javascript:void(0);" id="site-search">
+        <i class="fa fa-search"></i>
+      </a>
+      <a href="javascript:void(0);" id="site-nav-btn">
+        <i class="fa fa-ellipsis-v"></i>
+      </a>
+    </div>
+  </div>
+</header>
+<nav class="table-content" id="site-nav">
+  <div class="table-content-title">
+    <span>导航</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc">
+      
+        <li class="toc-item">
+          <a href="/" target="_self">
+            首页
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/archives/" target="_self">
+            归档
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/tags/" target="_self">
+            标签
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/categories/" target="_self">
+            分类
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/friends/" target="_self">
+            友链
+          </a>
+        </li>
+      
+        <li class="toc-item">
+          <a href="/about/" target="_self">
+            关于
+          </a>
+        </li>
+      
+      <li class="toc-item">
+          
+          <a href="#" title="搜索博客" class="st-search-show-outputs">搜索</a>
+      
+        </li>
+    </ol>
+  </div>
+</nav>
+
+
+<div id="site-process"></div>
+    <main>
+      
+  <div class="passage">
+
+<!-- Table of Contents -->
+
+
+
+
+
+  <div class="passage-meta">
+    <span>
+      <i class="fa fa-calendar"></i>2019-08-09
+    </span>
+    
+      <span>
+        | <a href="/categories/微信小程序/"><i class="fa fa-bookmark"></i>微信小程序</a>
+      </span>
+    
+    
+      <span>
+        | <i class="fa fa-unlock-alt"></i>UNLOCK
+      </span>
+    
+  </div>
+  <h1 class="passage-title">
+    表单组件01
+  </h1>
+  
+  <article class="passage-article">
+    <!-- toc -->
+
+<ul>
+<li><a href="#button组件按钮">button组件（按钮）</a><ul>
+<li><a href="#wxml文件代码">wxml文件代码</a></li>
+<li><a href="#js文件代码">js文件代码</a></li>
+<li><a href="#wxss文件代码">wxss文件代码</a></li>
+</ul>
+</li>
+<li><a href="#checkbox组件多选">checkbox组件（多选）</a><ul>
+<li><a href="#wxml文件代码-1">wxml文件代码</a></li>
+<li><a href="#js文件代码-1">js文件代码</a></li>
+</ul>
+</li>
+<li><a href="#form组件">form组件</a><ul>
+<li><a href="#wxml文件代码-2">wxml文件代码</a></li>
+<li><a href="#js文件代码-2">js文件代码</a></li>
+</ul>
+</li>
+</ul>
+<!-- tocstop -->
+
+<p>因为表单组件目前为止是15个，只选取最重要最常用的记录。</p>
+<h2 id="button组件（按钮）"><a href="#button组件（按钮）" class="headerlink" title="button组件（按钮）"></a>button组件（按钮）</h2><p>button<a href="https://developers.weixin.qq.com/miniprogram/dev/component/button.html" target="_blank" rel="noopener">微信小程序文档</a></p>
+<h3 id="wxml文件代码"><a href="#wxml文件代码" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">//通过函数和数据绑定来改变属性值</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"default"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;defaultSize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"default"</span> <span class="attr">hover-class</span>=<span class="string">"other-button-hover"</span>&gt;</span> default <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;primarySize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"primary"</span>&gt;</span> primary <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"warn"</span> <span class="attr">size</span>=<span class="string">"&#123;&#123;warnSize&#125;&#125;"</span> <span class="attr">loading</span>=<span class="string">"&#123;&#123;loading&#125;&#125;"</span> <span class="attr">plain</span>=<span class="string">"&#123;&#123;plain&#125;&#125;"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">disabled</span>=<span class="string">"&#123;&#123;disabled&#125;&#125;"</span> <span class="attr">bindtap</span>=<span class="string">"warn"</span>&gt;</span> warn <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setDisabled"</span>&gt;</span>点击设置以上按钮disabled属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setPlain"</span>&gt;</span>点击设置以上按钮plain属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">bindtap</span>=<span class="string">"setLoading"</span>&gt;</span>点击设置以上按钮loading属性<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"contact"</span>&gt;</span>进入客服会话<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"getUserInfo"</span> <span class="attr">lang</span>=<span class="string">"zh_CN"</span> <span class="attr">bindgetuserinfo</span>=<span class="string">"onGotUserInfo"</span>&gt;</span>获取用户信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">open-type</span>=<span class="string">"openSetting"</span>&gt;</span>打开授权设置页<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="js文件代码"><a href="#js文件代码" class="headerlink" title="js文件代码"></a>js文件代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> types = [<span class="string">'default'</span>, <span class="string">'primary'</span>, <span class="string">'warn'</span>]</span><br><span class="line"><span class="comment">//pageObject本质应该是代码块，最后的page(pageObject)类似于page(&#123;&#125;)</span></span><br><span class="line"><span class="keyword">var</span> pageObject = &#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    defaultSize: <span class="string">'default'</span>,</span><br><span class="line">    primarySize: <span class="string">'default'</span>,</span><br><span class="line">    warnSize: <span class="string">'default'</span>,</span><br><span class="line">    disabled: <span class="literal">false</span>,</span><br><span class="line">    plain: <span class="literal">false</span>,</span><br><span class="line">    loading: <span class="literal">false</span></span><br><span class="line">  &#125;,</span><br><span class="line">  setDisabled: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      disabled: !<span class="keyword">this</span>.data.disabled</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  setPlain: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      plain: !<span class="keyword">this</span>.data.plain</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  setLoading: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.setData(&#123;</span><br><span class="line">      loading: !<span class="keyword">this</span>.data.loading</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  onGotUserInfo: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.errMsg)</span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.userInfo)</span><br><span class="line">    <span class="built_in">console</span>.log(e.detail.rawData)</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用for循环遍历函数</span></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; types.length; ++i) &#123;</span><br><span class="line">	<span class="comment">//for循环里面两个括号，一个括号放函数，一个括号放数组的元素。不知道是什么结构。</span></span><br><span class="line">  (<span class="function"><span class="keyword">function</span>(<span class="params">type</span>) </span>&#123;</span><br><span class="line">    pageObject[type] = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    	<span class="comment">//这里的key就是上面的按钮名称</span></span><br><span class="line">      <span class="keyword">var</span> key = type + <span class="string">'Size'</span></span><br><span class="line">      <span class="keyword">var</span> changedData = &#123;&#125;</span><br><span class="line">      <span class="comment">//改变按钮名称里面的内容</span></span><br><span class="line">      changedData[key] =</span><br><span class="line">        <span class="keyword">this</span>.data[key] === <span class="string">'default'</span> ? <span class="string">'mini'</span> : <span class="string">'default'</span></span><br><span class="line">        <span class="comment">//设置内容</span></span><br><span class="line">      <span class="keyword">this</span>.setData(changedData)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;)(types[i])</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Page(pageObject)</span><br></pre></td></tr></table></figure>
+
+<h3 id="wxss文件代码"><a href="#wxss文件代码" class="headerlink" title="wxss文件代码"></a>wxss文件代码</h3><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.button-hover</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.other-button-hover</span> &#123;</span><br><span class="line">  <span class="attribute">background-color</span>: blue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="checkbox组件（多选）"><a href="#checkbox组件（多选）" class="headerlink" title="checkbox组件（多选）"></a>checkbox组件（多选）</h2><p>checkbox<a href="https://developers.weixin.qq.com/miniprogram/dev/component/checkbox.html" target="_blank" rel="noopener">微信小程序文档</a></p>
+<h3 id="wxml文件代码-1"><a href="#wxml文件代码-1" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">checkbox-group</span> <span class="attr">bindchange</span>=<span class="string">"checkboxChange"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span> <span class="attr">class</span>=<span class="string">"checkbox"</span> <span class="attr">wx:for</span>=<span class="string">"&#123;&#123;items&#125;&#125;"</span>&gt;</span></span><br><span class="line"> 	//第一个value是标识属性，当选中该选项的时候里面的字符串会被记录下来，打印value的时候会把选中的value全部打印。</span><br><span class="line"> 	//第二个value是数组里面的元素，与第一个value无关。</span><br><span class="line">    <span class="tag">&lt;<span class="name">checkbox</span> <span class="attr">value</span>=<span class="string">"&#123;&#123;item.name&#125;&#125;"</span> <span class="attr">checked</span>=<span class="string">"&#123;&#123;item.checked&#125;&#125;"</span>/&gt;</span>&#123;&#123;item.value&#125;&#125;</span><br><span class="line">  <span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">checkbox-group</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="js文件代码-1"><a href="#js文件代码-1" class="headerlink" title="js文件代码"></a>js文件代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  data: &#123;</span><br><span class="line">    items: [</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'USA'</span>, <span class="attr">value</span>: <span class="string">'美国'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'CHN'</span>, <span class="attr">value</span>: <span class="string">'中国'</span>, <span class="attr">checked</span>: <span class="string">'true'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'BRA'</span>, <span class="attr">value</span>: <span class="string">'巴西'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'JPN'</span>, <span class="attr">value</span>: <span class="string">'日本'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'ENG'</span>, <span class="attr">value</span>: <span class="string">'英国'</span>&#125;,</span><br><span class="line">      &#123;<span class="attr">name</span>: <span class="string">'TUR'</span>, <span class="attr">value</span>: <span class="string">'法国'</span>&#125;,</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  checkboxChange: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'checkbox发生change事件，携带value值为：'</span>, e.detail.value)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="form组件"><a href="#form组件" class="headerlink" title="form组件"></a>form组件</h2><p>form<a href="https://developers.weixin.qq.com/miniprogram/dev/component/form.html" target="_blank" rel="noopener">微信小程序文档</a></p>
+<h3 id="wxml文件代码-2"><a href="#wxml文件代码-2" class="headerlink" title="wxml文件代码"></a>wxml文件代码</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">bindsubmit</span>=<span class="string">"formSubmit"</span> <span class="attr">bindreset</span>=<span class="string">"formReset"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section section_gap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section__title"</span>&gt;</span>switch<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">switch</span> <span class="attr">name</span>=<span class="string">"switch"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section section_gap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section__title"</span>&gt;</span>slider<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">slider</span> <span class="attr">name</span>=<span class="string">"slider"</span> <span class="attr">show-value</span> &gt;</span><span class="tag">&lt;/<span class="name">slider</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section__title"</span>&gt;</span>input<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">name</span>=<span class="string">"input"</span> <span class="attr">placeholder</span>=<span class="string">"please input here"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section section_gap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section__title"</span>&gt;</span>radio<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">radio-group</span> <span class="attr">name</span>=<span class="string">"radio-group"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">radio</span> <span class="attr">value</span>=<span class="string">"radio1"</span>/&gt;</span>radio1<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">radio</span> <span class="attr">value</span>=<span class="string">"radio2"</span>/&gt;</span>radio2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">radio-group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section section_gap"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"section__title"</span>&gt;</span>checkbox<span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">checkbox-group</span> <span class="attr">name</span>=<span class="string">"checkbox"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">checkbox</span> <span class="attr">value</span>=<span class="string">"checkbox1"</span>/&gt;</span>checkbox1<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">label</span>&gt;</span><span class="tag">&lt;<span class="name">checkbox</span> <span class="attr">value</span>=<span class="string">"checkbox2"</span>/&gt;</span>checkbox2<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">checkbox-group</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">view</span> <span class="attr">class</span>=<span class="string">"btn-area"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">form-type</span>=<span class="string">"submit"</span>&gt;</span>Submit<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">form-type</span>=<span class="string">"reset"</span>&gt;</span>Reset<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="js文件代码-2"><a href="#js文件代码-2" class="headerlink" title="js文件代码"></a>js文件代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Page(&#123;</span><br><span class="line">  formSubmit: <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'form发生了submit事件，携带数据为：'</span>, e.detail.value)</span><br><span class="line">  &#125;,</span><br><span class="line">  formReset: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'form发生了reset事件'</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+  </article>
+  <aside class="table-content" id="site-toc">
+  <div class="table-content-title">
+    <i class="fa fa-arrow-right fa-lg" id="site-toc-hide-btn"></i>
+    <span>目录</span>
+  </div>
+  <div class="table-content-main">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#button组件（按钮）"><span class="toc-text">button组件（按钮）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wxml文件代码"><span class="toc-text">wxml文件代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js文件代码"><span class="toc-text">js文件代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wxss文件代码"><span class="toc-text">wxss文件代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#checkbox组件（多选）"><span class="toc-text">checkbox组件（多选）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wxml文件代码-1"><span class="toc-text">wxml文件代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js文件代码-1"><span class="toc-text">js文件代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#form组件"><span class="toc-text">form组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wxml文件代码-2"><span class="toc-text">wxml文件代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js文件代码-2"><span class="toc-text">js文件代码</span></a></li></ol></li></ol>
+  </div>
+</aside>
+  
+    <aside class="passage-copyright">
+      <div>本文作者: 彭雪峰</div>
+      
+        <div>
+          原文链接: 
+          <a href="" target="_blank">https://xuefeng0324.github.io/passages/2019-08-08-表单组件01/</a>
+        </div>
+      
+      <div>
+        版权声明: 本博客所有文章除特别声明外, 均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> 许可协议. 转载请注明出处!
+      </div>
+    </aside>
+  
+  
+    <div class="passage-tags">
+     
+      <a href="/tags/微信小程序组件之表单组件/"><i class="fa fa-tags"></i>微信小程序组件之表单组件</a>
+    
+    </div>
+  
+</div>
+
+    </main>
+    
+      
+<div class="site-comment-contanier" data-plateform="leancloud">
+  
+    <p id="site-comment-info">
+      <i class="fa fa-spinner fa-spin"></i> 评论加载中
+    </p>
+    <div id="site-comment"></div>
+  
+</div>
+    
+    <div class="site-footer-wrapper">
+  <footer class="site-footer">
+    
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">博客推荐</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/" target="_blank">GodBMW</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://tari0510.github.io/" target="_blank">某大佬的个人网站</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">系列教程</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/categories/webpack4%E7%B3%BB%E5%88%97%E6%95%99%E7%A8%8B/" target="_blank">webpack4系列教程</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://godbmw.com/design-patterns/" target="_blank">设计模式手册</a>
+            </span>
+          
+        </div>
+      
+        <div class="site-footer-col">
+          <h5 class="site-footer-title">有问题</h5>
+          
+            <span class="site-footer-item">
+              <a href="https://www.baidu.com/" target="_blank">百度一下</a>
+            </span>
+          
+            <span class="site-footer-item">
+              <a href="https://www.google.cn" target="_blank">谷歌一下</a>
+            </span>
+          
+        </div>
+      
+    
+    <div class="site-footer-info">
+      <i class="fa fa-clock-o"></i> 本站已稳定运行<span id="site-time"></span>
+    </div>
+    
+      <div class="site-footer-info">
+        <i class="fa fa-paw"></i> 您是本站第 <span id="site-count"></span> 位访客
+      </div>
+    
+    
+      <div class="site-footer-info">
+        <i class="fa fa-at"></i> Email: 1150390191@qq.com
+      </div>
+    
+    <div class="site-footer-info">
+      <i class="fa fa-copyright"></i> 
+      2019 <a href="https://github.com/dongyuanxin/theme-ad/" target="_blank">Theme-AD</a>.
+      Created by <a href="https://godbmw.com/" target="_blank">GodBMW</a>.
+      All rights reserved.
+    </div>
+          <body>
+</script>
+    <script type="text/javascript">
+  (function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+  (w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+  e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+  })(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+  
+  _st('install','zmpwYeV-CpHfi2xHtEBD','2.0.0');
+</script>
+    </body>
+  </footer>
+</div>
+
+
+
+
+
+
+
+
+
+    <div id="site-layer" style="display:none;">
+  <div class="site-layer-content">
+    <div class="site-layer-header">
+      <span class="site-layer-header-title" id="site-layer-title"></span>
+      <i class="fa fa-close" id="site-layer-close"></i>
+    </div>
+    <div class="site-layer-body" id="site-layer-container">
+      <div class="site-layer-input" id="site-layer-search" style="display: none;">
+        <div class="site-layer-input-choose">
+          <a href="javascript:void(0);" title="Change Search Engine">Google</a>
+        </div>
+        <input type="text">
+        <i class="fa fa-search"></i>
+      </div>
+      
+        <div class="site-layer-reward" id="site-layer-reward" style="display: none;">
+          
+            <div>
+              <img src="/images/wechat.png" alt="WeChat">
+              
+                <p>WeChat</p>
+              
+            </div>
+          
+            <div>
+              <img src="/images/alipay.png" alt="AliPay">
+              
+                <p>AliPay</p>
+              
+            </div>
+          
+        </div>
+      
+      <div id="site-layer-welcome" style="display:none;"></div>
+    </div>
+  </div>
+</div>
+    
+
+<div class="bottom-bar">
+  <div class="bottom-bar-left">
+    <a href="/passages/2019-08-31-表单组件02/" data-enable="true">
+      <i class="fa fa-arrow-left"></i>
+    </a>
+    <a href="/passages/2019-08-06-rich-text/" data-enable="true">
+      <i class="fa fa-arrow-right"></i>
+    </a>
+  </div>
+  <div class="bottom-bar-right">
+    <a href="javascript:void(0);" data-enable="true" id="site-toc-show-btn">
+      <i class="fa fa-bars"></i>
+    </a>
+    
+      <a href="#site-comment" data-enable="true">
+        <i class="fa fa-commenting"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="site-toggle-share-btn">
+      <i class="fa fa-share-alt"></i>
+    </a>
+    
+      <a href="javascript:void(0);" id="site-reward">
+        <i class="fa fa-thumbs-up"></i>
+      </a>
+    
+    <a href="javascript:void(0);" id="back-top-btn">
+      <i class="fa fa-chevron-up"></i>
+    </a>
+  </div>
+</div>
+    <div id="share-btn">
+  
+    <a id="share-btn-twitter" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-twitter"></i>
+    </a>
+  
+  
+    <a id="share-btn-facebook" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-facebook"></i>
+    </a>
+  
+  
+    <a id="share-btn-weibo" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-weibo"></i>
+    </a>
+  
+  
+    <a id="share-btn-qq" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-qq"></i>
+    </a>
+  
+  
+    <a id="share-btn-wechat" href="javascript:void(0);" target="_blank">
+      <i class="fa fa-wechat"></i>
+    </a>
+  
+</div>
+    
+  <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+  <script async>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '');
+  </script>
+
+
+
+  <script async>
+  (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+          bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      }
+      else {
+          bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+  })();
+  </script>
+
+
+
+
+    
+  </body>
+</html>
