@@ -223,7 +223,9 @@
 </li>
 <li><a href="#gap">gap</a><ul>
 <li><a href="#主机和从机">主机和从机</a></li>
-<li><a href="#蓝牙广">蓝牙广</a></li>
+<li><a href="#蓝牙广播-从机发送">蓝牙广播-从机发送</a></li>
+<li><a href="#扫描请求-主机发送-扫描响应-从机响应">扫描请求-主机发送 扫描响应-从机响应</a></li>
+<li><a href="#蓝牙状态机">蓝牙状态机</a></li>
 </ul>
 </li>
 <li><a href="#gatt">gatt</a><ul>
@@ -231,13 +233,6 @@
 <li><a href="#service">service</a></li>
 <li><a href="#characteristic">characteristic</a></li>
 <li><a href="#uuid">uuid</a></li>
-</ul>
-</li>
-<li><a href="#组成">组成</a><ul>
-<li><a href="#内存的访问方式">内存的访问方式</a></li>
-<li><a href="#io的访问方式">io的访问方式</a></li>
-<li><a href="#冯诺依曼结构与哈佛结构">冯诺依曼结构与哈佛结构</a></li>
-<li><a href="#寄存器">寄存器</a></li>
 </ul>
 </li>
 </ul>
@@ -268,11 +263,154 @@
 <h6 id="主机和从机"><a href="#主机和从机" class="headerlink" title="主机和从机"></a>主机和从机</h6><ul>
 <li>主机和从机是相对的概念，又可以称为主设备/中心/中心设备（Central）和从设备/外设/外围设备（Peripheral）等等。举个简单的例子，我们在使用手机搜索、连接和控制家里的BLE设备的时候，我们的手机就是主机，设备就是从机。一个主机可以同时连接多个从机，一个从机同一时间只能被一个主机连接。</li>
 </ul>
-<h6 id="蓝牙广"><a href="#蓝牙广" class="headerlink" title="蓝牙广"></a>蓝牙广</h6><ul>
+<h6 id="蓝牙广播-从机发送"><a href="#蓝牙广播-从机发送" class="headerlink" title="蓝牙广播-从机发送"></a>蓝牙广播-从机发送</h6><ul>
 <li><p>信道，指通信的通道，是信号传输的媒介，信道按照传输媒介可以分为有线信道与无线信道两类：有线信道-明线、电缆、光纤等；无线信道-利用电磁波在自由空间传播来传输信号，如短波电离层反射信道、微波中继信道、卫星信道等。对于无线电波而言，它从发送端到接收端，其间并没有一个有形的连接，但是我们为了形象地描述发送端与接收端之间的工作，想象两者之间有一个看不见的道路衔接，即信道。</p>
 </li>
-<li><p>低功耗蓝牙工作在2.4GHz频段，频率范围为 2402MHz–2480MHz，每2MHz一个信道，共40个信道，其中为3个广播信道，剩余的37为个数据信道。为了防止互相干扰，37、38、39这3个广播信道的频率隔的比较远。<br><img src="/images/%E8%93%9D%E7%89%99%E4%BF%A1%E9%81%93.jpg" alt></p>
+<li><p>低功耗蓝牙工作在2.4GHz频段，频率范围为2402MHz–2480MHz，每2MHz一个信道，共40个信道，其中为3个广播信道，剩余的37为个数据信道。为了防止主机扫描广播时，从机相邻的广播信道互相干扰，37、38、39这3个广播信道的频率隔的比较远。蓝牙广播就是在这3个广播信道上，以一定的数据格式通过电磁波发射数据，并使用跳频机制，一次广播事件开始于37信道，经过38信道，结束于39信道，即在3个信道上连续跳频（<a href="https://www.cnblogs.com/ethan-yan/p/14721881.html" target="_blank" rel="noopener">BLE链路层的广播事件</a>）。<br><img src="/images/%E8%93%9D%E7%89%99%E4%BF%A1%E9%81%93.jpg" alt></p>
 </li>
+<li><p>蓝牙广播数据格式：蓝牙广播包的最大长度是37个字节，其中设备地址（MAC）占用了6个字节，只有31个字节是可用的。这31个可用的字节又按照一定的格式来组织，被分割为n个广播数据结构体（AD Structure）。</p>
+</li>
+<li><p>每个AD Structure包含又包含三部分，分别是：Length(1字节) + AD Type(1字节) + AD Data(n字节)，其中Length = AD Type 长度 + AD Data 长度；AD Type 需要查询蓝牙组织联盟的相关文档，里面有详细的说明（下载链接：<a href="https://btprodspecificationrefs.blob.core.windows.net/assigned-numbers/Assigned%20Number%20Types/Generic%20Access%20Profile.pdf" target="_blank" rel="noopener">Generic Access Profile</a>）；如果所有的广播数据结构体的长度少于31个字节，则后面的补0。<br><img src="/images/%E5%B9%BF%E6%92%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" alt></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">广播数据类型</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x01</td>
+<td align="center">设备标识（flag）</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">缩略的设备名称</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">完整的设备名称（UTF-8）</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">发射功率</td>
+</tr>
+<tr>
+<td align="center">0x19</td>
+<td align="center">设备外观</td>
+</tr>
+<tr>
+<td align="center">0xFF</td>
+<td align="center">厂商自定义数据</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>打开nrf connect软件，扫描蓝牙设备，点击相应的蓝牙设备（不是连接），展开详情页面，可以看到当前蓝牙设备广播的数据。点击RAW可以查看16进制的原始广播数据。<br><img src="/images/nrf-connect.png" alt></p>
+</li>
+<li><p>一般来说，普通蓝牙设备的广播开头都是0x02,0x01,0x06。即Length = 2，AD Type = 1，AD Data = 0x06。AD Type 为1表示的是设备标识，AD Data这一个字节的含义如下：</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">数据位</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">bit0</td>
+<td align="center">LE有限可发现模式</td>
+</tr>
+<tr>
+<td align="center">bit1</td>
+<td align="center">LE普通可发现模式</td>
+</tr>
+<tr>
+<td align="center">bit2</td>
+<td align="center">不支持BR/EDR(经典蓝牙)</td>
+</tr>
+<tr>
+<td align="center">bit3</td>
+<td align="center">控制器同时支持BR/EDR/LE</td>
+</tr>
+<tr>
+<td align="center">bit4</td>
+<td align="center">主机端同时支持BR/EDR/LE</td>
+</tr>
+<tr>
+<td align="center">bit5-7</td>
+<td align="center">保留</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>普通的蓝牙设备只支持LE(低功耗蓝牙)，不支持BR/EDR(经典蓝牙)，一般都将设备设为处于普通发现模式，Bit1和Bit2置1，即0x06（b00000110）。</p>
+</li>
+<li><p>蓝牙广播类型</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="center">类型</th>
+<th align="center">含义</th>
+<th align="center">广播内容</th>
+<th align="center">可被连接</th>
+<th align="center">扫描响应</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">可连接非定向</td>
+<td align="center">最常用的广播方式</td>
+<td align="center">正常广播包</td>
+<td align="center">是</td>
+<td align="center">支持</td>
+</tr>
+<tr>
+<td align="center">可连接定向</td>
+<td align="center">用于快速连接</td>
+<td align="center">定向广播包</td>
+<td align="center">是</td>
+<td align="center">不支持</td>
+</tr>
+<tr>
+<td align="center">不可连接非定向</td>
+<td align="center">用于信标、传感器</td>
+<td align="center">正常广播包</td>
+<td align="center">否</td>
+<td align="center">不支持</td>
+</tr>
+<tr>
+<td align="center">可扫描非定向</td>
+<td align="center">可扫描不可连接非定向</td>
+<td align="center">正常广播包</td>
+<td align="center">否</td>
+<td align="center">支持</td>
+</tr>
+</tbody></table>
+<ul>
+<li><p>可连接非定向广播，该设备提供了能与之建立链路层连接的功能；非定向的意思是，并非只有某个特定的设备才能与之建立连接。可连接非定向合起来的意思是，所有收到该广播的设备，都可与之建立链路层连接(可以通过设置设备地址里的1bit来决定该设备是私有设备还是公有设备)</p>
+</li>
+<li><p>可连接定向广播，是指明了对方设备地址的，为之提供了连接功能的广播包。简而言之就是，只有广播包中指定的那个设备才能与之建立链路层连接，其余设备的连接请求均被忽略。</p>
+</li>
+<li><p>不可连接广播，通常用于向周围的设备周期性的广播一些特定的信息，附近的任何设备都可以接收这种广播包，但不可与之建立连接。例如，这种广播包可用于防丢器的应用场景，在一些容易丢弃的物件上内置BLE芯片，并周期性的广播不可连接广播包，手机扫描这种广播包，同时也会获得这种广播包的接收信号强度（RSSI），接收信号强度是与距离相关的，手机离设备远的时候，它的强度就弱，弱到一定程度手机就会发出报警声，表示物件已经离开手机很远了。</p>
+</li>
+<li><p>扫描不可连接非定向，是广播者发出的空中包，它会携带广播数据，同时也会响应其他设备的扫描请求，但与可连接非定向广播包不同的是，他不能响应其他设备的连接请求。简而言之就是，可获取设备信息（广播数据和扫描响应中的数据），但不能被连接。</p>
+</li>
+</ul>
+<p><a href="https://www.cnblogs.com/ethan-yan/p/14721055.html" target="_blank" rel="noopener">更多蓝牙广播类型</a></p>
+<h6 id="扫描请求-主机发送-扫描响应-从机响应"><a href="#扫描请求-主机发送-扫描响应-从机响应" class="headerlink" title="扫描请求-主机发送 扫描响应-从机响应"></a>扫描请求-主机发送 扫描响应-从机响应</h6><ul>
+<li><p>蓝牙设备除了可以通过上述方式，主动的发射广播数据外，还可以接受其他设备的扫描请求，从而响应额外的数据，二者的区别如下:广播是蓝牙从机设备主动发出的数据。而扫描响应是，当蓝牙主机收到从机的广播数据后，如果想要进一步了解该从机设备的信息，可以向从机设备发送扫描请求，从机收到扫描请求后，向对应的主机回复扫描响应。 </p>
+</li>
+<li><p>扫描响应特点：扫描的数据格式和蓝牙广播的数据格式一样;扫描响应数据是非必需的；扫描响应可作为广播数据的补充，因为蓝牙的广播数据最多是31个字节，如果广播数据太多，可以将一部分不太重要的数据放到扫描响应数据里面，来分担广播数据的工作；扫描响应有一定的触发条件（收到扫描请求）</p>
+</li>
+</ul>
+<h6 id="蓝牙状态机"><a href="#蓝牙状态机" class="headerlink" title="蓝牙状态机"></a>蓝牙状态机</h6><ul>
+<li>蓝牙链路层的状态机有五种状态，分别是就绪态，广播态，连接态，扫描态，发起连接态。各个状态间的转换路径如下图所示：</li>
+</ul>
+<p><img src="/images/%E8%93%9D%E7%89%99%E7%8A%B6%E6%80%81%E6%9C%BA.jpg" alt></p>
+<ul>
+<li>以手机连接某个蓝牙模块为例，手机作为主机设备，蓝牙模块作为从机设备。上电之后二者都将处于就绪态，蓝牙模块设置广播数据并开始广播后将转换到广播态；手机扫描附近范围内的蓝牙设备时，手机将处于扫描态，手机尝试连接某个设备时，手机的蓝牙处于发起连接态，连接成功后，二者将都处于连接态（注：从机此时不会继续广播）。断开连接之后，二者将都再回到就绪态，需要重新设置进行广播才会进入广播态。</li>
 </ul>
 <h4 id="gatt"><a href="#gatt" class="headerlink" title="gatt"></a>gatt</h4><blockquote>
 <p>GATT是Generic Attribute Profile的缩写，中文译为通用属性配置。我们使用BLE的时候，主机和从机建立的连接通常称为GATT连接。GATT也给BLE设备定义了角色，GATT Server和GATT Client。通常情况下，主机就是Client，从机就是Server。这是一个C/S架构，主机向从机请求服务。GATT中还有两个尤其重要的概念，Service和Characteristic，一个Service包含多个Characteristic。BLE主从设备之间通信多数情况下就是对特定Service里的特定的Characteristic进行读写操作。每个Service和Characteristic都有一个唯一的UUID与之对应。在开发BLE应用和智能硬件时，两端的开发者需要协商好对应的UUID。</p>
@@ -292,36 +430,6 @@
 <blockquote>
 <p>总结一下，每个从机都会有一个叫做profile的东西存在，他们都是由一些service组成，然后每个service又包含了多个characteristic，主机和从机之间的通信，均是通过characteristic来实现。</p>
 </blockquote>
-<h4 id="组成"><a href="#组成" class="headerlink" title="组成"></a>组成</h4><ul>
-<li>硬件：<br>微处理器<br>存储器（寄存器、内存、外存）<br>I/O接口、输入输出设备等等</li>
-<li>软件：<br>嵌入式操作系统<br>BSP——board support package板级支持包<br>应用软件</li>
-</ul>
-<h6 id="内存的访问方式"><a href="#内存的访问方式" class="headerlink" title="内存的访问方式"></a>内存的访问方式</h6><ul>
-<li>内存通过CPU的地址总线来寻址定位，然后通过CPU数据总线来读写。</li>
-<li>CPU的地址总线的位数是CPU设计时确定的，因此一款CPU所能寻址的范围是一定的，而内存是需要占用CPU的寻址空间的。</li>
-<li>内存与CPU的这种总线式连接方式是一种直接连接，优点是效率高访问快，缺点是资源有限，扩展性差。</li>
-</ul>
-<h6 id="io的访问方式"><a href="#io的访问方式" class="headerlink" title="io的访问方式"></a>io的访问方式</h6><ul>
-<li>IO指的是与CPU连接的各种外设。</li>
-<li>CPU访问各种外设有2种方式：一种是类似于访问内存的方式，即把外设的寄存器当作一个内存地址来读写，从而以访问内存相同的方式来操作外设，叫IO与内存统一编址方式；另一种是使用专用的CPU指令来访问某种特定外设，叫IO与内存独立编址。</li>
-</ul>
-<h6 id="冯诺依曼结构与哈佛结构"><a href="#冯诺依曼结构与哈佛结构" class="headerlink" title="冯诺依曼结构与哈佛结构"></a>冯诺依曼结构与哈佛结构</h6><ul>
-<li>程序和数据都放在内存中，且不彼此分离的结构称为冯诺依曼结构。譬如Intel的CPU均采用冯诺依曼结构。冯诺依曼结构中程序和数据不区分的放在一起，因此安全和稳定性是个问题，好处是处理起来简单。</li>
-<li>程序和数据分开独立放在不同的内存块中，彼此完全分离的结构称为哈佛结构。譬如大部分的单片机（MCS51、ARM9等）均采用哈佛结构。哈佛结构中程序（一般放在ROM、flash中）和数据（一般放在RAM中）独立分开存放，因此好处是安全和稳定性高，缺点是软件处理复杂一些（需要统一规划链接地址等）  </li>
-</ul>
-<h6 id="寄存器"><a href="#寄存器" class="headerlink" title="寄存器"></a>寄存器</h6><blockquote>
-<p>SoC中有2类寄存器：通用寄存器和SFR</p>
-</blockquote>
-<p>1.通用寄存器（ARM中有37个）是CPU的组成部分，CPU的很多活动都需要通用寄存器的支持和参与。<br>2.SFR（special function register，特殊功能寄存器）不在CPU中，而存在于CPU的外设中，我们通过访问外设的SFR来编程操控这个外设，这就是硬件编程控制的方法。</p>
-<ul>
-<li>CPU可以像访问内存一样访问寄存器</li>
-<li>寄存器是CPU的硬件设计者制定的，目的是留作外设被编程控制的“活动开关”</li>
-<li>正如汇编指令集是CPU的编程接口API一样，寄存器是外设硬件的软件编程接口API。使用软件编程控制某一硬件，其实就是编程读写该硬件的寄存器。</li>
-<li>寄存器中每个bit位都有特定含义，因此编程操作时需要位操作。</li>
-<li>单个寄存器的位宽一般和CPU的位宽一样，以实现最佳访问效率</li>
-</ul>
-<p>3.编程访问寄存器的方法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//汇编</span></span><br><span class="line">ldr r1, =<span class="number">0xE0200280</span></span><br><span class="line">str r0, [r1]</span><br><span class="line">mov r0, #<span class="number">0</span></span><br><span class="line"><span class="comment">//C语言</span></span><br><span class="line"><span class="keyword">int</span> *p = (<span class="keyword">int</span> *)<span class="number">0x30008000</span>;</span><br><span class="line">*p = <span class="number">16</span>;</span><br></pre></td></tr></table></figure>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -329,7 +437,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#低功耗蓝牙"><span class="toc-text">低功耗蓝牙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视频教程"><span class="toc-text">视频教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#经典蓝牙模块-BT"><span class="toc-text">经典蓝牙模块(BT)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块-BLE"><span class="toc-text">低功耗蓝牙模块(BLE)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块的优势"><span class="toc-text">低功耗蓝牙模块的优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gap"><span class="toc-text">gap</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主机和从机"><span class="toc-text">主机和从机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙广"><span class="toc-text">蓝牙广</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gatt"><span class="toc-text">gatt</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#service"><span class="toc-text">service</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#characteristic"><span class="toc-text">characteristic</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#uuid"><span class="toc-text">uuid</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#组成"><span class="toc-text">组成</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#内存的访问方式"><span class="toc-text">内存的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#io的访问方式"><span class="toc-text">io的访问方式</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#冯诺依曼结构与哈佛结构"><span class="toc-text">冯诺依曼结构与哈佛结构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#寄存器"><span class="toc-text">寄存器</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#低功耗蓝牙"><span class="toc-text">低功耗蓝牙</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视频教程"><span class="toc-text">视频教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#经典蓝牙模块-BT"><span class="toc-text">经典蓝牙模块(BT)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块-BLE"><span class="toc-text">低功耗蓝牙模块(BLE)</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#低功耗蓝牙模块的优势"><span class="toc-text">低功耗蓝牙模块的优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gap"><span class="toc-text">gap</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主机和从机"><span class="toc-text">主机和从机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙广播-从机发送"><span class="toc-text">蓝牙广播-从机发送</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#扫描请求-主机发送-扫描响应-从机响应"><span class="toc-text">扫描请求-主机发送 扫描响应-从机响应</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙状态机"><span class="toc-text">蓝牙状态机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gatt"><span class="toc-text">gatt</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#service"><span class="toc-text">service</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#characteristic"><span class="toc-text">characteristic</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#uuid"><span class="toc-text">uuid</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
