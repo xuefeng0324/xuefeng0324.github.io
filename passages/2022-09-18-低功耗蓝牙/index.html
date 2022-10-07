@@ -210,233 +210,196 @@
   </h1>
   
   <article class="passage-article">
-    <!-- toc -->
+    <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
 
 <ul>
 <li><a href="#基础概念">基础概念</a><ul>
 <li><a href="#视频教程">视频教程</a></li>
-<li><a href="#经典蓝牙模块bt">经典蓝牙模块(bt)</a></li>
-<li><a href="#低功耗蓝牙模块ble">低功耗蓝牙模块(ble)</a></li>
-<li><a href="#低功耗蓝牙模块的优势">低功耗蓝牙模块的优势</a></li>
+<li><a href="#蓝牙与蓝牙技术">蓝牙与蓝牙技术</a></li>
+<li><a href="#经典蓝牙模块bt">经典蓝牙模块bt</a></li>
+<li><a href="#低功耗蓝牙模块ble">低功耗蓝牙模块ble</a></li>
+<li><a href="#双模蓝牙">双模蓝牙</a></li>
 </ul>
 </li>
-<li><a href="#蓝牙协议">蓝牙协议</a><ul>
-<li><a href="#打个比方">打个比方</a></li>
-<li><a href="#phy层">phy层</a></li>
-<li><a href="#ll层">ll层</a></li>
-<li><a href="#hci">hci</a></li>
-<li><a href="#l2cap层">l2cap层</a></li>
-<li><a href="#smp">smp</a></li>
-<li><a href="#att">att</a><ul>
-<li><a href="#c-s架构">c-s架构</a></li>
-<li><a href="#att-pdu">att pdu</a></li>
-<li><a href="#attribute">attribute</a></li>
+<li><a href="#ble蓝牙整体架构">ble蓝牙整体架构</a></li>
+<li><a href="#无线射频模块">无线射频模块</a><ul>
+<li><a href="#1-物理层">1-物理层</a></li>
 </ul>
 </li>
-<li><a href="#gap层">gap层</a><ul>
+<li><a href="#蓝牙协议栈">蓝牙协议栈</a><ul>
+<li><a href="#1-链路层">1-链路层</a><ul>
 <li><a href="#主机和从机">主机和从机</a></li>
-<li><a href="#蓝牙广播-从机发送">蓝牙广播-从机发送</a></li>
-<li><a href="#扫描请求-主机发送-扫描响应-从机响应">扫描请求-主机发送 扫描响应-从机响应</a></li>
 <li><a href="#蓝牙状态机">蓝牙状态机</a></li>
+</ul>
+</li>
+<li><a href="#2-主机控制器接口层">2-主机控制器接口层</a></li>
+<li><a href="#3-逻辑链路控制与适配协议层">3-逻辑链路控制与适配协议层</a></li>
+<li><a href="#4-安全管理协议层">4-安全管理协议层</a></li>
+<li><a href="#5-属性协议层">5-属性协议层</a></li>
+<li><a href="#6-通用访问配置文件层">6-通用访问配置文件层</a><ul>
+<li><a href="#蓝牙广播">蓝牙广播</a></li>
+<li><a href="#扫描请求与扫描响应">扫描请求与扫描响应</a></li>
 <li><a href="#连接建立过程">连接建立过程</a></li>
-<li><a href="#数据帧格式">数据帧格式</a></li>
+<li><a href="#蓝牙连接后">蓝牙连接后</a></li>
 </ul>
 </li>
-<li><a href="#gatt">gatt</a></li>
-<li><a href="#profile">profile</a><ul>
-<li><a href="#service">service</a></li>
-<li><a href="#characteristic">characteristic</a></li>
-<li><a href="#uuid">uuid</a></li>
+<li><a href="#7-通用属性配置文件层">7-通用属性配置文件层</a></li>
+</ul>
+</li>
+<li><a href="#应用">应用</a><ul>
+<li><a href="#1-协议层">1-协议层</a><ul>
+<li><a href="#服务">服务</a></li>
+<li><a href="#特征值">特征值</a></li>
+<li><a href="#通用唯一标识符">通用唯一标识符</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<!-- tocstop -->
-
+<!-- /code_chunk_output -->
 <h2 id="基础概念"><a href="#基础概念" class="headerlink" title="基础概念"></a>基础概念</h2><h4 id="视频教程"><a href="#视频教程" class="headerlink" title="视频教程"></a>视频教程</h4><p><a href="https://b23.tv/TNEvVdM" target="_blank" rel="noopener">低功耗蓝牙BLE相关概念及用法-哔哩哔哩</a></p>
-<h4 id="经典蓝牙模块-bt"><a href="#经典蓝牙模块-bt" class="headerlink" title="经典蓝牙模块(bt)"></a>经典蓝牙模块(bt)</h4><ul>
-<li>泛指支持蓝牙协议在4.0以下的模块，一般用于数据量比较大的传输，如：语音、音乐等较高数据量传输。经典蓝牙模块可再细分为：传统蓝牙模块和高速蓝牙模块。传统蓝牙模块在2004年推出，主要代表是支持蓝牙2.1协议的模块，在智能手机爆发的时期得到广泛支持。高速蓝牙模块在2009年推出，速率提高到约24Mbps，是传统蓝牙模块的八倍，可以轻松用于录像机至高清电视、PC至PMP、UMPC至打印机之间的资料传输。</li>
-</ul>
-<h4 id="低功耗蓝牙模块-ble"><a href="#低功耗蓝牙模块-ble" class="headerlink" title="低功耗蓝牙模块(ble)"></a>低功耗蓝牙模块(ble)</h4><ul>
-<li>指支持蓝牙协议4.0或更高的模块，也称为BLE模块，最大的特点是成本和功耗的降低，应用于实时性要求比较高的产品中，比如：智能家居类(蓝牙锁、蓝牙灯)、传感设备的数据发送(血压计、温度传感器)、消费类电子(电子烟、遥控玩具)等。低功耗蓝牙（BLE）连接都是建立在 GATT (Generic Attribute Profile) 协议之上。GATT 是一个在蓝牙连接之上的发送和接收很短的数据段的通用规范，这些很短的数据段被称为属性（Attribute）。</li>
-</ul>
-<h4 id="低功耗蓝牙模块的优势"><a href="#低功耗蓝牙模块的优势" class="headerlink" title="低功耗蓝牙模块的优势"></a>低功耗蓝牙模块的优势</h4><ul>
-<li><p>BLE蓝牙模块功耗更低、供电时间长:因为低功耗蓝牙技术已经发展到日常平均功耗可以做到10mA以下了，如此低功耗蓝牙应用在智能产品中，用体积很小的电池供电就能坚持工作一两年甚至更久，相对其它无线技术和经典蓝牙的功耗，这正是智能产品愿意且中意的通信技术。</p>
+<p><a href="https://b23.tv/QA3qxRm" target="_blank" rel="noopener">BLE蓝牙协议简介-哔哩哔哩</a></p>
+<h4 id="蓝牙与蓝牙技术"><a href="#蓝牙与蓝牙技术" class="headerlink" title="蓝牙与蓝牙技术"></a>蓝牙与蓝牙技术</h4><ul>
+<li><p>蓝牙（Bluetooth）取自于十世纪丹麦国王哈拉尔的名字 Harald Bluetooth。将“蓝牙”与SIG无线通讯技术标准关联在一起的，是一位来自英特尔的工程师Jim Kardach。他在一次无线通讯行业会议上，提议将“Bluetooth”作为无线通讯技术标准的名称。哈拉尔国王以统一了因宗教战争和领土争议而分裂的挪威与丹麦而闻名于世，与Jim Kardach希望蓝牙也可以成为统一的通用传输标准的理念不谋而合。今天大家熟知的蓝色徽标 LOGO 也来自哈拉尔国王名字的首字母，H和B后弗萨克文的符文组合。<br><img src="/images/%E8%93%9D%E7%89%99logo.png" alt></p>
 </li>
-<li><p>低功耗蓝牙模块连接速度快:低功耗蓝牙技术采用非常快速的连接方式，连接时间间隔可变，这个间隔根据具体应用可以设置为几毫秒到几秒不等，几乎瞬间就能与智能手机相连，极大缩短等待的时间。</p>
+<li><p>蓝牙技术是一种无线数据和语音通信开放的全球规范，它是基于低成本的近距离无线连接，为固定和移动设备建立通信环境的一种特殊的近距离无线技术连接。蓝牙使当前的一些便携移动设备和计算机设备能够不需要电缆就能连接到互联网，并且可以无线接入互联网。蓝牙工作在全球通用的2.4GHz ISM（即工业、科学、医学）频段，使用IEEE802.15协议。</p>
 </li>
-<li><p>低功耗蓝牙模块使用免执照频段:因为低功耗蓝牙技术是一种免费的电磁频段，低功耗蓝牙运行的2.4GHz的频段，正是完全免费的一个电磁频段，其它例如WiFi、电磁炉等都是使用的2.4GHz的频段，就是因为这个频段不用向无线电管理部门交专门的授权费用。</p>
-</li>
-<li><p>低功耗蓝牙模块操作简单，更适合智能产品:一款内嵌低功耗蓝牙模块的智能产品能直接连到手机上，相对于市面上其它通讯手段，例如433MHz、ZigBee来说，虽然这些通讯技术也很成熟、传输距离也不错，但是它们并没有在智能手机上有所体现，而蓝牙功能基本是智能手机的标配之一了，匹配操作起来根本无需其它终端设备，由此来说智能产品选择蓝牙技术的原因就是终端市场的认可。</p>
+<li><p>蓝牙技术是世界著名的5家大公司一爱立信(Ericsson)、诺基亚(Nokia)、东芝(Toshiba)、国际商用机器公司(IBM)和英特尔(Intel)，于1998年5月联合宣布的一种无线通信新技术。蓝牙设备是蓝牙技术应用的主要载体，常见蓝牙设备比如电脑、手机等。蓝牙产品容纳蓝牙模块，支持蓝牙无线电连接与软件应用。蓝牙设备连接必须在一定范围内进行配对。这种配对搜索被称之为短程临时网络模式，也被称之为微微，可以容纳设备最多不超过8台。蓝牙设备连接成功，主设备只有一台，从设备可以多台。蓝牙技术具备射频特性。采用了TDMA结构与网络多层次结构，在技术上应用了跳频技术、无线技术等，具有传输效率高、安全性高等优势，所以被各行各业所应用。</p>
 </li>
 </ul>
-<h2 id="蓝牙协议"><a href="#蓝牙协议" class="headerlink" title="蓝牙协议"></a>蓝牙协议</h2><ul>
-<li>协议的实现代码称为协议栈（protocol stack），BLE协议栈就是实现低功耗蓝牙协议的代码，理解和掌握BLE协议是实现BLE协议栈的前提。常见架构（应用层、协议栈、物理层）:</li>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">系统组成</font><br>++++++++++++++++++++++++<br>底层硬件模块<br>蓝牙技术系统中的底层硬件模块由基带、跳频和链路管理。其中，基带是完成蓝牙数据和跳频的传输。无线调频层是不需要授权的通过2.4GHz ISM频段的微波，数据流传输和过滤就是在无线调频层实现的，主要定义了蓝牙收发器在此频带正常工作所需要满足的条件。链路管理实现了链路建立、连接和拆除的安全控制。<br>++++++++++++++++++++++++<br>中间协议层<br>蓝牙技术系统构成中的中间协议层主要包括了服务发现协议、逻辑链路控制和适应协议、电话通信协议和串口仿真协议四个部分。服务发现协议层的作用是提供上层应用程序一种机制以便于使用网络中的服务。逻辑链路控制和适应协议是负责数据拆装、复用协议和控制服务质量，是其他协议层作用实现的基础。<br>++++++++++++++++++++++++<br>高层应用<br>在蓝牙技术构成系统中，高层应用是位于协议层最上部的框架部分。蓝牙技术的高层应用主要有文件传输、网络、局域网访问。不同种类的高层应用是通过相应的应用程序通过一定的应用模式实现的一种无线通信。<br>++++++++++++++++++++++++</p>
+</blockquote>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">蓝牙版本</font><br>++++++++++++++++++++++++<br>蓝牙版本由1999年蓝牙1.0到2020年的5.2版本，经过了很多代的演进。过程中比较重要的版本有：<br>蓝牙2.1：新增EDR（Enhanced Data Rate）技术，通过提高多任务处理和多种蓝牙设备同时运行的能力，使得蓝牙设备的传输率可达 3Mbps。<br>蓝牙3.0：新增了High Speed技术，可以使蓝牙调用 802.11 WiFi 用于实现高速数据传输，传输率高达 24Mbps。<br>蓝牙4.0：增加了BLE（Bluetooth Low Energy）低功耗功能。由此衍生出经典蓝牙（Classic Bluetooth）和低功耗蓝牙（Bluetooth Low Energy）的表述，低功耗蓝牙应用于低速率低功耗场景，如心率检测器和温度计等传感器设备；经典蓝牙应用于高速率场景，如耳机和照片打印机等。<br>支持蓝牙4.0及以上版本的蓝牙芯片，如果为 Single mode（单模）则只支持低功耗蓝牙（Bluetooth Low Energy ），如果为Dual mode（双模），则经典蓝牙（Classic Bluetooth）和低功耗蓝牙（Bluetooth Low Energy ）均支持。<br>蓝牙5.0：进一步提高了经典蓝牙模式的传输速度达48Mbps，并引入Bluetooth Mesh作为补充规范。<br><img src="/images/%E8%93%9D%E7%89%99%E5%8F%91%E5%B1%95%E5%8F%B2.png" alt><br>++++++++++++++++++++++++<br>Bluetooth Mesh协议不是简单的Bluetooth 5的升级，他是独立与蓝牙协议之外的一套协议，是基于BLE开发组网协议。支持蓝牙4.0及以上版本的低功耗蓝牙芯片产品，理论上如果lash和ram资源足够，都可以通过修改固件进行升级实现MESH功能。<br>++++++++++++++++++++++++<br>蓝牙（BT）通常泛指蓝牙技术，随着版本的演进，出现了低功耗（BLE）模式，蓝牙被表述为经典蓝牙和低功耗蓝牙两种模式。MESH是蓝牙协议的一个补充协议，其是基于BLE协议栈开发的组网协议，也可以理解为蓝牙技术的一个分支。<br>++++++++++++++++++++++++</p>
+</blockquote>
+<h4 id="经典蓝牙模块bt"><a href="#经典蓝牙模块bt" class="headerlink" title="经典蓝牙模块bt"></a>经典蓝牙模块bt</h4><ul>
+<li><p>BT（Bluetooth）泛指支持蓝牙协议在4.0以下的模块，一般用于数据量比较大的传输，如：语音、音乐等较高数据量传输。经典蓝牙模块可再细分为：传统蓝牙模块和高速蓝牙模块。传统蓝牙模块在2004年推出，主要代表是支持蓝牙2.1协议的模块，在智能手机爆发的时期得到广泛支持。高速蓝牙模块在2009年推出，速率提高到约24Mbps，是传统蓝牙模块的八倍，可以轻松用于录像机至高清电视、PC至PMP、UMPC至打印机之间的资料传输。</p>
+</li>
+<li><p>传声音：如蓝牙耳机、蓝牙音箱。蓝牙设计的时候就是为了传声音的，所以是近距离的音频传输的不二选择。现在也有基于WIFI的音频传输方案，例如Airplay等，但是WIFI功耗比蓝牙大很多，设备无法做到便携。因此固定的音响有WIFI的，移动的如耳机、便携音箱清一色都是基于经典蓝牙协议的。</p>
+</li>
+<li><p>传大量数据：例如某些工控场景，使用Android或Linux主控，外挂蓝牙遥控设备的，可以使用经典蓝牙里的SPP协议，当作一个无线串口使用。速度比BLE传输快多了。</p>
+</li>
+</ul>
+<h4 id="低功耗蓝牙模块ble"><a href="#低功耗蓝牙模块ble" class="headerlink" title="低功耗蓝牙模块ble"></a>低功耗蓝牙模块ble</h4><ul>
+<li><p>BLE（Bluetooth Low Energy）指支持蓝牙协议4.0或更高的模块，也称为BLE模块，最大的特点是成本和功耗的降低。BLE技术采用非常快速的连接方式，因此平时可以处于“非连接”状态（节省能源），此时链路两端相互间只是知晓对方，只有在必要时才开启链路，然后在尽可能短的时间内关闭链路(每次最多传输20字节)。</p>
+</li>
+<li><p>应用于实时性要求比较高的产品中，比如：智能家居类(蓝牙锁、蓝牙灯)、传感设备的数据发送(血压计、温度传感器)、消费类电子(电子烟、遥控玩具)等。低功耗蓝牙（BLE）连接都是建立在 GATT (Generic Attribute Profile) 协议之上。GATT 是一个在蓝牙连接之上的发送和接收很短的数据段的通用规范，这些很短的数据段被称为属性（Attribute）。</p>
+</li>
+</ul>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">低功耗蓝牙模块的优势</font><br>++++++++++++++++++++++++<br>BLE蓝牙模块功耗更低、供电时间长:因为低功耗蓝牙技术已经发展到日常平均功耗可以做到10mA以下了，如此低功耗蓝牙应用在智能产品中，用体积很小的电池供电就能坚持工作一两年甚至更久，相对其它无线技术和经典蓝牙的功耗，这正是智能产品愿意且中意的通信技术。<br>++++++++++++++++++++++++<br>低功耗蓝牙模块连接速度快:低功耗蓝牙技术采用非常快速的连接方式，连接时间间隔可变，这个间隔根据具体应用可以设置为几毫秒到几秒不等，几乎瞬间就能与智能手机相连，极大缩短等待的时间。<br>++++++++++++++++++++++++<br>低功耗蓝牙模块使用免执照频段:因为低功耗蓝牙技术是一种免费的电磁频段，低功耗蓝牙运行的2.4GHz的频段，正是完全免费的一个电磁频段，其它例如WiFi、电磁炉等都是使用的2.4GHz的频段，就是因为这个频段不用向无线电管理部门交专门的授权费用。<br>++++++++++++++++++++++++<br>低功耗蓝牙模块操作简单，更适合智能产品:一款内嵌低功耗蓝牙模块的智能产品能直接连到手机上，相对于市面上其它通讯手段，例如433MHz、ZigBee来说，虽然这些通讯技术也很成熟、传输距离也不错，但是它们并没有在智能手机上有所体现，而蓝牙功能基本是智能手机的标配之一了，匹配操作起来根本无需其它终端设备，由此来说智能产品选择蓝牙技术的原因就是终端市场的认可。<br>++++++++++++++++++++++++</p>
+</blockquote>
+<h4 id="双模蓝牙"><a href="#双模蓝牙" class="headerlink" title="双模蓝牙"></a>双模蓝牙</h4><ul>
+<li><p>经典蓝牙和低功耗蓝牙两者物理层调制解调方式是不一样的也就是他们链路控制以及基带都不一样的，所以低功耗蓝牙设备和经典蓝牙设备两者之间是不能相互通信的。如果主设备是低功耗蓝牙设备，从设备也必须是低功耗蓝牙设备；同样，经典蓝牙的从设备也只能和经典蓝牙的主设备进行通信。</p>
+</li>
+<li><p>不过市场上还有一种双模蓝牙设备，即同时支持低功耗蓝牙和经典蓝牙，比如我们天天用到的手机，手机可以和经典蓝牙设备通信，也可以和低功耗蓝牙设备通信，如前所述，这不代表低功耗蓝牙设备可以和经典蓝牙设备通信，其实手机使用了分时机制来达到同时和低功耗蓝牙设备以及经典蓝牙设备通信的目的，即手机让双模蓝牙芯片不断地在低功耗蓝牙模式和经典蓝牙模式之间进行切换，以同时支持低功耗蓝牙设备和经典蓝牙设备。</p>
+</li>
+<li><p>智能电视遥控器：很多智能电视配的遥控器带有语音识别，需要用经典蓝牙才能传输声音。而如果做复杂的按键，例如原本键盘表上没有的功能，经典蓝牙的HID按键协议就不行了，得用BLE做私有协议。</p>
+</li>
+<li><p>降噪耳机：很多降噪耳机上通过APP来调节降噪效果，也是通过BLE来实现的私有通信协议。</p>
+</li>
+</ul>
+<h2 id="ble蓝牙整体架构"><a href="#ble蓝牙整体架构" class="headerlink" title="ble蓝牙整体架构"></a>ble蓝牙整体架构</h2><ul>
+<li>常见BLE架构如下（左边：应用-协议栈-射频；右边：协议-蓝牙主机-主机控制器）:</li>
 </ul>
 <p><img src="/images/%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E5%88%86%E5%B1%82.png" alt></p>
 <ul>
-<li><p>要实现一个BLE应用，首先需要一个支持BLE射频的芯片，然后还需要提供一个与此芯片配套的BLE协议栈，最后在协议栈上开发自己的应用。</p>
+<li><p>要实现一个BLE应用，首先需要一个支持<font color="red" size="3">BLE射频</font>的芯片，然后还需要提供一个与此芯片配套的<font color="red" size="3">BLE协议栈</font>，最后在协议栈上开发自己的<font color="red" size="3">应用</font>。</p>
 </li>
-<li><p>BLE协议栈是连接芯片和应用的桥梁，是实现整个BLE应用的关键。BLE协议栈主要用来对应用数据进行层层封包，以生成一个满足BLE协议的空中数据包，把应用数据包裹在一系列的帧头（header）和帧尾（tail）中。</p>
+<li><p>射频：无线射频模块，蓝牙最底层，带微带天线，负责数据接收和发送。载波产生信号用来调制数据的收发，功率则控制信号强度。</p>
 </li>
-<li><p>对于初学者，低功耗蓝牙最常用的概念是蓝牙的服务和特征值（应用层），其他的概念可以先仅作了解。</p>
+<li><p>协议的实现 <font color="red" size="3">代码</font> 称为协议栈（protocol stack），BLE协议栈就是实现低功耗蓝牙协议的代码，理解和掌握BLE协议是实现BLE协议栈的前提。BLE协议栈是连接芯片和应用的桥梁，是实现整个BLE应用的关键。BLE协议栈主要用来对应用数据进行层层封包，以生成一个满足BLE协议的空中数据包，把应用数据包裹在一系列的帧头（header）和帧尾（tail）中。为什么BLE不支持4.0以下的蓝牙协议，就是因为整个架构不兼容，分层不一样，4.0以前的协议没有ATT、FAP、GAT等。</p>
+</li>
+<li><p>对于初学者，低功耗蓝牙最常用的概念是蓝牙的<font color="red" size="3">服务和特征值</font>（需要了解应用，以及实现服务和特征值的GATT协议），其他的概念可以先仅作了解。</p>
+</li>
+<li><p>蓝牙技术集成到各种数字设备中的方式有两种:一种是单微控制器方式,即所有的蓝牙低层协议(包括蓝牙射频、基带与链路控制器、链路管理器)与高层协议(包括逻辑链路控制与适配协议、服务发现协议、串口仿真协议、网络封装协议等)以及用户应用程序都集成到一个模块当中,整个处理过程由一个微处理器来完成;另一种是双微控制器方式,即蓝牙协议与用户应用程序分别由<font color="red" size="3">主机控制器和主机</font>来实现(低层传输协议一般通过蓝牙硬件模块实现,模块内部嵌入式的微处理器称为主机控制器,高层传输协议和用户应用程序在写入的个人计算机或嵌入的单片机、DSP等上运行,称为主机)</p>
+</li>
+<li><p>Profiles协议是由国际蓝牙组织联盟SIG定下的协议，后面会详细展开，这里不做过多介绍。</p>
 </li>
 </ul>
-<h4 id="打个比方"><a href="#打个比方" class="headerlink" title="打个比方"></a>打个比方</h4><blockquote>
-<p>假设有设备A和设备B，设备A要把自己目前的电量状态83%（十六进制表示为0x53）发给设备B，该怎么做呢？</p>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">举例</font><br>++++++++++++++++++++++++<br>假设有设备A和设备B，设备A要把自己目前的电量状态83%（十六进制表示为0x53）发给设备B，该怎么做呢？<br>++++++++++++++++++++++++<br>作为一个开发者，对他而言，他希望在应用层调用一个简单的API就能完成这件事，比如send(0x53)，实际上我们的BLE协议栈就是这样设计的，开发者只需调用send(0x53)就可以把数据发送出去了，其余的事情BLE协议栈帮你搞定。很多人会想，BLE协议栈是不是直接在物理层就把0x53发出去，这种方式看起来挺美的，但由于很多细节没有考虑到，实际是不可行的。<br>++++++++++++++++++++++++<br>首先，它没有考虑用哪一个射频信道来进行传输，在不更改API的情况下，我们只能对协议栈进行分层，为此引入LL层，开发者还是调用send(0x53)，send(0x53)再调用send_LL(0x53,2402M)（注：2402M为信道频率）。这里还有一个问题，设备B怎么知道这个数据包是发给自己的还是其他人的，为此BLE引入access address概念，用来指明接收者身份，其中，0x8E89BED6这个access address比较特殊，它表示要发给周边所有设备，即广播。如果你要一对一的进行通信（BLE协议将其称为连接），即设备A的数据包只能设备B接收，同样设备B的数据包只能设备A接收，那么就必须生成一个独特的随机access address以标识设备A和设备B两者之间的连接。<br>++++++++++++++++++++++++<br><a href="https://www.cnblogs.com/iini/p/8969828.html" target="_blank" rel="noopener">例子链接</a><br>++++++++++++++++++++++++</p>
 </blockquote>
-<p>作为一个开发者，对他而言，他希望在应用层调用一个简单的API就能完成这件事，比如send(0x53)，实际上我们的BLE协议栈就是这样设计的，开发者只需调用send(0x53)就可以把数据发送出去了，其余的事情BLE协议栈帮你搞定。很多人会想，BLE协议栈是不是直接在物理层就把0x53发出去，这种方式看起来挺美的，但由于很多细节没有考虑到，实际是不可行的。首先，它没有考虑用哪一个射频信道来进行传输，在不更改API的情况下，我们只能对协议栈进行分层，为此引入LL层，开发者还是调用send(0x53)，send(0x53)再调用send_LL(0x53,2402M)（注：2402M为信道频率）。这里还有一个问题，设备B怎么知道这个数据包是发给自己的还是其他人的，为此BLE引入access address概念，用来指明接收者身份，其中，0x8E89BED6这个access address比较特殊，它表示要发给周边所有设备，即广播。如果你要一对一的进行通信（BLE协议将其称为连接），即设备A的数据包只能设备B接收，同样设备B的数据包只能设备A接收，那么就必须生成一个独特的随机access address以标识设备A和设备B两者之间的连接。<br><a href="https://www.cnblogs.com/iini/p/8969828.html" target="_blank" rel="noopener">例子连接</a></p>
-<h4 id="phy层"><a href="#phy层" class="headerlink" title="phy层"></a>phy层</h4><ul>
-<li><p>Physical layer物理层，PHY层用来指定BLE所用的无线频段，调制解调方式和方法等。PHY层直接决定整个BLE芯片的功耗，灵敏度以及selectivity等射频指标。</p>
+<h2 id="无线射频模块"><a href="#无线射频模块" class="headerlink" title="无线射频模块"></a>无线射频模块</h2><h4 id="1-物理层"><a href="#1-物理层" class="headerlink" title="1-物理层"></a>1-物理层</h4><ul>
+<li><p>Physical layer（物理层），PHY层用来指定BLE所用的无线频段，调制解调方式和方法等。PHY层直接决定整个BLE芯片的功耗，灵敏度以及Selectivity等射频指标。</p>
 </li>
 <li><p>信道，指通信的通道，是信号传输的媒介，信道按照传输媒介可以分为有线信道与无线信道两类：有线信道-明线、电缆、光纤等；无线信道-利用电磁波在自由空间传播来传输信号，如短波电离层反射信道、微波中继信道、卫星信道等。对于无线电波而言，它从发送端到接收端，其间并没有一个有形的连接，但是我们为了形象地描述发送端与接收端之间的工作，想象两者之间有一个看不见的道路衔接，即信道。</p>
 </li>
-<li><p>低功耗蓝牙工作在2.4GHz频段，频率范围为2402MHz–2480MHz，每2MHz一个信道，共40个信道，其中为3个广播信道，剩余的37为个数据信道。为了防止主机扫描广播时，从机相邻的广播信道互相干扰，37、38、39这3个广播信道的频率隔的比较远。蓝牙广播就是在这3个广播信道上选择一个信道，以一定的数据格式通过电磁波发射数据。连接之后可以使用跳频机制（链路层决定），一次广播事件开始于37信道，经过38信道，结束于39信道，即在3个信道上连续跳频。<br><img src="/images/%E8%93%9D%E7%89%99%E4%BF%A1%E9%81%93.jpg" alt></p>
+<li><p>低功耗蓝牙工作在2.4GHz频段，频率范围为2402MHz–2480MHz，每2MHz一个信道，共40个信道，其中为3个广播信道，剩余的37为个数据信道。为了防止主机扫描广播时，从机相邻的广播信道互相干扰，37、38、39这3个广播信道的频率隔的比较远。蓝牙广播依次从广播信道37、38、39中进行传输，以一定的数据格式通过电磁波发射数据。一次广播事件开始于37信道，经过38信道，结束于39信道，即在3个信道上连续跳频。连接的时候通过同步来决定跳频的顺序（链路层决定）。<br><img src="/images/%E8%93%9D%E7%89%99%E4%BF%A1%E9%81%93.jpg" alt></p>
 </li>
 </ul>
-<h4 id="ll层"><a href="#ll层" class="headerlink" title="ll层"></a>ll层</h4><ul>
-<li>Link Layer链路层，LL层是整个BLE协议栈的核心，也是BLE协议栈的难点和重点。Nordic的BLE协议栈能同时支持20个link（连接），就是LL层的功劳。LL层要做的事情，比如选择具体射频通道进行通信，识别空中数据包的方式，数据包发送时间点（通信时序），保证数据的完整性的方式，接收ACK的方式，进行重传的方式，以及对链路进行管理和控制等等。LL层只负责把数据发出去或者收回来，对数据进行怎样的解析则交给上面的GAP或者GATT。（<a href="https://www.cnblogs.com/ethan-yan/p/14721881.html" target="_blank" rel="noopener">BLE链路层的广播事件</a>）</li>
-</ul>
-<h4 id="hci"><a href="#hci" class="headerlink" title="hci"></a>hci</h4><ul>
-<li>Host controller interface，HCI是可选的（<a href="https://www.cnblogs.com/iini/p/8834970.html" target="_blank" rel="noopener">三种蓝牙架构实现方案（蓝牙协议栈方案）</a>），HCI主要用于2颗芯片实现BLE协议栈的场合，用来规范两者之间的通信协议和通信命令等。</li>
-</ul>
-<h4 id="l2cap层"><a href="#l2cap层" class="headerlink" title="l2cap层"></a>l2cap层</h4><ul>
-<li>Logic link control and adaptation protocol，L2CAP对LL进行了一次简单封装，LL只关心传输的数据本身，L2CAP就要区分是加密通道还是普通通道，同时还要对连接间隔进行管理。</li>
-</ul>
-<h4 id="smp"><a href="#smp" class="headerlink" title="smp"></a>smp</h4><ul>
-<li>Secure manager protocol，SMP用来管理BLE连接的加密和安全的，如何保证连接的安全性，同时不影响用户的体验，这些都是SMP要考虑的工作。</li>
-</ul>
-<h4 id="att"><a href="#att" class="headerlink" title="att"></a>att</h4><ul>
-<li>Attribute protocol（数据交互协议），ATT协议允许服务器设备将一组属性及其相关值暴露给对等的客户端设备。服务器公开的属性可以被客户端发现，读取和写入，并且可以由服务器指示和通知。BLE引入了Attribute概念，用来描述一条一条的数据。Attribute除了定义数据，同时定义该数据可以使用的ATT命令，因此这一层被称为ATT层。</li>
-</ul>
-<h6 id="c-s架构"><a href="#c-s架构" class="headerlink" title="c-s架构"></a>c-s架构</h6><ul>
-<li>ATT和GATT是蓝牙协议栈重要的2层，也是蓝牙应用开发者打交道最多的两层，用户开发应用程序或者说service/profile的时候，调用的都是GATT API，而GATT又调用了ATT API。在讲解ATT和GATT之前，我们先看一下蓝牙核心规范中一个重要概念：Client/Server（客户端/服务端）架构。大多数情况下ATT协议都是纯C/S架构（即ATT协议定义两种角色：服务器角色和客户端角色），Client发起请求，Server响应。但是服务端也有通知的能力，在服务端属性发生变化时，Server能够通知Client，这样避免了Client不停的poll。ATT协议不会显式发送属性值的长度，只能从PDU长度里面获得。因此Client最好能够知道某种UUID类型所代表的属性的精确结构。一般而言蓝牙设备提供服务，因此设备是Server，手机使用设备提供的服务，因此手机是Client。客户端要访问某一个数据，就发送一个Request/请求（其实就是一条命令或者PDU），服务端再把该数据返回给客户端（一条Response/响应命令或者PDU），这就是C/S架构。</li>
-</ul>
-<h6 id="att-pdu"><a href="#att-pdu" class="headerlink" title="att pdu"></a>att pdu</h6><ul>
-<li><p>GATT Profile使用ATT在设备（Client和Server）之间以命令，请求，响应，指示，通知和确认的形式传输数据。这些数据包含在ATT 的PDU中。ATT命令，正式称谓ATT PDU（Protocol Data Unit，协议数据交互单元）包括4类：读，写，notify（通知）和indicate（指示）。这些命令又可以分成两种：如果它需要response，那么会在相应命令后面加上request；相反，如果它只需要ACK而不需要response，那么它的后面就不会带request。</p>
-</li>
-<li><p>ATT所有命令都是“必达”的，也就是说每个命令发出去之后，会立马等ACK信息，如果收到了ACK包，发起方认为命令完成；否则发起方会一直重传该命令直到超时导致BLE连接断开。换句话说，只要你的BLE没有断开，那么你之前发送的数据包，不管它是用什么ATT PDU来发送的，它肯定被对方收到了。我估计很多人对此会产生疑问，因为他们经常碰到丢包的情况，其实大家经常碰到的“丢包”，不是空中把包丢了或者包在空中被干扰了，而是大家发送的代码写得有问题，导致你要发送的包没有被安全送达到协议栈射频FIFO中，所以以后大家碰到丢包情况，请先检查你的代码，保证你的数据包正确完整安全地送达到协议栈射频FIFO中，只要数据包放到了协议栈射频FIFO中，蓝牙协议栈就能保证该数据包“必达”对方。</p>
-</li>
-<li><p>如果一个命令带有request后缀，那么发起方就可以收到命令的response包，这个response包在应用层是有回调事件的，而前述的ACK包在应用层是没有回调事件的。所以采用request/response方式，应用层可以按顺序地发送一些数据包，这个在很多应用场合是非常有用的。相反，如果你对应用层数据包的顺序没有要求，那么就可以不使用request/response形式。另外Request/response有一个副作用：大大降低通信的吞吐率，因为request/response必须在不同的连接间隔中出现，也就是说，你在间隔1中发送了一个request命令，那么response包必须在间隔2或者稍后间隔中回复，而不能在间隔1中回复，这就导致两个连接间隔最多只能发一个数据包，而不带request后缀的ATT命令就没有这个问题，在同一个连接间隔中，你可以同时发多个数据包，这样将大大提高数据的吞吐率。</p>
-</li>
-<li><p>常用的带request的命令：所有read命令，find命令，write request，indication等，而常用的不带request的命令有write command，notification等。</p>
-</li>
-<li><p>交换MTU请求，属性协议默认的MTU长度为23字节，如果想要发送更大的数据包，就需要协商MTU长度。nrf connect-setting-connectivity-atuo request maximum MTU。</p>
-</li>
-</ul>
-<h6 id="attribute"><a href="#attribute" class="headerlink" title="attribute"></a>attribute</h6><ul>
-<li>ATT的唯一基础是Attribute(属性)。每个Attribute由16Bit的Attribute handle(句柄)、Attribute type(类型)、Attribute value(属性值)、Attribute permission(属性权限)构成。类似于C语言中的数据结构，其定义了一组属性的信息，并将这些属性信息暴露给对等的客户端，供客户端对服务器端暴露的属性进行访问。</li>
-</ul>
-<p><img src="/images/%E5%B1%9E%E6%80%A7%E7%BB%93%E6%9E%84.png" alt></p>
-<ul>
-<li><p>Attribute handle（属性句柄）是对某一特定属性的索引，取值范围是：0x0001～0xFFFF，<br>通过增加属性句柄值来排序属性。ATT Client要访问ATT Server的Attribute，都是通过这个句柄来访问的，也就是说ATT PDU一般都包含handle的值。用户在软件代码添加Characteristic的时候，系统会自动按顺序地为相关Attribute生成句柄。Handle是用来唯一识别属性的数字，因为在一个BLE设备中可能存在多个Attribute具有相同的UUID。</p>
-</li>
-<li><p>注：ATT Server存储属性。ATT Client什么也不存储，它使用ATT协议来读写Server端的属性。</p>
-</li>
-<li><p>Attribute type（属性类型）一般是由Service和Characteristic规格来定义（UUID）站在蓝牙协议栈角度来看，ATT层定义了一个通信的基本框架，数据的基本结构，以及通信的指令，ATT层本身没有定义任何UUID，这部分工作留给了GATT和上层协议。</p>
-</li>
-<li><p>数据值，长度是可变的。当长度过大时，可以使用多个PDU来发送。属性值的实际意义依赖于UUID，而且ATT并不会检查属性值长度是否与给定的UUID定义一致。</p>
-</li>
-<li><p>Attribute permission(属性权限)，属性权限不会直接在空中包中体现，而是隐含在ATT命令的操作结果中，这部分工作也留给了GATT和应用层协议。目前主要有如下四种属性权限：</p>
 <blockquote>
-<p>Open，直接可以读或者写。No Access，禁止读或者写。<br>Authentication，需要配对才能读或者写，由于配对有多种类型，因此Authentication又衍生多种子类型，比如带不带MITM，有没有LESC。<br>Authorization，跟Open一样，不过Server返回Attribute的值之前需要应用先授权，也就是说应用可以在回调函数里面去修改读或者写的原始值。<br>Signed，签名后才能读或者写，这个用得比较少。</p>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">调节性跳频技术</font><br>++++++++++++++++++++++++<br>它定义了79个独立且可随机选择的有效通信频率，每个蓝牙设备都能使用其中任何一个频率，且能有规律地随时跳往另一个频率，按协议规范，这样的频率跳转每秒钟会发生1600次，因此不太可能出现两个发射器使用相同频率的情况，即使在特定频率下有任何干扰，其持续时间也仅不到千分之一秒，因此该技术同时还将外界干扰对蓝牙设备间通讯的影响降低到最小，大大提高了蓝牙的抗干扰、抗衰落能力。<br>++++++++++++++++++++++++<br>跳频技术把频带分成若干个跳频信道（hop channel），在一次连接中，无线电收发器按一定的码序列（即一定的规律，技术上叫做“伪随机码”，就是“假”的随机码）不断地从一个信道“跳”到另一个信道，只有收发双方是按这个规律进行通信的，而其他的干扰不可能按同样的规律进行干扰。与其它工作在相同频段的系统相比，蓝牙跳频更快，数据包更短，这使蓝牙比其它系统都更稳定。蓝牙主设备决定跳频序列，从设备依照该序列以每秒1600跳的频率进行跳频。双方需要周期进行同步，以保证在可容许的误差内同时跳到相同的频率。跳频是蓝牙使用的关键技术之一。蓝牙在建链时(包括寻呼和查询)调频速率提高为3,200跳每秒。使用这样高的跳频速率，蓝牙系统具有足够高的抗干扰能力。<br>++++++++++++++++++++++++<br>主要参数及概念<br>1、跳频信道数：79个，每个信道带宽为1MHz。<br>2、微微网：几个蓝牙设备连接成一个微微网（Piconet），其中只有一个主设备，其余均为从设备，最简单的微微网是一个主设备和一个从设备组成的点对点通信连接。同一微微网（piconet）采用相同跳频序列。<br>3、Connection 模式：1600 hops/s (625us)，Page 和 inquiry ：3200 hops/s。<br>4、时隙（Time Slot）：蓝牙的跳频频率是1600次/秒，每个频率持续的时间是625us（1s/1600）称为一个时隙，时隙按照微微网的主设备时钟进行编号，编号从0~227-1，并以周期227循环，同一微微网内的主从设备之间按照时分双工（Time Division Duplexer，TDD）机制进行数据传输。<br>6、跳频序列：是对79个跳频信道进行伪随机排序，由主设备的BD_ADDR和主设备的时钟依据特定算法来确定。<br>++++++++++++++++++++++++</p>
 </blockquote>
+<h2 id="蓝牙协议栈"><a href="#蓝牙协议栈" class="headerlink" title="蓝牙协议栈"></a>蓝牙协议栈</h2><h4 id="1-链路层"><a href="#1-链路层" class="headerlink" title="1-链路层"></a>1-链路层</h4><ul>
+<li><p>Link Layer（链路层），LL层是整个BLE协议栈的核心，也是BLE协议栈的难点和重点。Nordic的BLE协议栈能同时支持20个link（连接），就是LL层的功劳。LL层要做的事情，比如选择具体射频通道进行通信，识别空中数据包的方式，数据包发送时间点（通信时序），保证数据的完整性的方式，接收ACK的方式，进行重传的方式，以及对链路进行管理和控制等等。LL层只负责把数据发出去或者收回来，对数据进行怎样的解析则交给上面的GAP或者GATT。（<a href="https://www.cnblogs.com/ethan-yan/p/14721881.html" target="_blank" rel="noopener">BLE链路层的广播事件</a>）</p>
 </li>
-</ul>
-<h4 id="gap层"><a href="#gap层" class="headerlink" title="gap层"></a>gap层</h4><ul>
-<li>Generic access profile（通用访问配置文件），GAP是对LL层payload（有效数据包）如何进行解析的两种方式中的一种。GAP简单的对LL payload进行一些规范和定义。GAP定义了蓝牙通信的角色（主机和从机），控制着它们的<font color="red">广播，扫描和发起连接</font>的方式。GAP使蓝牙设备被其他设备可见，并决定了蓝牙设备是否可以与其他设备进行交互以及交互的方式。某些设备可以配置成只发送广播而不支持连接，比如一些Beacon设备。</li>
+<li><p>信道指具体的传输信息的物质，例如电缆，光纤，电磁波等物理媒介（无线信道没有有形的连接，但为了方便也称为信道），链路是指两点之间建成的传输数据的通路，这条通路中可能经过多个相同或不同的信道，如几根电缆，几根光纤等，两点之间一旦联通，就成了一条链路，信道传输的是信号，链路传输的是数据。</p>
+</li>
 </ul>
 <h6 id="主机和从机"><a href="#主机和从机" class="headerlink" title="主机和从机"></a>主机和从机</h6><ul>
-<li>主机和从机是相对的概念，又可以称为主设备/中心/中心设备（Central）和从设备/外设/外围设备（Peripheral）等等。举个简单的例子，我们在使用手机搜索、连接和控制家里的BLE设备的时候，我们的手机就是主机，设备就是从机。一个主机可以同时连接多个从机，一个从机同一时间只能被一个主机连接。</li>
+<li><p>主机和从机是相对的概念，又可以称为主设备（Master）/中心/中心设备（Central）和从设备（Slave）/外设/外围设备（Peripheral）等等。举个简单的例子，我们在使用手机搜索、连接和控制家里的BLE设备的时候，我们的手机就是主机，设备就是从机。一个主机可以同时连接多个从机，一个从机同一时间只能被一个主机连接。</p>
+</li>
+<li><p>主机能够搜索别的蓝牙模块并主动建立连接，从机则不能主动建立连接，只能等别人连接自己。</p>
+</li>
 </ul>
-<h6 id="蓝牙广播-从机发送"><a href="#蓝牙广播-从机发送" class="headerlink" title="蓝牙广播-从机发送"></a>蓝牙广播-从机发送</h6><ul>
-<li><p>广播帧格式</p>
+<h6 id="蓝牙状态机"><a href="#蓝牙状态机" class="headerlink" title="蓝牙状态机"></a>蓝牙状态机</h6><ul>
+<li>蓝牙链路层的状态机有五种状态，分别是就绪态，广播态，连接态，扫描态，发起连接态。各个状态间的转换路径如下图所示：</li>
+</ul>
+<p><img src="/images/%E8%93%9D%E7%89%99%E7%8A%B6%E6%80%81%E6%9C%BA.jpg" alt></p>
+<ul>
+<li>以手机连接某个蓝牙模块为例，手机作为主机设备，蓝牙模块作为从机设备。上电之后二者都将处于就绪态，蓝牙模块设置广播数据并开始广播后将转换到广播态；手机扫描附近范围内的蓝牙设备时，手机将处于扫描态，手机尝试连接某个设备时，手机的蓝牙处于发起连接态，连接成功后，二者将都处于连接态（注：从机此时不会再继续广播）。断开连接之后，二者将都再回到就绪态，从机需要重新设置进行广播才会进入广播态，否则断开连接后无法再次被主机扫描到。</li>
+</ul>
+<h4 id="2-主机控制器接口层"><a href="#2-主机控制器接口层" class="headerlink" title="2-主机控制器接口层"></a>2-主机控制器接口层</h4><ul>
+<li><p>Host controller interface（主机控制器接口），HCI是可选的（<a href="https://www.cnblogs.com/iini/p/8834970.html" target="_blank" rel="noopener">三种蓝牙架构实现方案（蓝牙协议栈方案）</a>），HCI主要用于2颗芯片（主机、控制器）实现BLE协议栈的场合，用来规范两者之间的通信协议和通信命令等。</p>
+</li>
+<li><p>HCI是软硬件接口部分，由基带控制器、连接管理器、控制和事件寄存器等组成；软件接口提供了下层硬件的统一命令，解释上下层消息和数据的传递。硬件接口包含UART、SPI和USB等。</p>
+</li>
+</ul>
+<h4 id="3-逻辑链路控制与适配协议层"><a href="#3-逻辑链路控制与适配协议层" class="headerlink" title="3-逻辑链路控制与适配协议层"></a>3-逻辑链路控制与适配协议层</h4><ul>
+<li>Logic link control and adaptation protocol（逻辑链路控制与适配协议），L2CAP对LL进行了一次简单封装，LL只关心传输的数据本身，L2CAP就要区分是加密通道还是普通通道，同时还要对连接间隔进行管理。</li>
+</ul>
+<h4 id="4-安全管理协议层"><a href="#4-安全管理协议层" class="headerlink" title="4-安全管理协议层"></a>4-安全管理协议层</h4><ul>
+<li>Secure manager protocol安全管理协议，SMP用来管理BLE连接的加密和安全的，如何保证连接的安全性，同时不影响用户的体验，这些都是SMP要考虑的工作。</li>
+</ul>
+<h4 id="5-属性协议层"><a href="#5-属性协议层" class="headerlink" title="5-属性协议层"></a>5-属性协议层</h4><ul>
+<li>Attribute protocol（属性协议），ATT协议允许服务器设备将一组属性及其相关值暴露给对等的客户端设备。服务器公开的属性可以被客户端发现，读取和写入，并且可以由服务器指示和通知。BLE引入了Attribute概念，用来描述一条一条的数据。Attribute除了定义数据，同时定义该数据可以使用的ATT命令，因此这一层被称为ATT层。ATT和GATT是蓝牙协议栈重要的2层，也是蓝牙应用开发者打交道最多的两层，用户开发应用程序或者说service/profile的时候，调用的都是GATT API，而GATT又调用了ATT API。</li>
+</ul>
 <blockquote>
-<p>前导：是一个8Bit的交替序列，接入地址的第一个比特为0：01010101，接入地址的第一个比特为1：10101010<br>接入地址：广播帧为固定地址：0x8E89BED6（低字节在前）<br>广播报文的报头：包含4Bit广播报文类型、2bit保留位、1bit发送地址类型和1bit接收地址类型。广播报文类型:。发送/接收地址类型：0：公共地址、1：随机地址。<br>长度：广播报文的长度域包含8个比特，有效值的范围是6-37。<br>数据： 广播者地址(6个字节)+广播数据（31个字节）。广播数据： 分为有效数据(包含N个AD Structure)和无效数据<br>校验： 3个字节，为CRC校验。<br>1 + 4 + 1 + 1 + 37 + 3 = 47</p>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">c-s架构</font><br>++++++++++++++++++++++++<br>Client/Server（客户端/服务端）架构。大多数情况下ATT协议都是纯C/S架构（即ATT协议定义两种角色：服务器角色和客户端角色），Client发起请求，Server响应。但是服务端也有通知的能力，在服务端属性发生变化时，Server能够通知Client，这样避免了Client不停的poll。ATT协议不会显式发送属性值的长度，只能从PDU长度里面获得。因此Client最好能够知道某种UUID类型所代表的属性的精确结构。<br>++++++++++++++++++++++++<br>一般而言蓝牙设备提供服务，所以蓝牙设备是Server，手机使用蓝牙设备提供的服务，所以手机是Client。客户端要访问某一个数据，就发送一个Request/请求（其实就是一条命令或者PDU），服务端再把该数据返回给客户端（一条Response/响应命令或者PDU），这就是C/S架构。<br>++++++++++++++++++++++++</p>
 </blockquote>
+<blockquote>
+<p>++++++++++++++++++++++++++++++++++++++++++++++++<br><font color="#008000" size="4">att pdu 协议数据交互单元</font><br>++++++++++++++++++++++++++++++++++++++++++++++++<br>GATT Profile使用ATT在设备（Client和Server）之间以命令，请求，响应，指示，通知和确认的形式传输数据。这些数据包含在ATT 的PDU中。ATT命令，正式称谓ATT PDU（Protocol Data Unit，协议数据交互单元）包括4类：读，写，notify（通知）和indicate（指示）。这些命令又可以分成两种：如果它需要response，那么会在相应命令后面加上request；相反，如果它只需要ACK而不需要response，那么它的后面就不会带request。<br>++++++++++++++++++++++++++++++++++++++++++++++++<br>ATT所有命令都是“必达”的，也就是说每个命令发出去之后，会立马等ACK信息，如果收到了ACK包，发起方认为命令完成；否则发起方会一直重传该命令直到超时导致BLE连接断开。换句话说，只要你的BLE没有断开，那么你之前发送的数据包，不管它是用什么ATT PDU来发送的，它肯定被对方收到了。我估计很多人对此会产生疑问，因为他们经常碰到丢包的情况，其实大家经常碰到的“丢包”，不是空中把包丢了或者包在空中被干扰了，而是大家发送的代码写得有问题，导致你要发送的包没有被安全送达到协议栈射频FIFO中，所以以后大家碰到丢包情况，请先检查你的代码，保证你的数据包正确完整安全地送达到协议栈射频FIFO中，只要数据包放到了协议栈射频FIFO中，蓝牙协议栈就能保证该数据包“必达”对方。<br>++++++++++++++++++++++++++++++++++++++++++++++++<br>如果一个命令带有request后缀，那么发起方就可以收到命令的response包，这个response包在应用层是有回调事件的，而前述的ACK包在应用层是没有回调事件的。所以采用request/response方式，应用层可以按顺序地发送一些数据包，这个在很多应用场合是非常有用的。相反，如果你对应用层数据包的顺序没有要求，那么就可以不使用request/response形式。另外Request/response有一个副作用：大大降低通信的吞吐率，因为request/response必须在不同的连接间隔中出现，也就是说，你在间隔1中发送了一个request命令，那么response包必须在间隔2或者稍后间隔中回复，而不能在间隔1中回复，这就导致两个连接间隔最多只能发一个数据包，而不带request后缀的ATT命令就没有这个问题，在同一个连接间隔中，你可以同时发多个数据包，这样将大大提高数据的吞吐率。<br>++++++++++++++++++++++++++++++++++++++++++++++++<br>常用的带request的命令：所有read命令，find命令，write request，indication等，而常用的不带request的命令有write command，notification等。<br><img src="/images/ATT%E5%91%BD%E4%BB%A4.png" alt><br><img src="/images/ATT%E5%91%BD%E4%BB%A42.png" alt><br>++++++++++++++++++++++++++++++++++++++++++++++++<br>交换MTU请求，属性协议默认的MTU长度为23字节，如果想要发送更大的数据包，就需要协商MTU长度。nrf connect-setting-connectivity-atuo request maximum MTU。<br>++++++++++++++++++++++++++++++++++++++++++++++++</p>
+</blockquote>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">attribute 属性</font><br>++++++++++++++++++++++++<br>ATT的唯一基础是Attribute(属性)。每个Attribute由16Bit的Attribute handle(句柄)、Attribute type(类型)、Attribute value(属性值)、Attribute permission(属性权限)构成。类似于C语言中的数据结构，其定义了一组属性的信息，并将这些属性信息暴露给对等的客户端，供客户端对服务器端暴露的属性进行访问。<br><img src="/images/%E5%B1%9E%E6%80%A7%E7%BB%93%E6%9E%84.png" alt><br>++++++++++++++++++++++++<br>Attribute handle（属性句柄）是对某一特定属性的索引，取值范围是：0x0001～0xFFFF<br>通过增加属性句柄值来排序属性。ATT Client要访问ATT Server的Attribute，都是通过这个句柄来访问的，也就是说ATT PDU一般都包含handle的值。用户在软件代码添加Characteristic的时候，系统会自动按顺序地为相关Attribute生成句柄。Handle是用来唯一识别属性的数字，因为在一个BLE设备中可能存在多个Attribute具有相同的UUID。<br>*注：ATT Server存储属性。ATT Client什么也不存储，它使用ATT协议来读写Server端的属性。<br>++++++++++++++++++++++++<br>Attribute type（属性类型）一般是由Service和Characteristic规格来定义（UUID）站在蓝牙协议栈角度来看，ATT层定义了一个通信的基本框架，数据的基本结构，以及通信的指令，ATT层本身没有定义任何UUID，这部分工作留给了GATT和上层协议。<br>++++++++++++++++++++++++<br>Attribute value（属性值），长度是可变的。当长度过大时，可以使用多个PDU来发送。属性值的实际意义依赖于UUID，而且ATT并不会检查属性值长度是否与给定的UUID定义一致。<br>++++++++++++++++++++++++<br>Attribute permission(属性权限)，属性权限不会直接在空中包中体现，而是隐含在ATT命令的操作结果中，这部分工作也留给了GATT和应用层协议。目前主要有如下四种属性权限：<br>Open，直接可以读或者写。No Access，禁止读或者写。<br>Authentication，需要配对才能读或者写，由于配对有多种类型，因此Authentication又衍生多种子类型，比如带不带MITM，有没有LESC。<br>Authorization，跟Open一样，不过Server返回Attribute的值之前需要应用先授权，也就是说应用可以在回调函数里面去修改读或者写的原始值。<br>Signed，签名后才能读或者写，这个用得比较少。<br>++++++++++++++++++++++++</p>
+</blockquote>
+<h4 id="6-通用访问配置文件层"><a href="#6-通用访问配置文件层" class="headerlink" title="6-通用访问配置文件层"></a>6-通用访问配置文件层</h4><ul>
+<li>Generic access profile（通用访问配置文件），GAP是对LL层payload（有效数据包）如何进行解析的两种方式中的一种。GAP简单的对LL payload进行一些规范和定义。GAP定义了蓝牙通信的角色（主机和从机），控制着它们的<font color="red">广播，扫描和发起连接</font>的方式。GAP使蓝牙设备被其他设备可见，并决定了蓝牙设备是否可以与其他设备进行交互以及交互的方式。某些设备可以配置成只发送广播而不支持连接，比如一些Beacon设备。</li>
+</ul>
+<h6 id="蓝牙广播"><a href="#蓝牙广播" class="headerlink" title="蓝牙广播"></a>蓝牙广播</h6><ul>
+<li><p>从机发送广播</p>
 </li>
-<li><p>蓝牙广播数据格式：蓝牙广播报文的最大长度是37个字节，其中设备地址（MAC）占用了6个字节，只有31个字节是可用的。这31个可用的字节又按照一定的格式来组织，被分割为n个广播数据结构体（AD Structure）。</p>
-</li>
-<li><p>每个AD Structure包含又包含三部分，分别是：Length(1字节) + AD Type(1字节) + AD Data(n字节)，其中Length = AD Type 长度 + AD Data 长度；AD Type 需要查询蓝牙组织联盟的相关文档，里面有详细的说明（下载链接：<a href="https://btprodspecificationrefs.blob.core.windows.net/assigned-numbers/Assigned%20Number%20Types/Generic%20Access%20Profile.pdf" target="_blank" rel="noopener">Generic Access Profile</a>）；如果所有的广播数据结构体的长度少于31个字节，则后面的补0。<br><img src="/images/%E5%B9%BF%E6%92%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" alt></p>
+<li><p>蓝牙广播帧格式（蓝牙广播包/蓝牙广播通道（channel）空中包格式）<br><img src="/images/%E7%A9%BA%E4%B8%AD%E5%8C%85%E5%B8%A7%E6%A0%BC%E5%BC%8F.jpg" alt><br>①<font color="blue" size="3">前导（Preamble）</font>：是一个8Bit的交替序列，根据Access Address第一个Bit，有两种取值情况：0x55或者0xAA（纯PHY层行为）。接入地址的第一个比特为0：01010101，接入地址的第一个比特为1：10101010<br>②<font color="blue" size="3">接入地址（Access Address）</font>：广播的时候发送的广播帧为固定地址：0x8E89BED6（低字节在前）。广播包只能在广播信道（channel）上传输，即只能在37/38/39信道上传输（注：从蓝牙5.0开始广播包可以在其它信道上传输）。广播包发送给附近所有的observer（扫描者）。数据包Access Address为一个32bit的随机值，由Initiator生成。数据包，其实是数据信道上的空中包的简称，数据包只在数据信道上传输，即除37/38/39之外的其余37信道（BLE总共占用40个信道）。每建立一次连接，重新生成一次Access address。数据包是给连接通信使用的，即用于Master和Slave之间通信的。<br>③<font color="blue" size="3">数据交互单元（PDU）</font>：由广播报文的报头和实际数据组成。<br><img src="/images/%E7%A9%BA%E4%B8%AD%E5%8C%85pdu.jpg" alt><br>广播报文的报头（Header）：包含4Bit广播报文类型<font color="red" size="2">[1]</font>、2bit保留位、1bit发送地址类型和1bit接收地址类型。发送/接收地址类型：0：公共地址、1：随机地址。<br>长度：广播报文的长度域包含8个比特，有效值的范围是6-37。<br><img src="/images/%E7%A9%BA%E4%B8%AD%E5%8C%85pdu%E7%9A%84header.jpg" alt><br>实际数据（Payload）<font color="red" size="2">[2]</font>：广播者地址(Adva，6个字节) + 广播数据（AdvData，31个字节）。广播数据：分为有效数据(包含N个AD Structure)和无效数据<br>④<font color="blue" size="3">校验（CRC）</font>： 3个字节，为CRC校验。<br>BLE广播帧最长为：1 + 4 + 1 + 1 + 37 + 3 = 47<br>⑤BLE空中包采用小端模式<br><img src="/images/%E5%B9%BF%E6%92%AD%E5%8C%85.png" alt><br>AAD6BE898E600E3B75AB2A02E102010504FF5900538EC7B2<br>AA – 前导帧(preamble)<br>D6BE898E – 访问地址(access address)<br>60 – LL帧头字段(LL header)<br>0E – 有效数据包长度(payload length)<br>3B75AB2A02E1 – 广播者设备地址(advertiser address)<br>02010504FF590053 – 广播数据<br>8EC7B2 – CRC24值</p>
 </li>
 </ul>
-<table>
-<thead>
-<tr>
-<th align="center">广播数据类型</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">0x01</td>
-<td align="center">设备标识（flag）</td>
-</tr>
-<tr>
-<td align="center">0x08</td>
-<td align="center">缩略的设备名称</td>
-</tr>
-<tr>
-<td align="center">0x09</td>
-<td align="center">完整的设备名称（UTF-8）</td>
-</tr>
-<tr>
-<td align="center">0x0A</td>
-<td align="center">发射功率</td>
-</tr>
-<tr>
-<td align="center">0x19</td>
-<td align="center">设备外观</td>
-</tr>
-<tr>
-<td align="center">0xFF</td>
-<td align="center">厂商自定义数据</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>打开nrf connect软件，扫描蓝牙设备，点击相应的蓝牙设备（不是连接），展开详情页面，可以看到当前蓝牙设备广播的数据。点击RAW可以查看16进制的原始广播数据。<br><img src="/images/nrf-connect.png" alt></p>
-</li>
-<li><p>一般来说，普通蓝牙设备的广播开头都是0x02,0x01,0x06。即Length = 2，AD Type = 1，AD Data = 0x06。AD Type 为1表示的是设备标识，AD Data这一个字节的含义如下：</p>
-</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th align="center">数据位</th>
-<th align="center">含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="center">bit0</td>
-<td align="center">LE有限可发现模式</td>
-</tr>
-<tr>
-<td align="center">bit1</td>
-<td align="center">LE普通可发现模式</td>
-</tr>
-<tr>
-<td align="center">bit2</td>
-<td align="center">不支持BR/EDR(经典蓝牙)</td>
-</tr>
-<tr>
-<td align="center">bit3</td>
-<td align="center">控制器同时支持BR/EDR/LE</td>
-</tr>
-<tr>
-<td align="center">bit4</td>
-<td align="center">主机端同时支持BR/EDR/LE</td>
-</tr>
-<tr>
-<td align="center">bit5-7</td>
-<td align="center">保留</td>
-</tr>
-</tbody></table>
-<ul>
-<li><p>普通的蓝牙设备只支持LE(低功耗蓝牙)，不支持BR/EDR(经典蓝牙)，一般都将设备设为处于普通发现模式，Bit1和Bit2置1，即0x06（b00000110）。</p>
-</li>
-<li><p>蓝牙广播类型</p>
-</li>
-</ul>
+<details>
+<summary>nrf connect示例</summary>
+
+<blockquote>
+<p>打开nrf connect软件，扫描蓝牙设备，点击相应的蓝牙设备（不是连接），展开详情页面，可以看到当前蓝牙设备广播的数据。点击RAW可以查看16进制的原始广播数据（PDU）。<br><img src="/images/nrf-connect.png" alt></p>
+</blockquote>
+</details>
+
+<details>
+<summary><font color="#008000" size="4">注解</font></summary>
+
+<details>
+<summary>[1]广播报文类型</summary>
+
 <table>
 <thead>
 <tr>
@@ -476,106 +439,198 @@
 <td align="center">支持</td>
 </tr>
 </tbody></table>
-<ul>
-<li><p>可连接非定向广播，该设备提供了能与之建立链路层连接的功能；非定向的意思是，并非只有某个特定的设备才能与之建立连接。可连接非定向合起来的意思是，所有收到该广播的设备，都可与之建立链路层连接(可以通过设置设备地址里的1bit来决定该设备是私有设备还是公有设备)</p>
-</li>
-<li><p>可连接定向广播，是指明了对方设备地址的，为之提供了连接功能的广播包。简而言之就是，只有广播包中指定的那个设备才能与之建立链路层连接，其余设备的连接请求均被忽略。</p>
-</li>
-<li><p>不可连接广播，通常用于向周围的设备周期性的广播一些特定的信息，附近的任何设备都可以接收这种广播包，但不可与之建立连接。例如，这种广播包可用于防丢器的应用场景，在一些容易丢弃的物件上内置BLE芯片，并周期性的广播不可连接广播包，手机扫描这种广播包，同时也会获得这种广播包的接收信号强度（RSSI），接收信号强度是与距离相关的，手机离设备远的时候，它的强度就弱，弱到一定程度手机就会发出报警声，表示物件已经离开手机很远了。</p>
-</li>
-<li><p>扫描不可连接非定向，是广播者发出的空中包，它会携带广播数据，同时也会响应其他设备的扫描请求，但与可连接非定向广播包不同的是，他不能响应其他设备的连接请求。简而言之就是，可获取设备信息（广播数据和扫描响应中的数据），但不能被连接。</p>
-</li>
+<p><img src="/images/%E5%B9%BF%E6%92%AD%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B.png" alt></p>
+<p><img src="/images/%E5%B9%BF%E6%92%AD%E6%8A%A5%E6%96%87%E7%B1%BB%E5%9E%8B2.png" alt></p>
+<blockquote>
+<p>可连接非定向广播（ADV_IND），该设备提供了能与之建立链路层连接的功能；非定向的意思是，并非只有某个特定的设备才能与之建立连接。可连接非定向合起来的意思是，所有收到该广播的设备，都可与之建立链路层连接(可以通过设置设备地址里的1bit来决定该设备是私有设备还是公有设备)<br><img src="/images/ADV_IND.jpg" alt><br>payload部分包含2个字段：AdvA和AdvData<br>AdvA： Adv Address，它表示广播者的设备地址<br>AdvData：广播数据，包括service data，service uuid以及manufacture data等等。<br>++++++++++++++++++++++++<br>可连接定向广播(ADV_DIRECT_IND)，是指明了对方设备地址的，为之提供了连接功能的广播包。简而言之就是，只有广播包中指定的那个设备才能与之建立链路层连接，其余设备的连接请求均被忽略。<br><img src="/images/ADV_DIRECT_IND.jpg" alt><br>payload部分包含2个字段：AdvA和InitA：<br>AdvA：Adv Address，它表示广播者的设备地址<br>InitA：表示接收者的设备地址，它指明了该广播包的接收者地址，也表示后续也只有该设备才能与之建立链路层连接<br>++++++++++++++++++++++++<br>不可连接广播 (ADV_NONCONN_IND)，通常用于向周围的设备周期性的广播一些特定的信息，附近的任何设备都可以接收这种广播包，但不可与之建立连接。例如，这种广播包可用于防丢器的应用场景，在一些容易丢弃的物件上内置BLE芯片，并周期性的广播不可连接广播包，手机扫描这种广播包，同时也会获得这种广播包的接收信号强度（RSSI），接收信号强度是与距离相关的，手机离设备远的时候，它的强度就弱，弱到一定程度手机就会发出报警声，表示物件已经离开手机很远了。<br><img src="/images/ADV_NONCONN_IND.jpg" alt><br>payload部分和可连接非定向广播包一模一样，只不过它是不可连接的。<br>++++++++++++++++++++++++<br>扫描不可连接非定向（ADV_SCAN_IND），是广播者发出的空中包，它会携带广播数据，同时也会响应其他设备的扫描请求，但与可连接非定向广播包不同的是，他不能响应其他设备的连接请求。简而言之就是，可获取设备信息（广播数据和扫描响应中的数据），但不能被连接。<br><img src="/images/ADV_NONCONN_IND.jpg" alt><br>++++++++++++++++++++++++<br>可扫描通知 (ADV_SCAN_IND)，是广播者发出的空中包，它会携带广播数据，同时也会响应其他设备的扫描请求，但与可连接非定向广播包不同的是，他不能响应其他设备的连接请求。简而言之就是，可获取设备信息（广播数据和扫描响应中的数据），但不能被连接。<br><img src="/images/ADV_NONCONN_IND.jpg" alt><br>payload部分包含2个字段：<br>AdvA：广播者的设备地址<br>AdvData：广播数据<br>++++++++++++++++++++++++<br><a href="https://www.cnblogs.com/ethan-yan/p/14721055.html" target="_blank" rel="noopener">参考：BLE广播信道空中包详解</a><br><a href="https://www.codenong.com/cs109177250/" target="_blank" rel="noopener">拓展：BLE5.0的广播类型</a><br>++++++++++++++++++++++++</p>
+</blockquote>
+</details>
+
+<details>
+<summary>[2]蓝牙广播数据格式</summary>
+
+<p>蓝牙广播报文的最大长度是37个字节，其中设备地址（MAC）占用了6个字节，只有31个字节是可用的。这31个可用的字节又按照一定的格式来组织，被分割为n个广播数据结构体<font color="red" size="2">[3]</font> （AD Structure）。</p>
+</details>
+
+<details>
+<summary>[3]广播数据结构体</summary>
+
+<p>每个AD Structure包含又包含三部分，分别是：Length(1字节) + AD Type<font color="red" size="2">[4]</font> (1字节) + AD Data<font color="red" size="2">[5]</font> (n字节)，其中Length = AD Type 长度 + AD Data 长度；AD Type 需要查询蓝牙组织联盟的相关文档，里面有详细的说明（下载链接：<a href="https://btprodspecificationrefs.blob.core.windows.net/assigned-numbers/Assigned%20Number%20Types/Generic%20Access%20Profile.pdf" target="_blank" rel="noopener">Generic Access Profile</a>）；如果所有的广播数据结构体的长度少于31个字节，则后面的补0。<br><img src="/images/%E5%B9%BF%E6%92%AD%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.png" alt></p>
+</details>
+
+<details>
+<summary>[4]广播数据结构体的类型</summary>
+
+<table>
+<thead>
+<tr>
+<th align="center">广播数据类型</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">0x01</td>
+<td align="center">设备标识（flag）</td>
+</tr>
+<tr>
+<td align="center">0x08</td>
+<td align="center">缩略的设备名称</td>
+</tr>
+<tr>
+<td align="center">0x09</td>
+<td align="center">完整的设备名称（UTF-8）</td>
+</tr>
+<tr>
+<td align="center">0x0A</td>
+<td align="center">发射功率</td>
+</tr>
+<tr>
+<td align="center">0x19</td>
+<td align="center">设备外观</td>
+</tr>
+<tr>
+<td align="center">0xFF</td>
+<td align="center">厂商自定义数据</td>
+</tr>
+<tr>
+<td align="center"></td></tr></tbody></table></details>
+<td align="center"></td>
+
+
+<details>
+<summary>[5]广播数据结构体的数据位</summary>
+
+<table>
+<thead>
+<tr>
+<th align="center">数据位</th>
+<th align="center">含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">bit0</td>
+<td align="center">LE有限可发现模式</td>
+</tr>
+<tr>
+<td align="center">bit1</td>
+<td align="center">LE普通可发现模式</td>
+</tr>
+<tr>
+<td align="center">bit2</td>
+<td align="center">不支持BR/EDR(经典蓝牙)</td>
+</tr>
+<tr>
+<td align="center">bit3</td>
+<td align="center">控制器同时支持BR/EDR/LE</td>
+</tr>
+<tr>
+<td align="center">bit4</td>
+<td align="center">主机端同时支持BR/EDR/LE</td>
+</tr>
+<tr>
+<td align="center">bit5-7</td>
+<td align="center">保留</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>一般来说，普通蓝牙设备的广播数据开头都是0x02,0x01,0x06。即Length = 2，AD Type = 1，AD Data = 0x06。AD Type 为1表示的是设备标识；普通的蓝牙设备只支持LE(低功耗蓝牙)，不支持BR/EDR(经典蓝牙)；一般都将设备设为处于普通发现模式，Bit1和Bit2置1，即0x06（b00000110）。</p>
+</blockquote>
+</details>
+</details>
+
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">广播间隔</font><br>++++++++++++++++++++++++<br><img src="/images/%E5%B9%BF%E6%92%AD%E9%97%B4%E9%9A%94.png" alt><br>T_advEvent = advInterval + advDelay<br>*T_advEvent也就是图中的t;advInterval是0.625ms的倍数，在20ms-10.24s之间。如果广播类型是非定向扫描事件或者非定向不可连接广播事件，这个值不能小<br>于100ms。如果广播事件类型是非定向可连接事件，这个是只需大于20ms即可；<br>*advDelay是一个随机数，在0ms-10ms之间，在每一个广播事件中都有。由于设备间的时钟会有不同程度的漂移，所以这个随机延时的作用不但能消除设备之间时钟漂移，还能避免相同信道及时间点上的冲突；<br>++++++++++++++++++++++++</p>
+</blockquote>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">信道切换时间间隔</font><br>++++++++++++++++++++++++<br><img src="/images/%E4%BF%A1%E9%81%93%E5%88%87%E6%8D%A2%E6%97%B6%E9%97%B4%E9%97%B4%E9%9A%94.png" alt><br>广播事件之间有时间间隔，广播有3个信道进行数据传输，这3个信道之间的时间间隔在协议中有规定：两个连续的通用广播之间的时间必须小于等于10ms<br>++++++++++++++++++++++++</p>
+</blockquote>
+<h6 id="扫描请求与扫描响应"><a href="#扫描请求与扫描响应" class="headerlink" title="扫描请求与扫描响应"></a>扫描请求与扫描响应</h6><ul>
+<li>主机发送扫描请求，从机响应扫描</li>
 </ul>
-<p><a href="https://www.cnblogs.com/ethan-yan/p/14721055.html" target="_blank" rel="noopener">更多蓝牙广播类型</a></p>
-<h6 id="扫描请求-主机发送-扫描响应-从机响应"><a href="#扫描请求-主机发送-扫描响应-从机响应" class="headerlink" title="扫描请求-主机发送 扫描响应-从机响应"></a>扫描请求-主机发送 扫描响应-从机响应</h6><ul>
+<p><img src="/images/%E6%89%AB%E6%8F%8F%E4%B8%8E%E5%BA%94%E7%AD%94.png" alt></p>
+<ul>
+<li><p>如果接收到的SCAN_REQ PDU通过了滤波政策，那么广播者需要在同一信道并且在接收到数据到发送SCAN_RSP PDU扫描应答报文的时间一定是150±2µs完成。</p>
+</li>
 <li><p>蓝牙设备除了可以通过上述方式，主动的发射广播数据外，还可以接受其他设备的扫描请求，从而响应额外的数据，二者的区别如下:广播是蓝牙从机设备主动发出的数据。而扫描响应是，当蓝牙主机收到从机的广播数据后，如果想要进一步了解该从机设备的信息，可以向从机设备发送扫描请求，从机收到扫描请求后，向对应的主机回复扫描响应。 </p>
 </li>
-<li><p>扫描响应特点：扫描的数据格式和蓝牙广播的数据格式一样;扫描响应数据是非必需的；扫描响应可作为广播数据的补充，因为蓝牙的广播数据最多是31个字节，如果广播数据太多，可以将一部分不太重要的数据放到扫描响应数据里面，来分担广播数据的工作；扫描响应有一定的触发条件（收到扫描请求）</p>
+<li><p>扫描响应特点：扫描的数据格式和蓝牙广播的数据格式一样;扫描响应数据是非必需的；扫描响应可作为广播数据的补充，因为蓝牙的广播数据最多是31个字节，如果广播数据太多，可以将一部分不太重要的数据放到扫描响应数据里面，来分担广播数据的工作；扫描响应有一定的触发条件（收到扫描请求）。</p>
 </li>
 </ul>
-<h6 id="蓝牙状态机"><a href="#蓝牙状态机" class="headerlink" title="蓝牙状态机"></a>蓝牙状态机</h6><ul>
-<li>蓝牙链路层的状态机有五种状态，分别是就绪态，广播态，连接态，扫描态，发起连接态。各个状态间的转换路径如下图所示：</li>
-</ul>
-<p><img src="/images/%E8%93%9D%E7%89%99%E7%8A%B6%E6%80%81%E6%9C%BA.jpg" alt></p>
-<ul>
-<li>以手机连接某个蓝牙模块为例，手机作为主机设备，蓝牙模块作为从机设备。上电之后二者都将处于就绪态，蓝牙模块设置广播数据并开始广播后将转换到广播态；手机扫描附近范围内的蓝牙设备时，手机将处于扫描态，手机尝试连接某个设备时，手机的蓝牙处于发起连接态，连接成功后，二者将都处于连接态（注：从机此时不会再继续广播）。断开连接之后，二者将都再回到就绪态，从机需要重新设置进行广播才会进入广播态，否则断开连接后无法再次被主机扫描到。</li>
-</ul>
+<blockquote>
+<p>++++++++++++++++++++++++<br>扫描请求 (SCAN_REQ)，扫描请求是扫描者向指定的广播者发出的空中包，广播者收到扫描请求后，要立即回复扫描响应。<br><img src="/images/SCAN_REQ.jpg" alt><br>Payload部分包含两个字段ScanA和AdvA：<br>ScanA：Scanner Address，表示扫描者的设备地址<br>AdvA：广播者的设备地址<br>++++++++++++++++++++++++<br>扫描响应 (SCAN_RSP)<br>扫描响应是广播者发出的空中包，它是作为对扫描请求的响应，其中会携带一些与广播者相关的数据，并返回给扫描者。<br><img src="/images/SCAN_RSP.jpg" alt><br>Payload部分包含两个字段AdvA和ScanRspData：<br>AdvA：广播者的设备地址<br>ScanRspData：Scanner Response Data，表示返回给扫描者的响应数据<br>虽然扫描响应中并没有指定扫描者的设备地址，但也只有发出对应扫描请求的设备才能接收该扫描请求，其他设备会将其忽略。<br>++++++++++++++++++++++++</p>
+</blockquote>
 <h6 id="连接建立过程"><a href="#连接建立过程" class="headerlink" title="连接建立过程"></a>连接建立过程</h6><ul>
 <li><p>BLE广播与扫描，设备不断发送广播信号给手机(observer)，如果手机不开启扫描窗口，手机是收不到设备B的广播的，不仅手机要开启射频接收窗口，而且只有手机的射频接收窗口跟广播发送的发射窗口匹配成功，而且广播射频通道和手机扫描射频通道是同一个通道，手机才能收到设备的广播信号。也就是说，如果设备在37通道发送广播包，而手机在扫描38通道，那么即使他们俩的射频窗口匹配，两者也是无法进行通信的。由于这种匹配成功是一个概率事件，因此手机扫到设备也是一个概率事件，也就是说，手机有时会很快扫到设备，比如只需要一个广播事件，手机有时又会很慢才能扫到设备，比如需要10个广播事件甚至更多。</p>
 </li>
-<li><p>建立连接（connection establishment），根据蓝牙spec规定，Advertiser发送完一个广播包之后150us（T_IFS），advertiser必须开启一段时间的射频Rx窗口，以接收来自observer的数据包。Observer就可以在这段时间里给Advertiser发送连接请求。手机扫到了设备，发出连接请求CONN_REQ(CONN_REQ又称为CONNECT_IND)。</p>
-</li>
-<li><p>connect_req其实是在告诉advertiser，手机将在Transmit Window期间发送第一个同步包（P1）给你，请在这段时间里把你的射频接收窗口打开。设备B收到P1后，T_IFS时间后将给手机回复数据包P2（ACK包）。一旦手机收到数据包P2，连接即可认为建立成功。当然，实际情况会比较复杂，手机有可能收不到P2，这个时候手机将持续发送同步包直到超时时间（supervision timeout）到，在此期间只要设备B回过一次ACK包，连接即算成功。所以一旦P1包发出，主机（手机）即认为连接成功，而不管有没有收到设备的ACK包。这也是为什么在Android或者iOS系统中，应用经常收到连接成功的回调事件（ 该回调事件就是基于 P1包有没有发出，只要P1包发出，手机即认为连接成功，而不管有没有收到设备的ACK包 ），但实际上手机和设备并没有成功建立连接。后续手机将以 P1为锚点（原点），Connection Interval为周期，周期性地 给设备B发送数据包（Packet），Packet除了充当数据传送功能，它还有如下两个非常重要的功能：</p>
-</li>
-<li><p>同步手机和设备的时钟，也就是说，设备每收到手机发来的一个包，都会把自己的时序原点重新设置，以跟手机同步。</p>
-</li>
-<li><p>告诉设备你现在可以传数据给我了。连接成功后，BLE通信将变成主从模式，因此把连接发起者（手机）称为Master或者Central，把被连接者（之前的Advertiser）称为Slave或者Peripheral。BLE通信之所以为主从模式，是因为Slave不能“随性”给Master发信息，它只有等到Master给它发了一个packet后，然后才能在规定的时间把自己的数据回传给Master。</p>
-</li>
-<li><p>连接失败,</p>
+<li><p>建立连接（Connection establishment），根据蓝牙Spec规定，Advertiser发送完一个广播包之后150us（T_IFS），advertiser必须开启一段时间的射频Rx窗口，以接收来自Observer的数据包。Observer就可以在这段时间里给Advertiser发送连接请求。手机扫到了设备，发出连接请求CONN_REQ(CONN_REQ又称为CONNECT_IND)。</p>
 </li>
 </ul>
-<h6 id="数据帧格式"><a href="#数据帧格式" class="headerlink" title="数据帧格式"></a>数据帧格式</h6><ul>
+<p><img src="/images/%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5.png" alt></p>
+<blockquote>
+<p>++++++++++++++++++++++++<br>连接请求 (CONNECT_REQ)，连接请求，既不是广播者发出的，也不是扫描者发出的。它是由发起者发出，并由广播者来接收，简而言之就是发起者向指定的广播者发起的一个连接请求<br>发起者在发起连接请求之前，它必须先知道广播者的设备地址，那么它是如何知道对方地址的呢？一种方式就是通过扫描。我们知道广播者有2种可连接的广播包，分别是可连接非定向广播包和可连接定向广播包。那么当扫描者接收到其中一种可连接广播包的时候，它就知道对方的设备地址了，因而可以发起连接请求。如果是可连接定向广播包，前提是定向的是扫描者自己，那么才能发起连接请求。<br><img src="/images/CONNECT_REQ.jpg" alt><br>payload部分包含3个字段：<br>InitA： Initiator Address，发起者设备地址<br>AdvA：广播者设备地址<br>LLData：Link Layer Data，表示与链路层连接相关的连接参数<br><img src="/images/LLData.jpg" alt><br>*AA：Access Address，访问地址<br>*CRCInit：用于CRC计算的一个初始值<br>*WinSize：transmit Window Size（transmitWindowSize = WinSize * 1.25 ms），传输窗口的大小，它为传输窗口的时间，而且这个值乘以 1.25ms 才是真正的传输窗口时间 范围：[1.25ms,MIN(10ms, connInterval - 1.25 ms)]<br>*WinOffset：transmit Window Offset(transmitWindowOffset = WinOffset * 1.25 ms)，传输窗口的偏移量，它是传输窗口偏移的时间，同样这个值需要乘以 1.25ms 才是真正的传输窗口偏移时间。 这个参数其实只在第一连接事件发生前或者连接参数更新时用； 范围：[0, connInterval]<br>*Interval：connInterval（connInterval = Interval * 1.25 ms），简单理解就是一个睡眠唤醒周期的时间（连接间隔时间），它是 1.25ms 的倍数，范围：[7.5ms,4.0S]<br>*Latency：connSlaveLatency，表示Slave可以连续多长时间不用监听信道（从机潜伏次数），范围：[0, MIN(((connSupervisionTimeout / connInterval) - 1),500)]<br>*Timeout：connSuppervisionTimeout，连接状态下，设备双方约定这么长时间之后没有相互收到对方的包了，那么彼此可以认为连接已经丢失了，比如设备超出距离的情形，100ms~30.0s，timeout &gt; (1 + connSlaveLatency) *connInterval<br>*Chm：Channel Map，后续连接中使用到和未使用到的数据信道<br>*Hop：跳频的跳数<br>*SCA：它和Master的睡眠时钟精度有关<br>++++++++++++++++++++++++</p>
+</blockquote>
+<ul>
+<li>connect_req其实是在告诉Advertiser，手机将在Transmit Window期间发送第一个同步包（P1）给你，请在这段时间里把你的射频接收窗口打开。设备B收到P1后，T_IFS时间后将给手机回复数据包P2（ACK包）。一旦手机收到数据包P2，连接即可认为建立成功。当然，实际情况会比较复杂，手机有可能收不到P2，这个时候手机将持续发送同步包直到超时时间（supervision timeout）到，在此期间只要设备B回过一次ACK包，连接即算成功。所以一旦P1包发出，主机（手机）即认为连接成功，而不管有没有收到设备的ACK包。这也是为什么在Android或者iOS系统中，应用经常收到连接成功的回调事件（该回调事件就是基于P1包有没有发出，只要P1包发出，手机即认为连接成功，而不管有没有收到设备的ACK包），但实际上手机和设备并没有成功建立连接。后续手机将以 P1为锚点（原点），Connection Interval为周期，周期性地 给设备B发送数据包（Packet），Packet除了充当数据传送功能，它还有如下两个非常重要的功能：</li>
+</ul>
+<blockquote>
+<p>*同步手机和设备的时钟，也就是说，设备每收到手机发来的一个包，都会把自己的时序原点重新设置，以跟手机同步。告诉设备你现在可以传数据给我了。<br>*连接成功后，BLE通信将变成主从模式，因此把连接发起者（手机）称为Master或者Central，把被连接者（之前的Advertiser）称为Slave或者Peripheral。BLE通信之所以为主从模式，是因为Slave不能“随性”给Master发信息，它只有等到Master给它发了一个packet后，然后才能在规定的时间把自己的数据回传给Master。</p>
+</blockquote>
+<ul>
+<li>广播软件设计流程图</li>
+</ul>
+<p><img src="/images/%E5%B9%BF%E6%92%AD%E8%BD%AF%E4%BB%B6%E8%AE%BE%E8%AE%A1%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt></p>
+<h6 id="蓝牙连接后"><a href="#蓝牙连接后" class="headerlink" title="蓝牙连接后"></a>蓝牙连接后</h6><ul>
+<li><p>蓝牙数据帧格式(蓝牙数据包/蓝牙数据通道空中包格式）</p>
+</li>
 <li><p>连接成功后，双方将可以互相发送数据，那么将涉及到其数据帧格式：</p>
 </li>
-<li><p>LLID：表示此包数据是 LL Date PDU 还是 LL Control PDU</p>
+</ul>
+<p><img src="/images/%E7%A9%BA%E4%B8%AD%E5%8C%85pdu2.jpg" alt></p>
+<ul>
+<li>与蓝牙广播包相对应，蓝牙数据包是另一种BLE packet。空中包只在蓝牙数据信道上传输，即除37/38/39之外的其他37个信道。从格式上来说，蓝牙数据包又分空包（empty packet）和普通数据包（data packet）两种，空包格式如下。</li>
+</ul>
+<p><img src="/images/%E8%93%9D%E7%89%99%E6%95%B0%E6%8D%AE%E7%A9%BA%E5%8C%85.png" alt></p>
+<p><img src="/images/%E8%93%9D%E7%89%99%E6%95%B0%E6%8D%AE%E5%8C%85.png" alt></p>
+<p>①<font color="blue" size="3">数据报文的报头（Data header）</font>：<br><img src="/images/%E6%95%B0%E6%8D%AE%E6%8A%A5%E6%96%87%E7%9A%84%E6%8A%A5%E5%A4%B4.png" alt><br>LLID：表示此包数据是 LL Date PDU 还是 LL Control PDU</p>
 <blockquote>
 <p>00b: Reserved<br>01b: LL Date PDU：Continuation fragment of L2CAP message，or an Empty PDU.<br>10b: LL Date PDU：Start of an L2CAP message or a complete L2CAP message with no fragmentation.<br>11b: LL Control PDU</p>
 </blockquote>
-</li>
-<li><p>MIC（ Message Integrity Check）：信息完整性检测。涉及到加密操作，并不是一定要有此项。</p>
-</li>
-<li><p>MD：这个标志位是用来通知对方设备自己还有其他数据准备发送。0表示没有更多数据发送，1表示有更多数据准备发送。这样，只要还有数据需要发送，连接事件会自动扩展。一旦不再有数据发送，连接事件立即关闭。</p>
-</li>
-<li><p>Note：如何区分是确定包、新包还是重发包？</p>
-</li>
-<li><p>SN：只有一个 bit 位，所以值是在 0 和 1 之间进行切换。如果序列号与之前的一样，则为重传报文，如果序列号和之间的不同，则为新报文。</p>
-</li>
-<li><p>NESN：预期序列号，它是接收方希望接到的下一包的序列号，也就是数据包的确认标志。当设备接收到序列（SN）为0的报文后，在发送给对方的数据包中，应将NESN设为1，这样对方接收到这个包后，会发送一个新的数据包过来，否则就会重发上一次序列号为0的包。这个标志可以用来判断数据包是否被正确接收还是需要重传。</p>
-</li>
-</ul>
-<h4 id="gatt"><a href="#gatt" class="headerlink" title="gatt"></a>gatt</h4><blockquote>
-<p>Generic Attribute Profile（通用属性配置）。我们使用BLE的时候，主机和从机建立的连接通常称为GATT连接。GATT也给BLE设备定义了角色，GATT Server和GATT Client。通常情况下，主机就是Client，从机就是Server。这是一个C/S架构，主机向从机请求服务。Server和Client通过ATT PDU进行交互，Server通过Characteristic对数据进行封装。这两个概念尤其重要：Service和Characteristic，一个Service包含多个Characteristic，这两个概念都是建立在设备已经连接的基础上，连接之后才能通过服务与特征值进行通信。BLE主从设备之间通信多数情况下就是对特定Service里的特定的Characteristic进行读写操作。每个Service和Characteristic都有一个唯一的UUID与之对应。在开发BLE应用和智能硬件时，两端的开发者需要协商好对应的UUID（例如服务UUID FEEA、特征值UUID FEE2和FEE3）。GATT用来规范Attribute中的数据内容，并运用group（分组）的概念对Attribute进行分类管理。ATT协议定义了一组属性，并将这些属性暴露出来给客户端，而GATT更像是基于这些属性，构建一种服务端与客户端之间通信的协定，让双方基于这种协定能够正常的通信。</p>
+<p>LL Control PDU是在Link layer层直接进行交互的，也就是说他们不会经过后面的L2CAP层，Link layer支持如下control PDU：<br><img src="/images/LL%E6%8E%A7%E5%88%B6%E5%8C%85.png" alt></p>
+<p>SN：NESN和SN各占1bit。SN全称为Sequence number，表示当前发送的packet编号。只有一个 bit 位，所以值是在 0 和 1 之间进行切换。如果序列号与之前的一样，则为重传报文，如果序列号和之间的不同，则为新报文。Link layer使用SN来告知对方这个packet是新数据包还是重传包，用NESN来告诉对方你之前发我的包已经收到了（相当于ACK的作用），我现在期待下一个新的数据包了，因此BLE没有专门的ACK包，它是通过NESN/SN来实现ACK和重传双重功能的。<br>NESN：Next expected sequence number预期序列号，它是接收方希望接到的下一包的序列号，也就是数据包的确认标志，用来告知对方下一个期待的packet的编号。当设备接收到序列（SN）为0的报文后，在发送给对方的数据包中，应将NESN设为1，这样对方接收到这个包后，会发送一个新的数据包过来，否则就会重发上一次序列号为0的包。这个标志可以用来判断数据包是否被正确接收还是需要重传。<br>MD：more data，这个标志位是用来通知对方设备自己还有其他数据准备发送。0表示没有更多数据发送，1表示有更多数据准备发送。这样，只要还有数据需要发送，连接事件会自动扩展。一旦不再有数据发送，连接事件立即关闭。<br>MIC（ Message Integrity Check）：信息完整性检测。涉及到加密操作，并不是一定要有此项。<br>②<font color="blue" size="3">有效数据包长度（Payload Length or Data Length）</font>：<br><img src="/images/%E6%95%B0%E6%8D%AE%E9%95%BF%E5%BA%A6.png" alt><br>这就是蓝牙4.0/4.1一个数据包只能传20（31 - 6）个字节的根源，BT4.2之后，Payload length 8 bits全部用来表示长度，这样的话，payload size最大可达251字节（255 – MIC size）。BLE连接建立之后，可以动态更改data length长度（默认为27字节），这个特性叫做Data Length Extension（DLE），DLE是通过Link layer命令：LL_LENGTH_REQ和LL_LENGTH_RSP来实现的。Data length直接跟蓝牙芯片的射频能力有关，像Nordic的nRF51822只支持BT4.1的Data length，就是因为PHY层已经做死了，无法扩展，但Nordic最新的nRF52832和nRF52840，就都支持DLE，即data length最大可到251字节。<br>③<font color="blue" size="3">逻辑链路控制与适配协议长度（L2CAP length）</font>：<br>2字节长度，表示后面Information payload的长度，Information payload最大长度除了受这个L2CAP length字段约束，同时还受MTU的限制。MTU，Maximum Transmission Unit，是ATT层与L2CAP层可以交互的最大数据长度，或者说是Client与Server可以交互的最大长度。<br>蓝牙spec里面定义了2个长度字段：LL data length和L2CAP length，同时ATT层还定义了一个MTU，以限制ATT PDU最大长度。LL data length可以通过LL_LENGTH_REQ和LL_LENGTH_RSP来动态改变，MTU size则可以通过后面要讲到的Exchange MTU Request和Exchange MTU Response来改变(nrf connect-Settings-Connectiivity-Atuo service discovery)，而L2CAP length无法动态改变，也就是说不能超过65535。<br>③<font color="blue" size="3">逻辑链路控制与适配协议逻辑通道编码（L2CAP CID）</font>：<br>2字节长度，BLE使用固定的通道编号，也就是说虽然蓝牙spec里面也允许BLE使用connection oriented channel，但大部分BLE协议栈实现的时候都是使用固定的通道编号，通道编号定义如下所示：<br><img src="/images/%E9%80%9A%E9%81%93%E7%BC%96%E5%8F%B7.png" alt><br>BLE L2CAP Signaling Channel支持的PDU命令只有三个：<br>Command reject<br>Connection parameter update request，更新连接参数，比如最小连接间隔，最大连接间隔，slave latency等<br>Connection parameter update response，接受或者拒绝上面的请求<br>Security Manager Protocol（SMP）用来实现配对和密钥分发的，SMP支持如下PDU命令：<br><img src="/images/SMP.png" alt><br>Attribute Protocol（ATT），就是我们经常用到的应用层，应用数据就跟在ATT命令后面，ATT支持如下命令列表：<br><img src="/images/ATT.png" alt><br>至此BLE空中包解析就告一段落了，再往上就是应用层数据解析了，这个就不是空中包的范畴，而是GATT和profile要定义的事情。<br>④BLE空中包采用小端模式<br><img src="/images/%E6%95%B0%E6%8D%AE%E5%8C%85.png" alt><br>AAAB5D65501E08040004001B130053D550F6<br>AA – 前导帧(preamble)<br>0x50655DAB – 访问地址(access address)<br>1E – LL帧头字段(LL header)<br>08 – 有效数据包长度(payload length)<br>04000400 – ATT数据长度，以及L2CAP通道编号<br>1B – notify command<br>0x0013 – 应用数据handle<br>0x53 – 真正要发送的应用数据<br>0xF650D5 – CRC24值</p>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">锚点</font><br>++++++++++++++++++++++++<br><img src="/images/%E9%94%9A%E7%82%B9.png" alt><br>连接事件开始的点叫做锚点(The start of a connection event iscalled an anchor point)。主机在锚点开始连接事件，从机需要在锚点前进入侦听状态。在连接状态下锚点由从机接收的第一个连接事件报文决定，并决定了将来的锚点。<br>++++++++++++++++++++++++</p>
 </blockquote>
-<h4 id="profile"><a href="#profile" class="headerlink" title="profile"></a>profile</h4><ul>
+<h4 id="7-通用属性配置文件层"><a href="#7-通用属性配置文件层" class="headerlink" title="7-通用属性配置文件层"></a>7-通用属性配置文件层</h4><p>Generic Attribute Profile（通用属性配置文件）。我们使用BLE的时候，主机和从机建立的连接通常称为GATT连接。GATT也给BLE设备定义了角色，GATT Server和GATT Client。通常情况下，主机就是Client，从机就是Server。这是一个C/S架构，主机向从机请求服务。Server和Client通过ATT PDU进行交互，Server通过Characteristic对数据进行封装。</p>
+<blockquote>
+<p>++++++++++++++++++++++++++++++++++++++++++++++++<br>Service和Characteristic，一个Service包含多个Characteristic，这两个概念都是建立在设备已经连接的基础上，连接之后才能通过服务与特征值进行通信。BLE主从设备之间通信多数情况下就是对特定Service里的特定的Characteristic进行读写操作。<br>++++++++++++++++++++++++++++++++++++++++++++++++<br>每个Service和Characteristic都有一个唯一的UUID与之对应。在开发BLE应用和智能硬件时，两端的开发者需要协商好对应的UUID（例如服务UUID FEEA、特征值UUID FEE2和FEE3）。GATT用来规范Attribute中的数据内容，并运用group（分组）的概念对Attribute进行分类管理。ATT协议定义了一组属性，并将这些属性暴露出来给客户端，而GATT更像是基于这些属性，构建一种服务端与客户端之间通信的协定，让双方基于这种协定能够正常的通信。<br>++++++++++++++++++++++++++++++++++++++++++++++++</p>
+</blockquote>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><h4 id="1-协议层"><a href="#1-协议层" class="headerlink" title="1-协议层"></a>1-协议层</h4><ul>
 <li>profile可以理解为一种规范，一个标准的通信协议，它存在于<font color="red">从机</font>中。蓝牙组织规定了一些标准的profile，例如HID OVER GATT ，防丢器 ，心率计等，经典蓝牙有SPP协议（Serial Port Profile），实现蓝牙透传，低功耗蓝牙想实现spp协议只能自定义服务与标准来实现。每个profile中会包含多个Service，每个Service代表从机的一种能力(功能)。<a href="https://www.bilibili.com/read/cv15067064?from=articleDetail" target="_blank" rel="noopener">HID协议</a></li>
 </ul>
-<h6 id="service"><a href="#service" class="headerlink" title="service"></a>service</h6><ul>
-<li>Service可以理解为一个服务，在ble从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个Service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的Characteristic特征值存在从机的profile里，这样主机就可以通过这个Characteristic来读取80%这个数据</li>
+<h6 id="服务"><a href="#服务" class="headerlink" title="服务"></a>服务</h6><ul>
+<li>Service可以理解为一个服务，在BLE从机中，通过有多个服务，例如电量信息服务、系统信息服务等，每个Service中又包含多个characteristic特征值。每个具体的characteristic特征值才是ble通信的主题。比如当前的电量是80%，所以会通过电量的Characteristic特征值存在从机的profile里，这样主机就可以通过这个Characteristic来读取80%这个数据</li>
 </ul>
-<h6 id="characteristic"><a href="#characteristic" class="headerlink" title="characteristic"></a>characteristic</h6><ul>
-<li><p>Characteristic特征值（或者叫特性），ble主从机的通信均是通过Characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。可以免费使用Bluetooth SIG官方定义的标准Characteristic，使用官方定义，可以确保BLE的软件和硬件能相互理解。也可以自定义Characteristic，这样的话，就只有你自己的软件和外设能够相互理解。举个例子， Heart Rate Measurement Characteristic，这是上面提到的Heart Rate Service必需实现的Characteristic，它的UUID是0x2A37。它的数据结构，前面8bit定义心率数据格式，接下来就是对应格式的实际心率数据。蓝牙设备要在进入广播态之前创建服务和特征值。</p>
+<h6 id="特征值"><a href="#特征值" class="headerlink" title="特征值"></a>特征值</h6><ul>
+<li><p>Characteristic特征值（或者叫特性），BLE主从机的通信均是通过Characteristic来实现，可以理解为一个标签，通过这个标签可以获取或者写入想要的内容。可以免费使用Bluetooth SIG官方定义的标准Characteristic，使用官方定义，可以确保BLE的软件和硬件能相互理解。也可以自定义Characteristic，这样的话，就只有你自己的软件和外设能够相互理解。举个例子， Heart Rate Measurement Characteristic，这是上面提到的Heart Rate Service必需实现的Characteristic，它的UUID是0x2A37。它的数据结构，前面8bit定义心率数据格式，接下来就是对应格式的实际心率数据。蓝牙设备要在进入广播态之前创建服务和特征值。</p>
 </li>
-<li><p>一个蓝牙设备中可以包含若干个服务，一个服务中可以包含若干个特征值，每一个服务或者特征值都要有一个UUID。蓝牙的数据交互都是基于一个个特征值进行的，数据交互的方式有五种，分别是Read，Write，Write WithOutRespons，Notify，Indication。可以从Characteristic读取数据，也可以往Characteristic写数据。这样就实现了双向的通信。所以从机可以实现一个类似串口（UART/经典蓝牙的SPP协议）的Sevice（FEEA），这个Service中包含两个Characteristic，一个被配置只读的通道（RX）（FEE2），另一个配置为只写的通道（TX）（FEE3）（对于主机则刚好相反，并且手机端接收数据还要打开Notify监听）。</p>
+<li><p>一个蓝牙设备中可以包含若干个服务，一个服务中可以包含若干个特征值，每一个服务或者特征值都要有一个UUID。蓝牙的数据交互都是基于一个个特征值进行的，数据交互的方式有五种，分别是Read，Write，Write With Out Respons，Notify，Indication。可以从Characteristic读取数据，也可以往Characteristic写数据。这样就实现了双向的通信。所以从机可以实现一个类似串口（UART/经典蓝牙的SPP协议）的Sevice（FEEA），这个Service中包含两个Characteristic，一个被配置只读的通道（RX）（FEE2），另一个配置为只写的通道（TX）（FEE3）（对于主机则刚好相反，并且手机端接收数据还要打开Notify监听）。</p>
 </li>
 </ul>
 <p><img src="/images/%E8%93%9D%E7%89%99%E6%95%B0%E6%8D%AE%E4%BA%A4%E4%BA%92%E6%96%B9%E5%BC%8F.jpg" alt></p>
-<ul>
-<li><p>一个Characteristic包含三种条目：Characteristic声明，Characteristic的值以及Characteristic的描述符（可以有多个描述符）：</p>
-</li>
-<li><p>Characteristic declaration就是每个Characteristic的分界符，解析时一旦遇到Characteristic declaration，就可以认为接下来又是一个新的Characteristic了，同时Characteristic declaration还将包含value的读写属性等。</p>
-</li>
-<li><p>Characteristic value是数据的值。</p>
-</li>
-<li><p>Characteristic descriptor就是数据的额外信息，比如温度的单位是什么，数据是用小数表示还是百分比表示等之类的数据描述信息。CCCD是一种特殊的Characteristic descriptor，当Characteristic具有notify或者ndicate操作功能时，那么必须为其添加相应CCCD，以方便Client来使能或者禁止notiify或者indicate功能。</p>
-</li>
-<li><p>不管是Characteristic declaration，Characteristic value还是Characteristic descriptor，实现的时候，我们都是用Attribute来表达的，也就是说，他们每一个都是一个Attribute。</p>
-</li>
-<li><p>Handle、UUID、Vaule组成Attribute，Attribute（Characteristic declaration，Characteristic value，Characteristic descriptor）组成Characteristic，Service包含若干个Characteristic</p>
-</li>
-</ul>
-<h6 id="uuid"><a href="#uuid" class="headerlink" title="uuid"></a>uuid</h6><ul>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">Characteristic结构</font><br>++++++++++++++++++++++++<br>一个Characteristic包含三种条目：Characteristic声明，Characteristic的值以及Characteristic的描述符（可以有多个描述符）：<br>++++++++++++++++++++++++<br>*Characteristic declaration就是每个Characteristic的分界符，解析时一旦遇到Characteristic declaration，就可以认为接下来又是一个新的Characteristic了，同时Characteristic declaration还将包含value的读写属性等。<br>*Characteristic value是数据的值。<br>*Characteristic descriptor就是数据的额外信息，比如温度的单位是什么，数据是用小数表示还是百分比表示等之类的数据描述信息。CCCD是一种特殊的Characteristic descriptor，当Characteristic具有notify或者indicate操作功能时，那么必须为其添加相应CCCD，以方便Client来使能或者禁止notiify或者indicate功能。client可以通过禁止CCCD以不接收notify或者indicate命令，client也可以通过使能CCCD以允许notify或者indicate命令。<br>++++++++++++++++++++++++<br>不管是Characteristic declaration，Characteristic value还是Characteristic descriptor，实现的时候，我们都是用Attribute来表达的，也就是说，他们每一个都是一个Attribute。<br>++++++++++++++++++++++++<br>一个蓝牙设备通常包含若干个Service，一个Service由若干个Characteristic组成，每一个Characteristic由三种Attribute组成（Characteristic declaration，Characteristic value，Characteristic descriptor），每一种Attribute由Handle、UUID、Vaule组成。<br>++++++++++++++++++++++++</p>
+</blockquote>
+<h6 id="通用唯一标识符"><a href="#通用唯一标识符" class="headerlink" title="通用唯一标识符"></a>通用唯一标识符</h6><ul>
 <li><p>University Unique Identifie（通用唯一标识符），是蓝牙组织联盟定义的用于区分蓝牙服务和特征值的的标识符，总长度为128Bit。我们刚才提到的Service和Characteristic，都需要一个唯一的UUID来标识，即服务UUID和特征值UUID。</p>
 </li>
-<li><p>在BLE中我们使用UUID来定义数据的类型，UUID是128bit的，所以我们有足够的UUID来表达万事万物。其中有一个UUID非常特殊，它被蓝牙联盟采用为官方UUID，这个UUID如下所示：0000xxxx-0000-1000-8000-00805F9B34FB。蓝牙联盟将自己定义的attribute或者数据只用16Bit的UUID来表示，比如0x1234，其实它也是128Bit，完整表示为：00001234-0000-1000-8000-00805F9B34FB = 16 Bit UUID 0x1234</p>
+<li><p>在BLE中我们使用UUID来定义数据的类型，UUID是128bit的，所以我们有足够的UUID来表达万事万物。其中有一个UUID非常特殊，它被蓝牙联盟采用为官方UUID，这个UUID如下所示：0000xxxx-0000-1000-8000-00805F9B34FB。蓝牙联盟将自己定义的Attribute或者数据只用16Bit的UUID来表示，比如0x1234，其实它也是128Bit，完整表示为：00001234-0000-1000-8000-00805F9B34FB = 16 Bit UUID 0x1234</p>
 </li>
-<li><p>对于一些常用的功能，蓝牙组织联盟已经为其定义好了UUID，我们在开发产品的时候直接使用即可。比如电池电量服务的UUID是0x180F，电池电量特征值的UUID是0x2A19。<a href="https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf" target="_blank" rel="noopener">16Bit的UUID定义文档下载地址</a></p>
-</li>
-<li><p>UUID可以将属性进行初级的分类：</p>
-<blockquote>
-<p>0x1800 ~ 0x26FF: 服务识别码，用来识别具体是哪个服务。<br>0x2700 ~ 0x27FF: 度量单位，如：km/h，kg。<br>0x2800 ~ 0x28FF: 区分属性类型，首要/次要/包含/特征值。<br>0x2900 ~ 0x29FF: 特征值描述，如：CCCD/User Description。<br>0x2A00 ~ 0x2AFF: 区分特征值类型，DeviceName/Version等。</p>
-</blockquote>
+<li><p>对于一些常用的功能，国际蓝牙组织联盟已经为其定义好了UUID，我们在开发产品的时候直接使用即可。比如电池电量服务的UUID是0x180F，电池电量特征值的UUID是0x2A19。<a href="https://btprodspecificationrefs.blob.core.windows.net/assigned-values/16-bit%20UUID%20Numbers%20Document.pdf" target="_blank" rel="noopener">16Bit的UUID定义文档下载地址</a></p>
 </li>
 </ul>
+<blockquote>
+<p>++++++++++++++++++++++++<br><font color="#008000" size="4">UUID可以将属性进行初级的分类</font><br>++++++++++++++++++++++++<br>0x1800 ~ 0x26FF: 服务识别码，用来识别具体是哪个服务。（Service）<br>0x2700 ~ 0x27FF: 度量单位，如：km/h，kg。（Characteristic descriptor）<br>0x2800 ~ 0x28FF: 区分属性类型，首要/次要/包含/特征值。（Characteristic declaration声明当前是什么类型的Attribute）<br>0x2900 ~ 0x29FF: 特征值描述，如：CCCD/User Description。（Characteristic descriptor）<br>0x2A00 ~ 0x2AFF: 区分特征值类型，DeviceName/Version等。（Characteristic value）<br>++++++++++++++++++++++++</p>
+</blockquote>
   </article>
   <aside class="table-content" id="site-toc">
   <div class="table-content-title">
@@ -583,7 +638,7 @@
     <span>目录</span>
   </div>
   <div class="table-content-main">
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视频教程"><span class="toc-text">视频教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经典蓝牙模块-bt"><span class="toc-text">经典蓝牙模块(bt)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#低功耗蓝牙模块-ble"><span class="toc-text">低功耗蓝牙模块(ble)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#低功耗蓝牙模块的优势"><span class="toc-text">低功耗蓝牙模块的优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙协议"><span class="toc-text">蓝牙协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#打个比方"><span class="toc-text">打个比方</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#phy层"><span class="toc-text">phy层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ll层"><span class="toc-text">ll层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#hci"><span class="toc-text">hci</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#l2cap层"><span class="toc-text">l2cap层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#smp"><span class="toc-text">smp</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#att"><span class="toc-text">att</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#c-s架构"><span class="toc-text">c-s架构</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#att-pdu"><span class="toc-text">att pdu</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#attribute"><span class="toc-text">attribute</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gap层"><span class="toc-text">gap层</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主机和从机"><span class="toc-text">主机和从机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙广播-从机发送"><span class="toc-text">蓝牙广播-从机发送</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#扫描请求-主机发送-扫描响应-从机响应"><span class="toc-text">扫描请求-主机发送 扫描响应-从机响应</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙状态机"><span class="toc-text">蓝牙状态机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#连接建立过程"><span class="toc-text">连接建立过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#数据帧格式"><span class="toc-text">数据帧格式</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#gatt"><span class="toc-text">gatt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#profile"><span class="toc-text">profile</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#service"><span class="toc-text">service</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#characteristic"><span class="toc-text">characteristic</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#uuid"><span class="toc-text">uuid</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础概念"><span class="toc-text">基础概念</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#视频教程"><span class="toc-text">视频教程</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#蓝牙与蓝牙技术"><span class="toc-text">蓝牙与蓝牙技术</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#经典蓝牙模块bt"><span class="toc-text">经典蓝牙模块bt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#低功耗蓝牙模块ble"><span class="toc-text">低功耗蓝牙模块ble</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#双模蓝牙"><span class="toc-text">双模蓝牙</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ble蓝牙整体架构"><span class="toc-text">ble蓝牙整体架构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#无线射频模块"><span class="toc-text">无线射频模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-物理层"><span class="toc-text">1-物理层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#蓝牙协议栈"><span class="toc-text">蓝牙协议栈</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-链路层"><span class="toc-text">1-链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#主机和从机"><span class="toc-text">主机和从机</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙状态机"><span class="toc-text">蓝牙状态机</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-主机控制器接口层"><span class="toc-text">2-主机控制器接口层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-逻辑链路控制与适配协议层"><span class="toc-text">3-逻辑链路控制与适配协议层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-安全管理协议层"><span class="toc-text">4-安全管理协议层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-属性协议层"><span class="toc-text">5-属性协议层</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-通用访问配置文件层"><span class="toc-text">6-通用访问配置文件层</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙广播"><span class="toc-text">蓝牙广播</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#扫描请求与扫描响应"><span class="toc-text">扫描请求与扫描响应</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#连接建立过程"><span class="toc-text">连接建立过程</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#蓝牙连接后"><span class="toc-text">蓝牙连接后</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-通用属性配置文件层"><span class="toc-text">7-通用属性配置文件层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#应用"><span class="toc-text">应用</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-协议层"><span class="toc-text">1-协议层</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#服务"><span class="toc-text">服务</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#特征值"><span class="toc-text">特征值</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#通用唯一标识符"><span class="toc-text">通用唯一标识符</span></a></li></ol></li></ol></li></ol></li></ol></li></ol>
   </div>
 </aside>
   
@@ -741,7 +796,7 @@
 
 <div class="bottom-bar">
   <div class="bottom-bar-left">
-    <a href="/passages/2022-09-18-低功耗蓝牙/" data-enable="true">
+    <a href="javascript:void(0);" data-enable="false">
       <i class="fa fa-arrow-left"></i>
     </a>
     <a href="/passages/2020-04-30-嵌入式知识梳理/" data-enable="true">
